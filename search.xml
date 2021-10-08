@@ -1,87 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>JSON 基础知识 &amp; Ajax 基础知识</title>
-    <url>/2021/10/08/JSON&amp;Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h4 id="为什么我们要把对象转化为字符串？"><a href="#为什么我们要把对象转化为字符串？" class="headerlink" title="为什么我们要把对象转化为字符串？"></a>为什么我们要把对象转化为字符串？</h4><ol>
-<li><p>在网页开发的时候，我们需要把<code>对象信息</code>进行长期保存, 因此我们需要把这些信息传递给<code>服务器</code>。所以，需要通过把对象(变量)转化为字符串才能传递给<code>服务器</code>。</p>
-</li>
-<li><p>我们采用的是<code>http协议</code>即超文本传输协议(其本质就是由文本的形式进行传输)</p>
-</li>
-<li><p>JSON 字符串是绝大多数编程语言都支持的…</p>
-</li>
-</ol>
-<h4 id="JSON-字符串的特征"><a href="#JSON-字符串的特征" class="headerlink" title="JSON 字符串的特征"></a>JSON 字符串的特征</h4><ol>
-<li><strong>属性名称</strong>必须加<strong>双引号</strong> (因为人家默认规定的字符串外层是<code>单引号</code>，所以内层必须是<code>双引号</code>)</li>
-<li><strong>属性值</strong>如果是字符串则必须加<strong>双引号</strong></li>
-<li>对象当中的<code>方法(函数)</code>不会被转化为字符串</li>
-</ol>
-<p>(注意： JSON 本质就是字符串！！)</p>
-<h4 id="JSON-和-对象的相互转换："><a href="#JSON-和-对象的相互转换：" class="headerlink" title="JSON 和 对象的相互转换："></a>JSON 和 对象的相互转换：</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xiaoming&#x27;</span>,<br>  <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;boy&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>  <span class="hljs-function"><span class="hljs-title">say</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;想吃, 想喝, 想爱&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 把对象转为JSON字符串</span><br><span class="hljs-keyword">let</span> str1 = <span class="hljs-built_in">JSON</span>.stringify(obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj&#x27;</span>, obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str1&#x27;</span>, str1);   <span class="hljs-comment">// 纯粹的字符串且没有say方法</span><br><br><span class="hljs-comment">// 把数组转为JSON字符串</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-number">100</span>, &#123;<span class="hljs-attr">key</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">obj</span>: &#123;&#125;, <span class="hljs-attr">str</span>: <span class="hljs-string">&#x27;测试&#x27;</span>&#125;]<br><span class="hljs-keyword">let</span> str2 = <span class="hljs-built_in">JSON</span>.stringify(arr);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;arr&#x27;</span>, arr);<br><span class="hljs-comment">// 内部的字符串元素全部被强制转化为双引号,数值不加引号，</span><br><span class="hljs-comment">// 对象元素进行深层改造(加双引号..),而且不再是对象，而是字符串了...</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str2&#x27;</span>, str2);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight openscad"><table><tr><td class="code"><pre><code class="hljs openscad"><span class="hljs-comment">// JSON字符串转成对象</span><br><span class="hljs-comment">// JSON 字符串外层是单引号哦!!</span><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">str</span> = &#x27;&#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;小明&quot;</span>, <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">18</span>&#125;&#x27;<br><span class="hljs-built_in">let</span> obj = JSON.parse(<span class="hljs-built_in">str</span>);<br>console.<span class="hljs-built_in">log</span>(&#x27;obj.name&#x27;, obj.name);   <span class="hljs-comment">// 小明</span><br></code></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="手写-ajax-核心方法"><a href="#手写-ajax-核心方法" class="headerlink" title="手写 ajax 核心方法"></a>手写 ajax 核心方法</h4><p>哈哈, 以不负责任的态度来说 🤪</p>
-<blockquote>
-<p><code>前端</code> 是用来显示数据的<br><code>后端</code> 是用来提供数据的</p>
-</blockquote>
-<p>所以，前端有一个非常重要的工作是向后端索要<code>数据</code>并将数据进行页面显示</p>
-<p>如何向后端索要数据呢？</p>
-<h5 id="书写-ajxa-4-个核心步骤"><a href="#书写-ajxa-4-个核心步骤" class="headerlink" title="书写 ajxa 4 个核心步骤"></a>书写 ajxa 4 个核心步骤</h5><blockquote>
-<p>4 个步骤！但要注意执行顺序哦！</p>
-</blockquote>
-<ol>
-<li>创建一个请求对象, js 提供的构造函数 XMLHttpRequest(分开记忆：XML Http Request)</li>
-</ol>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span><br></code></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>设置请求的数据得到返回时的处理函数</p>
-<blockquote>
-<p>xhr.onloadend(分开记忆：on load end) –&gt; 执行方式有点类似 onclick 这类函数</p>
-</blockquote>
-</li>
-</ol>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">xhr.onloadend = <span class="hljs-keyword">function</span>() &#123;<br>  <span class="hljs-regexp">//</span> 该数据全是服务器返回的json字符串<br>  <span class="hljs-regexp">//</span> 请求的数据放在哪了？请求的数据其实放在了请求对象上面<br>  xhr.responseText<br>  <span class="hljs-regexp">//</span> 进行转化<br>  let stus = JSON.parse(xhr.responseText)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>设置请求信息</li>
-</ol>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">向谁请求：<br>例如 http:<span class="hljs-regexp">//</span>www.jd.com、http:<span class="hljs-regexp">//</span>www.baidu.com<br>xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>发送请求</li>
-</ol>
-<figure class="highlight autoit"><table><tr><td class="code"><pre><code class="hljs autoit">xhr.<span class="hljs-built_in">send</span>()<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 整体操作如下：</span><br><br><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span>;<br>xhr.oploadend = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;<br>  <span class="hljs-keyword">let</span> stus = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>parse(xhr.responseTest)<br>  show<span class="hljs-constructor">Table(<span class="hljs-params">stus</span>)</span><br>&#125;<br>xhr.<span class="hljs-keyword">open</span>(&#x27;get&#x27;, &#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos&#x27;);</span><br>xhr.send<span class="hljs-literal">()</span>;<br></code></pre></td></tr></table></figure>
-
-<head>
-  ..
-  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
-  ...
-</head>
-<body>
-  ...
-  <div id="waline"></div>
-  <script>
-    Waline({
-      el: '#waline',
-       avatar: 'monsterid',
-      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
-    });
-  </script>
-</body>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2021/10/06/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -149,50 +68,6 @@
       </categories>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浅拷贝和深拷贝</title>
-    <url>/2021/10/08/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
-    <content><![CDATA[<blockquote>
-<p>前置知识：值赋值和引用赋值就不再赘述了, 相对而言挺基础的…</p>
-</blockquote>
-<p>我已知的能够在<code>js</code>里实现<code>拷贝</code>的 3 种现成方法 🧐</p>
-<h4 id="3-种现成的实现拷贝的方法"><a href="#3-种现成的实现拷贝的方法" class="headerlink" title="3 种现成的实现拷贝的方法"></a>3 种现成的实现拷贝的方法</h4><h5 id="1-JSON-大法"><a href="#1-JSON-大法" class="headerlink" title="1. JSON 大法"></a>1. JSON 大法</h5><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> json大法<br>/**<br> * 优点：最简单的实现深拷贝的方式<br> * 缺点：<br> * 支持的数据类型：String<span class="hljs-regexp">/Number/</span>Boolean<span class="hljs-regexp">/Object/</span>Array/null<br> * 不支持的类型： undefined<span class="hljs-regexp">/Symbol/</span>循环引用<span class="hljs-regexp">/函数/</span>Date/RegExp<br> */<br><br> const obj1 = &#123;a: <span class="hljs-number">100</span>, b: &#123;key: <span class="hljs-string">&#x27;123&#x27;</span>&#125;&#125;<br> const obj2 = JSON.parse(JSON.stringify(obj1))<br>console.log(obj1 === obj2) <span class="hljs-regexp">//</span> false<br> 个人评价：事实上，<span class="hljs-number">90</span>%的情况下，上述方法已经够用了，一般不支持的类型这种用得少...<br></code></pre></td></tr></table></figure>
-
-<h5 id="2-Object-assign-–-gt-浅拷贝"><a href="#2-Object-assign-–-gt-浅拷贝" class="headerlink" title="2.Object.assign() –&gt; 浅拷贝"></a>2.Object.assign() –&gt; 浅拷贝</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> obj3 = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-attr">sorce</span>: [<span class="hljs-number">88</span>, <span class="hljs-number">100</span>]&#125;<br><span class="hljs-keyword">var</span> obj4 = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, obj3)  <span class="hljs-comment">// obj1 与 &#123;&#125; 合并， 内部的引用还是一样的</span><br><span class="hljs-built_in">console</span>.log(obj3 === obj4) <span class="hljs-comment">// false</span><br><br>个人评价： 用法方便简单，但是注意是浅拷贝，在做一些项目的时候，需要有清晰的脑袋知道自己是在做深拷贝还是浅拷贝<br></code></pre></td></tr></table></figure>
-
-<h5 id="3-Lodash-库"><a href="#3-Lodash-库" class="headerlink" title="3.Lodash 库"></a>3.Lodash 库</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// _.clone     浅拷贝</span><br><span class="hljs-comment">// _.deepclone 深拷贝</span><br><span class="hljs-keyword">var</span> obj5 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-attr">sorce</span>: [<span class="hljs-number">88</span>, <span class="hljs-number">100</span>]&#125;<br><span class="hljs-keyword">var</span> obj6 = _.cloneDeep(obj5);<br><span class="hljs-built_in">console</span>.log(obj5 === obj6)<br><br>个人评价： 不用说，牛逼！<br></code></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="深拷贝实现"><a href="#深拷贝实现" class="headerlink" title="深拷贝实现"></a>深拷贝实现</h4><h5 id="本套深拷贝实现方法前置知识"><a href="#本套深拷贝实现方法前置知识" class="headerlink" title="本套深拷贝实现方法前置知识"></a>本套深拷贝实现方法前置知识</h5><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> obj1 为一个普通对象<br>let obj1 = &#123;<br> name: <span class="hljs-string">&#x27;张三&#x27;</span>,<br> sex: <span class="hljs-string">&#x27;男&#x27;</span>,<br> age: <span class="hljs-number">18</span>,<br> friends: [<span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-string">&#x27;小玉&#x27;</span>, <span class="hljs-string">&#x27;小萌&#x27;</span>]<br>&#125;<br><br><span class="hljs-regexp">//</span> 创建一个空对象 obj2<br>let obj2 = &#123;&#125;<br><span class="hljs-regexp">//</span> 依次将obj1对象里的属性赋值到obj2里(注意，要判断obj1里的属性是普通类型(值类型)还是引用类型)<br><span class="hljs-regexp">//</span> 值类型 直接复制。如果是引用类型还需要再深层进入引用类型中找到人家的值类型(递归大法)<br>obj2.name = obj1.name   <span class="hljs-regexp">//</span> 是否为普通类型<br>obj2.sex = obj1.sex     <span class="hljs-regexp">//</span> 是否为普通类型<br>obj2.age = obj1.age     <span class="hljs-regexp">//</span> 是否为普通类型<br>obj2.friends = obj1friends <span class="hljs-regexp">//</span> 遍历循环obj1friends。返回新的friends<br><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">/**<br> * 数据类型<br> *<br> * typeof <span class="hljs-number">1</span>      <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;number&quot;</span><br> * typeof <span class="hljs-string">&quot;a&quot;</span>    <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;string&quot;</span><br> * typeof true   <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;boolean&quot;</span><br> * typeof &#123;&#125;     <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;object&quot;</span><br> * typeof []     <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;object&quot;</span><br> * typeof null   <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;object&quot;</span>   &lt;---  这里容易产生误会<br> * typeof undefined      <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;undefined&quot;</span><br> * typeof <span class="hljs-keyword">function</span>()&#123;&#125;   <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;function&quot;</span><br> * typeof Symbol()       <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;symbol&quot;</span><br> *<br> *<br> * Object.prototype.toString.call(<span class="hljs-number">1</span>)         <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Number]&#x27;</span><br> * Object.prototype.toString.call(<span class="hljs-string">&#x27;a&#x27;</span>)       <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object String]&#x27;</span><br> * Object.prototype.toString.call(true)      <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Boolean]&#x27;</span><br> * Object.prototype.toString.call(&#123;&#125;)        <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Object]&#x27;</span><br> * Object.prototype.toString.call([])        <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Array]&#x27;</span><br> * Object.prototype.toString.call(null)      <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Null]&#x27;</span><br> * Object.prototype.toString.call(<span class="hljs-regexp">/a/</span>)       <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object RegExp]&#x27;</span><br> * Object.prototype.toString.call(undefined) <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Undefined]&#x27;</span><br> * Object.prototype.toString.call(<span class="hljs-keyword">function</span>()&#123;&#125;)  <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Function]&#x27;</span><br> * Object.prototype.toString.call(new Date())    <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Date]&#x27;</span><br> */<br></code></pre></td></tr></table></figure>
-
-<h5 id="开始实现深拷贝"><a href="#开始实现深拷贝" class="headerlink" title="开始实现深拷贝"></a>开始实现深拷贝</h5><figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> deepClone = <span class="hljs-function">(<span class="hljs-params">src</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> <span class="hljs-keyword">type</span> = <span class="hljs-built_in">Object</span>.prototype.toString.call(src).slice(<span class="hljs-number">8</span>, -<span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">let</span> dist = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Number&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> src;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;String&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> src;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Boolean&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> src;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Object&#x27;</span>) &#123;<br>    dist = &#123;&#125;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Array&#x27;</span>) &#123;<br>    dist = []<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Function&#x27;</span>) &#123;<br>    <span class="hljs-comment">// ... 这个挺有困惑的</span><br>    dist = src.bind(<span class="hljs-built_in">this</span>);   <span class="hljs-comment">// 生成了一个新的函数，this指向的是什么</span><br>  &#125;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> src) &#123;<br>    dist[key] = deepClone(src[key]);<br>  &#125;<br>  <span class="hljs-keyword">return</span> dist;<br>&#125;<br><br><span class="hljs-keyword">let</span> obj1 = &#123;<br>  <span class="hljs-attr">a</span>: <span class="hljs-string">&#x27;100&#x27;</span>,<br>  <span class="hljs-attr">b</span>: <span class="hljs-string">&#x27;200&#x27;</span>,<br>  <span class="hljs-attr">c</span>: &#123;<span class="hljs-attr">d</span>: <span class="hljs-string">&#x27;300&#x27;</span>, <span class="hljs-attr">e</span>: &#123;<span class="hljs-attr">f</span>: <span class="hljs-string">&#x27;500&#x27;</span>&#125;&#125;,<br>  <span class="hljs-attr">fn</span>: <span class="hljs-function">() =&gt;</span> &#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;this is a function&#x27;</span>)&#125;<br>&#125;<br><br><span class="hljs-keyword">let</span> obj2 = deepClone(obj1);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj1 === obj2 ?&#x27;</span>, obj1 === obj2);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj2&#x27;</span>, obj2);<br><br></code></pre></td></tr></table></figure>
-
-<head>
-  ..
-  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
-  ...
-</head>
-<body>
-  ...
-  <div id="waline"></div>
-  <script>
-    Waline({
-      el: '#waline',
-       avatar: 'monsterid',
-      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
-    });
-  </script>
-</body>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -340,6 +215,131 @@
 
 <p>说有千层饼套路，其实只有 7 层套路，但这每一层套路都是我对于 Promise、async/await 的感悟，有些内容并未细讲，比如微任务、宏任务与 DOM 之间的执行顺序这种相对底层的内容本文并未谈及，毕竟这篇文章的侧重点是在解决 Promise、async/await 执行顺序类型题。本文也可能有内容错误或逻辑错误，也请大家多多包涵，多多指出，谢谢！！</p>
 <p>好了，大功已告成！想必通过这些题，大家已经领悟到了解决此类题型的奥义！</p>
+<head>
+  ..
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  ...
+</head>
+<body>
+  ...
+  <div id="waline"></div>
+  <script>
+    Waline({
+      el: '#waline',
+       avatar: 'monsterid',
+      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
+    });
+  </script>
+</body>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JSON 基础知识 &amp; Ajax 基础知识</title>
+    <url>/2021/10/08/JSON&amp;Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h4 id="为什么我们要把对象转化为字符串？"><a href="#为什么我们要把对象转化为字符串？" class="headerlink" title="为什么我们要把对象转化为字符串？"></a>为什么我们要把对象转化为字符串？</h4><ol>
+<li><p>在网页开发的时候，我们需要把<code>对象信息</code>进行长期保存, 因此我们需要把这些信息传递给<code>服务器</code>。所以，需要通过把对象(变量)转化为字符串才能传递给<code>服务器</code>。</p>
+</li>
+<li><p>我们采用的是<code>http协议</code>即超文本传输协议(其本质就是由文本的形式进行传输)</p>
+</li>
+<li><p>JSON 字符串是绝大多数编程语言都支持的…</p>
+</li>
+</ol>
+<h4 id="JSON-字符串的特征"><a href="#JSON-字符串的特征" class="headerlink" title="JSON 字符串的特征"></a>JSON 字符串的特征</h4><ol>
+<li><strong>属性名称</strong>必须加<strong>双引号</strong> (因为人家默认规定的字符串外层是<code>单引号</code>，所以内层必须是<code>双引号</code>)</li>
+<li><strong>属性值</strong>如果是字符串则必须加<strong>双引号</strong></li>
+<li>对象当中的<code>方法(函数)</code>不会被转化为字符串</li>
+</ol>
+<p>(注意： JSON 本质就是字符串！！)</p>
+<h4 id="JSON-和-对象的相互转换："><a href="#JSON-和-对象的相互转换：" class="headerlink" title="JSON 和 对象的相互转换："></a>JSON 和 对象的相互转换：</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xiaoming&#x27;</span>,<br>  <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;boy&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>  <span class="hljs-function"><span class="hljs-title">say</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;想吃, 想喝, 想爱&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 把对象转为JSON字符串</span><br><span class="hljs-keyword">let</span> str1 = <span class="hljs-built_in">JSON</span>.stringify(obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj&#x27;</span>, obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str1&#x27;</span>, str1);   <span class="hljs-comment">// 纯粹的字符串且没有say方法</span><br><br><span class="hljs-comment">// 把数组转为JSON字符串</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-number">100</span>, &#123;<span class="hljs-attr">key</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">obj</span>: &#123;&#125;, <span class="hljs-attr">str</span>: <span class="hljs-string">&#x27;测试&#x27;</span>&#125;]<br><span class="hljs-keyword">let</span> str2 = <span class="hljs-built_in">JSON</span>.stringify(arr);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;arr&#x27;</span>, arr);<br><span class="hljs-comment">// 内部的字符串元素全部被强制转化为双引号,数值不加引号，</span><br><span class="hljs-comment">// 对象元素进行深层改造(加双引号..),而且不再是对象，而是字符串了...</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str2&#x27;</span>, str2);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight openscad"><table><tr><td class="code"><pre><code class="hljs openscad"><span class="hljs-comment">// JSON字符串转成对象</span><br><span class="hljs-comment">// JSON 字符串外层是单引号哦!!</span><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">str</span> = &#x27;&#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;小明&quot;</span>, <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">18</span>&#125;&#x27;<br><span class="hljs-built_in">let</span> obj = JSON.parse(<span class="hljs-built_in">str</span>);<br>console.<span class="hljs-built_in">log</span>(&#x27;obj.name&#x27;, obj.name);   <span class="hljs-comment">// 小明</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="手写-ajax-核心方法"><a href="#手写-ajax-核心方法" class="headerlink" title="手写 ajax 核心方法"></a>手写 ajax 核心方法</h4><p>哈哈, 以不负责任的态度来说 🤪</p>
+<blockquote>
+<p><code>前端</code> 是用来显示数据的<br><code>后端</code> 是用来提供数据的</p>
+</blockquote>
+<p>所以，前端有一个非常重要的工作是向后端索要<code>数据</code>并将数据进行页面显示</p>
+<p>如何向后端索要数据呢？</p>
+<h5 id="书写-ajxa-4-个核心步骤"><a href="#书写-ajxa-4-个核心步骤" class="headerlink" title="书写 ajxa 4 个核心步骤"></a>书写 ajxa 4 个核心步骤</h5><blockquote>
+<p>4 个步骤！但要注意执行顺序哦！</p>
+</blockquote>
+<ol>
+<li>创建一个请求对象, js 提供的构造函数 XMLHttpRequest(分开记忆：XML Http Request)</li>
+</ol>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>设置请求的数据得到返回时的处理函数</p>
+<blockquote>
+<p>xhr.onloadend(分开记忆：on load end) –&gt; 执行方式有点类似 onclick 这类函数</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">xhr.onloadend = <span class="hljs-keyword">function</span>() &#123;<br>  <span class="hljs-regexp">//</span> 该数据全是服务器返回的json字符串<br>  <span class="hljs-regexp">//</span> 请求的数据放在哪了？请求的数据其实放在了请求对象上面<br>  xhr.responseText<br>  <span class="hljs-regexp">//</span> 进行转化<br>  let stus = JSON.parse(xhr.responseText)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>设置请求信息</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">向谁请求：<br>例如 http:<span class="hljs-regexp">//</span>www.jd.com、http:<span class="hljs-regexp">//</span>www.baidu.com<br>xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>发送请求</li>
+</ol>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><code class="hljs autoit">xhr.<span class="hljs-built_in">send</span>()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 整体操作如下：</span><br><br><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span>;<br>xhr.oploadend = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;<br>  <span class="hljs-keyword">let</span> stus = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>parse(xhr.responseTest)<br>  show<span class="hljs-constructor">Table(<span class="hljs-params">stus</span>)</span><br>&#125;<br>xhr.<span class="hljs-keyword">open</span>(&#x27;get&#x27;, &#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos&#x27;);</span><br>xhr.send<span class="hljs-literal">()</span>;<br></code></pre></td></tr></table></figure>
+
+<head>
+  ..
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  ...
+</head>
+<body>
+  ...
+  <div id="waline"></div>
+  <script>
+    Waline({
+      el: '#waline',
+       avatar: 'monsterid',
+      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
+    });
+  </script>
+</body>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅拷贝和深拷贝</title>
+    <url>/2021/10/08/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
+    <content><![CDATA[<blockquote>
+<p>前置知识：值赋值和引用赋值就不再赘述了, 相对而言挺基础的…</p>
+</blockquote>
+<p>我已知的能够在<code>js</code>里实现<code>拷贝</code>的 3 种现成方法 🧐</p>
+<h4 id="3-种现成的实现拷贝的方法"><a href="#3-种现成的实现拷贝的方法" class="headerlink" title="3 种现成的实现拷贝的方法"></a>3 种现成的实现拷贝的方法</h4><h5 id="1-JSON-大法"><a href="#1-JSON-大法" class="headerlink" title="1. JSON 大法"></a>1. JSON 大法</h5><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> json大法<br>/**<br> * 优点：最简单的实现深拷贝的方式<br> * 缺点：<br> * 支持的数据类型：String<span class="hljs-regexp">/Number/</span>Boolean<span class="hljs-regexp">/Object/</span>Array/null<br> * 不支持的类型： undefined<span class="hljs-regexp">/Symbol/</span>循环引用<span class="hljs-regexp">/函数/</span>Date/RegExp<br> */<br><br> const obj1 = &#123;a: <span class="hljs-number">100</span>, b: &#123;key: <span class="hljs-string">&#x27;123&#x27;</span>&#125;&#125;<br> const obj2 = JSON.parse(JSON.stringify(obj1))<br>console.log(obj1 === obj2) <span class="hljs-regexp">//</span> false<br> 个人评价：事实上，<span class="hljs-number">90</span>%的情况下，上述方法已经够用了，一般不支持的类型这种用得少...<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-Object-assign-–-gt-浅拷贝"><a href="#2-Object-assign-–-gt-浅拷贝" class="headerlink" title="2.Object.assign() –&gt; 浅拷贝"></a>2.Object.assign() –&gt; 浅拷贝</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> obj3 = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-attr">sorce</span>: [<span class="hljs-number">88</span>, <span class="hljs-number">100</span>]&#125;<br><span class="hljs-keyword">var</span> obj4 = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, obj3)  <span class="hljs-comment">// obj1 与 &#123;&#125; 合并， 内部的引用还是一样的</span><br><span class="hljs-built_in">console</span>.log(obj3 === obj4) <span class="hljs-comment">// false</span><br><br>个人评价： 用法方便简单，但是注意是浅拷贝，在做一些项目的时候，需要有清晰的脑袋知道自己是在做深拷贝还是浅拷贝<br></code></pre></td></tr></table></figure>
+
+<h5 id="3-Lodash-库"><a href="#3-Lodash-库" class="headerlink" title="3.Lodash 库"></a>3.Lodash 库</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// _.clone     浅拷贝</span><br><span class="hljs-comment">// _.deepclone 深拷贝</span><br><span class="hljs-keyword">var</span> obj5 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-attr">sorce</span>: [<span class="hljs-number">88</span>, <span class="hljs-number">100</span>]&#125;<br><span class="hljs-keyword">var</span> obj6 = _.cloneDeep(obj5);<br><span class="hljs-built_in">console</span>.log(obj5 === obj6)<br><br>个人评价： 不用说，牛逼！<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="深拷贝实现"><a href="#深拷贝实现" class="headerlink" title="深拷贝实现"></a>深拷贝实现</h4><h5 id="本套深拷贝实现方法前置知识"><a href="#本套深拷贝实现方法前置知识" class="headerlink" title="本套深拷贝实现方法前置知识"></a>本套深拷贝实现方法前置知识</h5><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> obj1 为一个普通对象<br>let obj1 = &#123;<br> name: <span class="hljs-string">&#x27;张三&#x27;</span>,<br> sex: <span class="hljs-string">&#x27;男&#x27;</span>,<br> age: <span class="hljs-number">18</span>,<br> friends: [<span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-string">&#x27;小玉&#x27;</span>, <span class="hljs-string">&#x27;小萌&#x27;</span>]<br>&#125;<br><br><span class="hljs-regexp">//</span> 创建一个空对象 obj2<br>let obj2 = &#123;&#125;<br><span class="hljs-regexp">//</span> 依次将obj1对象里的属性赋值到obj2里(注意，要判断obj1里的属性是普通类型(值类型)还是引用类型)<br><span class="hljs-regexp">//</span> 值类型 直接复制。如果是引用类型还需要再深层进入引用类型中找到人家的值类型(递归大法)<br>obj2.name = obj1.name   <span class="hljs-regexp">//</span> 是否为普通类型<br>obj2.sex = obj1.sex     <span class="hljs-regexp">//</span> 是否为普通类型<br>obj2.age = obj1.age     <span class="hljs-regexp">//</span> 是否为普通类型<br>obj2.friends = obj1friends <span class="hljs-regexp">//</span> 遍历循环obj1friends。返回新的friends<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">/**<br> * 数据类型<br> *<br> * typeof <span class="hljs-number">1</span>      <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;number&quot;</span><br> * typeof <span class="hljs-string">&quot;a&quot;</span>    <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;string&quot;</span><br> * typeof true   <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;boolean&quot;</span><br> * typeof &#123;&#125;     <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;object&quot;</span><br> * typeof []     <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;object&quot;</span><br> * typeof null   <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;object&quot;</span>   &lt;---  这里容易产生误会<br> * typeof undefined      <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;undefined&quot;</span><br> * typeof <span class="hljs-keyword">function</span>()&#123;&#125;   <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;function&quot;</span><br> * typeof Symbol()       <span class="hljs-regexp">//</span> <span class="hljs-string">&quot;symbol&quot;</span><br> *<br> *<br> * Object.prototype.toString.call(<span class="hljs-number">1</span>)         <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Number]&#x27;</span><br> * Object.prototype.toString.call(<span class="hljs-string">&#x27;a&#x27;</span>)       <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object String]&#x27;</span><br> * Object.prototype.toString.call(true)      <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Boolean]&#x27;</span><br> * Object.prototype.toString.call(&#123;&#125;)        <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Object]&#x27;</span><br> * Object.prototype.toString.call([])        <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Array]&#x27;</span><br> * Object.prototype.toString.call(null)      <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Null]&#x27;</span><br> * Object.prototype.toString.call(<span class="hljs-regexp">/a/</span>)       <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object RegExp]&#x27;</span><br> * Object.prototype.toString.call(undefined) <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Undefined]&#x27;</span><br> * Object.prototype.toString.call(<span class="hljs-keyword">function</span>()&#123;&#125;)  <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Function]&#x27;</span><br> * Object.prototype.toString.call(new Date())    <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;[object Date]&#x27;</span><br> */<br></code></pre></td></tr></table></figure>
+
+<h5 id="开始实现深拷贝"><a href="#开始实现深拷贝" class="headerlink" title="开始实现深拷贝"></a>开始实现深拷贝</h5><figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> deepClone = <span class="hljs-function">(<span class="hljs-params">src</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> <span class="hljs-keyword">type</span> = <span class="hljs-built_in">Object</span>.prototype.toString.call(src).slice(<span class="hljs-number">8</span>, -<span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">let</span> dist = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Number&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> src;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;String&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> src;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Boolean&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> src;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Object&#x27;</span>) &#123;<br>    dist = &#123;&#125;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Array&#x27;</span>) &#123;<br>    dist = []<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">type</span> === <span class="hljs-string">&#x27;Function&#x27;</span>) &#123;<br>    <span class="hljs-comment">// ... 这个挺有困惑的</span><br>    dist = src.bind(<span class="hljs-built_in">this</span>);   <span class="hljs-comment">// 生成了一个新的函数，this指向的是什么</span><br>  &#125;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> src) &#123;<br>    dist[key] = deepClone(src[key]);<br>  &#125;<br>  <span class="hljs-keyword">return</span> dist;<br>&#125;<br><br><span class="hljs-keyword">let</span> obj1 = &#123;<br>  <span class="hljs-attr">a</span>: <span class="hljs-string">&#x27;100&#x27;</span>,<br>  <span class="hljs-attr">b</span>: <span class="hljs-string">&#x27;200&#x27;</span>,<br>  <span class="hljs-attr">c</span>: &#123;<span class="hljs-attr">d</span>: <span class="hljs-string">&#x27;300&#x27;</span>, <span class="hljs-attr">e</span>: &#123;<span class="hljs-attr">f</span>: <span class="hljs-string">&#x27;500&#x27;</span>&#125;&#125;,<br>  <span class="hljs-attr">fn</span>: <span class="hljs-function">() =&gt;</span> &#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;this is a function&#x27;</span>)&#125;<br>&#125;<br><br><span class="hljs-keyword">let</span> obj2 = deepClone(obj1);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj1 === obj2 ?&#x27;</span>, obj1 === obj2);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj2&#x27;</span>, obj2);<br><br></code></pre></td></tr></table></figure>
+
 <head>
   ..
   <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
