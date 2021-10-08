@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="为什么我们要把对象转化为字符串？ 在网页开发的时候，我们需要把对象信息进行长期保存, 因此我们需要把这些信息传递给服务器。所以，需要通过把对象(变量)转化为字符串才能传递给服务器。  我们采用的是http协议即超文本传输协议(其本质就是由文本的形式进行传输)  JSON 字符串是绝大多数编程语言都支持的…   JSON 字符串的特征 属性名称必须加双引号 (因为人家默认规定的字符串外层是单引号，所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON 基础知识 &amp; Ajax 基础知识">
+<meta property="og:url" content="http://example.com/2021/10/08/JSON&Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="为什么我们要把对象转化为字符串？ 在网页开发的时候，我们需要把对象信息进行长期保存, 因此我们需要把这些信息传递给服务器。所以，需要通过把对象(变量)转化为字符串才能传递给服务器。  我们采用的是http协议即超文本传输协议(其本质就是由文本的形式进行传输)  JSON 字符串是绝大多数编程语言都支持的…   JSON 字符串的特征 属性名称必须加双引号 (因为人家默认规定的字符串外层是单引号，所">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-08T01:22:54.000Z">
+<meta property="article:modified_time" content="2021-10-08T02:34:10.438Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>JSON 基础知识 &amp; Ajax 基础知识 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/bg6.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JSON 基础知识 &amp; Ajax 基础知识">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-08 09:22" pubdate>
+        2021年10月8日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JSON 基础知识 &amp; Ajax 基础知识</h1>
+            
+            <div class="markdown-body">
+              <h4 id="为什么我们要把对象转化为字符串？"><a href="#为什么我们要把对象转化为字符串？" class="headerlink" title="为什么我们要把对象转化为字符串？"></a>为什么我们要把对象转化为字符串？</h4><ol>
+<li><p>在网页开发的时候，我们需要把<code>对象信息</code>进行长期保存, 因此我们需要把这些信息传递给<code>服务器</code>。所以，需要通过把对象(变量)转化为字符串才能传递给<code>服务器</code>。</p>
+</li>
+<li><p>我们采用的是<code>http协议</code>即超文本传输协议(其本质就是由文本的形式进行传输)</p>
+</li>
+<li><p>JSON 字符串是绝大多数编程语言都支持的…</p>
+</li>
+</ol>
+<h4 id="JSON-字符串的特征"><a href="#JSON-字符串的特征" class="headerlink" title="JSON 字符串的特征"></a>JSON 字符串的特征</h4><ol>
+<li><strong>属性名称</strong>必须加<strong>双引号</strong> (因为人家默认规定的字符串外层是<code>单引号</code>，所以内层必须是<code>双引号</code>)</li>
+<li><strong>属性值</strong>如果是字符串则必须加<strong>双引号</strong></li>
+<li>对象当中的<code>方法(函数)</code>不会被转化为字符串</li>
+</ol>
+<p>(注意： JSON 本质就是字符串！！)</p>
+<h4 id="JSON-和-对象的相互转换："><a href="#JSON-和-对象的相互转换：" class="headerlink" title="JSON 和 对象的相互转换："></a>JSON 和 对象的相互转换：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xiaoming&#x27;</span>,<br>  <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;boy&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>  <span class="hljs-function"><span class="hljs-title">say</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;想吃, 想喝, 想爱&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 把对象转为JSON字符串</span><br><span class="hljs-keyword">let</span> str1 = <span class="hljs-built_in">JSON</span>.stringify(obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj&#x27;</span>, obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str1&#x27;</span>, str1);   <span class="hljs-comment">// 纯粹的字符串且没有say方法</span><br><br><span class="hljs-comment">// 把数组转为JSON字符串</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-number">100</span>, &#123;<span class="hljs-attr">key</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">obj</span>: &#123;&#125;, <span class="hljs-attr">str</span>: <span class="hljs-string">&#x27;测试&#x27;</span>&#125;]<br><span class="hljs-keyword">let</span> str2 = <span class="hljs-built_in">JSON</span>.stringify(arr);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;arr&#x27;</span>, arr);<br><span class="hljs-comment">// 内部的字符串元素全部被强制转化为双引号,数值不加引号，</span><br><span class="hljs-comment">// 对象元素进行深层改造(加双引号..),而且不再是对象，而是字符串了...</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str2&#x27;</span>, str2);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs openscad"><span class="hljs-comment">// JSON字符串转成对象</span><br><span class="hljs-comment">// JSON 字符串外层是单引号哦!!</span><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">str</span> = &#x27;&#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;小明&quot;</span>, <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">18</span>&#125;&#x27;<br><span class="hljs-built_in">let</span> obj = JSON.parse(<span class="hljs-built_in">str</span>);<br>console.<span class="hljs-built_in">log</span>(&#x27;obj.name&#x27;, obj.name);   <span class="hljs-comment">// 小明</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="手写-ajax-核心方法"><a href="#手写-ajax-核心方法" class="headerlink" title="手写 ajax 核心方法"></a>手写 ajax 核心方法</h4><p>哈哈, 以不负责任的态度来说 🤪</p>
+<blockquote>
+<p><code>前端</code> 是用来显示数据的<br><code>后端</code> 是用来提供数据的</p>
+</blockquote>
+<p>所以，前端有一个非常重要的工作是向后端索要<code>数据</code>并将数据进行页面显示</p>
+<p>如何向后端索要数据呢？</p>
+<h5 id="书写-ajxa-4-个核心步骤"><a href="#书写-ajxa-4-个核心步骤" class="headerlink" title="书写 ajxa 4 个核心步骤"></a>书写 ajxa 4 个核心步骤</h5><blockquote>
+<p>4 个步骤！但要注意执行顺序哦！</p>
+</blockquote>
+<ol>
+<li>创建一个请求对象, js 提供的构造函数 XMLHttpRequest(分开记忆：XML Http Request)</li>
+</ol>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>设置请求的数据得到返回时的处理函数</p>
+<blockquote>
+<p>xhr.onloadend(分开记忆：on load end) –&gt; 执行方式有点类似 onclick 这类函数</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk">xhr.onloadend = <span class="hljs-keyword">function</span>() &#123;<br>  <span class="hljs-regexp">//</span> 该数据全是服务器返回的json字符串<br>  <span class="hljs-regexp">//</span> 请求的数据放在哪了？请求的数据其实放在了请求对象上面<br>  xhr.responseText<br>  <span class="hljs-regexp">//</span> 进行转化<br>  let stus = JSON.parse(xhr.responseText)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>设置请求信息</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">向谁请求：<br>例如 http:<span class="hljs-regexp">//</span>www.jd.com、http:<span class="hljs-regexp">//</span>www.baidu.com<br>xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>发送请求</li>
+</ol>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">xhr.<span class="hljs-built_in">send</span>()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 整体操作如下：</span><br><br><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span>;<br>xhr.oploadend = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;<br>  <span class="hljs-keyword">let</span> stus = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>parse(xhr.responseTest)<br>  show<span class="hljs-constructor">Table(<span class="hljs-params">stus</span>)</span><br>&#125;<br>xhr.<span class="hljs-keyword">open</span>(&#x27;get&#x27;, &#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos&#x27;);</span><br>xhr.send<span class="hljs-literal">()</span>;<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/08/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浅拷贝和深拷贝</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/08/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E8%A7%A3%E5%86%B3Promise-then%EF%BC%8Casync-await%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E7%B1%BB%E5%9E%8B%E9%A2%98/">
+                        <span class="hidden-mobile">一篇文章解决Promise...then，async/await执行顺序类型题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-love"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandBox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
