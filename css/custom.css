@@ -42,3 +42,24 @@
   transform: scale(1.1);
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.38), 0 4px 15px 0 rgba(0, 0, 0, 0.35);
 } */
+
+
+/* ------iconfont------ */
+@font-face {
+  font-family: 'iconfont';  /* Project id 2856328 */
+  src: url('//at.alicdn.com/t/font_2856328_he3ur4j0r1.woff2?t=1633770434324') format('woff2'),
+       url('//at.alicdn.com/t/font_2856328_he3ur4j0r1.woff?t=1633770434324') format('woff'),
+       url('//at.alicdn.com/t/font_2856328_he3ur4j0r1.ttf?t=1633770434324') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-aixin:before {
+  content: "\e85c";
+}
