@@ -176,6 +176,79 @@
       </tags>
   </entry>
   <entry>
+    <title>开发个人博客反思和总结</title>
+    <url>/2021/10/09/%E5%BC%80%E5%8F%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8D%E6%80%9D%E5%92%8C%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h4 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h4><ol>
+<li>购买域名 Namecheap —&gt; 算了，最后还是去的阿里云买的…国外的 支付方式有点困难<br>.com 和 .net 有什么区别呢？</li>
+</ol>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-title">.com （商业机构）；</span><br><span class="hljs-title">.net （从事互联网服务的机构）；</span><br></code></pre></td></tr></table></figure>
+
+<p>买的域名对于所在区域有什么影响没？</p>
+<ol start="2">
+<li>设定 DNS 将域名停泊到 Cloudflare，因为它有免费的 SSL 以及全球 CND 加速等服务(采用免费方案)，然后设定 DNS， 加入两个 A 记录<br>(<a href="https://zhuanlan.zhihu.com/p/86961133">https://zhuanlan.zhihu.com/p/86961133</a>)</li>
+</ol>
+<h2 id="cloudflare-的优势是什么-cnd-是什么东东？"><a href="#cloudflare-的优势是什么-cnd-是什么东东？" class="headerlink" title="cloudflare 的优势是什么 cnd 是什么东东？"></a>cloudflare 的优势是什么 cnd 是什么东东？</h2><p><a href="https://cloud.tencent.com/developer/article/1137135">cloudflare 相关知识</a><br>SEO –&gt;<br>建站需要什么东西</p>
+<ol>
+<li>域名</li>
+<li>空间(主机) —&gt; 存储网站的地方</li>
+<li>程序(目前已经有开源程序了)</li>
+</ol>
+<p><strong>域名</strong>:heyang.xyz (域名是租的…) 具有唯一性<br>注意：<br>不要购买中文域名(如果有 seo)<br>买常用的后缀<br>容易记忆的</p>
+<p><strong>什么是网站空间？</strong><br>服务器(专业电脑，更强大) —&gt; 目前干脆就用自己的电脑当一个服务器算了…(不行，电脑要一直开机才行…但事实上不可能一直开机)<br>空间(服务器里的文件夹)<br>上述的这个文件夹可以和域名链接在一起(所以访问网站，其实就是通过域名打开服务器里的文件夹)</p>
+<p>空间所以我们采用租的方式…</p>
+<p><strong>建站程序</strong><br>事实上大多数都是用的建站程序来写的…<br>WordPress<br>织梦</p>
+<hr>
+<p>HEXO<br>安装 nodejs –&gt; nodejs 让 js 成为了与 php、py、perl、ruby 等服务端你语言平起平坐的脚本语言</p>
+<blockquote>
+<p>hexo 安装：npm intall hexo-cli -g</p>
+</blockquote>
+<p>利用 github 的仓库作为 hexo 的服务器来搭建个人网站</p>
+<p>个人博客的话，用 hexo 完全不需要去另外购买空间，可以托管到个 ithub、coding 等托管平台，免费提供的空间完全足够了，毕竟一篇文章顶天不过十几 kb</p>
+<hr>
+<p><a href="https://pages.github.com/">https://pages.github.com</a></p>
+<p>采用 github page + hexo</p>
+<p><a href="https://hexo.io/">hexo 网站</a><br><a href="https://hexo.io/plugins/">hexo 插件</a></p>
+<p>.github.io 是一个二级域名… 二级域名有什么不同之处吗？</p>
+<p><a href="https://hexo.io/themes/">hexo 主题</a></p>
+<p>我喜欢的主题：<a href="https://github.com/blleng/hexo-theme-lx">hexo-theme-lx</a><br><a href="https://github.com/zhaoo/hexo-theme-zhaoo">推荐 hexo 主题</a></p>
+<p><a href="https://github.com/fluid-dev/hexo-theme-fluid">最牛逼最适合我的 hexo 主题</a><br>fluid 这个主题文档相当的详尽不错！</p>
+<blockquote>
+<p>hexo 清理缓存，重新部署:<br>hexo clean &amp;&amp; hexo g -d<br>—&gt; 当我使用了这个命令后，我所更新的东西就会自动放在<a href="https://bruce-shuai.github.io/%E9%87%8C%E4%BA%86%E3%80%82%E8%80%8C%E4%B8%8D%E6%98%AF%E7%94%A8git">https://bruce-shuai.github.io/里了。而不是用git</a> add . git commit -m …这些操作…</p>
+</blockquote>
+<h4 id="为博客绑定自己的域名…"><a href="#为博客绑定自己的域名…" class="headerlink" title="为博客绑定自己的域名…"></a>为博客绑定自己的域名…</h4><p>资料<br><a href="https://cloud.tencent.com/developer/article/1435908">dns 解析</a></p>
+<p><a href="https://www.bilibili.com/video/BV1rb411n79N?from=search&seid=2760737936132922743&spm_id_from=333.337.0.0">该域名的教程</a></p>
+<hr>
+<p><a href="https://blog.justlovesmile.top/">看这位大佬的 hexo 笔记能学到很多</a><br><a href="http://blog.itchenliang.club/posts/22350780-f32d-11ea-bb4a-d3e1cbe3d59d/">魔改 hexo</a><br><a href="https://pxxyyz.com/categories/">fluid 大佬博客</a><br><a href="https://i.vince.pub/p/fluid-doc-pr/#%E4%B8%80%E8%A8%80">fluid 又一个大佬博客</a><br><a href="https://papiboy.gitee.io/2021/03/25/hexo%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2/">再一位 fluid 大佬</a><br><a href="https://www.itrhx.com/2018/08/27/A04-Hexo-blog-topic-personalization/">再来一篇 fluid 美化的博客</a><br><a href="https://blog.jalenchuh.cn/posts/hexo-fluid/">这位大佬的 fluid 的美化教程很不错</a><br><a href="https://emoryhuang.cn/blog/1729600336.html">再一位大佬</a><br><a href="https://blog.justlovesmile.top/posts/c8972b63.html">hexo 的使用</a></p>
+<p><a href="https://segmentfault.com/a/1190000012805627">更换 hexo 主题</a></p>
+<p><a href="https://waline.js.org/guide/get-started.html#leancloud-%E8%AE%BE%E7%BD%AE-%E6%95%B0%E6%8D%AE%E5%BA%93">hexo 评论区 Waline 插件</a></p>
+<p><a href="https://www.pexels.com/zh-cn/">免费图片网站</a><br><a href="https://undraw.co/search">免费 svg 图片网站</a></p>
+<hr>
+<p><strong>博客性能优化：</strong></p>
+<hr>
+<p><strong>cdn</strong><br>GitHub+jsDelivr+PicGo 搭建免费图床<br>相关博客：<br><a href="https://blog.justlovesmile.top/posts/c8972b63.html">https://blog.justlovesmile.top/posts/c8972b63.html</a><br><a href="https://segmentfault.com/a/1190000020240864">https://segmentfault.com/a/1190000020240864</a></p>
+<p><strong>–&gt; 无需下载软件的方法：<a href="picx.xpoet.cn">PicX</a></strong><br>用 cdn 外链的好处是什么？</p>
+<hr>
+<h2 id="Artitalk"><a href="#Artitalk" class="headerlink" title="Artitalk"></a><strong>Artitalk</strong></h2><p>发布说说<br>官网：<a href="https://artitalk.js.org/">https://artitalk.js.org/</a></p>
+<hr>
+<p>SEO</p>
+<hr>
+<p>留言板</p>
+<figure class="highlight llvm"><table><tr><td class="code"><pre><code class="hljs llvm">一言： https://developer.hitokoto.cn/sentence/#<span class="hljs-variable">%E6</span><span class="hljs-variable">%8</span>E<span class="hljs-variable">%A5</span><span class="hljs-variable">%E5</span><span class="hljs-variable">%8</span>F<span class="hljs-variable">%A3</span><span class="hljs-variable">%E8</span><span class="hljs-variable">%AF</span><span class="hljs-variable">%B4</span><span class="hljs-variable">%E6</span><span class="hljs-variable">%98</span><span class="hljs-variable">%8</span>E  // 这个网站的api有点骚~<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>loading 动画：<br><a href="https://www.zyoushuo.cn/post/69e.html">1</a></p>
+<hr>
+<p>更改的内容效果先在 hexo server –debug 上观看(一般来说有大的改动，需重启 hexo server –debug)<br>如果感觉更改的不错(依次输入下面三个语句 上传到 heyang.xyz 里)：<br>hexo generate<br>hexo deploy<br>hexo clean</p>
+<hr>
+<h4 id="性能检测："><a href="#性能检测：" class="headerlink" title="性能检测："></a>性能检测：</h4>]]></content>
+      <categories>
+        <category>IT随笔</category>
+      </categories>
+      <tags>
+        <tag>互联网</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开始我的个人博客之旅啦</title>
     <url>/2021/10/07/%E5%BC%80%E5%A7%8B%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E6%97%85%E5%95%A6/</url>
     <content><![CDATA[<p>这篇博客只是用来测试一下网站 哈哈哈<br>祝福看见这篇博客的你 永远快乐哦!</p>
@@ -193,7 +266,8 @@
       serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
     });
   </script>
-</body>]]></content>
+</body>
+]]></content>
       <tags>
         <tag>生活</tag>
       </tags>
