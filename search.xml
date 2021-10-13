@@ -145,24 +145,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/10/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Set和Map基本使用方法</title>
     <url>/2021/10/09/Set%E5%92%8CMap%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p><code>Map</code> <strong>(有道翻译)</strong> v.映射<br>的确，<code>Map</code> 强调的就是<strong>对应关系</strong><br>记住两个<strong>关键点</strong>：</p>
@@ -206,6 +188,148 @@
 <h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><p><strong>Set 容器(集合)</strong> ：无序 不可重复的多个 value 的集合体(不是键值对哦！)<br>理解为特殊数组，元素值不重复</p>
 <p>其实和上面的 Map 的方法一样, 无外乎增删改查</p>
 <figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">// 创建一个空集合</span><br>let set1 = <span class="hljs-keyword">new</span> Set();<br><br><span class="hljs-comment">// 添加元素</span><br>set1.<span class="hljs-built_in">add</span>(<span class="hljs-string">&#x27;a&#x27;</span>)<br>set1.<span class="hljs-built_in">add</span>(<span class="hljs-string">&#x27;c&#x27;</span>)<br><br>console.<span class="hljs-built_in">log</span>(set1);<br>console.<span class="hljs-built_in">log</span>(set1.has(<span class="hljs-string">&#x27;b&#x27;</span>));  <span class="hljs-comment">// 集合中是否含有 &#x27;b&#x27;</span><br>set1.delete(<span class="hljs-string">&#x27;c&#x27;</span>);    <span class="hljs-comment">// 删除 &#x27;c&#x27;</span><br>set1.<span class="hljs-built_in">add</span>(<span class="hljs-string">&#x27;a&#x27;</span>);       <span class="hljs-comment">// 因为重复，所以只保留一个</span><br>console.<span class="hljs-built_in">log</span>(set1);<br>console.<span class="hljs-built_in">log</span>(set1.<span class="hljs-built_in">size</span>);   <span class="hljs-comment">// 元素个数</span><br>set1.<span class="hljs-built_in">clear</span>();        <span class="hljs-comment">// 清空集合</span><br>console.<span class="hljs-built_in">log</span>(set1);<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/10/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>post请求和get请求的区别</title>
+    <url>/2021/10/09/post%E8%AF%B7%E6%B1%82%E5%92%8Cget%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h4 id="1-有哪些请求方式？"><a href="#1-有哪些请求方式？" class="headerlink" title="1.有哪些请求方式？"></a>1.有哪些请求方式？</h4><ul>
+<li>get</li>
+<li>post</li>
+<li>put</li>
+<li>patch</li>
+<li>delete<br>…</li>
+</ul>
+<h4 id="2-get-请求和-post-请求的区别"><a href="#2-get-请求和-post-请求的区别" class="headerlink" title="2.get 请求和 post 请求的区别"></a>2.get 请求和 post 请求的区别</h4><p><strong>get 请求</strong><br>1）一般用来从服务器获取数据 (有时候会在 url 里增添参数 表示获取有一定限制(筛选数据)的数据)<br>2）1 中提到可以在 url 里添加参数，但这样做的话，安全性，隐私性就比较差。并且参数的长度是有限制的(不然，如果无限长，url 的长度就无限长…非常恐怖…)<br>3）当 发送 get 请求时，刷新浏览器或回退页面是没有影响的(只要 url 没有发生变化，就不会影响 get 请求发送)<br>4）get 请求可以缓存 (这是什么东西？有待查询) (因为 get 请求的数据一般是公开的…大家都可以看的东西)<br>5）get 请求会保留在浏览器历史记录当中<br>6）get 请求可以被收藏为书签(因为直接收藏 url 就可以了 url 带上了参数)<br>7）get 请求只能进行 url 编码(‘Content-type’: ‘application/x-www-form-urlencoded’)<br>8）get 请求通常是通过 url 地址栏发送请求<br><strong>post 请求</strong><br>1）一般用于提交数据到后台 (比如登录、注册时的操作)<br>2）post 请求的参数放在 请求的 body 中。所以不会再 url 中展示，相对而言比 get 要更加的安全<br>3）发送 post 请求过程中，回退页面，请求重新发送(因为参数会发送变化)<br>4）post 请求不会被缓存 (post 的请求的数据一般来说都是比较私密的…)<br>5）post 不会保存在浏览器历史记录当中<br>6）post 请求不可以被收藏为书签(post 参数放在 body 里面的。书签无法找到对应的参数…)<br>7）post 请求支持多种编码方式(例如 url：’application/x-www-form-urlencoded’ 表单提交：’multipart/form-data’ …有待补充)<br>8）post 请求通常是表单发送请求</p>
+<p><strong>get 和 post 请求比较深入的一些区别如下</strong></p>
+<ul>
+<li>post 请求和 get 请求都是 http 的请求方式。底层都是 tcp/ip 协议。get 产生一个 tcp 数据包。post 产生两个数据包(但是 firefox 只发送一个)<br>有个问题是，这个发送一个数据包或发送两个数据包的区别和意义是什么呢？<br>(在网络好的时候，发一次数据包和发两次数据包 其实效果都差不多。但是当网络条件很差的时候，发一次数据包的效果肯定比发两次数据包的速度要快！)</li>
+<li>get 请求会把 http header 和 data 一起发送出去，服务端反应 200。post 请求先发送 header，等服务端响应了 100 再继续发送 data。服务端再响应 200</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一篇文章掌握性能优化大法之防抖和节流</title>
+    <url>/2021/10/13/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%8E%8C%E6%8F%A1%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E6%B3%95%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</url>
+    <content><![CDATA[<p>相信一提到前端性能优化，大家脑子里就会一下映射出许多内容。例如：懒加载、CDN 缓存、DOM 优化、图片优化、Webpack 的优化配置…但今天我想谈论的一个性能优化点是<strong>防抖</strong>和<strong>节流</strong>函数，因为它俩够“小巧”，但发挥的作用却不容小觑！</p>
+<p>在实际写项目的时候，我们会发现，一些事件总是会被频繁触发。例如鼠标事件、键盘事件、scroll 事件…</p>
+<p>举个小例子：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span><br><span class="javascript">  <span class="hljs-keyword">let</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;[name=&quot;username&quot;]&#x27;</span>)</span><br><span class="javascript">  input.addEventListener(<span class="hljs-string">&#x27;keyup&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="javascript">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.value)</span><br><span class="javascript">  &#125;)</span><br><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e1b22b590194ef58b3cf9ce2853aaa0~tplv-k3u1fbpfcp-watermark.image" alt="debounce1.gif"></p>
+<p>由上述非常简短的代码及效果图，我们就可以发现，频繁的触发回调是真的要命 😭😭😭,它不仅会造成大量的计算引发页面卡顿还会造成频繁的网络请求导致不必要的流量浪费以及极低的用户体验…为了规避这类情况，我们急需控制回调的触发频率，让回调函数被触发的次数恰到好处！因此，防抖函数和节流函数闪亮登场 ✨</p>
+<hr>
+<h3 id="防抖函数-debounce"><a href="#防抖函数-debounce" class="headerlink" title="防抖函数(debounce)"></a>防抖函数(debounce)</h3><h4 id="防抖函数核心逻辑"><a href="#防抖函数核心逻辑" class="headerlink" title="防抖函数核心逻辑"></a>防抖函数核心逻辑</h4><p>人为设定一段<strong>延迟时间</strong>，用于延迟执行<strong>回调函数 A</strong>。如果在延迟时间内，用户反复触发这个<strong>回调函数 A</strong>，则只会重复刷新延迟时间，而频繁被触发的<strong>回调函数 A</strong>中，<strong>仅最后一次触发的回调函数 A 是能被执行的</strong>。</p>
+<h4 id="写防抖函数的五大要素"><a href="#写防抖函数的五大要素" class="headerlink" title="写防抖函数的五大要素"></a>写防抖函数的五大要素</h4><p>好了，上文已经讲解了防抖函数的核心逻辑，现在大家来熟悉一下写防抖函数的五大要素，从而方便理解下文真正的防抖函数 💪🏻</p>
+<ul>
+<li><ol>
+<li>需要使用闭包</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>需要 setTimeout、clearTimeout 的灵活运用</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>防抖函数的第一个参数为需要被触发的回调函数</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>防抖函数会返回一个函数</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>回调函数的 this 指向需要和防抖函数返回的这个函数 this 指向保持一致</li>
+</ol>
+</li>
+</ul>
+<h4 id="手写防抖函数"><a href="#手写防抖函数" class="headerlink" title="手写防抖函数"></a>手写防抖函数</h4><p>请大家在看代码的同时注意我的注释！！！</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// fnA 是要被触发的回调函数   delay是延迟时间</span><br><span class="hljs-keyword">let</span> debounce = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fnA, delay</span>) </span>&#123;<br>    <span class="hljs-comment">// timer是定时器，如果在延迟时间内频繁触发回调函数A，则会重复刷新延迟时间timer</span><br>    <span class="hljs-comment">// 注意：这里会运用到闭包！！(请不了解闭包基础知识的朋友先去看一下闭包基础知识后再继续看这篇博客)</span><br>    <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-comment">// 防抖函数会返回一个函数</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-comment">// 锁定当前this的指向，方便控制fnA的this指向和这个返回函数的this指向保持一致</span><br>        <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">this</span>;<br>        <span class="hljs-comment">// 保留调用防抖函数时传入的参数</span><br>        <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">arguments</span>;<br><br>        <span class="hljs-comment">// 如果在延迟时间内频繁触发回调函数A，则重复刷新延迟时间timer</span><br>        <span class="hljs-keyword">if</span> (timer) &#123;<br>            <span class="hljs-built_in">clearTimeout</span>(timer);<br>        &#125;<br>        timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>            <span class="hljs-comment">// 将fn的this指向和防抖函数返回的这个函数的this指向保持一致</span><br>            fnA.call(context, ...arguments)<br>        &#125;, delay)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>好啦，手写代码完成。接下来，我们试一试防抖函数</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span><br><span class="javascript">  <span class="hljs-keyword">let</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;[name=&quot;username&quot;]&#x27;</span>)</span><br><span class="javascript">  <span class="hljs-comment">// 注意：addEventListener的this总是当前正在处理事件的那个DOM对象</span></span><br><span class="javascript">  input.addEventListener(<span class="hljs-string">&#x27;keyup&#x27;</span>, debounce(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="javascript">      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.value)</span><br><span class="javascript">  &#125;, <span class="hljs-number">2000</span>))</span><br><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/71fab3e4f6044064b640a1fa5964349d~tplv-k3u1fbpfcp-watermark.image" alt="debounce2.gif"></p>
+<p>快速输入 12345677 后，需再等待 2s 才会执行真正的回调函数。这就是防抖函数发挥的真正作用！消除了过多而不必要的回调函数。</p>
+<p><strong>附赠一个化简版的<code>debounce</code></strong></p>
+<p>这个版本的<code>debounce</code>使用了箭头函数，原理和上面的<code>debounce</code>是一样的。(关于此题的箭头函数使用，也许本篇博客的<strong>彩蛋 2</strong>能给你一个提示)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> debounce = <span class="hljs-function">(<span class="hljs-params">fn, delay</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...<span class="hljs-built_in">arguments</span></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;arguments&#x27;</span>, <span class="hljs-built_in">arguments</span>)<br>    <span class="hljs-keyword">if</span> (timer) &#123;<br>      <span class="hljs-built_in">clearTimeout</span>(timer);<br>    &#125;<br>    <span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;测试&#x27;</span><br>    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      fn.call(<span class="hljs-built_in">this</span>, ...arguments)<br>    &#125;, delay)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="节流函数-throttle"><a href="#节流函数-throttle" class="headerlink" title="节流函数(throttle)"></a>节流函数(throttle)</h3><h4 id="节流函数的核心逻辑"><a href="#节流函数的核心逻辑" class="headerlink" title="节流函数的核心逻辑"></a>节流函数的核心逻辑</h4><p>人为设定一段间隔时间，<strong>当第一次触发回调函数 A 时，回调函数 A 被立即执行并且开始计时</strong>。在这段间隔时间内，无论用户触发多少次<strong>回调函数 A</strong>，都不会被执行。</p>
+<h4 id="写节流函数的五大要素"><a href="#写节流函数的五大要素" class="headerlink" title="写节流函数的五大要素"></a>写节流函数的五大要素</h4><p>事实上，节流的五大要素和防抖非常相似(只有第二点有区别)，所以当看懂防抖函数的代码后，在手写节流代码时就显得比较轻松了！</p>
+<ul>
+<li><ol>
+<li>需要使用闭包</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>结合时间戳来判断时间间隔</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>节流函数的第一个参数为需要被触发的回调函数</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>节流函数会返回一个函数</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>回调函数的 this 指向需要和节流函数返回的这个函数 this 指向保持一致</li>
+</ol>
+</li>
+</ul>
+<h4 id="手写节流函数"><a href="#手写节流函数" class="headerlink" title="手写节流函数"></a>手写节流函数</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"> <span class="hljs-comment">// fnA 表示回调函数A， interval表示间隔时间</span><br> <span class="hljs-keyword">let</span> throttle = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fnA, interval</span>) </span>&#123;<br>  <span class="hljs-comment">// last 运用闭包知识</span><br>  <span class="hljs-comment">// last 为上一次触发回调的时间, 初始化为0 方便第一次触发事件就能运行回调函数</span><br>  <span class="hljs-keyword">let</span> last = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 返回一个函数</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">// 记录当前的时间戳</span><br>    <span class="hljs-keyword">let</span> now = <span class="hljs-built_in">Date</span>.now();<br>    <span class="hljs-comment">// 保留调用节流函数时传入的参数</span><br>    <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">arguments</span>;<br>    <span class="hljs-comment">// 回调函数的this指向需要和节流函数返回的这个函数this指向保持一致</span><br>    <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">this</span>;<br>    <span class="hljs-comment">// 通过时间差来判断再一次触发的回调函数是否还在这段时间间隔内</span><br>    <span class="hljs-keyword">if</span> (now - last &gt;= interval) &#123;<br>      last = now;<br>      fnA.call(context, ...args)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码效果：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dd4d3d0f930b4882b09c4a52ff1d071c~tplv-k3u1fbpfcp-watermark.image" alt="throttle1.gif"></p>
+<p>事实上，防抖和节流函数的相似度是非常高的, 相信大家在理解完我手写防抖和节流函数时所提及的 5 大要素以及我的代码注释后，能够对防抖和节流函数感到更加亲切！剩下的就是靠你自己手写一下代码，让代码真正变成你自己拥有的。</p>
+<p>本篇文章可能会有作者笔误或理解错误的地方，请大家多多指出！ 如果这篇文章对你有帮助的话，还请给这篇文章点一个赞吧 💕</p>
+<hr>
+<p>下面的三个彩蛋实则是我在写这篇博客时突然想到的三个关于 this 和作用域比较有意思的点，如果大家有兴趣，不妨看一看！</p>
+<h5 id="彩蛋-1"><a href="#彩蛋-1" class="headerlink" title="彩蛋 1"></a>彩蛋 1</h5><p>在上述防抖函数中，我使用到了 setTimeout。而事实上对于<code>setTimeout</code>的<code>this</code>指向，其实也是有一些学问在里面的。<br>给大家送福利！在下述三种情况，this 会 100%指向 window</p>
+<ul>
+<li>立即执行函数(IIFE)</li>
+<li>setTimeout 中传入的函数(非箭头函数)</li>
+<li>setInterval 中传入的函数(非箭头函数)</li>
+</ul>
+<h5 id="彩蛋-2"><a href="#彩蛋-2" class="headerlink" title="彩蛋 2"></a>彩蛋 2</h5><p>对于 setTimeout 的箭头函数的思考</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;帅得乱七八糟&#x27;</span><br><br><span class="hljs-keyword">var</span> me = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>,<br>  <span class="hljs-attr">hello1</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// 箭头函数中的 this，和你如何调用它无关，由你书写它的位置决定</span><br>  <span class="hljs-comment">// 这里的this的作用域是hello1函数作用域。所以，谁调用hello1，这里的this就指向谁</span><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;        <span class="hljs-comment">// 指向me</span><br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`你好，我是<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span>`</span>)<br>    &#125;)<br>  &#125;,<br>  <span class="hljs-attr">hello2</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;   <span class="hljs-comment">// 指向window(彩蛋1里有提到)</span><br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`你好，我是<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span>`</span>)<br>    &#125;)<br>  &#125;<br>&#125;<br><br>me.hello1();   <span class="hljs-comment">// 你好，我是帅得歪瓜裂枣</span><br>me.hello2();   <span class="hljs-comment">// 你好，我是帅得乱七八糟</span><br><br></code></pre></td></tr></table></figure>
+
+<h5 id="彩蛋-3"><a href="#彩蛋-3" class="headerlink" title="彩蛋 3"></a>彩蛋 3</h5><p>关于回调函数的参数问题</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">let func = <span class="hljs-function"><span class="hljs-params">(fn)</span> =&gt;</span> &#123;<br>    fn();<br>&#125;<br>let callback = <span class="hljs-function"><span class="hljs-params">(param)</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(param)<br>&#125;<br>let fn = function() &#123;<br>    let param = <span class="hljs-number">123</span>;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(param);   <span class="hljs-regexp">//</span> <span class="hljs-number">1</span>s后打印： <span class="hljs-number">123</span><br>    &#125;, <span class="hljs-number">1000</span>)<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">(param)</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(param);   <span class="hljs-regexp">//</span> <span class="hljs-number">1</span>s后打印： <span class="hljs-literal">undefined</span><br>    &#125;, <span class="hljs-number">3000</span>)<br><br>    func(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> callback(param)) <span class="hljs-regexp">//</span> <span class="hljs-number">123</span><br>    func(<span class="hljs-function"><span class="hljs-params">(param)</span> =&gt;</span> callback(param)) <span class="hljs-regexp">//</span> <span class="hljs-literal">undefined</span><br>&#125;<br>fn();<br></code></pre></td></tr></table></figure>
+
+<p>为何我给回调的参数加上<code>param</code>，则打印变为<code>undefined</code>？ 这其实是函数作用域在作怪！如果在回调的参数上加<code>param</code>，则该回调内的所有<code>param</code>(包括回调的参数<code>param</code>)都是属于该回调函数的作用域内。而很明显，回调里的<code>param</code>没有赋上任何值，所以是<code>undefined</code>。如果参数没有 param，则回调内的<code>param</code>就会向上一层作用域内寻找<code>param</code>，恰好 fn 里有定义<code>param</code> 且值为 123。</p>
 ]]></content>
       <categories>
         <category>JavaScript</category>
@@ -289,6 +413,30 @@
       </tags>
   </entry>
   <entry>
+    <title>开始我的个人博客之旅啦</title>
+    <url>/2021/10/07/%E5%BC%80%E5%A7%8B%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E6%97%85%E5%95%A6/</url>
+    <content><![CDATA[<p>这篇博客只是用来测试一下网站 哈哈哈<br>祝福看见这篇博客的你 永远快乐哦!</p>
+<head>
+  ..
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  ...
+</head>
+<body>
+  ...
+  <div id="waline"></div>
+  <script>
+    Waline({
+      el: '#waline',
+      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
+    });
+  </script>
+</body>
+]]></content>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有效括号问题</title>
     <url>/2021/10/07/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">/**<br> * 题目描述：给定一个只包括<span class="hljs-string">&#x27;(&#x27;</span>, <span class="hljs-string">&#x27;)&#x27;</span>, <span class="hljs-string">&#x27;&#123;&#x27;</span>, <span class="hljs-string">&#x27;&#125;&#x27;</span>, <span class="hljs-string">&#x27;[&#x27;</span>, <span class="hljs-string">&#x27;]&#x27;</span>的字符串,判断字符串是否有效<br> * <br> * 记住一个规律： 括号成立 意味着 对称性<br> */<br><br><span class="hljs-regexp">//</span> 括号问题，我们一般首选栈来做    ----&gt;   对称性<br><br><span class="hljs-regexp">//</span> 用一个map来维护左括号和右括号的对应关系<br><span class="hljs-regexp">//</span> map 关系真的非常的好用<br><span class="hljs-regexp">//</span> const leftToRight = &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br><span class="hljs-regexp">//</span> &#125;<br><br><span class="hljs-regexp">//</span> /**<br><span class="hljs-regexp">//</span>  * @param &#123;string&#125; s<br><span class="hljs-regexp">//</span>  * @return &#123;boolean&#125;<br><span class="hljs-regexp">//</span>  */<br><br><span class="hljs-regexp">//</span> <span class="hljs-regexp">//</span> 有些细节 我<br><span class="hljs-regexp">//</span> const isValid = <span class="hljs-keyword">function</span>(s) &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 结合题意，空字符串无条件判断为 true<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">if</span> (!s) &#123;<br><span class="hljs-regexp">//</span>     return true;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 初始化 stack 数组<br><span class="hljs-regexp">//</span>   const stack = [];<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; s.length; i++) &#123;<br><span class="hljs-regexp">//</span>     <span class="hljs-keyword">if</span> (s[i] === <span class="hljs-string">&#x27;(&#x27;</span> || s[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || s[i] === <span class="hljs-string">&#x27;[&#x27;</span>) &#123;<br><span class="hljs-regexp">//</span>       stack.push(leftToRight[s[i]])<br><span class="hljs-regexp">//</span>     &#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-regexp">//</span>       <span class="hljs-regexp">//</span> 但是人家写的是!stack.length || stack.pop() !== ch  好奇怪...<br><span class="hljs-regexp">//</span>       <span class="hljs-keyword">if</span> (stack.pop() !== s[i]) &#123;<br><span class="hljs-regexp">//</span>         return false;<br><span class="hljs-regexp">//</span>       &#125;<br><span class="hljs-regexp">//</span>     &#125;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 若所有的括号都能配对成功，那么最后栈应该是空的<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> return !stack.length;<br><br><span class="hljs-regexp">//</span>   return true;<br><span class="hljs-regexp">//</span> &#125;<br><br><br><br><span class="hljs-regexp">//</span> 注意： ))))(((( 这种是错误的。左括号必须以正确的顺序闭合<br><br><span class="hljs-regexp">//</span> 对象映射大法 ----&gt;  注意！变量名千万搞错不能出错, 有时要好好检查检查自己的变量名...<br>const leftToRight = &#123;<br>  <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br>  <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br>&#125;<br><br><br><span class="hljs-regexp">//</span> 我自己想到一个方法。设置两个栈。一个栈放入左侧符号的映射。  一个栈放入右侧符号。 两个栈进行一一对比<br>const isValid = (str) =&gt; &#123;<br>  const stack = [];<br>  <span class="hljs-regexp">//</span> 数组缓存<br>  let len = str.length;<br><br>  <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>    <span class="hljs-keyword">if</span> (str[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || str[i] === <span class="hljs-string">&#x27;[&#x27;</span> || str[i] === <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>      stack.push(leftToRight[str[i]]);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length !== <span class="hljs-number">0</span> &amp;&amp; str[i] === stack[stack.length - <span class="hljs-number">1</span>]) &#123;<br>      stack.pop();<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length === <span class="hljs-number">0</span>) &#123;<br>      return false;<br>    &#125;<br>  &#125;<br>  return stack.length === <span class="hljs-number">0</span>;<br>&#125;<br><br>console.log(<span class="hljs-string">&#x27;test&#x27;</span>, isValid(<span class="hljs-string">&#x27;()[]&#123;&#125;&#x27;</span>));<br></code></pre></td></tr></table></figure>
@@ -353,54 +501,6 @@
     });
   </script>
 </body>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>开始我的个人博客之旅啦</title>
-    <url>/2021/10/07/%E5%BC%80%E5%A7%8B%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E6%97%85%E5%95%A6/</url>
-    <content><![CDATA[<p>这篇博客只是用来测试一下网站 哈哈哈<br>祝福看见这篇博客的你 永远快乐哦!</p>
-<head>
-  ..
-  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
-  ...
-</head>
-<body>
-  ...
-  <div id="waline"></div>
-  <script>
-    Waline({
-      el: '#waline',
-      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
-    });
-  </script>
-</body>
-]]></content>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>post请求和get请求的区别</title>
-    <url>/2021/10/09/post%E8%AF%B7%E6%B1%82%E5%92%8Cget%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h4 id="1-有哪些请求方式？"><a href="#1-有哪些请求方式？" class="headerlink" title="1.有哪些请求方式？"></a>1.有哪些请求方式？</h4><ul>
-<li>get</li>
-<li>post</li>
-<li>put</li>
-<li>patch</li>
-<li>delete<br>…</li>
-</ul>
-<h4 id="2-get-请求和-post-请求的区别"><a href="#2-get-请求和-post-请求的区别" class="headerlink" title="2.get 请求和 post 请求的区别"></a>2.get 请求和 post 请求的区别</h4><p><strong>get 请求</strong><br>1）一般用来从服务器获取数据 (有时候会在 url 里增添参数 表示获取有一定限制(筛选数据)的数据)<br>2）1 中提到可以在 url 里添加参数，但这样做的话，安全性，隐私性就比较差。并且参数的长度是有限制的(不然，如果无限长，url 的长度就无限长…非常恐怖…)<br>3）当 发送 get 请求时，刷新浏览器或回退页面是没有影响的(只要 url 没有发生变化，就不会影响 get 请求发送)<br>4）get 请求可以缓存 (这是什么东西？有待查询) (因为 get 请求的数据一般是公开的…大家都可以看的东西)<br>5）get 请求会保留在浏览器历史记录当中<br>6）get 请求可以被收藏为书签(因为直接收藏 url 就可以了 url 带上了参数)<br>7）get 请求只能进行 url 编码(‘Content-type’: ‘application/x-www-form-urlencoded’)<br>8）get 请求通常是通过 url 地址栏发送请求<br><strong>post 请求</strong><br>1）一般用于提交数据到后台 (比如登录、注册时的操作)<br>2）post 请求的参数放在 请求的 body 中。所以不会再 url 中展示，相对而言比 get 要更加的安全<br>3）发送 post 请求过程中，回退页面，请求重新发送(因为参数会发送变化)<br>4）post 请求不会被缓存 (post 的请求的数据一般来说都是比较私密的…)<br>5）post 不会保存在浏览器历史记录当中<br>6）post 请求不可以被收藏为书签(post 参数放在 body 里面的。书签无法找到对应的参数…)<br>7）post 请求支持多种编码方式(例如 url：’application/x-www-form-urlencoded’ 表单提交：’multipart/form-data’ …有待补充)<br>8）post 请求通常是表单发送请求</p>
-<p><strong>get 和 post 请求比较深入的一些区别如下</strong></p>
-<ul>
-<li>post 请求和 get 请求都是 http 的请求方式。底层都是 tcp/ip 协议。get 产生一个 tcp 数据包。post 产生两个数据包(但是 firefox 只发送一个)<br>有个问题是，这个发送一个数据包或发送两个数据包的区别和意义是什么呢？<br>(在网络好的时候，发一次数据包和发两次数据包 其实效果都差不多。但是当网络条件很差的时候，发一次数据包的效果肯定比发两次数据包的速度要快！)</li>
-<li>get 请求会把 http header 和 data 一起发送出去，服务端反应 200。post 请求先发送 header，等服务端响应了 100 再继续发送 data。服务端再响应 200</li>
-</ul>
 ]]></content>
       <categories>
         <category>JavaScript</category>
