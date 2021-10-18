@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="问题一关于 display:hidden 这类能隐藏元素的方法区别:用 CSS 隐藏页面元素的 5 种方法 问题二关于 button 和 flex 搭配的特殊情况这是一篇关于父子元素继承的博客 123456789&#x2F;&#x2F; css  .BigBox &amp;#123;    display: flex;    flex-direction: column;    width: 200px;    heigh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS-随笔一">
+<meta property="og:url" content="http://example.com/2021/10/18/CSS-%E9%9A%8F%E7%AC%94%E4%B8%80/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="问题一关于 display:hidden 这类能隐藏元素的方法区别:用 CSS 隐藏页面元素的 5 种方法 问题二关于 button 和 flex 搭配的特殊情况这是一篇关于父子元素继承的博客 123456789&#x2F;&#x2F; css  .BigBox &amp;#123;    display: flex;    flex-direction: column;    width: 200px;    heigh">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-10.07.07-AM.5g0xixkr2380.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-10.09.32-AM.5ulg5xqki2s0.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-11.06.51-AM.5llejkgdkig0.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-11.06.51-AM.5llejkgdkig0.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.06.02-PM.tmocxv39y3k.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.22.39-PM.5x922m5shww0.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.32.02-PM.27m3tsv2zp34.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.37.56-PM.4j6vcoxrlnu0.gif">
+<meta property="article:published_time" content="2021-10-18T02:01:55.000Z">
+<meta property="article:modified_time" content="2021-10-18T05:05:31.150Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-10.07.07-AM.5g0xixkr2380.png">
+  
+  <title>CSS-随笔一 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSS-随笔一">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-18 10:01" pubdate>
+        2021年10月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSS-随笔一</h1>
+            
+            <div class="markdown-body">
+              <hr>
+<h4 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h4><p>关于 <code>display:hidden</code> 这类能隐藏元素的方法区别:<br><a target="_blank" rel="noopener" href="https://75.team/post/five-ways-to-hide-elements-in-css.html">用 CSS 隐藏页面元素的 5 种方法</a></p>
+<h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p>关于 button 和 flex 搭配的特殊情况<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhuzhenwei918/p/6389567.html">这是一篇关于父子元素继承的博客</a></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-comment">// css</span><br>  <span class="hljs-selector-class">.BigBox</span> &#123;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">flex-direction</span>: column;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span>;<br>    <span class="hljs-attribute">background</span>: red;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">// html</span><br>  &lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">BigBox</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">button</span> <span class="hljs-symbol">type</span>=&quot;<span class="hljs-symbol">button</span>&quot;&gt;点击我&lt;/<span class="hljs-symbol">button</span>&gt;<br>  &lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-10.07.07-AM.5g0xixkr2380.png" srcset="/img/loading.gif" lazyload alt="flex+btn-1"></p>
+<p>这个按钮的 width 和 BigBox 盒子的宽度一样</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">// html</span><br>  &lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">BigBox</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">div</span>&gt;<br>    &lt;<span class="hljs-symbol">button</span> <span class="hljs-symbol">type</span>=&quot;<span class="hljs-symbol">button</span>&quot;&gt;点击我&lt;/<span class="hljs-symbol">button</span>&gt;<br>    &lt;/<span class="hljs-symbol">div</span>&gt;<br>  &lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-10.09.32-AM.5ulg5xqki2s0.png" srcset="/img/loading.gif" lazyload alt="flex+btn-2"><br>显然 button 的宽度变为内联的那种效果。根据内容来扩大自己的宽度</p>
+<p>事实上， <code>flex</code> 对于 内联元素都有拉伸的效果(毕竟 <code>flex</code> 叫弹性盒子…)。那如何规避 <code>flex</code> 的弹性效果呢？</p>
+<ol>
+<li>就是上述的在内联元素的外层套一个 <code>div</code>(块级盒子)。</li>
+<li>可以在 flex 的子元素(内联元素，在 flex 里内联元素特殊)设置<code>width</code> 和 <code>height</code>(例如此题就是给 button 设置长度和宽度)</li>
+<li>通过 <code>margin:auto</code> 这种也可以消除拉伸状态</li>
+</ol>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs dts">  .<span class="hljs-class">BigBox </span>&#123;<br><span class="hljs-symbol">    display:</span> flex;<br>    flex-direction: column;<br><span class="hljs-symbol">    width:</span> <span class="hljs-number">200</span>px;<br><span class="hljs-symbol">    height:</span> <span class="hljs-number">150</span>px;<br><span class="hljs-symbol">    background:</span> red;<br>  &#125;<br>  <span class="hljs-class">button </span>&#123;<br><span class="hljs-symbol">    margin:</span> <span class="hljs-number">0</span> auto;<br>  &#125;<br>  <span class="hljs-params">&lt;/style&gt;</span><br><span class="hljs-params">&lt;/head&gt;</span><br><span class="hljs-params">&lt;body&gt;</span><br>  <span class="hljs-params">&lt;div class=&quot;BigBox&quot;&gt;</span><br>    <span class="hljs-params">&lt;button type=&quot;button&quot;&gt;</span>点击我<span class="hljs-params">&lt;/button&gt;</span><br>  <span class="hljs-params">&lt;/div&gt;</span><br><span class="hljs-params">&lt;/body&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-11.06.51-AM.5llejkgdkig0.png" srcset="/img/loading.gif" lazyload alt="效果如下"></p>
+<ol start="4">
+<li>还有的办法就是消除 <code>flex</code> 的默认拉伸效果</li>
+</ol>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs dts">  .<span class="hljs-class">BigBox </span>&#123;<br><span class="hljs-symbol">    display:</span> flex;<br>    flex-direction: column;<br><span class="hljs-symbol">    width:</span> <span class="hljs-number">200</span>px;<br><span class="hljs-symbol">    height:</span> <span class="hljs-number">150</span>px;<br><span class="hljs-symbol">    background:</span> red;<br>  &#125;<br>  <span class="hljs-class">button </span>&#123;<br>    <span class="hljs-comment">/* align-items属性某个子元素在交叉轴上的对齐方式 */</span><br>    <span class="hljs-comment">/* align-items 默认属性 stretch */</span><br>    align-self: center;<br>  &#125;<br>  <span class="hljs-params">&lt;/style&gt;</span><br><span class="hljs-params">&lt;/head&gt;</span><br><span class="hljs-params">&lt;body&gt;</span><br>  <span class="hljs-params">&lt;div class=&quot;BigBox&quot;&gt;</span><br>    <span class="hljs-params">&lt;button type=&quot;button&quot;&gt;</span>点击我<span class="hljs-params">&lt;/button&gt;</span><br>  <span class="hljs-params">&lt;/div&gt;</span><br><span class="hljs-params">&lt;/body&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-11.06.51-AM.5llejkgdkig0.png" srcset="/img/loading.gif" lazyload alt="效果如下"></p>
+<h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><p>关于 radio + button 的玩法总结：<br><a target="_blank" rel="noopener" href="https://play.tailwindcss.com/FLrfGpKId1">radio + button 内容 –&gt; 使用的 tailwindcss</a></p>
+<p>关键点 1：<code>radio</code> 标签的使用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 单选按钮让用户只选择有限数量的选项之一 --&gt;</span><br><span class="hljs-comment">&lt;!-- 所以 name 要保持一致 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-13-pro&quot;</span> <span class="hljs-attr">checked</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-13&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-se&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.06.02-PM.tmocxv39y3k.gif" srcset="/img/loading.gif" lazyload alt="radio效果图"></p>
+<p>关键点 2：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/General_sibling_combinator">通用兄弟选择器的使用(~)</a> 搭配 <code>:checked</code></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="xml">元素1~元素2 </span><span class="hljs-template-variable">&#123;</span><br><span class="hljs-template-variable"></span><br><span class="hljs-template-variable">&#125;</span><span class="xml"></span><br><span class="xml">表示选择元素1 下面所有的元素2</span><br><span class="xml">但是~层级问题始终有点迷~</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml">  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css">    <span class="hljs-selector-id">#iPhone-13-pro</span><span class="hljs-selector-pseudo">:checked</span> ~ <span class="hljs-selector-class">.iphone</span> <span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">1</span>) &#123;</span><br><span class="css">      <span class="hljs-attribute">color</span>: red;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-id">#iPhone-13</span><span class="hljs-selector-pseudo">:checked</span> ~ <span class="hljs-selector-class">.iphone</span> <span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">2</span>) &#123;</span><br><span class="css">      <span class="hljs-attribute">color</span>: red;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-id">#iPhone-se</span><span class="hljs-selector-pseudo">:checked</span> ~ <span class="hljs-selector-class">.iphone</span> <span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">3</span>) &#123;</span><br><span class="css">      <span class="hljs-attribute">color</span>: red;</span><br><span class="css">    &#125;</span><br><span class="css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 单选按钮让用户只选择有限数量的选项之一 --&gt;</span><br>  <span class="hljs-comment">&lt;!-- 所以 name 要保持一致 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-13-pro&quot;</span> <span class="hljs-attr">checked</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-13&quot;</span>  /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-se&quot;</span> /&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;iphone&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>iphone 13 pro<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>iphone 13<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>iphone se<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.22.39-PM.5x922m5shww0.gif" srcset="/img/loading.gif" lazyload alt="radio 效果 2"></p>
+<p>关键点三： <code>label标签</code>的使用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs xml">  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css">    <span class="hljs-comment">/* label[属性] 很牛 */</span></span><br><span class="css">    // 注意 ~ 必须是左右两边是最后得同层级的才行</span><br><span class="css">    <span class="hljs-selector-id">#iPhone-13-pro</span><span class="hljs-selector-pseudo">:checked</span> ~ <span class="hljs-selector-class">.iphone</span> <span class="hljs-selector-tag">label</span><span class="hljs-selector-attr">[for=<span class="hljs-string">&quot;iPhone-13-pro&quot;</span>]</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">color</span>: red;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-id">#iPhone-13</span><span class="hljs-selector-pseudo">:checked</span> ~ <span class="hljs-selector-class">.iphone</span> <span class="hljs-selector-tag">label</span><span class="hljs-selector-attr">[for=<span class="hljs-string">&quot;iPhone-13&quot;</span>]</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">color</span>: red;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-id">#iPhone-se</span><span class="hljs-selector-pseudo">:checked</span> ~ <span class="hljs-selector-class">.iphone</span> <span class="hljs-selector-tag">label</span><span class="hljs-selector-attr">[for=<span class="hljs-string">&quot;iPhone-se&quot;</span>]</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">color</span>: red;</span><br><span class="css">    &#125;</span><br><span class="css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 单选按钮让用户只选择有限数量的选项之一 --&gt;</span><br>  <span class="hljs-comment">&lt;!-- 所以 name 要保持一致 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-13-pro&quot;</span> <span class="hljs-attr">checked</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-13&quot;</span>  /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;iPhone-se&quot;</span> /&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;iphone&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;iPhone-13-pro&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>iphone 13 pro<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;iPhone-13&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>iphone 13<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;iPhone-se&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>iphone se<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.32.02-PM.27m3tsv2zp34.gif" srcset="/img/loading.gif" lazyload alt="radio 效果3"></p>
+<p>关键点四：<code>隐藏radio</code>利用 <code>display:none</code>属性。<br>(<a href="#%E9%97%AE%E9%A2%98%E4%B8%80">display:none</a>)</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;input <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-string">&quot;iPhone-13-pro&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;display: none;&quot;</span> checked /&gt;<br>&lt;input <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-string">&quot;iPhone-13&quot;</span>  <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;display: none;&quot;</span> /&gt;<br>&lt;input <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-string">&quot;iPhone-se&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;display: none;&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.37.56-PM.4j6vcoxrlnu0.gif" srcset="/img/loading.gif" lazyload alt="效果四"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/13/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%8E%8C%E6%8F%A1%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E6%B3%95%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+                        <span class="hidden-mobile">一篇文章掌握性能优化大法之防抖和节流</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
