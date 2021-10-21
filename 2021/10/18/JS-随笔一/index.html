@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="问题一：Promise 中.catch 消化异常看代码： 12345678910111213141516171819202122232425&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;  &lt;meta http-equiv&#x3D;&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-随笔一">
+<meta property="og:url" content="http://example.com/2021/10/18/JS-%E9%9A%8F%E7%AC%94%E4%B8%80/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="问题一：Promise 中.catch 消化异常看代码： 12345678910111213141516171819202122232425&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;  &lt;meta http-equiv&#x3D;&amp;qu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-4.52.26-PM.1xab0wcem3ls.png">
+<meta property="article:published_time" content="2021-10-18T08:51:05.000Z">
+<meta property="article:modified_time" content="2021-10-21T02:06:59.551Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-4.52.26-PM.1xab0wcem3ls.png">
+  
+  <title>JS-随笔一 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JS-随笔一">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-18 16:51" pubdate>
+        2021年10月18日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JS-随笔一</h1>
+            
+            <div class="markdown-body">
+              <h4 id="问题一：Promise-中-catch-消化异常"><a href="#问题一：Promise-中-catch-消化异常" class="headerlink" title="问题一：Promise 中.catch 消化异常"></a>问题一：Promise 中.catch 消化异常</h4><p>看代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span><br><span class="javascript">  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="javascript">    <span class="hljs-keyword">let</span> data = <span class="hljs-number">100</span>;</span><br><span class="javascript">    resolve(data);</span><br><span class="javascript">  &#125;).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;</span><br><span class="javascript">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;data&#x27;</span>, data);</span><br><span class="javascript">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(data)</span><br><span class="javascript">    <span class="hljs-comment">// catch 用来消化异常</span></span><br><span class="javascript">  &#125;).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="javascript">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;error&#x27;</span>, error);</span><br><span class="javascript">    <span class="hljs-comment">// 抛出错误，打断程序运行</span></span><br><span class="javascript">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error)</span><br><span class="javascript">  &#125;)</span><br><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-18-at-4.52.26-PM.1xab0wcem3ls.png" srcset="/img/loading.gif" lazyload alt="promise-reject"></p>
+<h4 id="问题二：Object-fromEntries-的使用方式"><a href="#问题二：Object-fromEntries-的使用方式" class="headerlink" title="问题二：Object.fromEntries() 的使用方式"></a>问题二：Object.fromEntries() 的使用方式</h4><p>Object.fromEntries()是用来创建对象的… 用二维数组或者一个 map 作为参数…<br>用代码来体验一下(注意：要提供键值对才行…)</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">// Map</span><br><span class="hljs-keyword">const</span> myMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();<br><br>myMap.<span class="hljs-keyword">set</span>(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;dom&#x27;</span>);<br>myMap.<span class="hljs-keyword">set</span>(<span class="hljs-string">&#x27;age&#x27;</span>, <span class="hljs-number">60</span>);<br><br><span class="hljs-keyword">const</span> myObj = <span class="hljs-built_in">Object</span>.fromEntries(myMap)<br><span class="hljs-comment">// 生成了一个对象...</span><br>console.log(myObj)   <span class="hljs-comment">// &#123;name: &#x27;dom&#x27;, age: 60&#125;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 二维数组<br>const myArr = [<br>  [<span class="hljs-string">&#x27;search&#x27;</span>, <span class="hljs-string">&#x27;dogs&#x27;</span>],<br>  [<span class="hljs-string">&#x27;page&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>]<br>];<br>const myObj = Object.fromEntries(myArr);<br>console.log(myObj);   <span class="hljs-regexp">//</span> &#123;search: <span class="hljs-string">&#x27;dogs&#x27;</span>, page: <span class="hljs-string">&#x27;2&#x27;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="Generators-的使用方法"><a href="#Generators-的使用方法" class="headerlink" title="Generators 的使用方法"></a>Generators 的使用方法</h4><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IJ6EgdiI_wU">相关类型中比较好的视频</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs lua">// * 表示这是个generator函数...<br><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">simpleGenerator</span><span class="hljs-params">()</span></span> &#123;<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">2</span>;<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">3</span>;<br>&#125;<br><br>const generatorObject = simpleGenerator();<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;generatorObject&#x27;</span>, generatorObject);  // 会打印一个复杂的对象(我们只需要关注这个对象里的<span class="hljs-built_in">next</span>属性)<br>const obj = generatorObject.<span class="hljs-built_in">next</span>()<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;obj&#x27;</span>, obj)  // &#123;value: <span class="hljs-number">1</span>, done: <span class="hljs-literal">false</span>&#125;<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())  // &#123;value: <span class="hljs-number">2</span>, done: <span class="hljs-literal">false</span>&#125;<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())  // &#123;value: <span class="hljs-number">3</span>, done: <span class="hljs-literal">false</span>&#125;<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())  // &#123;value: undefined, done: <span class="hljs-literal">true</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">simpleGenerator</span><span class="hljs-params">()</span></span> &#123;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;before 1&#x27;</span>)<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">1</span>;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;after 1&#x27;</span>)<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;before 2&#x27;</span>)<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">2</span>;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;after 2&#x27;</span>)<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;before 3&#x27;</span>)<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">3</span>;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;after 3&#x27;</span>)<br>&#125;<br><br>const generatorObject = simpleGenerator();<br>// 自己逐条去打印下面的东西就会有所感悟...<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">simpleGenerator</span><span class="hljs-params">()</span></span> &#123;<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">2</span>;<br>  <span class="hljs-built_in">yield</span> <span class="hljs-number">3</span>;<br>&#125;<br><br>const generatorObject = simpleGenerator();<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>const generatorObject2 = simpleGenerator();<br>console.<span class="hljs-built_in">log</span>(generatorObject2.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject2.<span class="hljs-built_in">next</span>())<br></code></pre></td></tr></table></figure>
+
+<p>// generator 的常用例子</p>
+<ol>
+<li>有控制的无限循环</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">generateId</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> id = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;id&#x27;</span>, id)<br>    <span class="hljs-keyword">yield</span> id;<br>    id++;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> generatorObject = generateId();<br><span class="hljs-built_in">console</span>.log(generatorObject.next())<br><span class="hljs-built_in">console</span>.log(generatorObject.next())<br><span class="hljs-comment">// ... 可以无限写下去 所以写id的话，你想弄多少个就弄多少个...</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>iterator…</li>
+</ol>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">generator</span><span class="hljs-params">(array)</span></span> &#123;<br>  <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; array.length; i++) &#123;<br>    <span class="hljs-built_in">yield</span> array[i];<br>  &#125;<br>&#125;<br><br>const generatorObject = generator([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>]);<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br>console.<span class="hljs-built_in">log</span>(generatorObject.<span class="hljs-built_in">next</span>())<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>return &amp; throw</li>
+</ol>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-keyword">function</span>* generateId() &#123;<br>  <span class="hljs-keyword">let</span> id = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;id&#x27;</span>, id)<br>    <span class="hljs-keyword">yield</span> id;<br>    id++;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> generatorObject = generateId();<br><span class="hljs-built_in">console</span>.log(generatorObject.next())<br><span class="hljs-built_in">console</span>.log(generatorObject.<span class="hljs-keyword">return</span>(<span class="hljs-number">10</span>))<br><span class="hljs-built_in">console</span>.log(generatorObject.<span class="hljs-keyword">throw</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;hi&#x27;</span>)))<br></code></pre></td></tr></table></figure>
+
+<h4 id="iterator-的理解和学习…"><a href="#iterator-的理解和学习…" class="headerlink" title="iterator 的理解和学习…"></a>iterator 的理解和学习…</h4><p>在 js 中<code>array</code>是默认可以<code>iterable</code>的</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<span class="hljs-comment">;</span><br><span class="hljs-keyword">const</span> numbersIterator = numbers[Symbol.iterator]()<span class="hljs-comment">;  // 变成generator了...</span><br><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>来点例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 自己生成一个iterator</span><br><span class="hljs-comment">// 1, 4, 9, 16, 25</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">squared</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 闭包玩法...</span><br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-function"><span class="hljs-title">next</span>(<span class="hljs-params"></span>)</span> &#123;   <span class="hljs-comment">// 这是对象的一个属性...</span><br>      n++;<br>      <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">5</span>) &#123;<br>        <span class="hljs-keyword">return</span> &#123;<br>          <span class="hljs-attr">value</span>: n * n,<br>          <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span><br>        &#125;;<br>      &#125;<br>      <span class="hljs-keyword">return</span> &#123;<br>        <span class="hljs-attr">value</span>: <span class="hljs-literal">undefined</span>,<br>        <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> squaredIterator = squared();<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/18/React-%E9%9A%8F%E7%AC%94%E4%B8%80/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">React-随笔一</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/18/CSS-%E9%9A%8F%E7%AC%94%E4%B8%80/">
+                        <span class="hidden-mobile">CSS-随笔一</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
