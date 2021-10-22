@@ -102,6 +102,16 @@
 <figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">&lt;input <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-string">&quot;iPhone-13-pro&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;display: none;&quot;</span> checked /&gt;<br>&lt;input <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-string">&quot;iPhone-13&quot;</span>  <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;display: none;&quot;</span> /&gt;<br>&lt;input <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-string">&quot;iPhone-se&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;display: none;&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-10-18-at-12.37.56-PM.4j6vcoxrlnu0.gif" alt="效果四"></p>
+<h4 id="设置侧边滑动块"><a href="#设置侧边滑动块" class="headerlink" title="设置侧边滑动块"></a>设置侧边滑动块</h4><p><a href="https://www.youtube.com/watch?v=v_8CmC6cwUs&t=305s">视频</a></p>
+<h4 id="神坑“margin-auto”"><a href="#神坑“margin-auto”" class="headerlink" title="神坑“margin:auto”"></a>神坑“margin:auto”</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">margin:</span> <span class="hljs-number">0</span> <span class="hljs-string">auto;</span> <span class="hljs-string">/*水平居中对齐*/</span><br><span class="hljs-attr">margin:</span> <span class="hljs-string">auto;</span> <span class="hljs-string">/*上下左右auto</span> <span class="hljs-string">但是上下左右不起作用</span> <span class="hljs-string">还是水平居中对齐*/</span><br><span class="hljs-meta">---</span><br><span class="hljs-string">但是在</span> <span class="hljs-string">flex(grid)</span> <span class="hljs-string">items</span> <span class="hljs-string">上的</span> <span class="hljs-attr">margin:</span> <span class="hljs-string">auto</span> <span class="hljs-string">不仅对水平方向有效，对垂直方向同样有效</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> style=<span class="hljs-string">&quot;height: 200px; width: 200px; background: red;&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> style=<span class="hljs-string">&quot;height: 50px; width: 50px; background: yellow; margin: auto&quot;</span>&gt;块级&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>效果为：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-12.08.50-AM.7kaaythbtjk0.png" alt="神坑margin:auto-1"></p>
+<hr>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> style=<span class="hljs-string">&quot;display:grid; height: 200px; width: 200px; background: red;&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> style=<span class="hljs-string">&quot;height: 50px; width: 50px; background: yellow; margin: auto&quot;</span>&gt;块级&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-12.10.18-AM.1t4jj2z6k2gw.png" alt="神坑margin:auto-2"></p>
 ]]></content>
       <tags>
         <tag>CSS</tag>
@@ -157,11 +167,29 @@
 </ol>
 <figure class="highlight livescript"><table><tr><td class="code"><pre><code class="hljs livescript"><span class="hljs-keyword">function</span>* generateId() &#123;<br>  <span class="hljs-keyword">let</span> id = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;id&#x27;</span>, id)<br>    <span class="hljs-keyword">yield</span> id;<br>    id++;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> generatorObject = generateId();<br><span class="hljs-built_in">console</span>.log(generatorObject.next())<br><span class="hljs-built_in">console</span>.log(generatorObject.<span class="hljs-keyword">return</span>(<span class="hljs-number">10</span>))<br><span class="hljs-built_in">console</span>.log(generatorObject.<span class="hljs-keyword">throw</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;hi&#x27;</span>)))<br></code></pre></td></tr></table></figure>
 
-<h4 id="iterator-的理解和学习…"><a href="#iterator-的理解和学习…" class="headerlink" title="iterator 的理解和学习…"></a>iterator 的理解和学习…</h4><p>在 js 中<code>array</code>是默认可以<code>iterable</code>的</p>
+<h4 id="iterator-的理解和学习…"><a href="#iterator-的理解和学习…" class="headerlink" title="iterator 的理解和学习…"></a>iterator 的理解和学习…</h4><p>在 js 中<code>array</code>、<code>Map</code>是默认可以<code>iterable</code>的<br>部署了<code>iterator</code>的具备一个特点 就是能够通过 for……of 进行遍历…</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">var a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-keyword">for</span>(v of a) &#123;console.log(v)&#125;<br><span class="hljs-regexp">//</span> <span class="hljs-number">1</span><br><span class="hljs-regexp">//</span> <span class="hljs-number">2</span><br><span class="hljs-regexp">//</span> <span class="hljs-number">3</span><br><br>a[Symbol.iterator]     <span class="hljs-regexp">//</span> 是一个函数(可以用来检测是否部署了iterator)<br>var i = a[Symbol.iterator]();<br>console.log(<span class="hljs-string">&#x27;i&#x27;</span>, i);   <span class="hljs-regexp">//</span> i 是一个Iterator (具备<span class="hljs-keyword">next</span>()方法)<br><br></code></pre></td></tr></table></figure>
+
 <figure class="highlight autoit"><table><tr><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<span class="hljs-comment">;</span><br><span class="hljs-keyword">const</span> numbersIterator = numbers[Symbol.iterator]()<span class="hljs-comment">;  // 变成generator了...</span><br><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br>console.<span class="hljs-built_in">log</span>(numbersIterator.<span class="hljs-keyword">next</span>().value)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <p>来点例子：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 自己生成一个iterator</span><br><span class="hljs-comment">// 1, 4, 9, 16, 25</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">squared</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 闭包玩法...</span><br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-function"><span class="hljs-title">next</span>(<span class="hljs-params"></span>)</span> &#123;   <span class="hljs-comment">// 这是对象的一个属性...</span><br>      n++;<br>      <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">5</span>) &#123;<br>        <span class="hljs-keyword">return</span> &#123;<br>          <span class="hljs-attr">value</span>: n * n,<br>          <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span><br>        &#125;;<br>      &#125;<br>      <span class="hljs-keyword">return</span> &#123;<br>        <span class="hljs-attr">value</span>: <span class="hljs-literal">undefined</span>,<br>        <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> squaredIterator = squared();<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br><span class="hljs-built_in">console</span>.log(squaredIterator.next());<br></code></pre></td></tr></table></figure>
+
+<h4 id="js-中关于函数相关的注意点"><a href="#js-中关于函数相关的注意点" class="headerlink" title="js 中关于函数相关的注意点"></a>js 中关于函数相关的注意点</h4><ol>
+<li>console.dir 使用</li>
+</ol>
+<figure class="highlight lua"><table><tr><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span><span class="hljs-params">(value)</span></span> &#123;<br>  console.<span class="hljs-built_in">log</span>(value)<br>&#125;<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">print</span>)  // 这样打印出的内容很范：ƒ <span class="hljs-built_in">print</span>(value) &#123;<br>  console.<span class="hljs-built_in">log</span>(value)<br>&#125;<br>console.dir(<span class="hljs-built_in">print</span>)  // ƒ <span class="hljs-built_in">print</span>(value)<br>arguments: null<br>caller: null<br>length: <span class="hljs-number">1</span><br>name: <span class="hljs-string">&quot;print&quot;</span><br>prototype: &#123;constructor: ƒ&#125;<br><span class="hljs-string">[[FunctionLocation]]</span>: VM193:<span class="hljs-number">1</span><br><span class="hljs-string">[[Prototype]]</span>: ƒ ()<br><span class="hljs-string">[[Scopes]]</span>: Scopes[<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>函数其实就非常类似于普通的对象…(可以放在任何地方。可以为函数添加任何属性)唯一的不同就是函数要使用() 来调用，并且可以传参数 —&gt; 但是对象好像没有作用域、而函数是有作用域的…??</li>
+</ol>
+<figure class="highlight lua"><table><tr><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span><span class="hljs-params">(value)</span></span> &#123;<br>  console.<span class="hljs-built_in">log</span>(value);<br>&#125;<br><br>// 我可以给函数增添属性<br><span class="hljs-built_in">print</span>.hi = <span class="hljs-string">&#x27;hi&#x27;</span><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;print.name&#x27;</span>, <span class="hljs-built_in">print</span>.name)<br><br>// 函数作为参数...<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCallback</span><span class="hljs-params">(callback)</span></span> &#123;<br>  callback(<span class="hljs-string">&#x27;Hello&#x27;</span>)<br>&#125;<br><br>useCallback(<span class="hljs-built_in">print</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="强制转换一个对象中-某一属性的类型为-number"><a href="#强制转换一个对象中-某一属性的类型为-number" class="headerlink" title="强制转换一个对象中 某一属性的类型为 number"></a>强制转换一个对象中 某一属性的类型为 number</h4><p>有时候，我们得到的对象 其属性全部都为字符串类型。但是我们希望有些类型应该为 number 类型<br>例如：</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><code class="hljs objectivec"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">id</span>: <span class="hljs-string">&#x27;1&#x27;</span>,<br>  name: <span class="hljs-string">&#x27;帅得乱七八糟&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<figure class="highlight qml"><table><tr><td class="code"><pre><code class="hljs qml"><span class="hljs-keyword">const</span> newObj = &#123;<br>  ...obj,<br>  <span class="hljs-attribute">id:</span><span class="hljs-string"> Number</span>(obj.id) || <span class="hljs-literal">undefined</span> <span class="hljs-comment">// 不想id：0 这种情况...</span><br>&#125;<br></code></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
@@ -257,7 +285,9 @@
   <entry>
     <title>React-随笔一</title>
     <url>/2021/10/18/React-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
-    <content><![CDATA[<h4 id="问题一：错误边界"><a href="#问题一：错误边界" class="headerlink" title="问题一：错误边界"></a>问题一：错误边界</h4><p>在<code>react</code>的渲染过程中如果出现了异常。那么整个组件树都会被卸载掉…(在开发环境下能够看见报错的原因…但是真正上线后。用户只能看见白茫茫的一片。其余什么也看不见…)<br><a href="https://reactjs.org/docs/error-boundaries.html">错误边界问题</a><br>注意，错误边界的实现是一定要使用<code>class component</code>来实现的。这也是<code>class 组件</code>和<code>函数组件</code>的区别。<br><a href="https://codesandbox.io/s/gong-ju-lei-oef90?file=/src/utils/error-bundary.tsx">我在 codesandbox 里写的一个 error-bundary 库</a></p>
+    <content><![CDATA[<h4 id="推荐一个-vscode-的插件-针对-react-的-贼好用…"><a href="#推荐一个-vscode-的插件-针对-react-的-贼好用…" class="headerlink" title="推荐一个 vscode 的插件 针对 react 的(贼好用…)"></a>推荐一个 vscode 的插件 针对 react 的(贼好用…)</h4><p>ES7 React/Redux/GraphQL/React-Native snippets</p>
+<p><code>rfc</code></p>
+<h4 id="问题一：错误边界"><a href="#问题一：错误边界" class="headerlink" title="问题一：错误边界"></a>问题一：错误边界</h4><p>在<code>react</code>的渲染过程中如果出现了异常。那么整个组件树都会被卸载掉…(在开发环境下能够看见报错的原因…但是真正上线后。用户只能看见白茫茫的一片。其余什么也看不见…)<br><a href="https://reactjs.org/docs/error-boundaries.html">错误边界问题</a><br>注意，错误边界的实现是一定要使用<code>class component</code>来实现的。这也是<code>class 组件</code>和<code>函数组件</code>的区别。<br><a href="https://codesandbox.io/s/gong-ju-lei-oef90?file=/src/utils/error-bundary.tsx">我在 codesandbox 里写的一个 error-bundary 库</a></p>
 <p>—&gt; 在思考这题的时候有两个小问题<br>—&gt; <a href="https://stackoverflow.com/questions/58123398/when-to-use-jsx-element-vs-reactnode-vs-reactelement">ReactNode 和 ReactElement 的区别</a><br>—&gt; <a href="https://www.newline.co/@bespoyasov/how-to-define-props-with-children-in-react-typescript-app--56bd18be">PropsWithChildren 的用法</a> 其实就是 <code>react官方</code> 自己定义的一个<code>type utility</code>。类似<code>omit</code>这类<code>type utility</code></p>
 <h4 id="问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…"><a href="#问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…" class="headerlink" title="问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)"></a>问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)</h4><ol>
 <li>自定义 hook，动态改变文档标题 有两套方案：<ol>
@@ -269,6 +299,14 @@
 <h4 id="问题三：-无限渲染问题-针对-useEffect…"><a href="#问题三：-无限渲染问题-针对-useEffect…" class="headerlink" title="问题三： 无限渲染问题(针对 useEffect…)"></a>问题三： 无限渲染问题(针对 useEffect…)</h4><p><a href="https://github.com/welldone-software/why-did-you-render">一个查找无限渲染原因的库-why-did-you-render</a></p>
 <p>下面是自己写的一个无限死循环组件</p>
 <figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> React, &#123; useEffect, useState &#125; from <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> InfiniteLoop = () =&gt; &#123;<br>  <span class="hljs-keyword">const</span> obj = &#123; name: <span class="hljs-string">&quot;bruce&quot;</span> &#125;; <span class="hljs-comment">// 按引用赋值</span><br>  <span class="hljs-keyword">const</span> [<span class="hljs-built_in">num</span>, setNum] = useState(<span class="hljs-number">0</span>);<br><br>  useEffect(() =&gt; &#123;<br>    console.log(<span class="hljs-string">&quot;effect&quot;</span>);<br>    <span class="hljs-comment">// num + 1 造成页面的重新渲染...</span><br>    <span class="hljs-comment">// 重新渲染后又会num + 1 又是重新渲染...</span><br>    <span class="hljs-comment">// 无限死循环...</span><br>    setNum(<span class="hljs-built_in">num</span> + <span class="hljs-number">1</span>);<br>  &#125;, [obj]);  <span class="hljs-comment">// 如果这里的依赖项是一个不变且不是引用类型的值，就不会触发useEffect，也就不会造成无限死循环...</span><br><br>  <span class="hljs-keyword">return</span> &lt;div&gt;<span class="hljs-built_in">num</span>: &#123;<span class="hljs-built_in">num</span>&#125;&lt;/div&gt;;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="问题四：组件类型透传-这是结合了-TS-以及-其他组件库例如-antd-来写的…"><a href="#问题四：组件类型透传-这是结合了-TS-以及-其他组件库例如-antd-来写的…" class="headerlink" title="问题四：组件类型透传(这是结合了 TS 以及 其他组件库例如(antd))来写的…"></a>问题四：组件类型透传(这是结合了 TS 以及 其他组件库例如(antd))来写的…</h4><p>在日常 react 项目开发中，我们可能会遇见这样的一个问题。例如：我们要自定义一个 select 组件。如下</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> IdSelectProps &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;<br>  onChange: <span class="hljs-function">(<span class="hljs-params">value?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;<br>  options?: &#123; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; id: <span class="hljs-built_in">number</span> &#125;[];<br>&#125;<br><br><span class="hljs-keyword">const</span> IdSelect = <span class="hljs-function">(<span class="hljs-params">&#123;</span></span><br><span class="hljs-params"><span class="hljs-function">  value,</span></span><br><span class="hljs-params"><span class="hljs-function">  onChange,</span></span><br><span class="hljs-params"><span class="hljs-function">  options</span></span><br><span class="hljs-params"><span class="hljs-function">&#125;: IdSelectProps</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;toNumber(value)&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> onChange(toNumber(e.target.value) || undefined)&#125;</span><br><span class="xml">    &gt;</span><br><span class="xml">      &#123;defaultOptionName ? (</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;0&#125;</span>&gt;</span>&#123;defaultOptionName&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="xml">      ) : null&#125;</span><br><span class="xml">      &#123;options?.map((option) =&gt; &#123;</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;option.name&#125;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;option.id&#125;</span>&gt;</span></span><br><span class="xml">          &#123;option.name&#125;</span><br><span class="xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>;</span><br><span class="xml">      &#125;)&#125;</span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br>  );<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>现在有出现一个问题。就是我想扩展我这个<code>IdSelect</code>组件。但是我如果一个一个的去更改组件的类型接口非常麻烦<br>而恰好在<code>antd库</code>里又有一个现有的<code>Select组件</code>功能齐全。我就想把我的组件和 Select 组件的<code>props的各种类型</code>结合起来。如下：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; Select &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;antd&#x27;</span>;  <span class="hljs-comment">// 导入antd里的Select组件</span><br><br><span class="hljs-comment">// React.ComponentProps 帮助我们获取一个组件的 props 类型声明</span><br><span class="hljs-keyword">type</span> SelectProps = React.ComponentProps&lt;<span class="hljs-keyword">typeof</span> Select&gt;<br><br><span class="hljs-comment">// Omit 是为了防止SelectProps类型中有些属性和IdSelectProps的属性发生冲突</span><br><span class="hljs-keyword">interface</span> IdSelectProps <span class="hljs-keyword">extends</span> Omit&lt;SelectProps, &#x27;value&#x27; | &#x27;onChange&#x27; | &#x27;option&#x27;&gt;&#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;<br>  onChange: <span class="hljs-function">(<span class="hljs-params">value?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;<br>  options?: &#123; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; id: <span class="hljs-built_in">number</span> &#125;[];<br>&#125;<br><br><span class="hljs-comment">// ... 后续代码一些正常</span><br></code></pre></td></tr></table></figure>
+
+<p>这样之后，我的 <code>IdSelect</code> 组件的类型属性就会丰富很多…</p>
 ]]></content>
   </entry>
   <entry>
@@ -338,6 +376,8 @@
 <figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> a = [<span class="hljs-string">&#x27;12&#x27;</span>]          <span class="hljs-comment">// const a: string[]</span><br><span class="hljs-keyword">const</span> b = [<span class="hljs-string">&#x27;12&#x27;</span>] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span> <span class="hljs-comment">// const b: readonly [&quot;12&quot;]</span><br></code></pre></td></tr></table></figure>
 
 <p>注意：有了<code>as const</code>后,属性类型变成 <code>readonly</code></p>
+<h4 id="给已经存在的-react-项目添加-ts"><a href="#给已经存在的-react-项目添加-ts" class="headerlink" title="给已经存在的 react 项目添加 ts"></a>给已经存在的 react 项目添加 ts</h4><p><a href="https://create-react-app.dev/docs/adding-typescript/">安装教程</a></p>
+<h4 id="注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的"><a href="#注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的" class="headerlink" title="注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的"></a>注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的</h4><p>例如：<code>src/index.js</code> –&gt; 改为 ts 版本应该为 –&gt; <code>src/index.tsx(不是 ts)</code> 因为如果是 <code>ts</code> 的话 <code>&lt;React.StrictMode&gt;</code>这里会报错…需要的是 <code>tsx</code> 语法…</p>
 ]]></content>
   </entry>
   <entry>
@@ -822,5 +862,42 @@
       <tags>
         <tag>前端</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>HTTP状态码</title>
+    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>前端技术-随笔</title>
+    <url>/2021/10/21/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF-%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<h4 id="不要写较长的函数-写短小精悍的函数才是硬道理…"><a href="#不要写较长的函数-写短小精悍的函数才是硬道理…" class="headerlink" title="不要写较长的函数 写短小精悍的函数才是硬道理…"></a>不要写较长的函数 写短小精悍的函数才是硬道理…</h4><h4 id="性能优化与可读性和可维护性比较"><a href="#性能优化与可读性和可维护性比较" class="headerlink" title="性能优化与可读性和可维护性比较"></a>性能优化与可读性和可维护性比较</h4><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-21-at-2.22.22-PM.35sbd0m61g00.png" alt="一个40年程序员如是说"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>计算机通识-随笔</title>
+    <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
+<li><code>pwd</code> 用于告诉你当前所在目录</li>
+<li><code>ls</code> 用于告诉你当前目录层级的所有文件</li>
+<li><code>ls -al</code></li>
+<li><code>ls -a</code></li>
+<li><code>clear</code> 清理当前终端内容</li>
+<li><code>cd</code> 进入某个文件 <code>cd ..</code> 往上一个文件走</li>
+<li><code>mkdir</code> 创建一个文件夹</li>
+<li><code>touch</code> 创建一个文件</li>
+<li><code>cp</code> 旧文件 新文件</li>
+<li><code>mv</code> 旧文件 新文件</li>
+<li>键盘上下键可以看前面自己写的命令</li>
+<li><code>rm</code> 删除一个文件</li>
+<li><code>rm -f</code> 删除一个文件夹</li>
+<li><code>rm -r</code></li>
+<li><code>vim</code> 修改文件 —&gt; <code>nano</code> 更好 vim 学习成本太高</li>
+<li><code>cat</code> 查看文件的具体内容</li>
+<li><code>echo</code></li>
+<li><code>control + c</code> 终止当前终端</li>
+</ol>
+]]></content>
   </entry>
 </search>
