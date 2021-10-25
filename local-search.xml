@@ -112,6 +112,12 @@
     <content type="html"><![CDATA[<h4 id="不要写较长的函数-写短小精悍的函数才是硬道理…"><a href="#不要写较长的函数-写短小精悍的函数才是硬道理…" class="headerlink" title="不要写较长的函数 写短小精悍的函数才是硬道理…"></a>不要写较长的函数 写短小精悍的函数才是硬道理…</h4><h4 id="性能优化与可读性和可维护性比较"><a href="#性能优化与可读性和可维护性比较" class="headerlink" title="性能优化与可读性和可维护性比较"></a>性能优化与可读性和可维护性比较</h4><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-21-at-2.22.22-PM.35sbd0m61g00.png" alt="一个40年程序员如是说"></p>]]></content>
     
     
+    <categories>
+      
+      <category>IT随笔</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -181,6 +187,18 @@
     <content type="html"><![CDATA[<h4 id="JavaScript-Array-Reduce"><a href="#JavaScript-Array-Reduce" class="headerlink" title="JavaScript Array Reduce"></a>JavaScript Array Reduce</h4><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs maxima">const numbers = [<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> n of numbers) &#123;<br>    <span class="hljs-built_in">sum</span> += n;<br>&#125;<br><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">sum</span>);   // <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure><p>–&gt; 使用 reduce</p><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> numbers = [1, -1, 2, 3]<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 两个参数</span><br><span class="hljs-comment"> * 参数一：回调函数 (此回调函数必须有返回值。且返回值赋值新一次迭代的accmulator)</span><br><span class="hljs-comment"> * 参数二：一个值, 作为accmulator的初始值 (如果参数二不写，则数组第一个元素作为accmulator的初始值)</span><br><span class="hljs-comment"> * 效果： 迭代调用reduce的数组的每一个元素 即 currentValue(从数组第一个元素开始)</span><br><span class="hljs-comment"> */</span><br>let <span class="hljs-keyword">sum</span> = numbers.reduce((accmulator, currentValue) =&gt; &#123;<br>  <span class="hljs-comment">// 注意：这里是要有返回值才行的...</span><br>  <span class="hljs-comment">// 返回值赋值给accmulator</span><br>  <span class="hljs-keyword">return</span> accmulator + currentValue<br>&#125;, 0)<br><br><span class="hljs-comment">// 上述执行过程</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 1</span><br><span class="hljs-comment"> *    accmulator: 1     currentValue: -1</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 2</span><br><span class="hljs-comment"> *    accmulator: 2     currentValue: 3</span><br><span class="hljs-comment"> *    accmulator: 5     打断施法...</span><br><span class="hljs-comment"> */</span><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">sum</span>);   <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>]]></content>
     
     
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+    </tags>
     
   </entry>
   
