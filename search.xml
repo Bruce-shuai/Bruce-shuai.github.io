@@ -112,7 +112,7 @@
 <figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> style=<span class="hljs-string">&quot;display:grid; height: 200px; width: 200px; background: red;&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> style=<span class="hljs-string">&quot;height: 50px; width: 50px; background: yellow; margin: auto&quot;</span>&gt;块级&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-12.10.18-AM.1t4jj2z6k2gw.png" alt="神坑margin:auto-2"></p>
-]]></content>
+<h4 id="我们都熟知-css-选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？"><a href="#我们都熟知-css-选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？" class="headerlink" title="我们都熟知 css 选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？"></a>我们都熟知 css 选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？</h4>]]></content>
       <tags>
         <tag>CSS</tag>
       </tags>
@@ -190,7 +190,13 @@
 
 <p>解决办法：</p>
 <figure class="highlight qml"><table><tr><td class="code"><pre><code class="hljs qml"><span class="hljs-keyword">const</span> newObj = &#123;<br>  ...obj,<br>  <span class="hljs-attribute">id:</span><span class="hljs-string"> Number</span>(obj.id) || <span class="hljs-literal">undefined</span> <span class="hljs-comment">// 不想id：0 这种情况...</span><br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
+
+<h4 id="数组中查找指定元素的下标方法：indexOf"><a href="#数组中查找指定元素的下标方法：indexOf" class="headerlink" title="数组中查找指定元素的下标方法：indexOf"></a>数组中查找指定元素的下标方法：indexOf</h4><p>例如：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let question = [<span class="hljs-string">&#x27;错误&#x27;</span>, <span class="hljs-string">&#x27;错误&#x27;</span>, <span class="hljs-string">&#x27;正确&#x27;</span>, <span class="hljs-string">&#x27;错误&#x27;</span>];<br><br>let findIndex = question.indexOf(<span class="hljs-string">&#x27;正确&#x27;</span>)  <span class="hljs-regexp">//</span> <span class="hljs-number">2</span><br><br><span class="hljs-regexp">//</span> 如果找不到就会直接返回 -<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="自定义获取页面-url-的方法"><a href="#自定义获取页面-url-的方法" class="headerlink" title="自定义获取页面 url 的方法"></a>自定义获取页面 url 的方法</h4><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-keyword">function</span> getParameter(parameterName) &#123;<br>  <span class="hljs-regexp">//</span> window.location.search 获取当前url的参数(包括 ?)<br>  <span class="hljs-regexp">//</span> URLSearchParams 更多操作: https:<span class="hljs-regexp">//</span>developer.mozilla.org<span class="hljs-regexp">/zh-CN/</span>docs<span class="hljs-regexp">/Web/</span>API/URLSearchParams<br>  let parameters = new URLSearchParams(window.location.search)<br>  return parameters.get(parameterName);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="url-以及其他-api-的参数应该是后端自己做的处理…"><a href="#url-以及其他-api-的参数应该是后端自己做的处理…" class="headerlink" title="(url 以及其他)api 的参数应该是后端自己做的处理…"></a>(url 以及其他)api 的参数应该是后端自己做的处理…</h4>]]></content>
   </entry>
   <entry>
     <title>JSON 基础知识 &amp; Ajax 基础知识</title>
@@ -898,6 +904,46 @@
 <li><code>echo</code></li>
 <li><code>control + c</code> 终止当前终端</li>
 </ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>JS sort 玩法</title>
+    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>似乎默认是按照字母顺序进行排序</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
+<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
+<p>比较函数需要两个参数…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>axios 使用方法</title>
+    <url>/2021/10/25/axios-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>tailwindcss-注意项</title>
+    <url>/2021/10/23/tailwindcss-%E6%B3%A8%E6%84%8F%E9%A1%B9/</url>
+    <content><![CDATA[<blockquote>
+<p>当前版本：<code>v2.2.15</code></p>
+</blockquote>
+<p>我 TM 发现，当前版本似乎是不支持<code>rotate3d</code>的。<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/3B9771F637F41E091B4FCE198208DFD9.76wwwpk22l40.png" alt="不支持y轴旋转"></p>
+<p>不知道有什么解决办法没…???</p>
+<p>有解决办法：自己去自定义功能</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-9.53.54-AM.5u636vtv5gk0.png" alt="自定义功能"></p>
+<hr>
+<blockquote>
+<p>tailwindcss 新特性：<code>JIT</code></p>
+</blockquote>
+<p>按需加载~也是在性能层次上的升级…<br><a href="https://tailwindcss.com/docs/just-in-time-mode">文档</a></p>
 ]]></content>
   </entry>
 </search>
