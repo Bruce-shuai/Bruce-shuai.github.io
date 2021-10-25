@@ -113,8 +113,11 @@
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-12.10.18-AM.1t4jj2z6k2gw.png" alt="神坑margin:auto-2"></p>
 <h4 id="我们都熟知-css-选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？"><a href="#我们都熟知-css-选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？" class="headerlink" title="我们都熟知 css 选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？"></a>我们都熟知 css 选择器能够自上而下的进行控制。那么有没有办法自下而上的通过子选择器控制父选择器？？</h4>]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -126,11 +129,23 @@
 <p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>Git基本用法</title>
     <url>/2021/10/20/Git%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>IT随笔</category>
+      </categories>
+      <tags>
+        <tag>互联网</tag>
+      </tags>
   </entry>
   <entry>
     <title>JS-随笔一</title>
@@ -197,6 +212,12 @@
 <h4 id="自定义获取页面-url-的方法"><a href="#自定义获取页面-url-的方法" class="headerlink" title="自定义获取页面 url 的方法"></a>自定义获取页面 url 的方法</h4><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-keyword">function</span> getParameter(parameterName) &#123;<br>  <span class="hljs-regexp">//</span> window.location.search 获取当前url的参数(包括 ?)<br>  <span class="hljs-regexp">//</span> URLSearchParams 更多操作: https:<span class="hljs-regexp">//</span>developer.mozilla.org<span class="hljs-regexp">/zh-CN/</span>docs<span class="hljs-regexp">/Web/</span>API/URLSearchParams<br>  let parameters = new URLSearchParams(window.location.search)<br>  return parameters.get(parameterName);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="url-以及其他-api-的参数应该是后端自己做的处理…"><a href="#url-以及其他-api-的参数应该是后端自己做的处理…" class="headerlink" title="(url 以及其他)api 的参数应该是后端自己做的处理…"></a>(url 以及其他)api 的参数应该是后端自己做的处理…</h4>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>JSON 基础知识 &amp; Ajax 基础知识</title>
@@ -314,6 +335,12 @@
 
 <p>这样之后，我的 <code>IdSelect</code> 组件的类型属性就会丰富很多…</p>
 ]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>Set和Map基本使用方法</title>
@@ -385,6 +412,12 @@
 <h4 id="给已经存在的-react-项目添加-ts"><a href="#给已经存在的-react-项目添加-ts" class="headerlink" title="给已经存在的 react 项目添加 ts"></a>给已经存在的 react 项目添加 ts</h4><p><a href="https://create-react-app.dev/docs/adding-typescript/">安装教程</a></p>
 <h4 id="注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的"><a href="#注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的" class="headerlink" title="注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的"></a>注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的</h4><p>例如：<code>src/index.js</code> –&gt; 改为 ts 版本应该为 –&gt; <code>src/index.tsx(不是 ts)</code> 因为如果是 <code>ts</code> 的话 <code>&lt;React.StrictMode&gt;</code>这里会报错…需要的是 <code>tsx</code> 语法…</p>
 ]]></content>
+      <categories>
+        <category>TypeScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>post请求和get请求的区别</title>
@@ -880,6 +913,9 @@
     <url>/2021/10/21/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF-%E9%9A%8F%E7%AC%94/</url>
     <content><![CDATA[<h4 id="不要写较长的函数-写短小精悍的函数才是硬道理…"><a href="#不要写较长的函数-写短小精悍的函数才是硬道理…" class="headerlink" title="不要写较长的函数 写短小精悍的函数才是硬道理…"></a>不要写较长的函数 写短小精悍的函数才是硬道理…</h4><h4 id="性能优化与可读性和可维护性比较"><a href="#性能优化与可读性和可维护性比较" class="headerlink" title="性能优化与可读性和可维护性比较"></a>性能优化与可读性和可维护性比较</h4><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-21-at-2.22.22-PM.35sbd0m61g00.png" alt="一个40年程序员如是说"></p>
 ]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>计算机通识-随笔</title>
@@ -923,11 +959,23 @@
 
 <p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
 ]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>axios 使用方法</title>
     <url>/2021/10/25/axios-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>tailwindcss-注意项</title>
@@ -945,5 +993,11 @@
 </blockquote>
 <p>按需加载~也是在性能层次上的升级…<br><a href="https://tailwindcss.com/docs/just-in-time-mode">文档</a></p>
 ]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
 </search>
