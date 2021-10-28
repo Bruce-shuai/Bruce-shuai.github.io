@@ -18,15 +18,15 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="分享知识、感受生活~">
+  <meta name="description" content="官方文档Axios 是一个基于 promise 网络请求库，作用于 node.js 和浏览器中。 它是 isomorphic 的(即同一套代码可以运行在浏览器和 node.js 中)。在服务端它使用原生 node.js http 模块, 而在客户端 (浏览端) 则使用 XMLHttpRequests。  这个不像fetch。axios 是需要在项目中额外安装的  下面的代码段全是基于此篇代码所写：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="axios 使用方法">
 <meta property="og:url" content="http://example.com/2021/10/25/axios-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="分享知识、感受生活~">
+<meta property="og:description" content="官方文档Axios 是一个基于 promise 网络请求库，作用于 node.js 和浏览器中。 它是 isomorphic 的(即同一套代码可以运行在浏览器和 node.js 中)。在服务端它使用原生 node.js http 模块, 而在客户端 (浏览端) 则使用 XMLHttpRequests。  这个不像fetch。axios 是需要在项目中额外安装的  下面的代码段全是基于此篇代码所写：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-25T02:41:58.000Z">
-<meta property="article:modified_time" content="2021-10-25T08:17:58.033Z">
+<meta property="article:modified_time" content="2021-10-26T12:07:55.457Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      3.4k 字
     </span>
   
 
@@ -226,7 +226,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      11 分钟
     </span>
   
 
@@ -258,7 +258,44 @@
             <h1 style="display: none">axios 使用方法</h1>
             
             <div class="markdown-body">
-              
+              <p><a target="_blank" rel="noopener" href="https://axios-http.com/zh/docs/intro">官方文档</a><br><code>Axios</code> 是一个基于 <code>promise</code> 网络请求库，作用于 <code>node.js</code> 和<code>浏览器</code>中。 它是 isomorphic 的(即同一套代码可以运行在<code>浏览器</code>和 <code>node.js</code> 中)。在服务端它使用原生 <code>node.js</code> http 模块, 而在客户端 (浏览端) 则使用 <code>XMLHttpRequests</code>。</p>
+<blockquote>
+<p>这个不像<code>fetch</code>。<code>axios</code> 是需要在项目中额外安装的</p>
+</blockquote>
+<p>下面的代码段全是基于此篇代码所写：<a target="_blank" rel="noopener" href="https://github.com/Bruce-shuai/axios-study">axios-study</a></p>
+<h3 id="Axios-基本玩法"><a href="#Axios-基本玩法" class="headerlink" title="Axios 基本玩法"></a>Axios 基本玩法</h3><blockquote>
+<p><code>即 增、删、改、查</code></p>
+</blockquote>
+<h4 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h4><p>3 种书写方法(大同小异，推荐第二种，更直观…)</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vim">/* 方法<span class="hljs-number">1</span> */<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTodo</span><span class="hljs-params">()</span> &#123;</span><br>  axios(&#123;<br>    method: <span class="hljs-string">&#x27;GET&#x27;</span>,<br>    ur<span class="hljs-variable">l:</span> <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>,<br>    // 参数项： _limit 应该是后端自己做的...<br>    param<span class="hljs-variable">s:</span> &#123;<br>      _limi<span class="hljs-variable">t:5</span><br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs vim">/* 方法<span class="hljs-number">2</span> */<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTodo</span><span class="hljs-params">()</span> &#123;</span><br>  axios.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>, &#123;<br>    param<span class="hljs-variable">s:</span> &#123;<br>      _limi<span class="hljs-variable">t:</span> <span class="hljs-number">5</span><br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">/* 方法3 */</span><br>function getTodo() &#123;<br>  <span class="hljs-comment">// 因为get方法是默认方法，可以省略get的书写</span><br>  <span class="hljs-comment">// _limit=5是参数 直接以键值对的方式作为url参数来写入(这也是get 方法的用途...)</span><br>  axios(&#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos?_limit=5)</span><br>  .then(res =&gt; console.<span class="hljs-built_in">log</span>(&#x27;res&#x27;, res.data))<br>  .catch(<span class="hljs-keyword">err</span> =&gt; console.<span class="hljs-built_in">log</span>(&#x27;<span class="hljs-keyword">err</span>&#x27;, <span class="hljs-keyword">err</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h4><p>两种书写方法(推荐第二种书写方法…)</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// POST REQUEST</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios(&#123;<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>,<br>    <span class="hljs-comment">// 不是params哦~ 这是POST的特殊之处...</span><br>    data: &#123;<br>      <span class="hljs-comment">// 这些属性是自己随意拟定的...</span><br>      title: <span class="hljs-string">&#x27;New To Do&#x27;</span>,<br>      <span class="hljs-attr">complete</span>: <span class="hljs-literal">false</span>,<br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// 下述方法同上</span><br>  axios.post(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>, &#123;<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;New To Do&#x27;</span>,<br>    <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>,<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="PUT-PATCH-方法"><a href="#PUT-PATCH-方法" class="headerlink" title="PUT/PATCH 方法"></a>PUT/PATCH 方法</h4><ul>
+<li>PUT/PATCH 注意 PUT 一般是更换整体 而 PATCH 一般是更换局部内容</li>
+<li>注意 一般使用 PUT 或 PATCH 都是要有参数具体指定修改哪一个内容的</li>
+<li>所以 PUT 既要指定 params 属性 又要修改 data 属性</li>
+</ul>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">putTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios(&#123;<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;PUT&#x27;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,<br>    <span class="hljs-comment">// 不是params哦~</span><br>    data: &#123;<br>      <span class="hljs-comment">// 这些属性是自己随意拟定的...</span><br>      title: <span class="hljs-string">&#x27;Update To Do&#x27;</span>,<br>      <span class="hljs-attr">completed</span>: <span class="hljs-literal">true</span>,<br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="DELETE-方法"><a href="#DELETE-方法" class="headerlink" title="DELETE 方法"></a>DELETE 方法</h4><p><code>DELETE</code> 这个只需指定<code>params</code> 而没有<code>data</code>属性</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteTodo</span><span class="hljs-params">()</span>&#123;</span><br>  axios(&#123;<br>    method: <span class="hljs-string">&#x27;DELETE&#x27;</span>,<br>    ur<span class="hljs-variable">l:</span> <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Axios-高级玩法"><a href="#Axios-高级玩法" class="headerlink" title="Axios 高级玩法"></a>Axios 高级玩法</h3><h4 id="并发请求"><a href="#并发请求" class="headerlink" title="并发请求"></a>并发请求</h4><p><code>SIMULATANEOUS DATA</code> (同时请求多种数据)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios<br>  .all([<br>    axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>),<br>    axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)<br>  ])<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(res[<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">console</span>.log(res[<span class="hljs-number">1</span>]);<br>  &#125;)<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 方法同上</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;<br>axios.<br>all([<br>  axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>),<br>  axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)<br>]).then(axios.spread(<span class="hljs-function">(<span class="hljs-params">todos,posts</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(todos);<br>  <span class="hljs-built_in">console</span>.log(posts)<br>&#125;))<br>.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="INTERCEPTING-REQUESTS-amp-RESPONSES"><a href="#INTERCEPTING-REQUESTS-amp-RESPONSES" class="headerlink" title="INTERCEPTING REQUESTS &amp; RESPONSES"></a>INTERCEPTING REQUESTS &amp; RESPONSES</h4><p>拦截器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.interceptors.request.use(<br>  <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<br>      <span class="hljs-string">`<span class="hljs-subst">$&#123;config.method.toUpperCase()&#125;</span> request sent to <span class="hljs-subst">$&#123;config.url&#125;</span> at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()&#125;</span>`</span><br>    )<br>    <span class="hljs-keyword">return</span> config;<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);<br>  &#125;<br>)<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -291,6 +328,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">编译原理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
