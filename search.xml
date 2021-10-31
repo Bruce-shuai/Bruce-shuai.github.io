@@ -450,6 +450,33 @@
       </tags>
   </entry>
   <entry>
+    <title>async/await</title>
+    <url>/2021/10/31/async-await/</url>
+    <content><![CDATA[<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><p><code>Promise</code> n. 许诺，允诺；希望<br>这个单词其实和真实生活中的<strong>承诺</strong>非常像<br>我承诺要做什么什么… 总共会得到两种结果<br>一种是承诺得以实现(<code>resolved</code>) 一种是承诺没有被实现(<code>rejected</code>)<br><code>Promise</code> 接受一个参数，该参数必须是一个函数,并且这个函数有两个参数(<code>resolve</code>, <code>reject</code>)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span> + <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">if</span> (a === <span class="hljs-number">2</span>) &#123;<br>    <span class="hljs-comment">// resolve 可以传入任何我想传入的内容(任何类型)</span><br>    resolve(<span class="hljs-string">&#x27;Success&#x27;</span>)<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// reject 可以传入任何我想传入的内容(任何类型)</span><br>    reject(<span class="hljs-string">&#x27;Failed&#x27;</span>);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><code>then</code> 的内容(参数)执行的是 <code>resolve</code> 传入的内容。即 p 完成它的承诺后，然后做什么什么事<br><code>catch</code> 的内容(参数)执行的是 <code>reject</code> 传入的内容。即 p 没有完成它的承诺，然后会做什么什么事</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">p.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(message)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;This is in the then&#x27;</span> + message);<br>&#125;).<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(message)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;This is in the catch&#x27;</span> + message);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>举个例子来看看 Promise 给我们带来的变化…</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> userLeft = <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">const</span> userWatchingCatMeme = <span class="hljs-literal">false</span>;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">watchTutorialCallback</span>(<span class="hljs-params">callback, errorCallback</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (userLeft) &#123;<br>    errorCallback(&#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;User Left&#x27;</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;:(&#x27;</span><br>    &#125;)<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (userWatchingCatMeme) &#123;<br>    errorCallback(&#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;User Watching Cat Meme&#x27;</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;WebDevSimplified &lt; Cat&#x27;</span><br>    &#125;)<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    callback(<span class="hljs-string">&#x27;Thumbs up and Subscribe&#x27;</span>)<br>  &#125;<br>&#125;<br>watchTutorialCallback(<span class="hljs-function">(<span class="hljs-params">message</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Success &#x27;</span> + message);<br>&#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(error.name + <span class="hljs-string">&#x27; &#x27;</span> + error.message);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>—————-用 Promise 来改造—————-</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-regexp">//</span> 避免烦人的回调函数...<br>function watchTutorialPromise() &#123;<br>  let p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (userLeft) &#123;<br>      reject(&#123;<br>        name: <span class="hljs-string">&#x27;User Left&#x27;</span>,<br>        message: <span class="hljs-string">&#x27;:(&#x27;</span><br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (userWatchingCatMeme) &#123;<br>      reject(&#123;<br>        name: <span class="hljs-string">&#x27;User Watching Cat Meme&#x27;</span>,<br>        message: <span class="hljs-string">&#x27;WebDevSimplified &lt; Cat&#x27;</span><br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      resolve(<span class="hljs-string">&#x27;Thumbs up and Subscribe&#x27;</span>)<br>    &#125;<br>  &#125;)<br>  p.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(message)</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Success &#x27;</span> + message);<br>  &#125;).<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(error)</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(error.name + <span class="hljs-string">&#x27; &#x27;</span> + error.message);<br>  &#125;)<br>&#125;<br>watchTutorialPromise();<br></code></pre></td></tr></table></figure>
+
+<p>————Promise 的其他一些功能————</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const recordVideoOne = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>  <span class="hljs-regexp">//</span> resolve(<span class="hljs-string">&#x27;Video 1 Recorded&#x27;</span>)<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span> &#123;resolve(<span class="hljs-string">&#x27;Video 1 Recorded&#x27;</span>)&#125;, <span class="hljs-number">3000</span>);<br>&#125;)<br>const recordVideoTwo = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>  resolve(<span class="hljs-string">&#x27;Video 2 Recorded&#x27;</span>)<br>&#125;)<br>const recordVideoThree = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>  resolve(<span class="hljs-string">&#x27;Video 3 Recorded&#x27;</span>)<br>&#125;)<br><br><span class="hljs-regexp">//</span> 同时获取三个数据<br><span class="hljs-built_in">Promise</span>.all([<br>  recordVideoOne,<br>  recordVideoTwo,<br>  recordVideoThree<br>]).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(messages)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Promise.all&#x27;</span>, messages);<br>&#125;)<br><br><span class="hljs-regexp">//</span> 数据谁先到就用谁的<br><span class="hljs-built_in">Promise</span>.race([<br>  recordVideoOne,<br>  recordVideoTwo,<br>  recordVideoThree<br>]).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(messages)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Promise.race&#x27;</span>, messages);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async/Await"></a>Async/Await</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeRequest</span>(<span class="hljs-params">location</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Making Request to <span class="hljs-subst">$&#123;location&#125;</span>`</span>);<br>    <span class="hljs-keyword">if</span> (location === <span class="hljs-string">&#x27;Google&#x27;</span>) &#123;<br>      resolve(<span class="hljs-string">&#x27;Google says hi&#x27;</span>)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      reject(<span class="hljs-string">&#x27;We can only talk to Google&#x27;</span>)<br>    &#125;<br>  &#125;)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processRequest</span>(<span class="hljs-params">response</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Processing response&#x27;</span>);<br>    resolve(<span class="hljs-string">`Extra Information + <span class="hljs-subst">$&#123;response&#125;</span>`</span>)<br>  &#125;)<br>&#125;<br><br>makeRequest(<span class="hljs-string">&#x27;Google&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Response Received&#x27;</span>);<br>  <span class="hljs-keyword">return</span> processRequest(response)<br>&#125;).then(<span class="hljs-function"><span class="hljs-params">processResponse</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(processResponse);<br>&#125;).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(err);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>利用 <code>async</code> 和 <code>await</code> 来化简上述的代码</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-keyword">async</span> function doWork() &#123;<br>  <span class="hljs-regexp">//</span> <span class="hljs-keyword">try</span>……<span class="hljs-keyword">catch</span> 来解决<span class="hljs-built_in">Promise</span>.<span class="hljs-keyword">catch</span> 这种问题....<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-regexp">//</span> <span class="hljs-keyword">await</span> 放在会异步的代码前面。不放的话，返回的是<span class="hljs-built_in">Promise</span> 而非 <span class="hljs-built_in">Promise</span> 执行的结果...<br>    <span class="hljs-regexp">//</span> 当执行到<span class="hljs-keyword">await</span>的时候，程序会识别出<span class="hljs-keyword">await</span>后面是异步函数。然后就会跳出去执行其他同步函数。当<span class="hljs-keyword">await</span>的异步函数执行完且当前已无(<span class="hljs-keyword">async</span>函数外的)同步代码的时候，就会调回来继续执行后续代码<br>    <span class="hljs-regexp">//</span> 以及<span class="hljs-keyword">await</span> 必须要有<span class="hljs-keyword">async</span>来搭配才行...<br>    <span class="hljs-regexp">//</span> <span class="hljs-keyword">await</span> 就像在说 要等待 makeRequest 执行完后 才能继续往下运行(这里的往下运行是指的将结果赋值个变量response以及执行下一行代码...不是跳出去执行<span class="hljs-keyword">async</span>函数外部的同步代码)<br>    const response = <span class="hljs-keyword">await</span> makeRequest(<span class="hljs-string">&#x27;Google&#x27;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Response Received&#x27;</span>);<br>    <span class="hljs-regexp">//</span> 等待processRequest执行完后，才会把结果赋值给processedResponse，才会往下一步执行<br>    const processedResponse = <span class="hljs-keyword">await</span> processRequest(response);<br>    <span class="hljs-built_in">console</span>.log(processedResponse);<br>  &#125; <span class="hljs-keyword">catch</span>(err) &#123;<br>    <span class="hljs-built_in">console</span>.log(err);<br>  &#125;<br>&#125;<br>doWork();<br></code></pre></td></tr></table></figure>
+
+<p>为了推论上述的 await 代码跳转问题。有了下述代码论证</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1&#x27;</span>);<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func1</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2&#x27;</span>);<br>  <span class="hljs-comment">// fetch是异步请求。所以执行栈先跳转到当前async函数外面的同步代码并且fetch以及其附带的then、catch执行完后继续执行赋值代码给data以及完成下一行代码</span><br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;3&#x27;</span>);<br>&#125;<br>func1();<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func2</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// console.log(&#x27;4&#x27;);是同步代码</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;4&#x27;</span>);<br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/2&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;5&#x27;</span>);<br>&#125;<br>func2();<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;6&#x27;</span>);<br><span class="hljs-comment">// 执行结果顺序：</span><br><span class="hljs-comment">// 1、 2、 4、 6、 api_1、 3、 api_2、 5</span><br><span class="hljs-comment">// 或者 1、 2、 4、 6、 api_2、 5、 api_1、 3 (因为可能第二个接口请求数据更快所以更快完成await代码...)</span><br></code></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>axios 使用方法</title>
     <url>/2021/10/25/axios-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p><a href="https://axios-http.com/zh/docs/intro">官方文档</a><br><code>Axios</code> 是一个基于 <code>promise</code> 网络请求库，作用于 <code>node.js</code> 和<code>浏览器</code>中。 它是 isomorphic 的(即同一套代码可以运行在<code>浏览器</code>和 <code>node.js</code> 中)。在服务端它使用原生 <code>node.js</code> http 模块, 而在客户端 (浏览端) 则使用 <code>XMLHttpRequests</code>。</p>
@@ -691,27 +718,23 @@
 <figure class="highlight mathematica"><table><tr><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Key</span>      <span class="hljs-built_in">Value</span><br><span class="hljs-variable">query</span>    <span class="hljs-variable">value</span><br><span class="hljs-variable">search</span>   <span class="hljs-variable">dogs</span><br></code></pre></td></tr></table></figure>
 
 <p>但是 url 仅仅只有 Query String 服务器是不知道要干什么的…所以需要 GET、POST 等操作来让服务器知道是对指定内容进行增删改查…</p>
-<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">[GET] http:<span class="hljs-regexp">//</span>example.com/users<br>[POST]http:<span class="hljs-regexp">//</span>example.com/users<br>[GET]http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/users/</span><span class="hljs-number">1</span><br>  * Gets the resource with the given ID<br>  * Acts on a single resource<br>[PUT]http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/users/</span><span class="hljs-number">1</span><br>  * Updates the resource with the given ID<br>  * Acts on a single resource<br>[DELETE]http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/users/</span><span class="hljs-number">1</span><br>  * Deletes the resource with the given ID<br>  * Acts on a single resource<br></code></pre></td></tr></table></figure>
+<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><figure class="highlight csharp"><table><tr><td class="code"><pre><code class="hljs csharp">[<span class="hljs-meta">GET</span>] http:<span class="hljs-comment">//example.com/users</span><br>  * Gets a list of the resource<br>  * Acts <span class="hljs-keyword">on</span> the entire resource<br>[<span class="hljs-meta">POST</span>]http:<span class="hljs-comment">//example.com/users</span><br>  * Used to create a <span class="hljs-keyword">new</span> resource<br>  * Acts <span class="hljs-keyword">on</span> the entire resource<br>[<span class="hljs-meta">GET</span>]http:<span class="hljs-comment">//example.com/users/1</span><br>  * Gets the resource <span class="hljs-keyword">with</span> the given ID<br>  * Acts <span class="hljs-keyword">on</span> a single resource<br>[<span class="hljs-meta">PUT</span>]http:<span class="hljs-comment">//example.com/users/1</span><br>  * Updates the resource <span class="hljs-keyword">with</span> the given ID<br>  * Acts <span class="hljs-keyword">on</span> a single resource<br>[<span class="hljs-meta">DELETE</span>]http:<span class="hljs-comment">//example.com/users/1</span><br>  * Deletes the resource <span class="hljs-keyword">with</span> the given ID<br>  * Acts <span class="hljs-keyword">on</span> a single resource<br></code></pre></td></tr></table></figure>
 
 <h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-27-at-7.37.30-PM.71e45fs02ns0.png" alt="mvc"><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-27-at-7.39.29-PM.6a1a0q3s0lg0.png" alt="mvc本质流程"></p>
 <h4 id="Node-js-—-Express-—-MogonDB"><a href="#Node-js-—-Express-—-MogonDB" class="headerlink" title="Node.js — Express — MogonDB"></a>Node.js — Express — MogonDB</h4><p>指令</p>
-<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> init -y<br><span class="hljs-built_in">npm</span> i express ejs express-ejs-layouts<br><span class="hljs-regexp">//</span> nodemon将监视启动目录中的文件，如果有任何文件更改，nodemon将自动重新启动node应用程序<br><span class="hljs-built_in">npm</span> i --save-dev nodemon<br></code></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">npm</span> <span class="hljs-selector-tag">init</span> <span class="hljs-selector-tag">-y</span><br><span class="hljs-selector-tag">npm</span> <span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">express</span> <span class="hljs-selector-tag">ejs</span> <span class="hljs-selector-tag">express-ejs-layouts</span><br><span class="hljs-comment">// nodemon将监视启动目录中的文件，如果有任何文件更改，nodemon将自动重新启动node应用程序</span><br><span class="hljs-selector-tag">npm</span> <span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">--save-dev</span> <span class="hljs-selector-tag">nodemon</span><br><span class="hljs-selector-tag">npm</span> <span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">mongoose</span><br><span class="hljs-selector-tag">npm</span> <span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">--save-dev</span> <span class="hljs-selector-tag">dotenv</span>    <span class="hljs-comment">// 允许我们使用env变量...例如 process.env(自己要创建一个.env文件)</span><br></code></pre></td></tr></table></figure>
 
-<h5 id="MogonDB"><a href="#MogonDB" class="headerlink" title="MogonDB"></a>MogonDB</h5><blockquote>
+<p><strong>思考：为什么总会在项目中使用 npm init 来初始化项目呢？</strong><br>在 node 开发中使用 npm init 会生成一个 pakeage.json 文件，这个文件主要是用来记录这个项目的详细信息的，它会将我们在项目开发中所要用到的包，以及项目的详细信息等记录在这个项目中。方便在以后的版本迭代和项目移植的时候会更加的方便。也是防止在后期的项目维护中误删除了一个包导致的项目不能够正常运行。使用 npm init 初始化项目还有一个好处就是在进行项目传递的时候不需要将项目依赖包一起发送给对方，对方在接受到你的项目之后再执行 npm install 就可以将项目依赖全部下载到项目里。话不多说我们就直接开始进行操作。</p>
+<p><strong>ejs</strong><br><a href="https://zhuanlan.zhihu.com/p/52722144">使用 EJS 模板引擎</a></p>
+<p><strong>MogonDB</strong></p>
+<blockquote>
 <p>下载地址： <a href="https://www.mongodb.com/try/download/community">https://www.mongodb.com/try/download/community</a><br>安装方式： <a href="https://www.runoob.com/mongodb/mongodb-osx-install.html">https://www.runoob.com/mongodb/mongodb-osx-install.html</a></p>
 </blockquote>
+<p><strong>HeroKu</strong><br>让代码部署到网络上…</p>
 ]]></content>
       <tags>
         <tag>全栈</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>各种第三方库</title>
-    <url>/2021/10/26/%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</url>
-    <content><![CDATA[<ul>
-<li>创建各种随机的 id: <a href="https://www.npmjs.com/package/uuid">uuid</a></li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>前端技术-随笔</title>
@@ -724,6 +747,14 @@
       <tags>
         <tag>前端</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>各种第三方库</title>
+    <url>/2021/10/26/%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</url>
+    <content><![CDATA[<ul>
+<li>创建各种随机的 id: <a href="https://www.npmjs.com/package/uuid">uuid</a></li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>开发个人博客反思和总结</title>
@@ -854,6 +885,43 @@
       </tags>
   </entry>
   <entry>
+    <title>编译原理</title>
+    <url>/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>人的语言(自然语言) —&gt; 是上下文有关的<br>机器的语言 —&gt; 不会考虑上下文的…</p>
+<p><strong>计算机语言</strong>还能提供给人类新的思考方式<br>例如： 面向对象思维、函数式思维…</p>
+<h4 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h4><p>源程序 —&gt; 编译器 —&gt; 目标程序<br><code>编译器</code> 将 <code>源程序</code> 编译成 <code>目标程序</code></p>
+<h4 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt;<br>         <span class="hljs-comment">|</span> --&gt; <span class="hljs-comment">解释器</span> --&gt; <span class="hljs-comment">输出</span><br>  <span class="hljs-comment">输入</span> --&gt;<br></code></pre></td></tr></table></figure>
+
+<p><code>解释器</code><strong>同时</strong>接受源程序 和 输入，立即执行并返回输出<br>早期 js 是解释型语言的</p>
+<h4 id="混合编译器"><a href="#混合编译器" class="headerlink" title="混合编译器"></a>混合编译器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt; <span class="hljs-comment">第一次编译</span> --&gt; <span class="hljs-comment">中间代码</span> --&gt; <span class="hljs-comment">第二次编译</span> --&gt;<br>                                              <span class="hljs-comment">|</span>--&gt; <span class="hljs-comment">虚拟机</span>--&gt; <span class="hljs-comment">输出</span><br>                                         <span class="hljs-comment">输入</span>--&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>中间代码的作用</strong></p>
+<ul>
+<li>中间代码更容易被翻译成目标程序、优化空间更大</li>
+<li>中间语言的存在更利于编译器的实现</li>
+<li>让虚拟机处理复杂的执行环境(跨平台)</li>
+</ul>
+<h4 id="即时编译器-JIT"><a href="#即时编译器-JIT" class="headerlink" title="即时编译器(JIT)"></a>即时编译器(JIT)</h4><ul>
+<li>一种提高效率的方法，中间代码不是直接执行，而是先被编译成机器码再执行</li>
+</ul>
+<p>—&gt; 现代 java、nodejs 就是这样编译方式<br>优点：提高执行效率(50%以上)</p>
+<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>在一个平台编译产生多个平台的可执行代码</p>
+<hr>
+<p><strong>不同方式优劣势</strong></p>
+<ul>
+<li>解释执行有性能问题，但也异常灵活，例如支持 eval 函数(基本上解释型语言都可以支持 eval 函数，意味着程序可以动态修改…)</li>
+<li>直接交叉编译 技术难度是其次的，跨平台问题会多；一次编译很多包也会有分发问题 — 产品问题</li>
+<li>虚拟化技术提供了更好的体验，却没有提供更好的性能(JIT 完美解决这一点 &lt;—&gt; 时间平摊技术)</li>
+</ul>
+<h4 id="编译的流程-关注度分离"><a href="#编译的流程-关注度分离" class="headerlink" title="编译的流程(关注度分离)"></a>编译的流程(关注度分离)</h4><p>编译器的第一步： 词法分析(一个分词断句+判断词性的过程)<br>编译器的第二步： 语法分析(把词法分析形成的结果转化为一颗抽象语法树(AST)) 语法分析器常常被称作 Parser<br>编译器的第三步： 语义分析<br>编译器的第四步： 生成机器码(二进制)</p>
+<blockquote>
+<p>机器不懂高级语言<br>机器像[卡片机]一样, 不断读取下一条指令并执行<br>这种简单的设计就是今天的复杂的计算机…</p>
+</blockquote>
+<p>关注度分离思考<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.12.53-PM.65obrf4b2qc0.png" alt="编译器处理的两大过程"><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.14.21-PM.3h54z1grvus0.png" alt="编译器分层设计"></p>
+<p><strong>分层设计(最常见的软件架构)<strong>：关注度分离–&gt;每层都有意义，每一层都足够强大，都有</strong>优质的算法数据结构、架构技巧来解决大量共性问题</strong>(架构师做到这一点就牛逼，做不到就不行…)</p>
+]]></content>
+  </entry>
+  <entry>
     <title>浅拷贝和深拷贝</title>
     <url>/2021/10/08/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
     <content><![CDATA[<blockquote>
@@ -896,43 +964,6 @@
       <tags>
         <tag>前端</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>编译原理</title>
-    <url>/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>人的语言(自然语言) —&gt; 是上下文有关的<br>机器的语言 —&gt; 不会考虑上下文的…</p>
-<p><strong>计算机语言</strong>还能提供给人类新的思考方式<br>例如： 面向对象思维、函数式思维…</p>
-<h4 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h4><p>源程序 —&gt; 编译器 —&gt; 目标程序<br><code>编译器</code> 将 <code>源程序</code> 编译成 <code>目标程序</code></p>
-<h4 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt;<br>         <span class="hljs-comment">|</span> --&gt; <span class="hljs-comment">解释器</span> --&gt; <span class="hljs-comment">输出</span><br>  <span class="hljs-comment">输入</span> --&gt;<br></code></pre></td></tr></table></figure>
-
-<p><code>解释器</code><strong>同时</strong>接受源程序 和 输入，立即执行并返回输出<br>早期 js 是解释型语言的</p>
-<h4 id="混合编译器"><a href="#混合编译器" class="headerlink" title="混合编译器"></a>混合编译器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt; <span class="hljs-comment">第一次编译</span> --&gt; <span class="hljs-comment">中间代码</span> --&gt; <span class="hljs-comment">第二次编译</span> --&gt;<br>                                              <span class="hljs-comment">|</span>--&gt; <span class="hljs-comment">虚拟机</span>--&gt; <span class="hljs-comment">输出</span><br>                                         <span class="hljs-comment">输入</span>--&gt;<br></code></pre></td></tr></table></figure>
-
-<p><strong>中间代码的作用</strong></p>
-<ul>
-<li>中间代码更容易被翻译成目标程序、优化空间更大</li>
-<li>中间语言的存在更利于编译器的实现</li>
-<li>让虚拟机处理复杂的执行环境(跨平台)</li>
-</ul>
-<h4 id="即时编译器-JIT"><a href="#即时编译器-JIT" class="headerlink" title="即时编译器(JIT)"></a>即时编译器(JIT)</h4><ul>
-<li>一种提高效率的方法，中间代码不是直接执行，而是先被编译成机器码再执行</li>
-</ul>
-<p>—&gt; 现代 java、nodejs 就是这样编译方式<br>优点：提高执行效率(50%以上)</p>
-<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>在一个平台编译产生多个平台的可执行代码</p>
-<hr>
-<p><strong>不同方式优劣势</strong></p>
-<ul>
-<li>解释执行有性能问题，但也异常灵活，例如支持 eval 函数(基本上解释型语言都可以支持 eval 函数，意味着程序可以动态修改…)</li>
-<li>直接交叉编译 技术难度是其次的，跨平台问题会多；一次编译很多包也会有分发问题 — 产品问题</li>
-<li>虚拟化技术提供了更好的体验，却没有提供更好的性能(JIT 完美解决这一点 &lt;—&gt; 时间平摊技术)</li>
-</ul>
-<h4 id="编译的流程-关注度分离"><a href="#编译的流程-关注度分离" class="headerlink" title="编译的流程(关注度分离)"></a>编译的流程(关注度分离)</h4><p>编译器的第一步： 词法分析(一个分词断句+判断词性的过程)<br>编译器的第二步： 语法分析(把词法分析形成的结果转化为一颗抽象语法树(AST)) 语法分析器常常被称作 Parser<br>编译器的第三步： 语义分析<br>编译器的第四步： 生成机器码(二进制)</p>
-<blockquote>
-<p>机器不懂高级语言<br>机器像[卡片机]一样, 不断读取下一条指令并执行<br>这种简单的设计就是今天的复杂的计算机…</p>
-</blockquote>
-<p>关注度分离思考<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.12.53-PM.65obrf4b2qc0.png" alt="编译器处理的两大过程"><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.14.21-PM.3h54z1grvus0.png" alt="编译器分层设计"></p>
-<p><strong>分层设计(最常见的软件架构)<strong>：关注度分离–&gt;每层都有意义，每一层都足够强大，都有</strong>优质的算法数据结构、架构技巧来解决大量共性问题</strong>(架构师做到这一点就牛逼，做不到就不行…)</p>
-]]></content>
   </entry>
   <entry>
     <title>计算机网络</title>
@@ -1141,6 +1172,13 @@
 </li>
 </ul>
 <pre><code>
+#### IP 协议讲解
+
+- 虚拟互连网络
+  - 实际的计算机网络是错综复杂的
+  - 物理设备通过使用 IP 协议，屏蔽了物理网络之间的差异
+  - 当网络中的主机使用 IP 协议连接时，则无需关注网络细节
+- IP 协议
 </code></pre>
 ]]></content>
   </entry>

@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="PromisePromise n. 许诺，允诺；希望这个单词其实和真实生活中的承诺非常像我承诺要做什么什么… 总共会得到两种结果一种是承诺得以实现(resolved) 一种是承诺没有被实现(rejected)Promise 接受一个参数，该参数必须是一个函数,并且这个函数有两个参数(resolve, reject) 12345678910let p &#x3D; new Promise((resolve,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="async&#x2F;await">
+<meta property="og:url" content="http://example.com/2021/10/31/async-await/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="PromisePromise n. 许诺，允诺；希望这个单词其实和真实生活中的承诺非常像我承诺要做什么什么… 总共会得到两种结果一种是承诺得以实现(resolved) 一种是承诺没有被实现(rejected)Promise 接受一个参数，该参数必须是一个函数,并且这个函数有两个参数(resolve, reject) 12345678910let p &#x3D; new Promise((resolve,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-31T00:21:28.000Z">
+<meta property="article:modified_time" content="2021-10-31T03:43:34.047Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>async/await - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="async/await">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-31 08:21" pubdate>
+        2021年10月31日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">async/await</h1>
+            
+            <div class="markdown-body">
+              <h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><p><code>Promise</code> n. 许诺，允诺；希望<br>这个单词其实和真实生活中的<strong>承诺</strong>非常像<br>我承诺要做什么什么… 总共会得到两种结果<br>一种是承诺得以实现(<code>resolved</code>) 一种是承诺没有被实现(<code>rejected</code>)<br><code>Promise</code> 接受一个参数，该参数必须是一个函数,并且这个函数有两个参数(<code>resolve</code>, <code>reject</code>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span> + <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">if</span> (a === <span class="hljs-number">2</span>) &#123;<br>    <span class="hljs-comment">// resolve 可以传入任何我想传入的内容(任何类型)</span><br>    resolve(<span class="hljs-string">&#x27;Success&#x27;</span>)<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// reject 可以传入任何我想传入的内容(任何类型)</span><br>    reject(<span class="hljs-string">&#x27;Failed&#x27;</span>);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><code>then</code> 的内容(参数)执行的是 <code>resolve</code> 传入的内容。即 p 完成它的承诺后，然后做什么什么事<br><code>catch</code> 的内容(参数)执行的是 <code>reject</code> 传入的内容。即 p 没有完成它的承诺，然后会做什么什么事</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">p.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(message)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;This is in the then&#x27;</span> + message);<br>&#125;).<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(message)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;This is in the catch&#x27;</span> + message);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>举个例子来看看 Promise 给我们带来的变化…</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> userLeft = <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">const</span> userWatchingCatMeme = <span class="hljs-literal">false</span>;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">watchTutorialCallback</span>(<span class="hljs-params">callback, errorCallback</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (userLeft) &#123;<br>    errorCallback(&#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;User Left&#x27;</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;:(&#x27;</span><br>    &#125;)<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (userWatchingCatMeme) &#123;<br>    errorCallback(&#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;User Watching Cat Meme&#x27;</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;WebDevSimplified &lt; Cat&#x27;</span><br>    &#125;)<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    callback(<span class="hljs-string">&#x27;Thumbs up and Subscribe&#x27;</span>)<br>  &#125;<br>&#125;<br>watchTutorialCallback(<span class="hljs-function">(<span class="hljs-params">message</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Success &#x27;</span> + message);<br>&#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(error.name + <span class="hljs-string">&#x27; &#x27;</span> + error.message);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>—————-用 Promise 来改造—————-</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-regexp">//</span> 避免烦人的回调函数...<br>function watchTutorialPromise() &#123;<br>  let p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (userLeft) &#123;<br>      reject(&#123;<br>        name: <span class="hljs-string">&#x27;User Left&#x27;</span>,<br>        message: <span class="hljs-string">&#x27;:(&#x27;</span><br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (userWatchingCatMeme) &#123;<br>      reject(&#123;<br>        name: <span class="hljs-string">&#x27;User Watching Cat Meme&#x27;</span>,<br>        message: <span class="hljs-string">&#x27;WebDevSimplified &lt; Cat&#x27;</span><br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      resolve(<span class="hljs-string">&#x27;Thumbs up and Subscribe&#x27;</span>)<br>    &#125;<br>  &#125;)<br>  p.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(message)</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Success &#x27;</span> + message);<br>  &#125;).<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">(error)</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(error.name + <span class="hljs-string">&#x27; &#x27;</span> + error.message);<br>  &#125;)<br>&#125;<br>watchTutorialPromise();<br></code></pre></td></tr></table></figure>
+
+<p>————Promise 的其他一些功能————</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">const recordVideoOne = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>  <span class="hljs-regexp">//</span> resolve(<span class="hljs-string">&#x27;Video 1 Recorded&#x27;</span>)<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span> &#123;resolve(<span class="hljs-string">&#x27;Video 1 Recorded&#x27;</span>)&#125;, <span class="hljs-number">3000</span>);<br>&#125;)<br>const recordVideoTwo = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>  resolve(<span class="hljs-string">&#x27;Video 2 Recorded&#x27;</span>)<br>&#125;)<br>const recordVideoThree = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;<br>  resolve(<span class="hljs-string">&#x27;Video 3 Recorded&#x27;</span>)<br>&#125;)<br><br><span class="hljs-regexp">//</span> 同时获取三个数据<br><span class="hljs-built_in">Promise</span>.all([<br>  recordVideoOne,<br>  recordVideoTwo,<br>  recordVideoThree<br>]).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(messages)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Promise.all&#x27;</span>, messages);<br>&#125;)<br><br><span class="hljs-regexp">//</span> 数据谁先到就用谁的<br><span class="hljs-built_in">Promise</span>.race([<br>  recordVideoOne,<br>  recordVideoTwo,<br>  recordVideoThree<br>]).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(messages)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Promise.race&#x27;</span>, messages);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async/Await"></a>Async/Await</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeRequest</span>(<span class="hljs-params">location</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Making Request to <span class="hljs-subst">$&#123;location&#125;</span>`</span>);<br>    <span class="hljs-keyword">if</span> (location === <span class="hljs-string">&#x27;Google&#x27;</span>) &#123;<br>      resolve(<span class="hljs-string">&#x27;Google says hi&#x27;</span>)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      reject(<span class="hljs-string">&#x27;We can only talk to Google&#x27;</span>)<br>    &#125;<br>  &#125;)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processRequest</span>(<span class="hljs-params">response</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Processing response&#x27;</span>);<br>    resolve(<span class="hljs-string">`Extra Information + <span class="hljs-subst">$&#123;response&#125;</span>`</span>)<br>  &#125;)<br>&#125;<br><br>makeRequest(<span class="hljs-string">&#x27;Google&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Response Received&#x27;</span>);<br>  <span class="hljs-keyword">return</span> processRequest(response)<br>&#125;).then(<span class="hljs-function"><span class="hljs-params">processResponse</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(processResponse);<br>&#125;).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(err);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>利用 <code>async</code> 和 <code>await</code> 来化简上述的代码</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-keyword">async</span> function doWork() &#123;<br>  <span class="hljs-regexp">//</span> <span class="hljs-keyword">try</span>……<span class="hljs-keyword">catch</span> 来解决<span class="hljs-built_in">Promise</span>.<span class="hljs-keyword">catch</span> 这种问题....<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-regexp">//</span> <span class="hljs-keyword">await</span> 放在会异步的代码前面。不放的话，返回的是<span class="hljs-built_in">Promise</span> 而非 <span class="hljs-built_in">Promise</span> 执行的结果...<br>    <span class="hljs-regexp">//</span> 当执行到<span class="hljs-keyword">await</span>的时候，程序会识别出<span class="hljs-keyword">await</span>后面是异步函数。然后就会跳出去执行其他同步函数。当<span class="hljs-keyword">await</span>的异步函数执行完且当前已无(<span class="hljs-keyword">async</span>函数外的)同步代码的时候，就会调回来继续执行后续代码<br>    <span class="hljs-regexp">//</span> 以及<span class="hljs-keyword">await</span> 必须要有<span class="hljs-keyword">async</span>来搭配才行...<br>    <span class="hljs-regexp">//</span> <span class="hljs-keyword">await</span> 就像在说 要等待 makeRequest 执行完后 才能继续往下运行(这里的往下运行是指的将结果赋值个变量response以及执行下一行代码...不是跳出去执行<span class="hljs-keyword">async</span>函数外部的同步代码)<br>    const response = <span class="hljs-keyword">await</span> makeRequest(<span class="hljs-string">&#x27;Google&#x27;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Response Received&#x27;</span>);<br>    <span class="hljs-regexp">//</span> 等待processRequest执行完后，才会把结果赋值给processedResponse，才会往下一步执行<br>    const processedResponse = <span class="hljs-keyword">await</span> processRequest(response);<br>    <span class="hljs-built_in">console</span>.log(processedResponse);<br>  &#125; <span class="hljs-keyword">catch</span>(err) &#123;<br>    <span class="hljs-built_in">console</span>.log(err);<br>  &#125;<br>&#125;<br>doWork();<br></code></pre></td></tr></table></figure>
+
+<p>为了推论上述的 await 代码跳转问题。有了下述代码论证</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1&#x27;</span>);<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func1</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2&#x27;</span>);<br>  <span class="hljs-comment">// fetch是异步请求。所以执行栈先跳转到当前async函数外面的同步代码并且fetch以及其附带的then、catch执行完后继续执行赋值代码给data以及完成下一行代码</span><br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;3&#x27;</span>);<br>&#125;<br>func1();<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func2</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// console.log(&#x27;4&#x27;);是同步代码</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;4&#x27;</span>);<br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/2&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;5&#x27;</span>);<br>&#125;<br>func2();<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;6&#x27;</span>);<br><span class="hljs-comment">// 执行结果顺序：</span><br><span class="hljs-comment">// 1、 2、 4、 6、 api_1、 3、 api_2、 5</span><br><span class="hljs-comment">// 或者 1、 2、 4、 6、 api_2、 5、 api_1、 3 (因为可能第二个接口请求数据更快所以更快完成await代码...)</span><br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/28/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="hidden-mobile">计算机网络</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
