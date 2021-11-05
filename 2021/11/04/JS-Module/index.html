@@ -18,19 +18,19 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="创建各种随机的 id: uuid  临时 email(temporary email): temp-mail(方便测试邮箱登录、修改密码等功能)  免费实现用户认证 firebase：firebase  在 react 中使用方便的 icon：fontawesome">
+  <meta name="description" content="ES Module 让 js 代码逻辑更清晰，灵活性更强，更方便代码的管理 为了方便理解 Module。创建一个文件夹即目录 1234&#x2F;* module文件夹 *&#x2F;    |-index.html    |-main.js    |-user.js  首先来看看user.js文件的内容 123456789101112class User &amp;#123;  constructor(name, age)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="各种第三方库和有用的网站">
-<meta property="og:url" content="http://example.com/2021/10/26/%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/index.html">
+<meta property="og:title" content="JS Module">
+<meta property="og:url" content="http://example.com/2021/11/04/JS-Module/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="创建各种随机的 id: uuid  临时 email(temporary email): temp-mail(方便测试邮箱登录、修改密码等功能)  免费实现用户认证 firebase：firebase  在 react 中使用方便的 icon：fontawesome">
+<meta property="og:description" content="ES Module 让 js 代码逻辑更清晰，灵活性更强，更方便代码的管理 为了方便理解 Module。创建一个文件夹即目录 1234&#x2F;* module文件夹 *&#x2F;    |-index.html    |-main.js    |-user.js  首先来看看user.js文件的内容 123456789101112class User &amp;#123;  constructor(name, age)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-26T13:01:13.000Z">
-<meta property="article:modified_time" content="2021-11-03T02:46:35.185Z">
+<meta property="article:published_time" content="2021-11-04T00:10:31.000Z">
+<meta property="article:modified_time" content="2021-11-04T01:19:29.484Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>各种第三方库和有用的网站 - 何阳阳阳的小屋</title>
+  <title>JS Module - 何阳阳阳的小屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="各种第三方库和有用的网站">
+            <span class="h2" id="subtitle" title="JS Module">
               
             </span>
 
@@ -205,8 +205,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-26 21:01" pubdate>
-        2021年10月26日 晚上
+      <time datetime="2021-11-04 08:10" pubdate>
+        2021年11月4日 早上
       </time>
     </span>
   
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      118 字
+      2.1k 字
     </span>
   
 
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      7 分钟
     </span>
   
 
@@ -254,19 +254,34 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">各种第三方库和有用的网站</h1>
+            <h1 style="display: none">JS Module</h1>
             
             <div class="markdown-body">
-              <ul>
-<li><p>创建各种随机的 id: <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/uuid">uuid</a></p>
-</li>
-<li><p>临时 email(temporary email): <a target="_blank" rel="noopener" href="https://temp-mail.org/en?__cf_chl_captcha_tk__=pmd_3sqozgesOjiYQawAofglAq5i.BE_BIbQ82jvwb2nUWE-1635683915-0-gqNtZGzNAyWjcnBszQdR">temp-mail</a><br>(方便测试邮箱登录、修改密码等功能)</p>
-</li>
-<li><p>免费实现用户认证 firebase：<a target="_blank" rel="noopener" href="https://console.firebase.google.com/">firebase</a></p>
-</li>
-<li><p>在 react 中使用方便的 icon：<a target="_blank" rel="noopener" href="https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react">fontawesome</a></p>
-</li>
-</ul>
+              <p><code>ES Module</code> 让 js 代码逻辑更清晰，灵活性更强，更方便代码的管理</p>
+<p>为了方便理解 Module。创建一个文件夹即目录</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 1c">/* module文件夹 */<br>    <span class="hljs-string">|-index.html</span><br>    <span class="hljs-string">|-main.js</span><br>    <span class="hljs-string">|-user.js</span><br></code></pre></td></tr></table></figure>
+
+<p>首先来看看<code>user.js</code>文件的内容</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">class</span> <span class="hljs-keyword">User</span> &#123;<br>  constructor(<span class="hljs-type">name</span>, age) &#123;<br>    this.name = <span class="hljs-type">name</span>;<br>    this.age = age;<br>  &#125;<br>&#125;<br><span class="hljs-keyword">function</span> printName(<span class="hljs-keyword">user</span>) &#123;<br>  console.log(`<span class="hljs-keyword">User</span>’s <span class="hljs-type">name</span> <span class="hljs-keyword">is</span> $&#123;<span class="hljs-keyword">user</span>.age&#125;`);<br>&#125;<br><span class="hljs-keyword">function</span> printAge(<span class="hljs-keyword">user</span>) &#123;<br>  console.log(`<span class="hljs-keyword">User</span> <span class="hljs-keyword">is</span> $&#123;<span class="hljs-keyword">user</span>.age&#125; years <span class="hljs-built_in">old</span>`);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当前<code>main.js</code>为一个空文件</p>
+<p><code>index.html</code> 仅用 srcipt 标签导入<code>main.js</code>文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./main.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>当前想把<code>user.js</code>文件的内容以模块的方式导出给<code>main.js</code></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">// 使用export <span class="hljs-keyword">default</span>  <span class="hljs-comment">---&gt; 似乎这个只能使用一次</span><br>export <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">User</span> &#123;<br>  constructor(<span class="hljs-type">name</span>, age) &#123;<br>    this.name = <span class="hljs-type">name</span>;<br>    this.age = age;<br>  &#125;<br>&#125;<br><br>// 其余使用 export 导出 (无<span class="hljs-keyword">default</span>)<br>export <span class="hljs-keyword">function</span> printName(<span class="hljs-keyword">user</span>) &#123;<br>  console.log(`<span class="hljs-keyword">User</span>’s <span class="hljs-type">name</span> <span class="hljs-keyword">is</span> $&#123;<span class="hljs-keyword">user</span>.age&#125;`);<br>&#125;<br><br>export <span class="hljs-keyword">function</span> printAge(<span class="hljs-keyword">user</span>) &#123;<br>  console.log(`<span class="hljs-keyword">User</span> <span class="hljs-keyword">is</span> $&#123;<span class="hljs-keyword">user</span>.age&#125; years <span class="hljs-built_in">old</span>`);<br>&#125;<br><br>// 当然，前面也可以不用写 export <span class="hljs-keyword">default</span>、export 。直接在文件结尾部分如下方式写<br>// export <span class="hljs-keyword">default</span> <span class="hljs-keyword">User</span><br>// export &#123;printAge, printName&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>main.js</code>文件导入模块</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 针对以export default方式导出的代码<br><span class="hljs-regexp">//</span> import User from <span class="hljs-string">&#x27;user&#x27;</span>;   <span class="hljs-regexp">//</span> 这叫绝对路径<br><span class="hljs-regexp">//</span> import User from <span class="hljs-string">&#x27;./user&#x27;</span>; <span class="hljs-regexp">//</span> 这叫相对路径<br><br><span class="hljs-regexp">//</span> 针对以export方式导出的代码<br>import &#123;printName, printAge&#125; from <span class="hljs-string">&#x27;./user.js&#x27;</span>;<br><br><span class="hljs-regexp">//</span> 注意：可以给导入的模块重命名<br><span class="hljs-regexp">//</span> 对于 export default 导出的模块，命名方式如下<br><span class="hljs-regexp">//</span> import U from <span class="hljs-string">&#x27;./user&#x27;</span>   <span class="hljs-regexp">//</span> U 是新名称 但代表的还是user.js文件的User模块<br><br><span class="hljs-regexp">//</span> 对于 export 导出的模块，命名方式如下<br><span class="hljs-regexp">//</span> import &#123;printName as printUserName, printAge&#125; from <span class="hljs-string">&#x27;./user.js&#x27;</span> <span class="hljs-regexp">//</span> printName名字改为了printUserName<br></code></pre></td></tr></table></figure>
+
+<p><strong>重点：</strong>对于<code>index.html</code> 利用<code>script</code>标签导入<code>main.js</code>文件。并且有<code>ES Module</code>能力, 是有讲究的</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">&lt;script type=<span class="hljs-string">&quot;module&quot;</span> defer src=<span class="hljs-string">&quot;./main.js&quot;</span>&gt;&lt;<span class="hljs-string">/script</span>&gt;    <span class="hljs-string">//</span> type=<span class="hljs-string">&quot;module&quot;</span> 是必写的。defer是<span class="hljs-string">...</span>???<br></code></pre></td></tr></table></figure>
+
+<p>并且启动代码时不能以本地文件的方式启动：不然报错如下</p>
+<blockquote>
+<p>Origin null is not allowed by Access-Control-Allow-Origin.</p>
+</blockquote>
+<p>所以最好以 vscode 插件 Live Server 的(开启服务器的)方式打开</p>
 
             </div>
             <hr>
@@ -287,9 +302,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/27/%E5%85%A8%E6%A0%88%E4%B9%8B%E8%B7%AF/">
+                      <a href="/2021/11/04/clean-Code/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">全栈之路</span>
+                        <span class="hidden-mobile">clean Code</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -297,8 +312,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
-                        <span class="hidden-mobile">编译原理</span>
+                      <a href="/2021/11/01/react%E4%B8%AD%E5%B8%B8%E7%8A%AF%E7%9A%84%E9%94%99%E8%AF%AF/">
+                        <span class="hidden-mobile">react中常犯的错误</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

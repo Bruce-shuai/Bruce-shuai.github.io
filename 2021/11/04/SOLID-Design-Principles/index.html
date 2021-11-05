@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="Single Responsibility Principle (唯一的 负责 原则)一个函数或一个类只能有一个原因去进行自身代码更改…在 js 中用多函数(每个函数只能有一个功能)以及ES Module模块化来实现 1234567891011121314151617class CalorieTracker &amp;#123;  constructor(maxCalories) &amp;#123;    th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SOLID Design Principles">
+<meta property="og:url" content="http://example.com/2021/11/04/SOLID-Design-Principles/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="Single Responsibility Principle (唯一的 负责 原则)一个函数或一个类只能有一个原因去进行自身代码更改…在 js 中用多函数(每个函数只能有一个功能)以及ES Module模块化来实现 1234567891011121314151617class CalorieTracker &amp;#123;  constructor(maxCalories) &amp;#123;    th">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-04T12:22:10.000Z">
+<meta property="article:modified_time" content="2021-11-04T13:49:06.494Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>SOLID Design Principles - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="SOLID Design Principles">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-04 20:22" pubdate>
+        2021年11月4日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SOLID Design Principles</h1>
+            
+            <div class="markdown-body">
+              <h3 id="Single-Responsibility-Principle-唯一的-负责-原则"><a href="#Single-Responsibility-Principle-唯一的-负责-原则" class="headerlink" title="Single Responsibility Principle (唯一的 负责 原则)"></a>Single Responsibility Principle (唯一的 负责 原则)</h3><p>一个函数或一个类只能有一个原因去进行自身代码更改…<br>在 js 中用多函数(每个函数只能有一个功能)以及<code>ES Module</code>模块化来实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">maxCalories</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-built_in">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">trackCalories</span>(<span class="hljs-params">calorieCount</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.currentCalories &gt; <span class="hljs-built_in">this</span>.maxCalories) &#123;<br>      <span class="hljs-built_in">this</span>.logCalorieSurplus()<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述这个类看似非常正常完美…但事实上是有局限性的…<br>我们可以看见…这个类有两个方法：<code>trackCalories</code>、<code>logCalorieSurplus</code>。 我可以在这个类修改这两个函数…需求来了我有可能会在这个类中修改<code>trackCalories</code>函数或者修改<code>logCalorieSurplus</code>函数。但是当一个类有非常多这样的类。那么需求一来我就去修改这些…只会让代码变得非常臃肿且不好维护。更严重的是代码<strong>复用性</strong>太差</p>
+<p><code>Single Responsibility Principle</code> 的原则是一个函数或一个类只能有一个原因去解析自身代码修改</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs coq">之前的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br><br>利用ES <span class="hljs-keyword">Module</span>的特性<br><br>升级后的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br>   |<span class="hljs-type">- logger</span>.js<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* logger.js */</span><br><span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span><span class="hljs-params">(info)</span></span> &#123;<br>  console<span class="hljs-selector-class">.log</span>(info)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">/* CalorieTracker.js */</span><br><span class="hljs-keyword">import</span> logCalorieSurplus from <span class="hljs-string">&#x27;./logger.js&#x27;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span>(maxCalories) &#123;<br>    <span class="hljs-keyword">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-keyword">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  trackCalories(calorieCount) &#123;<br>    <span class="hljs-keyword">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentCalories &gt; <span class="hljs-keyword">this</span>.maxCalories) &#123;<br>      logCalorieSurplus(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在 <code>logCalorieSurplus</code> 已经模块化…可以在任何文件中去使用…复用性大大提高</p>
+<p>而且现在的<code>CalorieTracker</code>只需管理<code>trackCalories</code>这一个函数… <code>logCalorieSurplus</code>函数也只会因自身想改变而改变… 都遵循了<strong>Single Responsibility Principle (唯一的 负责 原则)</strong></p>
+<h3 id="Open-Closed-Principle"><a href="#Open-Closed-Principle" class="headerlink" title="Open/Closed Principle"></a>Open/Closed Principle</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> printQuiz(questions) &#123;<br>  questions.<span class="hljs-keyword">forEach</span>(question =&gt; &#123;<br>    console.log(question.<span class="hljs-keyword">type</span>);<br>    switch (question.<span class="hljs-keyword">type</span>) &#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;boolean&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>        console.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;multipleChoice&#x27;</span>:<br>        question.<span class="hljs-keyword">options</span>.<span class="hljs-keyword">forEach</span>((<span class="hljs-keyword">option</span>, <span class="hljs-keyword">index</span>) =&gt; &#123;<br>          console.log(`$&#123;<span class="hljs-keyword">index</span> + <span class="hljs-number">1</span>&#125;. $&#123;<span class="hljs-keyword">option</span>&#125;`);<br>        &#125;)<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;text&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>        break;<br>    &#125;<br>    console.log(<span class="hljs-string">&#x27;+++++++++&#x27;</span>);<br>  &#125;)<br>&#125;<br><br>const questions = [<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;boolean&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;This video is useful.&#x27;</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;multipleChoice&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    <span class="hljs-keyword">options</span>: [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;text&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span><br>  &#125;<br>]<br><br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
+
+<p>上述代码看着非常正常…但是还是思考下…如果当<code>questions</code>的数组元素增加，则既要更改<code>questions</code>的内容，又要更改<code>printQuiz</code>。 灵活性相当的差劲…</p>
+<p>开始升级…</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// ------------- 问题 ---------------</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooleanQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultipleChoiceQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description, options</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description<br>    <span class="hljs-built_in">this</span>.options = options<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.options.forEach(<span class="hljs-function">(<span class="hljs-params">option, index</span>) =&gt;</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;index + <span class="hljs-number">1</span>&#125;</span>. <span class="hljs-subst">$&#123;option&#125;</span>`</span>);<br>    &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printQuiz</span>(<span class="hljs-params">questions</span>) </span>&#123;<br>  questions.forEach(<span class="hljs-function"><span class="hljs-params">question</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(question.description);<br>    question.printQuestionChoices()<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;&#x27;</span>);<br>  &#125;)<br>&#125;<br><br><span class="hljs-keyword">const</span> questions = [<br>  <span class="hljs-keyword">new</span> BooleanQuestion(<span class="hljs-string">&#x27;This video is useful.&#x27;</span>),<br>  <span class="hljs-keyword">new</span> MultipleChoiceQuestion(<br>    <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  ),<br>  <span class="hljs-keyword">new</span> TestQuestion(<span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span>)<br>]<br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
+
+<p>现在，我对<code>question</code>的<strong>增删改查</strong>变得易如反掌…<br>将长长的 <strong>switch…case</strong> 打断…</p>
+<blockquote>
+<p>当前感觉 Open/Closed Principle 就是用来解决 长长的’switch…case 的…’</p>
+</blockquote>
+<h3 id="Liskov-Substitution-Principle"><a href="#Liskov-Substitution-Principle" class="headerlink" title="Liskov Substitution Principle"></a>Liskov Substitution Principle</h3><p>—&gt; 这个原则似乎更加的偏向面向对象…</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/04/clean-Code/">
+                        <span class="hidden-mobile">clean Code</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
