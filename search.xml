@@ -1,73 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CSS-in-JS</title>
-    <url>/2021/10/10/CSS-in-JS/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：css 模块与 webpack 的相关内容有待补充！</p>
-</blockquote>
-<p><code>CSS-in-JS</code> 不是指某一个具体的库，是指<strong>组织 CSS 代码的一种方式</strong>，代表库有 <a href="https://styled-components.com/">styled-component</a> 和 <a href="https://emotion.sh/docs/introduction">emotion</a>。</p>
-<h4 id="传统-CSS-的缺陷"><a href="#传统-CSS-的缺陷" class="headerlink" title="传统 CSS 的缺陷"></a>传统 CSS 的缺陷</h4><ol>
-<li><p>缺乏模块组织<br>在传统的 JS 和 CSS 中其实都没有<strong>模块</strong>的概念，后来在 JS 界陆续有了 CommonJS 和 ECMAScript Module, 以及<code>webpack</code>为主的模块打包工具渐渐的成熟。而<code>CSS-in-JS</code>就可以用<strong>模块化的方式</strong>组织 CSS，<strong>依托与 JS 的模块化方案</strong>。例如：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@emotion/styled&#x27;</span>;<br><br><span class="hljs-comment">// styled 其实就是一个模块</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Button = styled.button<span class="hljs-string">`</span><br><span class="hljs-string"> color: turquoise;</span><br><span class="hljs-string">`</span><br></code></pre></td></tr></table></figure></li>
-<li><p>缺乏作用域<br>传统的 <code>CSS</code> 只有一个<code>全局作用域</code>，比如说一个 class 可以匹配全局的任意元素。随着项目成长，CSS 会变得越来越难以组织，最终导致失控。<code>CSS-in-JS</code> 可以通过生成独特的选择符，来实现作用域的效果。</p>
-</li>
-</ol>
-<figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-class">.css-1c4ktv6</span> &gt;* &#123;   <span class="hljs-comment">// 1c4ktv6是哈希</span><br>  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">0</span> <span class="hljs-meta">!important</span>;<br>  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">0</span> <span class="hljs-meta">!important</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+    <title>Dynamic Module</title>
+    <url>/2021/11/06/Dynamic-Module/</url>
+    <content><![CDATA[<h3 id="Dynamic-Module"><a href="#Dynamic-Module" class="headerlink" title="Dynamic Module"></a>Dynamic Module</h3><p>进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快…</p>
+<p>看看案例：<br>如下是普通的模块导入：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> css = <span class="hljs-function"><span class="hljs-params">styleBlock</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> className = someHash(styleBlock);<br>  <span class="hljs-keyword">const</span> styleEl = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;style&#x27;</span>);<br>  styleEl.textContent = <span class="hljs-string">`</span><br><span class="hljs-string">    .<span class="hljs-subst">$&#123;className&#125;</span> &#123;</span><br><span class="hljs-string">      <span class="hljs-subst">$&#123;styleBlock&#125;</span></span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  `</span>;<br>  <span class="hljs-built_in">document</span>.head.appendChild(styleEl);<br>  <span class="hljs-keyword">return</span> className;<br>&#125;<br><span class="hljs-keyword">const</span> className = css(<span class="hljs-string">`</span><br><span class="hljs-string">  color: red;</span><br><span class="hljs-string">  padding: 20px;</span><br><span class="hljs-string">`</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">User</span>, &#123;printUser&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span>;<br><br>const <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>printUser(<span class="hljs-keyword">user</span>);<br></code></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>隐式依赖，让样式难以追踪</li>
-</ol>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-class">.target</span> <span class="hljs-selector-class">.name</span> <span class="hljs-selector-tag">h1</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br><br><span class="hljs-selector-tag">body</span> <span class="hljs-selector-id">#container</span> <span class="hljs-selector-tag">h1</span> &#123;<br>  <span class="hljs-attribute">color</span>: green<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;container&#x27;</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;target&#x27;</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;name&#x27;</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我是啥颜色？<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>    // 这会让人懵逼的...<br>     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>那么这个 h1 元素最终显式为什么颜色？加入你想要追踪这个影响这个 h1 的样式，怎么追踪？</p>
-<p>而 CSS-in-JS 的方案就简单直接、易于追踪：</p>
-<figure class="highlight hsp"><table><tr><td class="code"><pre><code class="hljs hsp">export const <span class="hljs-keyword">Title</span> = styled.h1`<br>  <span class="hljs-keyword">color</span>: green<span class="hljs-comment">;</span><br>`<br>&lt;<span class="hljs-keyword">Title</span>&gt;<br>  我是啥颜色？<br>&lt;/<span class="hljs-keyword">Title</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p>没有变量<br>传统的 CSS 规则里没有变量…(其实有–var 变量)，但是在 CSS-in-JS 中可以方便地控制变量：</p>
-<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> Container = styled.<span class="hljs-keyword">div</span>(props =&gt; (&#123;<br> <span class="hljs-keyword">display</span>: <span class="hljs-string">&#x27;flex&#x27;</span>,<br> flexDirection: props.column &amp;&amp; <span class="hljs-string">&#x27;column&#x27;</span><br>&#125;))<br></code></pre></td></tr></table></figure></li>
-<li><p>CSS 选择器与 HTML 元素高度耦合</p>
-</li>
-</ol>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-class">.target</span> <span class="hljs-selector-class">.name</span> <span class="hljs-selector-tag">h1</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br><span class="hljs-selector-tag">body</span> <span class="hljs-selector-id">#container</span> <span class="hljs-selector-tag">h1</span> &#123;<br>    <span class="hljs-attribute">color</span>: green<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;container&#x27;</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;target&#x27;</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;name&#x27;</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我是啥颜色？<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>如果你想把 h1 改成 h2，必须要同时改动 CSS 和 HTML。而在 CSS-in-JS 中，HTML 和 CSS 是结合在一起的，易于修改。(这其实是在程序层次上需要极力去避免的…)</p>
-<hr>
-<h4 id="Emotion-介绍"><a href="#Emotion-介绍" class="headerlink" title="Emotion 介绍"></a>Emotion 介绍</h4><p>Emotion 是目前最受欢迎的 CSS-in-JS 库之一，它还对 React 作了很好的适应，可以方便地创建 styled component，也支持写行内样式：</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/** @jsx jsx */</span><br><span class="hljs-keyword">import</span> &#123; jsx &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@emotion/react&#x27;</span>;<br><br>render(<br>  &lt;<span class="hljs-keyword">div</span><br>    css=&#123;&#123;<br>      backgroundColor: <span class="hljs-string">&#x27;hotpink&#x27;</span>,<br>      <span class="hljs-string">&#x27;&amp;:hover&#x27;</span>: &#123;<br>        color: <span class="hljs-string">&#x27;lightgreen&#x27;</span><br>      &#125;<br>    &#125;&#125;<br>  &gt;<br>    <span class="hljs-keyword">This</span> has a hotpink background.<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br><br>)<br></code></pre></td></tr></table></figure>
-
-<p>这种写法比起 React 自带的 style 的写法功能更强大，比如可以处理级联、伪类等 style 处理的不了的情况：</p>
-<figure class="highlight handlebars"><table><tr><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">color:</span> <span class="hljs-string">&quot;red&quot;</span> &#125;&#125;</span><span class="xml"><span class="hljs-tag">&gt;</span>&#123;keyword&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Emotion的安装和基本使用</title>
-    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
-<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
 <blockquote>
-<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
+<p>打印结果为 Bruce Cook</p>
 </blockquote>
+<p>文件运行逻辑： 先下载 script.js 文件，然后立刻下载 user.js 文件 (如果是 webpack 打包，可能会有一点点的变化)<br>但无论如何。只要页面进行加载，这些文件就会被下载…</p>
+<p>但是<code>Dynamic Module</code>就如同前面所说是按需加载(需要的时候才加载代码)的</p>
+<p><strong>import 变成一个函数</strong></p>
+<figure class="highlight elm"><table><tr><td class="code"><pre><code class="hljs elm"><span class="hljs-number">1.</span> <span class="hljs-keyword">import</span>(&#x27;文件相对路径&#x27;)<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;)<br><span class="hljs-number">2.</span> <span class="hljs-keyword">import</span>函数返回一个promise<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;).then(module =&gt; &#123;     // 这里会提供该文件的所有module信息<br>  console.log(module)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-11.25.17-AM.63cc4nodfyo0.png" alt="module信息"></p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-number">3.</span> 解构 <span class="hljs-keyword">then</span> 中的参数module<br><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).<span class="hljs-keyword">then</span>((&#123;<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span>, printUser&#125;) =&gt; &#123;<br>  console.log(<span class="hljs-string">&#x27;User&#x27;</span>, <span class="hljs-keyword">User</span>);<br>  console.log(<span class="hljs-string">&#x27;printUser&#x27;</span>, printUser);<br>&#125;)<br>注意上面的<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span> 其实就和下述方式导出<span class="hljs-keyword">User</span> 很相似<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> <span class="hljs-keyword">User</span>, printUser &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>现在 我们的代码模块是动态导入的，而非静态导入<br>来看看整体代码</p>
+<h4 id="Dynamic-Module-的优势之一：页面加载更快"><a href="#Dynamic-Module-的优势之一：页面加载更快" class="headerlink" title="Dynamic Module 的优势之一：页面加载更快"></a>Dynamic Module 的优势之一：页面加载更快</h4><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-comment">// 5s 后才会加载这个模块...</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:User, printUser&#125;</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>    printUser(user);<br>  &#125;)<br>&#125;, <span class="hljs-number">5000</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码让你的页面加载速度会更上一层楼！！</p>
+<h4 id="Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"><a href="#Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候" class="headerlink" title="Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"></a>Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候</h4><p>这里最能显示出<code>Dynamic Module</code>这个优势的是，不同国家语言文件！</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">文件目录：<br>  |- index.html<br>  |- script.js<br>  |- en-translations.js   <span class="hljs-regexp">//</span> 英语文件<br>  |- sp-translations.js   <span class="hljs-regexp">//</span> 西班牙语文件<br>  |- fr-translations.js   <span class="hljs-regexp">//</span> 法语文件<br></code></pre></td></tr></table></figure>
+
+<p>如果使用静态导入方式：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/* html 代码片段 */</span><br>&lt;script <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;module&quot;</span> defer src=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;&lt;/script&gt;<br><br><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-keyword">let</span> translations;<br><span class="hljs-keyword">switch</span> (user.locale) &#123;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;sp&#x27;</span>:<br>    translations = spanishTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;fr&#x27;</span>:<br>    translations = frenchTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">default</span>:<br>    translations = englishTranslations<br>&#125;<br><br><span class="hljs-built_in">console</span>.log(translations.HI)<br><br><span class="hljs-comment">/* en-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hi&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* sp-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hola&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* fr-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;salut&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br></code></pre></td></tr></table></figure>
+
+<p>试想，如果我要弄 20 个国家的语言…我还用静态导入的方式，页面加载有多慢，代码文件上传体积有多大</p>
+<p>现在我使用 <code>dynamic module</code> 来实现一下代码</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-comment">// 牛逼，还可以使用模板字符串</span><br><span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;user.locale&#125;</span>-translations.js`</span>)<br>.catch(<span class="hljs-function">() =&gt;</span> &#123;   <span class="hljs-comment">// 这里是用来解决默认选项问题的(当不存在想要的user.locale时会触发)</span><br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./en-translations.js&#x27;</span>)<br>&#125;)<br>.then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:translations&#125;</span>) =&gt;</span> &#123;  <span class="hljs-comment">// 这里使用重命名的方式</span><br>  <span class="hljs-built_in">console</span>.log(translations.HI)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>显然，上述的<code>dynamic module</code> 让代码更加的简洁了…并且性能会更高</p>
+<p><strong>再来一个例子</strong></p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">文件目录：<br>  <span class="hljs-string">|- index.html</span><br>  <span class="hljs-string">|- script.js</span><br>  <span class="hljs-string">|- rectangle.js</span><br>  <span class="hljs-string">|- triangle.js</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> renderRectangle from <span class="hljs-string">&#x27;./rectangle.js&#x27;</span>;<br><span class="hljs-keyword">import</span> renderTriangle from <span class="hljs-string">&#x27;./triangle.js&#x27;</span>;<br><br><span class="hljs-keyword">const</span> shapes = [<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br><span class="hljs-built_in">shape</span>.forEach(<span class="hljs-built_in">shape</span> =&gt; &#123;<br>  <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">shape</span>.type) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;rectangle&#x27;</span>:<br>      renderRectangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;triangle&#x27;</span>:<br>      renderTriangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* triangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Triangle&#x27;</span>)<br>&#125;<br><br><span class="hljs-comment">/* rectangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Rectangle&#x27;</span>)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>用 <code>dynamic module</code></p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(<span class="hljs-function"><span class="hljs-params">shape</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;shape.<span class="hljs-keyword">type</span>&#125;</span>.js`</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:render&#125;</span>) =&gt;</span> &#123;<br>      render(shape)<br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>我们可以使用 <code>await/async</code> 来更进一步来解决问题</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(async shape =&gt; &#123;<br>    <span class="hljs-keyword">const</span> &#123;<span class="hljs-keyword">default</span>: render&#125; = await <span class="hljs-keyword">import</span>(<span class="hljs-string">`./$&#123;shape.type&#125;.js`</span>);<br>    render(shape)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
   </entry>
   <entry>
     <title>CSS-随笔一</title>
@@ -137,14 +123,56 @@
       </tags>
   </entry>
   <entry>
-    <title>Git基本用法</title>
-    <url>/2021/10/20/Git%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
+    <title>CSS-in-JS</title>
+    <url>/2021/10/10/CSS-in-JS/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：css 模块与 webpack 的相关内容有待补充！</p>
+</blockquote>
+<p><code>CSS-in-JS</code> 不是指某一个具体的库，是指<strong>组织 CSS 代码的一种方式</strong>，代表库有 <a href="https://styled-components.com/">styled-component</a> 和 <a href="https://emotion.sh/docs/introduction">emotion</a>。</p>
+<h4 id="传统-CSS-的缺陷"><a href="#传统-CSS-的缺陷" class="headerlink" title="传统 CSS 的缺陷"></a>传统 CSS 的缺陷</h4><ol>
+<li><p>缺乏模块组织<br>在传统的 JS 和 CSS 中其实都没有<strong>模块</strong>的概念，后来在 JS 界陆续有了 CommonJS 和 ECMAScript Module, 以及<code>webpack</code>为主的模块打包工具渐渐的成熟。而<code>CSS-in-JS</code>就可以用<strong>模块化的方式</strong>组织 CSS，<strong>依托与 JS 的模块化方案</strong>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@emotion/styled&#x27;</span>;<br><br><span class="hljs-comment">// styled 其实就是一个模块</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Button = styled.button<span class="hljs-string">`</span><br><span class="hljs-string"> color: turquoise;</span><br><span class="hljs-string">`</span><br></code></pre></td></tr></table></figure></li>
+<li><p>缺乏作用域<br>传统的 <code>CSS</code> 只有一个<code>全局作用域</code>，比如说一个 class 可以匹配全局的任意元素。随着项目成长，CSS 会变得越来越难以组织，最终导致失控。<code>CSS-in-JS</code> 可以通过生成独特的选择符，来实现作用域的效果。</p>
+</li>
+</ol>
+<figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-class">.css-1c4ktv6</span> &gt;* &#123;   <span class="hljs-comment">// 1c4ktv6是哈希</span><br>  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">0</span> <span class="hljs-meta">!important</span>;<br>  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">0</span> <span class="hljs-meta">!important</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> css = <span class="hljs-function"><span class="hljs-params">styleBlock</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> className = someHash(styleBlock);<br>  <span class="hljs-keyword">const</span> styleEl = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;style&#x27;</span>);<br>  styleEl.textContent = <span class="hljs-string">`</span><br><span class="hljs-string">    .<span class="hljs-subst">$&#123;className&#125;</span> &#123;</span><br><span class="hljs-string">      <span class="hljs-subst">$&#123;styleBlock&#125;</span></span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  `</span>;<br>  <span class="hljs-built_in">document</span>.head.appendChild(styleEl);<br>  <span class="hljs-keyword">return</span> className;<br>&#125;<br><span class="hljs-keyword">const</span> className = css(<span class="hljs-string">`</span><br><span class="hljs-string">  color: red;</span><br><span class="hljs-string">  padding: 20px;</span><br><span class="hljs-string">`</span>);<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>隐式依赖，让样式难以追踪</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-class">.target</span> <span class="hljs-selector-class">.name</span> <span class="hljs-selector-tag">h1</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br><br><span class="hljs-selector-tag">body</span> <span class="hljs-selector-id">#container</span> <span class="hljs-selector-tag">h1</span> &#123;<br>  <span class="hljs-attribute">color</span>: green<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;container&#x27;</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;target&#x27;</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;name&#x27;</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我是啥颜色？<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>    // 这会让人懵逼的...<br>     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>那么这个 h1 元素最终显式为什么颜色？加入你想要追踪这个影响这个 h1 的样式，怎么追踪？</p>
+<p>而 CSS-in-JS 的方案就简单直接、易于追踪：</p>
+<figure class="highlight hsp"><table><tr><td class="code"><pre><code class="hljs hsp">export const <span class="hljs-keyword">Title</span> = styled.h1`<br>  <span class="hljs-keyword">color</span>: green<span class="hljs-comment">;</span><br>`<br>&lt;<span class="hljs-keyword">Title</span>&gt;<br>  我是啥颜色？<br>&lt;/<span class="hljs-keyword">Title</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>没有变量<br>传统的 CSS 规则里没有变量…(其实有–var 变量)，但是在 CSS-in-JS 中可以方便地控制变量：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> Container = styled.<span class="hljs-keyword">div</span>(props =&gt; (&#123;<br> <span class="hljs-keyword">display</span>: <span class="hljs-string">&#x27;flex&#x27;</span>,<br> flexDirection: props.column &amp;&amp; <span class="hljs-string">&#x27;column&#x27;</span><br>&#125;))<br></code></pre></td></tr></table></figure></li>
+<li><p>CSS 选择器与 HTML 元素高度耦合</p>
+</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-class">.target</span> <span class="hljs-selector-class">.name</span> <span class="hljs-selector-tag">h1</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br><span class="hljs-selector-tag">body</span> <span class="hljs-selector-id">#container</span> <span class="hljs-selector-tag">h1</span> &#123;<br>    <span class="hljs-attribute">color</span>: green<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;container&#x27;</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;target&#x27;</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;name&#x27;</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我是啥颜色？<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果你想把 h1 改成 h2，必须要同时改动 CSS 和 HTML。而在 CSS-in-JS 中，HTML 和 CSS 是结合在一起的，易于修改。(这其实是在程序层次上需要极力去避免的…)</p>
+<hr>
+<h4 id="Emotion-介绍"><a href="#Emotion-介绍" class="headerlink" title="Emotion 介绍"></a>Emotion 介绍</h4><p>Emotion 是目前最受欢迎的 CSS-in-JS 库之一，它还对 React 作了很好的适应，可以方便地创建 styled component，也支持写行内样式：</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/** @jsx jsx */</span><br><span class="hljs-keyword">import</span> &#123; jsx &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@emotion/react&#x27;</span>;<br><br>render(<br>  &lt;<span class="hljs-keyword">div</span><br>    css=&#123;&#123;<br>      backgroundColor: <span class="hljs-string">&#x27;hotpink&#x27;</span>,<br>      <span class="hljs-string">&#x27;&amp;:hover&#x27;</span>: &#123;<br>        color: <span class="hljs-string">&#x27;lightgreen&#x27;</span><br>      &#125;<br>    &#125;&#125;<br>  &gt;<br>    <span class="hljs-keyword">This</span> has a hotpink background.<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br><br>)<br></code></pre></td></tr></table></figure>
+
+<p>这种写法比起 React 自带的 style 的写法功能更强大，比如可以处理级联、伪类等 style 处理的不了的情况：</p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">color:</span> <span class="hljs-string">&quot;red&quot;</span> &#125;&#125;</span><span class="xml"><span class="hljs-tag">&gt;</span>&#123;keyword&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+]]></content>
       <categories>
-        <category>IT随笔</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>互联网</tag>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -165,9 +193,9 @@
 <figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">// 使用export <span class="hljs-keyword">default</span>  <span class="hljs-comment">---&gt; 似乎这个只能使用一次</span><br>export <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">User</span> &#123;<br>  constructor(<span class="hljs-type">name</span>, age) &#123;<br>    this.name = <span class="hljs-type">name</span>;<br>    this.age = age;<br>  &#125;<br>&#125;<br><br>// 其余使用 export 导出 (无<span class="hljs-keyword">default</span>)<br>export <span class="hljs-keyword">function</span> printName(<span class="hljs-keyword">user</span>) &#123;<br>  console.log(`<span class="hljs-keyword">User</span>’s <span class="hljs-type">name</span> <span class="hljs-keyword">is</span> $&#123;<span class="hljs-keyword">user</span>.age&#125;`);<br>&#125;<br><br>export <span class="hljs-keyword">function</span> printAge(<span class="hljs-keyword">user</span>) &#123;<br>  console.log(`<span class="hljs-keyword">User</span> <span class="hljs-keyword">is</span> $&#123;<span class="hljs-keyword">user</span>.age&#125; years <span class="hljs-built_in">old</span>`);<br>&#125;<br><br>// 当然，前面也可以不用写 export <span class="hljs-keyword">default</span>、export 。直接在文件结尾部分如下方式写<br>// export <span class="hljs-keyword">default</span> <span class="hljs-keyword">User</span><br>// export &#123;printAge, printName&#125;<br></code></pre></td></tr></table></figure>
 
 <p><code>main.js</code>文件导入模块</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 针对以export default方式导出的代码<br><span class="hljs-regexp">//</span> import User from <span class="hljs-string">&#x27;user&#x27;</span>;   <span class="hljs-regexp">//</span> 这叫绝对路径<br><span class="hljs-regexp">//</span> import User from <span class="hljs-string">&#x27;./user&#x27;</span>; <span class="hljs-regexp">//</span> 这叫相对路径<br><br><span class="hljs-regexp">//</span> 针对以export方式导出的代码<br>import &#123;printName, printAge&#125; from <span class="hljs-string">&#x27;./user.js&#x27;</span>;<br><br><span class="hljs-regexp">//</span> 注意：可以给导入的模块重命名<br><span class="hljs-regexp">//</span> 对于 export default 导出的模块，命名方式如下<br><span class="hljs-regexp">//</span> import U from <span class="hljs-string">&#x27;./user&#x27;</span>   <span class="hljs-regexp">//</span> U 是新名称 但代表的还是user.js文件的User模块<br><br><span class="hljs-regexp">//</span> 对于 export 导出的模块，命名方式如下<br><span class="hljs-regexp">//</span> import &#123;printName as printUserName, printAge&#125; from <span class="hljs-string">&#x27;./user.js&#x27;</span> <span class="hljs-regexp">//</span> printName名字改为了printUserName<br></code></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 针对以export default方式导出的代码<br><span class="hljs-regexp">//</span> import User from <span class="hljs-string">&#x27;user.js&#x27;</span>;   <span class="hljs-regexp">//</span> 这叫绝对路径<br><span class="hljs-regexp">//</span> import User from <span class="hljs-string">&#x27;./user.js&#x27;</span>; <span class="hljs-regexp">//</span> 这叫相对路径<br><br><span class="hljs-regexp">//</span> 针对以export方式导出的代码<br>import &#123;printName, printAge&#125; from <span class="hljs-string">&#x27;./user.js&#x27;</span>;<br><br><span class="hljs-regexp">//</span> 注意：可以给导入的模块重命名<br><span class="hljs-regexp">//</span> 对于 export default 导出的模块，命名方式如下<br><span class="hljs-regexp">//</span> import U from <span class="hljs-string">&#x27;./user.js&#x27;</span>   <span class="hljs-regexp">//</span> U 是新名称 但代表的还是user.js文件的User模块<br><br><span class="hljs-regexp">//</span> 对于 export 导出的模块，命名方式如下<br><span class="hljs-regexp">//</span> import &#123;printName as printUserName, printAge&#125; from <span class="hljs-string">&#x27;./user.js&#x27;</span> <span class="hljs-regexp">//</span> printName名字改为了printUserName<br></code></pre></td></tr></table></figure>
 
-<p><strong>重点：</strong>对于<code>index.html</code> 利用<code>script</code>标签导入<code>main.js</code>文件。并且有<code>ES Module</code>能力, 是有讲究的</p>
+<p><strong>重点：</strong>对于<code>index.html</code> 利用<code>script</code>标签导入<code>main.js</code>文件。并且有<code>ES Module</code>能力, 是有讲究的<br><strong>并且这个不是 react 代码，没有 webpack 配置。所以导入文件的时候后缀名一定要加。例如 ./user 这是错误的。应该改为 ./user.js</strong></p>
 <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><code class="hljs jboss-cli">&lt;script type=<span class="hljs-string">&quot;module&quot;</span> defer src=<span class="hljs-string">&quot;./main.js&quot;</span>&gt;&lt;<span class="hljs-string">/script</span>&gt;    <span class="hljs-string">//</span> type=<span class="hljs-string">&quot;module&quot;</span> 是必写的。defer是<span class="hljs-string">...</span>???<br></code></pre></td></tr></table></figure>
 
 <p>并且启动代码时不能以本地文件的方式启动：不然报错如下</p>
@@ -176,6 +204,30 @@
 </blockquote>
 <p>所以最好以 vscode 插件 Live Server 的(开启服务器的)方式打开</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>JS sort 玩法</title>
+    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>似乎默认是按照字母顺序进行排序</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
+<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
+<p>比较函数需要两个参数…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>JS-随笔一</title>
@@ -280,30 +332,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS sort 玩法</title>
-    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
-    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-
-<p>似乎默认是按照字母顺序进行排序</p>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
-
-<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
-<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
-<p>比较函数需要两个参数…</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JSON 基础知识 &amp; Ajax 基础知识</title>
     <url>/2021/10/08/JSON&amp;Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h4 id="为什么我们要把对象转化为字符串？"><a href="#为什么我们要把对象转化为字符串？" class="headerlink" title="为什么我们要把对象转化为字符串？"></a>为什么我们要把对象转化为字符串？</h4><ol>
@@ -385,6 +413,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Emotion的安装和基本使用</title>
+    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
+<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
+<blockquote>
+<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript Array 笔记</title>
     <url>/2021/10/20/JavaScript-Array-%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>看代码</p>
@@ -453,35 +497,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SOLID Design Principles</title>
-    <url>/2021/11/04/SOLID-Design-Principles/</url>
-    <content><![CDATA[<h3 id="Single-Responsibility-Principle-唯一的-负责-原则"><a href="#Single-Responsibility-Principle-唯一的-负责-原则" class="headerlink" title="Single Responsibility Principle (唯一的 负责 原则)"></a>Single Responsibility Principle (唯一的 负责 原则)</h3><p>一个函数或一个类只能有一个原因去进行自身代码更改…<br>在 js 中用多函数(每个函数只能有一个功能)以及<code>ES Module</code>模块化来实现</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">maxCalories</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-built_in">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">trackCalories</span>(<span class="hljs-params">calorieCount</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.currentCalories &gt; <span class="hljs-built_in">this</span>.maxCalories) &#123;<br>      <span class="hljs-built_in">this</span>.logCalorieSurplus()<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>上述这个类看似非常正常完美…但事实上是有局限性的…<br>我们可以看见…这个类有两个方法：<code>trackCalories</code>、<code>logCalorieSurplus</code>。 我可以在这个类修改这两个函数…需求来了我有可能会在这个类中修改<code>trackCalories</code>函数或者修改<code>logCalorieSurplus</code>函数。但是当一个类有非常多这样的类。那么需求一来我就去修改这些…只会让代码变得非常臃肿且不好维护。更严重的是代码<strong>复用性</strong>太差</p>
-<p><code>Single Responsibility Principle</code> 的原则是一个函数或一个类只能有一个原因去解析自身代码修改</p>
-<figure class="highlight coq"><table><tr><td class="code"><pre><code class="hljs coq">之前的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br><br>利用ES <span class="hljs-keyword">Module</span>的特性<br><br>升级后的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br>   |<span class="hljs-type">- logger</span>.js<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* logger.js */</span><br><span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span><span class="hljs-params">(info)</span></span> &#123;<br>  console<span class="hljs-selector-class">.log</span>(info)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">/* CalorieTracker.js */</span><br><span class="hljs-keyword">import</span> logCalorieSurplus from <span class="hljs-string">&#x27;./logger.js&#x27;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span>(maxCalories) &#123;<br>    <span class="hljs-keyword">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-keyword">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  trackCalories(calorieCount) &#123;<br>    <span class="hljs-keyword">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentCalories &gt; <span class="hljs-keyword">this</span>.maxCalories) &#123;<br>      logCalorieSurplus(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>现在 <code>logCalorieSurplus</code> 已经模块化…可以在任何文件中去使用…复用性大大提高</p>
-<p>而且现在的<code>CalorieTracker</code>只需管理<code>trackCalories</code>这一个函数… <code>logCalorieSurplus</code>函数也只会因自身想改变而改变… 都遵循了<strong>Single Responsibility Principle (唯一的 负责 原则)</strong></p>
-<h3 id="Open-Closed-Principle"><a href="#Open-Closed-Principle" class="headerlink" title="Open/Closed Principle"></a>Open/Closed Principle</h3><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> printQuiz(questions) &#123;<br>  questions.<span class="hljs-keyword">forEach</span>(question =&gt; &#123;<br>    console.log(question.<span class="hljs-keyword">type</span>);<br>    switch (question.<span class="hljs-keyword">type</span>) &#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;boolean&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>        console.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;multipleChoice&#x27;</span>:<br>        question.<span class="hljs-keyword">options</span>.<span class="hljs-keyword">forEach</span>((<span class="hljs-keyword">option</span>, <span class="hljs-keyword">index</span>) =&gt; &#123;<br>          console.log(`$&#123;<span class="hljs-keyword">index</span> + <span class="hljs-number">1</span>&#125;. $&#123;<span class="hljs-keyword">option</span>&#125;`);<br>        &#125;)<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;text&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>        break;<br>    &#125;<br>    console.log(<span class="hljs-string">&#x27;+++++++++&#x27;</span>);<br>  &#125;)<br>&#125;<br><br>const questions = [<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;boolean&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;This video is useful.&#x27;</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;multipleChoice&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    <span class="hljs-keyword">options</span>: [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;text&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span><br>  &#125;<br>]<br><br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
-
-<p>上述代码看着非常正常…但是还是思考下…如果当<code>questions</code>的数组元素增加，则既要更改<code>questions</code>的内容，又要更改<code>printQuiz</code>。 灵活性相当的差劲…</p>
-<p>开始升级…</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// ------------- 问题 ---------------</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooleanQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultipleChoiceQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description, options</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description<br>    <span class="hljs-built_in">this</span>.options = options<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.options.forEach(<span class="hljs-function">(<span class="hljs-params">option, index</span>) =&gt;</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;index + <span class="hljs-number">1</span>&#125;</span>. <span class="hljs-subst">$&#123;option&#125;</span>`</span>);<br>    &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printQuiz</span>(<span class="hljs-params">questions</span>) </span>&#123;<br>  questions.forEach(<span class="hljs-function"><span class="hljs-params">question</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(question.description);<br>    question.printQuestionChoices()<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;&#x27;</span>);<br>  &#125;)<br>&#125;<br><br><span class="hljs-keyword">const</span> questions = [<br>  <span class="hljs-keyword">new</span> BooleanQuestion(<span class="hljs-string">&#x27;This video is useful.&#x27;</span>),<br>  <span class="hljs-keyword">new</span> MultipleChoiceQuestion(<br>    <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  ),<br>  <span class="hljs-keyword">new</span> TestQuestion(<span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span>)<br>]<br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
-
-<p>现在，我对<code>question</code>的<strong>增删改查</strong>变得易如反掌…<br>将长长的 <strong>switch…case</strong> 打断…</p>
-<blockquote>
-<p>当前感觉 Open/Closed Principle 就是用来解决 长长的’switch…case 的…’</p>
-</blockquote>
-<h3 id="Liskov-Substitution-Principle"><a href="#Liskov-Substitution-Principle" class="headerlink" title="Liskov Substitution Principle"></a>Liskov Substitution Principle</h3><p>—&gt; 这个原则似乎更加的偏向面向对象…</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Set和Map基本使用方法</title>
     <url>/2021/10/09/Set%E5%92%8CMap%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p><code>Map</code> <strong>(有道翻译)</strong> v.映射<br>的确，<code>Map</code> 强调的就是<strong>对应关系</strong><br>记住两个<strong>关键点</strong>：</p>
@@ -534,6 +549,35 @@
       </tags>
   </entry>
   <entry>
+    <title>SOLID Design Principles</title>
+    <url>/2021/11/04/SOLID-Design-Principles/</url>
+    <content><![CDATA[<h3 id="Single-Responsibility-Principle-唯一的-负责-原则"><a href="#Single-Responsibility-Principle-唯一的-负责-原则" class="headerlink" title="Single Responsibility Principle (唯一的 负责 原则)"></a>Single Responsibility Principle (唯一的 负责 原则)</h3><p>一个函数或一个类只能有一个原因去进行自身代码更改…<br>在 js 中用多函数(每个函数只能有一个功能)以及<code>ES Module</code>模块化来实现</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">maxCalories</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-built_in">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">trackCalories</span>(<span class="hljs-params">calorieCount</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.currentCalories &gt; <span class="hljs-built_in">this</span>.maxCalories) &#123;<br>      <span class="hljs-built_in">this</span>.logCalorieSurplus()<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述这个类看似非常正常完美…但事实上是有局限性的…<br>我们可以看见…这个类有两个方法：<code>trackCalories</code>、<code>logCalorieSurplus</code>。 我可以在这个类修改这两个函数…需求来了我有可能会在这个类中修改<code>trackCalories</code>函数或者修改<code>logCalorieSurplus</code>函数。但是当一个类有非常多这样的类。那么需求一来我就去修改这些…只会让代码变得非常臃肿且不好维护。更严重的是代码<strong>复用性</strong>太差</p>
+<p><code>Single Responsibility Principle</code> 的原则是一个函数或一个类只能有一个原因去解析自身代码修改</p>
+<figure class="highlight coq"><table><tr><td class="code"><pre><code class="hljs coq">之前的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br><br>利用ES <span class="hljs-keyword">Module</span>的特性<br><br>升级后的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br>   |<span class="hljs-type">- logger</span>.js<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* logger.js */</span><br><span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span><span class="hljs-params">(info)</span></span> &#123;<br>  console<span class="hljs-selector-class">.log</span>(info)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">/* CalorieTracker.js */</span><br><span class="hljs-keyword">import</span> logCalorieSurplus from <span class="hljs-string">&#x27;./logger.js&#x27;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span>(maxCalories) &#123;<br>    <span class="hljs-keyword">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-keyword">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  trackCalories(calorieCount) &#123;<br>    <span class="hljs-keyword">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentCalories &gt; <span class="hljs-keyword">this</span>.maxCalories) &#123;<br>      logCalorieSurplus(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在 <code>logCalorieSurplus</code> 已经模块化…可以在任何文件中去使用…复用性大大提高</p>
+<p>而且现在的<code>CalorieTracker</code>只需管理<code>trackCalories</code>这一个函数… <code>logCalorieSurplus</code>函数也只会因自身想改变而改变… 都遵循了<strong>Single Responsibility Principle (唯一的 负责 原则)</strong></p>
+<h3 id="Open-Closed-Principle"><a href="#Open-Closed-Principle" class="headerlink" title="Open/Closed Principle"></a>Open/Closed Principle</h3><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> printQuiz(questions) &#123;<br>  questions.<span class="hljs-keyword">forEach</span>(question =&gt; &#123;<br>    console.log(question.<span class="hljs-keyword">type</span>);<br>    switch (question.<span class="hljs-keyword">type</span>) &#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;boolean&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>        console.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;multipleChoice&#x27;</span>:<br>        question.<span class="hljs-keyword">options</span>.<span class="hljs-keyword">forEach</span>((<span class="hljs-keyword">option</span>, <span class="hljs-keyword">index</span>) =&gt; &#123;<br>          console.log(`$&#123;<span class="hljs-keyword">index</span> + <span class="hljs-number">1</span>&#125;. $&#123;<span class="hljs-keyword">option</span>&#125;`);<br>        &#125;)<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;text&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>        break;<br>    &#125;<br>    console.log(<span class="hljs-string">&#x27;+++++++++&#x27;</span>);<br>  &#125;)<br>&#125;<br><br>const questions = [<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;boolean&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;This video is useful.&#x27;</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;multipleChoice&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    <span class="hljs-keyword">options</span>: [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;text&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span><br>  &#125;<br>]<br><br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
+
+<p>上述代码看着非常正常…但是还是思考下…如果当<code>questions</code>的数组元素增加，则既要更改<code>questions</code>的内容，又要更改<code>printQuiz</code>。 灵活性相当的差劲…</p>
+<p>开始升级…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// ------------- 问题 ---------------</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooleanQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultipleChoiceQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description, options</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description<br>    <span class="hljs-built_in">this</span>.options = options<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.options.forEach(<span class="hljs-function">(<span class="hljs-params">option, index</span>) =&gt;</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;index + <span class="hljs-number">1</span>&#125;</span>. <span class="hljs-subst">$&#123;option&#125;</span>`</span>);<br>    &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printQuiz</span>(<span class="hljs-params">questions</span>) </span>&#123;<br>  questions.forEach(<span class="hljs-function"><span class="hljs-params">question</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(question.description);<br>    question.printQuestionChoices()<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;&#x27;</span>);<br>  &#125;)<br>&#125;<br><br><span class="hljs-keyword">const</span> questions = [<br>  <span class="hljs-keyword">new</span> BooleanQuestion(<span class="hljs-string">&#x27;This video is useful.&#x27;</span>),<br>  <span class="hljs-keyword">new</span> MultipleChoiceQuestion(<br>    <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  ),<br>  <span class="hljs-keyword">new</span> TestQuestion(<span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span>)<br>]<br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
+
+<p>现在，我对<code>question</code>的<strong>增删改查</strong>变得易如反掌…<br>将长长的 <strong>switch…case</strong> 打断…</p>
+<blockquote>
+<p>当前感觉 Open/Closed Principle 就是用来解决 长长的’switch…case 的…’</p>
+</blockquote>
+<h3 id="Liskov-Substitution-Principle"><a href="#Liskov-Substitution-Principle" class="headerlink" title="Liskov Substitution Principle"></a>Liskov Substitution Principle</h3><p>—&gt; 这个原则似乎更加的偏向面向对象…</p>
+]]></content>
+  </entry>
+  <entry>
     <title>TypeScript-随笔一</title>
     <url>/2021/10/20/TypeScript-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
     <content><![CDATA[<h4 id="as-const-的妙用！"><a href="#as-const-的妙用！" class="headerlink" title="as const 的妙用！"></a>as const 的妙用！</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">a</span> = <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;jack&#x27;</span>, 12, &#123;gender: <span class="hljs-string">&#x27;male&#x27;</span>&#125;]</span>  <span class="hljs-comment">// ts 会默认认为这个a是数组,所以里面的元素类型都应该是保持一致的才行...</span><br></code></pre></td></tr></table></figure>
@@ -584,54 +628,6 @@
 <p>为了推论上述的 await 代码跳转问题。有了下述代码论证</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1&#x27;</span>);<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func1</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2&#x27;</span>);<br>  <span class="hljs-comment">// fetch是异步请求。所以执行栈先跳转到当前async函数外面的同步代码并且fetch以及其附带的then、catch执行完后继续执行赋值代码给data以及完成下一行代码</span><br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;3&#x27;</span>);<br>&#125;<br>func1();<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func2</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// console.log(&#x27;4&#x27;);是同步代码</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;4&#x27;</span>);<br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/2&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;5&#x27;</span>);<br>&#125;<br>func2();<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;6&#x27;</span>);<br><span class="hljs-comment">// 执行结果顺序：</span><br><span class="hljs-comment">// 1、 2、 4、 6、 api_1、 3、 api_2、 5</span><br><span class="hljs-comment">// 或者 1、 2、 4、 6、 api_2、 5、 api_1、 3 (因为可能第二个接口请求数据更快所以更快完成await代码...)</span><br></code></pre></td></tr></table></figure>
 ]]></content>
-  </entry>
-  <entry>
-    <title>axios 使用方法</title>
-    <url>/2021/10/25/axios-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p><a href="https://axios-http.com/zh/docs/intro">官方文档</a><br><code>Axios</code> 是一个基于 <code>promise</code> 网络请求库，作用于 <code>node.js</code> 和<code>浏览器</code>中。 它是 isomorphic 的(即同一套代码可以运行在<code>浏览器</code>和 <code>node.js</code> 中)。在服务端它使用原生 <code>node.js</code> http 模块, 而在客户端 (浏览端) 则使用 <code>XMLHttpRequests</code>。</p>
-<blockquote>
-<p>这个不像<code>fetch</code>。<code>axios</code> 是需要在项目中额外安装的</p>
-</blockquote>
-<p>下面的代码段全是基于此篇代码所写：<a href="https://github.com/Bruce-shuai/axios-study">axios-study</a></p>
-<h3 id="Axios-基本玩法"><a href="#Axios-基本玩法" class="headerlink" title="Axios 基本玩法"></a>Axios 基本玩法</h3><blockquote>
-<p><code>即 增、删、改、查</code></p>
-</blockquote>
-<h4 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h4><p>3 种书写方法(大同小异，推荐第二种，更直观…)</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim">/* 方法<span class="hljs-number">1</span> */<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTodo</span><span class="hljs-params">()</span> &#123;</span><br>  axios(&#123;<br>    method: <span class="hljs-string">&#x27;GET&#x27;</span>,<br>    ur<span class="hljs-variable">l:</span> <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>,<br>    // 参数项： _limit 应该是后端自己做的...<br>    param<span class="hljs-variable">s:</span> &#123;<br>      _limi<span class="hljs-variable">t:5</span><br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim">/* 方法<span class="hljs-number">2</span> */<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTodo</span><span class="hljs-params">()</span> &#123;</span><br>  axios.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>, &#123;<br>    param<span class="hljs-variable">s:</span> &#123;<br>      _limi<span class="hljs-variable">t:</span> <span class="hljs-number">5</span><br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">/* 方法3 */</span><br>function getTodo() &#123;<br>  <span class="hljs-comment">// 因为get方法是默认方法，可以省略get的书写</span><br>  <span class="hljs-comment">// _limit=5是参数 直接以键值对的方式作为url参数来写入(这也是get 方法的用途...)</span><br>  axios(&#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos?_limit=5)</span><br>  .then(res =&gt; console.<span class="hljs-built_in">log</span>(&#x27;res&#x27;, res.data))<br>  .catch(<span class="hljs-keyword">err</span> =&gt; console.<span class="hljs-built_in">log</span>(&#x27;<span class="hljs-keyword">err</span>&#x27;, <span class="hljs-keyword">err</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h4><p>两种书写方法(推荐第二种书写方法…)</p>
-<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// POST REQUEST</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios(&#123;<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>,<br>    <span class="hljs-comment">// 不是params哦~ 这是POST的特殊之处...</span><br>    data: &#123;<br>      <span class="hljs-comment">// 这些属性是自己随意拟定的...</span><br>      title: <span class="hljs-string">&#x27;New To Do&#x27;</span>,<br>      <span class="hljs-attr">complete</span>: <span class="hljs-literal">false</span>,<br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// 下述方法同上</span><br>  axios.post(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>, &#123;<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;New To Do&#x27;</span>,<br>    <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>,<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="PUT-PATCH-方法"><a href="#PUT-PATCH-方法" class="headerlink" title="PUT/PATCH 方法"></a>PUT/PATCH 方法</h4><ul>
-<li>PUT/PATCH 注意 PUT 一般是更换整体 而 PATCH 一般是更换局部内容</li>
-<li>注意 一般使用 PUT 或 PATCH 都是要有参数具体指定修改哪一个内容的</li>
-<li>所以 PUT 既要指定 params 属性 又要修改 data 属性</li>
-</ul>
-<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">putTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios(&#123;<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;PUT&#x27;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,<br>    <span class="hljs-comment">// 不是params哦~</span><br>    data: &#123;<br>      <span class="hljs-comment">// 这些属性是自己随意拟定的...</span><br>      title: <span class="hljs-string">&#x27;Update To Do&#x27;</span>,<br>      <span class="hljs-attr">completed</span>: <span class="hljs-literal">true</span>,<br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<h4 id="DELETE-方法"><a href="#DELETE-方法" class="headerlink" title="DELETE 方法"></a>DELETE 方法</h4><p><code>DELETE</code> 这个只需指定<code>params</code> 而没有<code>data</code>属性</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteTodo</span><span class="hljs-params">()</span>&#123;</span><br>  axios(&#123;<br>    method: <span class="hljs-string">&#x27;DELETE&#x27;</span>,<br>    ur<span class="hljs-variable">l:</span> <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="Axios-高级玩法"><a href="#Axios-高级玩法" class="headerlink" title="Axios 高级玩法"></a>Axios 高级玩法</h3><h4 id="并发请求"><a href="#并发请求" class="headerlink" title="并发请求"></a>并发请求</h4><p><code>SIMULATANEOUS DATA</code> (同时请求多种数据)</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios<br>  .all([<br>    axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>),<br>    axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)<br>  ])<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(res[<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">console</span>.log(res[<span class="hljs-number">1</span>]);<br>  &#125;)<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err));<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 方法同上</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;<br>axios.<br>all([<br>  axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>),<br>  axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)<br>]).then(axios.spread(<span class="hljs-function">(<span class="hljs-params">todos,posts</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(todos);<br>  <span class="hljs-built_in">console</span>.log(posts)<br>&#125;))<br>.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err))<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="INTERCEPTING-REQUESTS-amp-RESPONSES"><a href="#INTERCEPTING-REQUESTS-amp-RESPONSES" class="headerlink" title="INTERCEPTING REQUESTS &amp; RESPONSES"></a>INTERCEPTING REQUESTS &amp; RESPONSES</h4><p>拦截器</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">axios.interceptors.request.use(<br>  <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<br>      <span class="hljs-string">`<span class="hljs-subst">$&#123;config.method.toUpperCase()&#125;</span> request sent to <span class="hljs-subst">$&#123;config.url&#125;</span> at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()&#125;</span>`</span><br>    )<br>    <span class="hljs-keyword">return</span> config;<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);<br>  &#125;<br>)<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
   </entry>
   <entry>
     <title>clean Code</title>
@@ -988,81 +984,6 @@
       </tags>
   </entry>
   <entry>
-    <title>开发个人博客反思和总结</title>
-    <url>/2021/10/09/%E5%BC%80%E5%8F%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8D%E6%80%9D%E5%92%8C%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h4 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h4><ol>
-<li>购买域名 Namecheap —&gt; 算了，最后还是去的阿里云买的…国外的 支付方式有点困难<br>.com 和 .net 有什么区别呢？</li>
-</ol>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-title">.com （商业机构）；</span><br><span class="hljs-title">.net （从事互联网服务的机构）；</span><br></code></pre></td></tr></table></figure>
-
-<p>买的域名对于所在区域有什么影响没？</p>
-<ol start="2">
-<li>设定 DNS 将域名停泊到 Cloudflare，因为它有免费的 SSL 以及全球 CND 加速等服务(采用免费方案)，然后设定 DNS， 加入两个 A 记录<br>(<a href="https://zhuanlan.zhihu.com/p/86961133">https://zhuanlan.zhihu.com/p/86961133</a>)</li>
-</ol>
-<h2 id="cloudflare-的优势是什么-cnd-是什么东东？"><a href="#cloudflare-的优势是什么-cnd-是什么东东？" class="headerlink" title="cloudflare 的优势是什么 cnd 是什么东东？"></a>cloudflare 的优势是什么 cnd 是什么东东？</h2><p><a href="https://cloud.tencent.com/developer/article/1137135">cloudflare 相关知识</a><br>SEO –&gt;<br>建站需要什么东西</p>
-<ol>
-<li>域名</li>
-<li>空间(主机) —&gt; 存储网站的地方</li>
-<li>程序(目前已经有开源程序了)</li>
-</ol>
-<p><strong>域名</strong>:heyang.xyz (域名是租的…) 具有唯一性<br>注意：<br>不要购买中文域名(如果有 seo)<br>买常用的后缀<br>容易记忆的</p>
-<p><strong>什么是网站空间？</strong><br>服务器(专业电脑，更强大) —&gt; 目前干脆就用自己的电脑当一个服务器算了…(不行，电脑要一直开机才行…但事实上不可能一直开机)<br>空间(服务器里的文件夹)<br>上述的这个文件夹可以和域名链接在一起(所以访问网站，其实就是通过域名打开服务器里的文件夹)</p>
-<p>空间所以我们采用租的方式…</p>
-<p><strong>建站程序</strong><br>事实上大多数都是用的建站程序来写的…<br>WordPress<br>织梦</p>
-<hr>
-<p>HEXO<br>安装 nodejs –&gt; nodejs 让 js 成为了与 php、py、perl、ruby 等服务端你语言平起平坐的脚本语言</p>
-<blockquote>
-<p>hexo 安装：npm intall hexo-cli -g</p>
-</blockquote>
-<p>利用 github 的仓库作为 hexo 的服务器来搭建个人网站</p>
-<p>个人博客的话，用 hexo 完全不需要去另外购买空间，可以托管到个 ithub、coding 等托管平台，免费提供的空间完全足够了，毕竟一篇文章顶天不过十几 kb</p>
-<hr>
-<p><a href="https://pages.github.com/">https://pages.github.com</a></p>
-<p>采用 github page + hexo</p>
-<p><a href="https://hexo.io/">hexo 网站</a><br><a href="https://hexo.io/plugins/">hexo 插件</a></p>
-<p>.github.io 是一个二级域名… 二级域名有什么不同之处吗？</p>
-<p><a href="https://hexo.io/themes/">hexo 主题</a></p>
-<p>我喜欢的主题：<a href="https://github.com/blleng/hexo-theme-lx">hexo-theme-lx</a><br><a href="https://github.com/zhaoo/hexo-theme-zhaoo">推荐 hexo 主题</a></p>
-<p><a href="https://github.com/fluid-dev/hexo-theme-fluid">最牛逼最适合我的 hexo 主题</a><br>fluid 这个主题文档相当的详尽不错！</p>
-<blockquote>
-<p>hexo 清理缓存，重新部署:<br>hexo clean &amp;&amp; hexo g -d<br>—&gt; 当我使用了这个命令后，我所更新的东西就会自动放在<a href="https://bruce-shuai.github.io/%E9%87%8C%E4%BA%86%E3%80%82%E8%80%8C%E4%B8%8D%E6%98%AF%E7%94%A8git">https://bruce-shuai.github.io/里了。而不是用git</a> add . git commit -m …这些操作…</p>
-</blockquote>
-<h4 id="为博客绑定自己的域名…"><a href="#为博客绑定自己的域名…" class="headerlink" title="为博客绑定自己的域名…"></a>为博客绑定自己的域名…</h4><p>资料<br><a href="https://cloud.tencent.com/developer/article/1435908">dns 解析</a></p>
-<p><a href="https://www.bilibili.com/video/BV1rb411n79N?from=search&seid=2760737936132922743&spm_id_from=333.337.0.0">该域名的教程</a></p>
-<hr>
-<p><a href="https://blog.justlovesmile.top/">看这位大佬的 hexo 笔记能学到很多</a><br><a href="http://blog.itchenliang.club/posts/22350780-f32d-11ea-bb4a-d3e1cbe3d59d/">魔改 hexo</a><br><a href="https://pxxyyz.com/categories/">fluid 大佬博客</a><br><a href="https://i.vince.pub/p/fluid-doc-pr/#%E4%B8%80%E8%A8%80">fluid 又一个大佬博客</a><br><a href="https://papiboy.gitee.io/2021/03/25/hexo%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2/">再一位 fluid 大佬</a><br><a href="https://www.itrhx.com/2018/08/27/A04-Hexo-blog-topic-personalization/">再来一篇 fluid 美化的博客</a><br><a href="https://blog.jalenchuh.cn/posts/hexo-fluid/">这位大佬的 fluid 的美化教程很不错</a><br><a href="https://emoryhuang.cn/blog/1729600336.html">再一位大佬</a><br><a href="https://blog.justlovesmile.top/posts/c8972b63.html">hexo 的使用</a></p>
-<p><a href="https://segmentfault.com/a/1190000012805627">更换 hexo 主题</a></p>
-<p><a href="https://waline.js.org/guide/get-started.html#leancloud-%E8%AE%BE%E7%BD%AE-%E6%95%B0%E6%8D%AE%E5%BA%93">hexo 评论区 Waline 插件</a></p>
-<p><a href="https://www.pexels.com/zh-cn/">免费图片网站</a><br><a href="https://undraw.co/search">免费 svg 图片网站</a></p>
-<hr>
-<p><strong>博客性能优化：</strong></p>
-<hr>
-<p><strong>cdn</strong><br>GitHub+jsDelivr+PicGo 搭建免费图床<br>相关博客：<br><a href="https://blog.justlovesmile.top/posts/c8972b63.html">https://blog.justlovesmile.top/posts/c8972b63.html</a><br><a href="https://segmentfault.com/a/1190000020240864">https://segmentfault.com/a/1190000020240864</a></p>
-<p><strong>–&gt; 无需下载软件的方法：<a href="picx.xpoet.cn">PicX</a></strong><br>用 cdn 外链的好处是什么？</p>
-<hr>
-<h2 id="Artitalk"><a href="#Artitalk" class="headerlink" title="Artitalk"></a><strong>Artitalk</strong></h2><p>发布说说<br>官网：<a href="https://artitalk.js.org/">https://artitalk.js.org/</a></p>
-<hr>
-<p>SEO</p>
-<hr>
-<p>留言板</p>
-<figure class="highlight llvm"><table><tr><td class="code"><pre><code class="hljs llvm">一言： https://developer.hitokoto.cn/sentence/#<span class="hljs-variable">%E6</span><span class="hljs-variable">%8</span>E<span class="hljs-variable">%A5</span><span class="hljs-variable">%E5</span><span class="hljs-variable">%8</span>F<span class="hljs-variable">%A3</span><span class="hljs-variable">%E8</span><span class="hljs-variable">%AF</span><span class="hljs-variable">%B4</span><span class="hljs-variable">%E6</span><span class="hljs-variable">%98</span><span class="hljs-variable">%8</span>E  // 这个网站的api有点骚~<br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>loading 动画：<br><a href="https://www.zyoushuo.cn/post/69e.html">1</a></p>
-<hr>
-<p>更改的内容效果先在 hexo server –debug 上观看(一般来说有大的改动，需重启 hexo server –debug)<br>如果感觉更改的不错(依次输入下面三个语句 上传到 heyang.xyz 里)：<br>hexo generate<br>hexo deploy<br>hexo clean</p>
-<hr>
-<h4 id="性能检测："><a href="#性能检测：" class="headerlink" title="性能检测："></a>性能检测：</h4><p>不多赘述，这篇文章讲得非常好！<a href="https://juejin.cn/book/6844733750048210957/section/6844733750123692046">修言-Performance、LightHouse 与性能 API</a></p>
-<p>解决国内 github+hexo 打开页面慢的方法：<br>由于国内访问 github 的速度较慢，因此可以通过双部署同时部署到 Coding<a href="https://coding.net/">https://coding.net/</a><br><a href="https://zhuanlan.zhihu.com/p/100926319">一篇不错的文章</a><br>更多 Coading 绑定部署操作需要进一步看</p>
-]]></content>
-      <categories>
-        <category>IT随笔</category>
-      </categories>
-      <tags>
-        <tag>互联网</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>有效括号问题</title>
     <url>/2021/10/07/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">/**<br> * 题目描述：给定一个只包括<span class="hljs-string">&#x27;(&#x27;</span>, <span class="hljs-string">&#x27;)&#x27;</span>, <span class="hljs-string">&#x27;&#123;&#x27;</span>, <span class="hljs-string">&#x27;&#125;&#x27;</span>, <span class="hljs-string">&#x27;[&#x27;</span>, <span class="hljs-string">&#x27;]&#x27;</span>的字符串,判断字符串是否有效<br> * <br> * 记住一个规律： 括号成立 意味着 对称性<br> */<br><br><span class="hljs-regexp">//</span> 括号问题，我们一般首选栈来做    ----&gt;   对称性<br><br><span class="hljs-regexp">//</span> 用一个map来维护左括号和右括号的对应关系<br><span class="hljs-regexp">//</span> map 关系真的非常的好用<br><span class="hljs-regexp">//</span> const leftToRight = &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br><span class="hljs-regexp">//</span> &#125;<br><br><span class="hljs-regexp">//</span> /**<br><span class="hljs-regexp">//</span>  * @param &#123;string&#125; s<br><span class="hljs-regexp">//</span>  * @return &#123;boolean&#125;<br><span class="hljs-regexp">//</span>  */<br><br><span class="hljs-regexp">//</span> <span class="hljs-regexp">//</span> 有些细节 我<br><span class="hljs-regexp">//</span> const isValid = <span class="hljs-keyword">function</span>(s) &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 结合题意，空字符串无条件判断为 true<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">if</span> (!s) &#123;<br><span class="hljs-regexp">//</span>     return true;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 初始化 stack 数组<br><span class="hljs-regexp">//</span>   const stack = [];<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; s.length; i++) &#123;<br><span class="hljs-regexp">//</span>     <span class="hljs-keyword">if</span> (s[i] === <span class="hljs-string">&#x27;(&#x27;</span> || s[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || s[i] === <span class="hljs-string">&#x27;[&#x27;</span>) &#123;<br><span class="hljs-regexp">//</span>       stack.push(leftToRight[s[i]])<br><span class="hljs-regexp">//</span>     &#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-regexp">//</span>       <span class="hljs-regexp">//</span> 但是人家写的是!stack.length || stack.pop() !== ch  好奇怪...<br><span class="hljs-regexp">//</span>       <span class="hljs-keyword">if</span> (stack.pop() !== s[i]) &#123;<br><span class="hljs-regexp">//</span>         return false;<br><span class="hljs-regexp">//</span>       &#125;<br><span class="hljs-regexp">//</span>     &#125;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 若所有的括号都能配对成功，那么最后栈应该是空的<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> return !stack.length;<br><br><span class="hljs-regexp">//</span>   return true;<br><span class="hljs-regexp">//</span> &#125;<br><br><br><br><span class="hljs-regexp">//</span> 注意： ))))(((( 这种是错误的。左括号必须以正确的顺序闭合<br><br><span class="hljs-regexp">//</span> 对象映射大法 ----&gt;  注意！变量名千万搞错不能出错, 有时要好好检查检查自己的变量名...<br>const leftToRight = &#123;<br>  <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br>  <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br>&#125;<br><br><br><span class="hljs-regexp">//</span> 我自己想到一个方法。设置两个栈。一个栈放入左侧符号的映射。  一个栈放入右侧符号。 两个栈进行一一对比<br>const isValid = (str) =&gt; &#123;<br>  const stack = [];<br>  <span class="hljs-regexp">//</span> 数组缓存<br>  let len = str.length;<br><br>  <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>    <span class="hljs-keyword">if</span> (str[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || str[i] === <span class="hljs-string">&#x27;[&#x27;</span> || str[i] === <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>      stack.push(leftToRight[str[i]]);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length !== <span class="hljs-number">0</span> &amp;&amp; str[i] === stack[stack.length - <span class="hljs-number">1</span>]) &#123;<br>      stack.pop();<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length === <span class="hljs-number">0</span>) &#123;<br>      return false;<br>    &#125;<br>  &#125;<br>  return stack.length === <span class="hljs-number">0</span>;<br>&#125;<br><br>console.log(<span class="hljs-string">&#x27;test&#x27;</span>, isValid(<span class="hljs-string">&#x27;()[]&#123;&#125;&#x27;</span>));<br></code></pre></td></tr></table></figure>
@@ -1136,60 +1057,15 @@
       </tags>
   </entry>
   <entry>
-    <title>编译原理</title>
-    <url>/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>人的语言(自然语言) —&gt; 是上下文有关的<br>机器的语言 —&gt; 不会考虑上下文的…</p>
-<p><strong>计算机语言</strong>还能提供给人类新的思考方式<br>例如： 面向对象思维、函数式思维…</p>
-<h4 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h4><p>源程序 —&gt; 编译器 —&gt; 目标程序<br><code>编译器</code> 将 <code>源程序</code> 编译成 <code>目标程序</code></p>
-<h4 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt;<br>         <span class="hljs-comment">|</span> --&gt; <span class="hljs-comment">解释器</span> --&gt; <span class="hljs-comment">输出</span><br>  <span class="hljs-comment">输入</span> --&gt;<br></code></pre></td></tr></table></figure>
-
-<p><code>解释器</code><strong>同时</strong>接受源程序 和 输入，立即执行并返回输出<br>早期 js 是解释型语言的</p>
-<h4 id="混合编译器"><a href="#混合编译器" class="headerlink" title="混合编译器"></a>混合编译器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt; <span class="hljs-comment">第一次编译</span> --&gt; <span class="hljs-comment">中间代码</span> --&gt; <span class="hljs-comment">第二次编译</span> --&gt;<br>                                              <span class="hljs-comment">|</span>--&gt; <span class="hljs-comment">虚拟机</span>--&gt; <span class="hljs-comment">输出</span><br>                                         <span class="hljs-comment">输入</span>--&gt;<br></code></pre></td></tr></table></figure>
-
-<p><strong>中间代码的作用</strong></p>
-<ul>
-<li>中间代码更容易被翻译成目标程序、优化空间更大</li>
-<li>中间语言的存在更利于编译器的实现</li>
-<li>让虚拟机处理复杂的执行环境(跨平台)</li>
-</ul>
-<h4 id="即时编译器-JIT"><a href="#即时编译器-JIT" class="headerlink" title="即时编译器(JIT)"></a>即时编译器(JIT)</h4><ul>
-<li>一种提高效率的方法，中间代码不是直接执行，而是先被编译成机器码再执行</li>
-</ul>
-<p>—&gt; 现代 java、nodejs 就是这样编译方式<br>优点：提高执行效率(50%以上)</p>
-<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>在一个平台编译产生多个平台的可执行代码</p>
-<hr>
-<p><strong>不同方式优劣势</strong></p>
-<ul>
-<li>解释执行有性能问题，但也异常灵活，例如支持 eval 函数(基本上解释型语言都可以支持 eval 函数，意味着程序可以动态修改…)</li>
-<li>直接交叉编译 技术难度是其次的，跨平台问题会多；一次编译很多包也会有分发问题 — 产品问题</li>
-<li>虚拟化技术提供了更好的体验，却没有提供更好的性能(JIT 完美解决这一点 &lt;—&gt; 时间平摊技术)</li>
-</ul>
-<h4 id="编译的流程-关注度分离"><a href="#编译的流程-关注度分离" class="headerlink" title="编译的流程(关注度分离)"></a>编译的流程(关注度分离)</h4><p>编译器的第一步： 词法分析(一个分词断句+判断词性的过程)<br>编译器的第二步： 语法分析(把词法分析形成的结果转化为一颗抽象语法树(AST)) 语法分析器常常被称作 Parser<br>编译器的第三步： 语义分析<br>编译器的第四步： 生成机器码(二进制)</p>
-<blockquote>
-<p>机器不懂高级语言<br>机器像[卡片机]一样, 不断读取下一条指令并执行<br>这种简单的设计就是今天的复杂的计算机…</p>
-</blockquote>
-<p>关注度分离思考<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.12.53-PM.65obrf4b2qc0.png" alt="编译器处理的两大过程"><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.14.21-PM.3h54z1grvus0.png" alt="编译器分层设计"></p>
-<p><strong>分层设计(最常见的软件架构)<strong>：关注度分离–&gt;每层都有意义，每一层都足够强大，都有</strong>优质的算法数据结构、架构技巧来解决大量共性问题</strong>(架构师做到这一点就牛逼，做不到就不行…)</p>
-<h4 id="词法分析器简介"><a href="#词法分析器简介" class="headerlink" title="词法分析器简介"></a>词法分析器简介</h4><h5 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h5><ul>
-<li>将字符流转成符号流 输入：源代码(字符流) 输出：符号流</li>
-<li>词法分析过程类似中学语文学习的<strong>词性标注</strong>。每个符号是一个元组，应该至少包括一个字符串和词性描述<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-01-at-1.52.33-PM.52htvhvktog0.png" alt="词法分析"></li>
-</ul>
-<h6 id="符号-词法单元"><a href="#符号-词法单元" class="headerlink" title="符号(词法单元)"></a>符号(词法单元)</h6><ul>
-<li>词法分析器的结果是一个个的符号，英文 Token，也叫<strong>词法单元</strong></li>
-<li>在数学上符号表示一个元组。例如整数 123 表示 (123, Integer)</li>
-</ul>
-<p>实现词法分析器的基本接口</p>
-<ul>
-<li>实现符号类型枚举</li>
-<li>实现关键词字典</li>
-<li>定义词法分析器的程序接口</li>
-</ul>
-<h6 id="流-Stream-是什么？"><a href="#流-Stream-是什么？" class="headerlink" title="流(Stream)是什么？"></a>流(Stream)是什么？</h6><p>流：随着<strong>时间推移</strong>逐渐产生的<strong>可用数据序列</strong></p>
-<blockquote>
-<p>流的使用者永远不知道流里的数据有多少。流中的数据是通过时间来产生的…</p>
-</blockquote>
-<p>抽象出像工厂流水线一样的处理数据的标准过程</p>
-]]></content>
+    <title>Git基本用法</title>
+    <url>/2021/10/20/Git%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>IT随笔</category>
+      </categories>
+      <tags>
+        <tag>互联网</tag>
+      </tags>
   </entry>
   <entry>
     <title>计算机网络</title>
@@ -1455,6 +1331,185 @@
 
 <p>写代码不是为了追求短…而是为了让代码的可读性更好。就算有段代码写 10 行其实可以压缩成 1 行，但是如果写 10 行可读性大于写 1 行。那也应该选择写 10 行的代码…</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>编译原理</title>
+    <url>/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>人的语言(自然语言) —&gt; 是上下文有关的<br>机器的语言 —&gt; 不会考虑上下文的…</p>
+<p><strong>计算机语言</strong>还能提供给人类新的思考方式<br>例如： 面向对象思维、函数式思维…</p>
+<h4 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h4><p>源程序 —&gt; 编译器 —&gt; 目标程序<br><code>编译器</code> 将 <code>源程序</code> 编译成 <code>目标程序</code></p>
+<h4 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt;<br>         <span class="hljs-comment">|</span> --&gt; <span class="hljs-comment">解释器</span> --&gt; <span class="hljs-comment">输出</span><br>  <span class="hljs-comment">输入</span> --&gt;<br></code></pre></td></tr></table></figure>
+
+<p><code>解释器</code><strong>同时</strong>接受源程序 和 输入，立即执行并返回输出<br>早期 js 是解释型语言的</p>
+<h4 id="混合编译器"><a href="#混合编译器" class="headerlink" title="混合编译器"></a>混合编译器</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">源程序</span> --&gt; <span class="hljs-comment">第一次编译</span> --&gt; <span class="hljs-comment">中间代码</span> --&gt; <span class="hljs-comment">第二次编译</span> --&gt;<br>                                              <span class="hljs-comment">|</span>--&gt; <span class="hljs-comment">虚拟机</span>--&gt; <span class="hljs-comment">输出</span><br>                                         <span class="hljs-comment">输入</span>--&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>中间代码的作用</strong></p>
+<ul>
+<li>中间代码更容易被翻译成目标程序、优化空间更大</li>
+<li>中间语言的存在更利于编译器的实现</li>
+<li>让虚拟机处理复杂的执行环境(跨平台)</li>
+</ul>
+<h4 id="即时编译器-JIT"><a href="#即时编译器-JIT" class="headerlink" title="即时编译器(JIT)"></a>即时编译器(JIT)</h4><ul>
+<li>一种提高效率的方法，中间代码不是直接执行，而是先被编译成机器码再执行</li>
+</ul>
+<p>—&gt; 现代 java、nodejs 就是这样编译方式<br>优点：提高执行效率(50%以上)</p>
+<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>在一个平台编译产生多个平台的可执行代码</p>
+<hr>
+<p><strong>不同方式优劣势</strong></p>
+<ul>
+<li>解释执行有性能问题，但也异常灵活，例如支持 eval 函数(基本上解释型语言都可以支持 eval 函数，意味着程序可以动态修改…)</li>
+<li>直接交叉编译 技术难度是其次的，跨平台问题会多；一次编译很多包也会有分发问题 — 产品问题</li>
+<li>虚拟化技术提供了更好的体验，却没有提供更好的性能(JIT 完美解决这一点 &lt;—&gt; 时间平摊技术)</li>
+</ul>
+<h4 id="编译的流程-关注度分离"><a href="#编译的流程-关注度分离" class="headerlink" title="编译的流程(关注度分离)"></a>编译的流程(关注度分离)</h4><p>编译器的第一步： 词法分析(一个分词断句+判断词性的过程)<br>编译器的第二步： 语法分析(把词法分析形成的结果转化为一颗抽象语法树(AST)) 语法分析器常常被称作 Parser<br>编译器的第三步： 语义分析<br>编译器的第四步： 生成机器码(二进制)</p>
+<blockquote>
+<p>机器不懂高级语言<br>机器像[卡片机]一样, 不断读取下一条指令并执行<br>这种简单的设计就是今天的复杂的计算机…</p>
+</blockquote>
+<p>关注度分离思考<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.12.53-PM.65obrf4b2qc0.png" alt="编译器处理的两大过程"><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-25-at-9.14.21-PM.3h54z1grvus0.png" alt="编译器分层设计"></p>
+<p><strong>分层设计(最常见的软件架构)<strong>：关注度分离–&gt;每层都有意义，每一层都足够强大，都有</strong>优质的算法数据结构、架构技巧来解决大量共性问题</strong>(架构师做到这一点就牛逼，做不到就不行…)</p>
+<h4 id="词法分析器简介"><a href="#词法分析器简介" class="headerlink" title="词法分析器简介"></a>词法分析器简介</h4><h5 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h5><ul>
+<li>将字符流转成符号流 输入：源代码(字符流) 输出：符号流</li>
+<li>词法分析过程类似中学语文学习的<strong>词性标注</strong>。每个符号是一个元组，应该至少包括一个字符串和词性描述<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-01-at-1.52.33-PM.52htvhvktog0.png" alt="词法分析"></li>
+</ul>
+<h6 id="符号-词法单元"><a href="#符号-词法单元" class="headerlink" title="符号(词法单元)"></a>符号(词法单元)</h6><ul>
+<li>词法分析器的结果是一个个的符号，英文 Token，也叫<strong>词法单元</strong></li>
+<li>在数学上符号表示一个元组。例如整数 123 表示 (123, Integer)</li>
+</ul>
+<p>实现词法分析器的基本接口</p>
+<ul>
+<li>实现符号类型枚举</li>
+<li>实现关键词字典</li>
+<li>定义词法分析器的程序接口</li>
+</ul>
+<h6 id="流-Stream-是什么？"><a href="#流-Stream-是什么？" class="headerlink" title="流(Stream)是什么？"></a>流(Stream)是什么？</h6><p>流：随着<strong>时间推移</strong>逐渐产生的<strong>可用数据序列</strong></p>
+<blockquote>
+<p>流的使用者永远不知道流里的数据有多少。流中的数据是通过时间来产生的…</p>
+</blockquote>
+<p>抽象出像工厂流水线一样的处理数据的标准过程</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>开发个人博客反思和总结</title>
+    <url>/2021/10/09/%E5%BC%80%E5%8F%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8D%E6%80%9D%E5%92%8C%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h4 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h4><ol>
+<li>购买域名 Namecheap —&gt; 算了，最后还是去的阿里云买的…国外的 支付方式有点困难<br>.com 和 .net 有什么区别呢？</li>
+</ol>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-title">.com （商业机构）；</span><br><span class="hljs-title">.net （从事互联网服务的机构）；</span><br></code></pre></td></tr></table></figure>
+
+<p>买的域名对于所在区域有什么影响没？</p>
+<ol start="2">
+<li>设定 DNS 将域名停泊到 Cloudflare，因为它有免费的 SSL 以及全球 CND 加速等服务(采用免费方案)，然后设定 DNS， 加入两个 A 记录<br>(<a href="https://zhuanlan.zhihu.com/p/86961133">https://zhuanlan.zhihu.com/p/86961133</a>)</li>
+</ol>
+<h2 id="cloudflare-的优势是什么-cnd-是什么东东？"><a href="#cloudflare-的优势是什么-cnd-是什么东东？" class="headerlink" title="cloudflare 的优势是什么 cnd 是什么东东？"></a>cloudflare 的优势是什么 cnd 是什么东东？</h2><p><a href="https://cloud.tencent.com/developer/article/1137135">cloudflare 相关知识</a><br>SEO –&gt;<br>建站需要什么东西</p>
+<ol>
+<li>域名</li>
+<li>空间(主机) —&gt; 存储网站的地方</li>
+<li>程序(目前已经有开源程序了)</li>
+</ol>
+<p><strong>域名</strong>:heyang.xyz (域名是租的…) 具有唯一性<br>注意：<br>不要购买中文域名(如果有 seo)<br>买常用的后缀<br>容易记忆的</p>
+<p><strong>什么是网站空间？</strong><br>服务器(专业电脑，更强大) —&gt; 目前干脆就用自己的电脑当一个服务器算了…(不行，电脑要一直开机才行…但事实上不可能一直开机)<br>空间(服务器里的文件夹)<br>上述的这个文件夹可以和域名链接在一起(所以访问网站，其实就是通过域名打开服务器里的文件夹)</p>
+<p>空间所以我们采用租的方式…</p>
+<p><strong>建站程序</strong><br>事实上大多数都是用的建站程序来写的…<br>WordPress<br>织梦</p>
+<hr>
+<p>HEXO<br>安装 nodejs –&gt; nodejs 让 js 成为了与 php、py、perl、ruby 等服务端你语言平起平坐的脚本语言</p>
+<blockquote>
+<p>hexo 安装：npm intall hexo-cli -g</p>
+</blockquote>
+<p>利用 github 的仓库作为 hexo 的服务器来搭建个人网站</p>
+<p>个人博客的话，用 hexo 完全不需要去另外购买空间，可以托管到个 ithub、coding 等托管平台，免费提供的空间完全足够了，毕竟一篇文章顶天不过十几 kb</p>
+<hr>
+<p><a href="https://pages.github.com/">https://pages.github.com</a></p>
+<p>采用 github page + hexo</p>
+<p><a href="https://hexo.io/">hexo 网站</a><br><a href="https://hexo.io/plugins/">hexo 插件</a></p>
+<p>.github.io 是一个二级域名… 二级域名有什么不同之处吗？</p>
+<p><a href="https://hexo.io/themes/">hexo 主题</a></p>
+<p>我喜欢的主题：<a href="https://github.com/blleng/hexo-theme-lx">hexo-theme-lx</a><br><a href="https://github.com/zhaoo/hexo-theme-zhaoo">推荐 hexo 主题</a></p>
+<p><a href="https://github.com/fluid-dev/hexo-theme-fluid">最牛逼最适合我的 hexo 主题</a><br>fluid 这个主题文档相当的详尽不错！</p>
+<blockquote>
+<p>hexo 清理缓存，重新部署:<br>hexo clean &amp;&amp; hexo g -d<br>—&gt; 当我使用了这个命令后，我所更新的东西就会自动放在<a href="https://bruce-shuai.github.io/%E9%87%8C%E4%BA%86%E3%80%82%E8%80%8C%E4%B8%8D%E6%98%AF%E7%94%A8git">https://bruce-shuai.github.io/里了。而不是用git</a> add . git commit -m …这些操作…</p>
+</blockquote>
+<h4 id="为博客绑定自己的域名…"><a href="#为博客绑定自己的域名…" class="headerlink" title="为博客绑定自己的域名…"></a>为博客绑定自己的域名…</h4><p>资料<br><a href="https://cloud.tencent.com/developer/article/1435908">dns 解析</a></p>
+<p><a href="https://www.bilibili.com/video/BV1rb411n79N?from=search&seid=2760737936132922743&spm_id_from=333.337.0.0">该域名的教程</a></p>
+<hr>
+<p><a href="https://blog.justlovesmile.top/">看这位大佬的 hexo 笔记能学到很多</a><br><a href="http://blog.itchenliang.club/posts/22350780-f32d-11ea-bb4a-d3e1cbe3d59d/">魔改 hexo</a><br><a href="https://pxxyyz.com/categories/">fluid 大佬博客</a><br><a href="https://i.vince.pub/p/fluid-doc-pr/#%E4%B8%80%E8%A8%80">fluid 又一个大佬博客</a><br><a href="https://papiboy.gitee.io/2021/03/25/hexo%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2/">再一位 fluid 大佬</a><br><a href="https://www.itrhx.com/2018/08/27/A04-Hexo-blog-topic-personalization/">再来一篇 fluid 美化的博客</a><br><a href="https://blog.jalenchuh.cn/posts/hexo-fluid/">这位大佬的 fluid 的美化教程很不错</a><br><a href="https://emoryhuang.cn/blog/1729600336.html">再一位大佬</a><br><a href="https://blog.justlovesmile.top/posts/c8972b63.html">hexo 的使用</a></p>
+<p><a href="https://segmentfault.com/a/1190000012805627">更换 hexo 主题</a></p>
+<p><a href="https://waline.js.org/guide/get-started.html#leancloud-%E8%AE%BE%E7%BD%AE-%E6%95%B0%E6%8D%AE%E5%BA%93">hexo 评论区 Waline 插件</a></p>
+<p><a href="https://www.pexels.com/zh-cn/">免费图片网站</a><br><a href="https://undraw.co/search">免费 svg 图片网站</a></p>
+<hr>
+<p><strong>博客性能优化：</strong></p>
+<hr>
+<p><strong>cdn</strong><br>GitHub+jsDelivr+PicGo 搭建免费图床<br>相关博客：<br><a href="https://blog.justlovesmile.top/posts/c8972b63.html">https://blog.justlovesmile.top/posts/c8972b63.html</a><br><a href="https://segmentfault.com/a/1190000020240864">https://segmentfault.com/a/1190000020240864</a></p>
+<p><strong>–&gt; 无需下载软件的方法：<a href="picx.xpoet.cn">PicX</a></strong><br>用 cdn 外链的好处是什么？</p>
+<hr>
+<h2 id="Artitalk"><a href="#Artitalk" class="headerlink" title="Artitalk"></a><strong>Artitalk</strong></h2><p>发布说说<br>官网：<a href="https://artitalk.js.org/">https://artitalk.js.org/</a></p>
+<hr>
+<p>SEO</p>
+<hr>
+<p>留言板</p>
+<figure class="highlight llvm"><table><tr><td class="code"><pre><code class="hljs llvm">一言： https://developer.hitokoto.cn/sentence/#<span class="hljs-variable">%E6</span><span class="hljs-variable">%8</span>E<span class="hljs-variable">%A5</span><span class="hljs-variable">%E5</span><span class="hljs-variable">%8</span>F<span class="hljs-variable">%A3</span><span class="hljs-variable">%E8</span><span class="hljs-variable">%AF</span><span class="hljs-variable">%B4</span><span class="hljs-variable">%E6</span><span class="hljs-variable">%98</span><span class="hljs-variable">%8</span>E  // 这个网站的api有点骚~<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>loading 动画：<br><a href="https://www.zyoushuo.cn/post/69e.html">1</a></p>
+<hr>
+<p>更改的内容效果先在 hexo server –debug 上观看(一般来说有大的改动，需重启 hexo server –debug)<br>如果感觉更改的不错(依次输入下面三个语句 上传到 heyang.xyz 里)：<br>hexo generate<br>hexo deploy<br>hexo clean</p>
+<hr>
+<h4 id="性能检测："><a href="#性能检测：" class="headerlink" title="性能检测："></a>性能检测：</h4><p>不多赘述，这篇文章讲得非常好！<a href="https://juejin.cn/book/6844733750048210957/section/6844733750123692046">修言-Performance、LightHouse 与性能 API</a></p>
+<p>解决国内 github+hexo 打开页面慢的方法：<br>由于国内访问 github 的速度较慢，因此可以通过双部署同时部署到 Coding<a href="https://coding.net/">https://coding.net/</a><br><a href="https://zhuanlan.zhihu.com/p/100926319">一篇不错的文章</a><br>更多 Coading 绑定部署操作需要进一步看</p>
+]]></content>
+      <categories>
+        <category>IT随笔</category>
+      </categories>
+      <tags>
+        <tag>互联网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>axios 使用方法</title>
+    <url>/2021/10/25/axios-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p><a href="https://axios-http.com/zh/docs/intro">官方文档</a><br><code>Axios</code> 是一个基于 <code>promise</code> 网络请求库，作用于 <code>node.js</code> 和<code>浏览器</code>中。 它是 isomorphic 的(即同一套代码可以运行在<code>浏览器</code>和 <code>node.js</code> 中)。在服务端它使用原生 <code>node.js</code> http 模块, 而在客户端 (浏览端) 则使用 <code>XMLHttpRequests</code>。</p>
+<blockquote>
+<p>这个不像<code>fetch</code>。<code>axios</code> 是需要在项目中额外安装的</p>
+</blockquote>
+<p>下面的代码段全是基于此篇代码所写：<a href="https://github.com/Bruce-shuai/axios-study">axios-study</a></p>
+<h3 id="Axios-基本玩法"><a href="#Axios-基本玩法" class="headerlink" title="Axios 基本玩法"></a>Axios 基本玩法</h3><blockquote>
+<p><code>即 增、删、改、查</code></p>
+</blockquote>
+<h4 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h4><p>3 种书写方法(大同小异，推荐第二种，更直观…)</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim">/* 方法<span class="hljs-number">1</span> */<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTodo</span><span class="hljs-params">()</span> &#123;</span><br>  axios(&#123;<br>    method: <span class="hljs-string">&#x27;GET&#x27;</span>,<br>    ur<span class="hljs-variable">l:</span> <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>,<br>    // 参数项： _limit 应该是后端自己做的...<br>    param<span class="hljs-variable">s:</span> &#123;<br>      _limi<span class="hljs-variable">t:5</span><br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim">/* 方法<span class="hljs-number">2</span> */<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTodo</span><span class="hljs-params">()</span> &#123;</span><br>  axios.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>, &#123;<br>    param<span class="hljs-variable">s:</span> &#123;<br>      _limi<span class="hljs-variable">t:</span> <span class="hljs-number">5</span><br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">/* 方法3 */</span><br>function getTodo() &#123;<br>  <span class="hljs-comment">// 因为get方法是默认方法，可以省略get的书写</span><br>  <span class="hljs-comment">// _limit=5是参数 直接以键值对的方式作为url参数来写入(这也是get 方法的用途...)</span><br>  axios(&#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos?_limit=5)</span><br>  .then(res =&gt; console.<span class="hljs-built_in">log</span>(&#x27;res&#x27;, res.data))<br>  .catch(<span class="hljs-keyword">err</span> =&gt; console.<span class="hljs-built_in">log</span>(&#x27;<span class="hljs-keyword">err</span>&#x27;, <span class="hljs-keyword">err</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h4><p>两种书写方法(推荐第二种书写方法…)</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// POST REQUEST</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios(&#123;<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>,<br>    <span class="hljs-comment">// 不是params哦~ 这是POST的特殊之处...</span><br>    data: &#123;<br>      <span class="hljs-comment">// 这些属性是自己随意拟定的...</span><br>      title: <span class="hljs-string">&#x27;New To Do&#x27;</span>,<br>      <span class="hljs-attr">complete</span>: <span class="hljs-literal">false</span>,<br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// 下述方法同上</span><br>  axios.post(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>, &#123;<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;New To Do&#x27;</span>,<br>    <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>,<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="PUT-PATCH-方法"><a href="#PUT-PATCH-方法" class="headerlink" title="PUT/PATCH 方法"></a>PUT/PATCH 方法</h4><ul>
+<li>PUT/PATCH 注意 PUT 一般是更换整体 而 PATCH 一般是更换局部内容</li>
+<li>注意 一般使用 PUT 或 PATCH 都是要有参数具体指定修改哪一个内容的</li>
+<li>所以 PUT 既要指定 params 属性 又要修改 data 属性</li>
+</ul>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">putTodo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios(&#123;<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;PUT&#x27;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,<br>    <span class="hljs-comment">// 不是params哦~</span><br>    data: &#123;<br>      <span class="hljs-comment">// 这些属性是自己随意拟定的...</span><br>      title: <span class="hljs-string">&#x27;Update To Do&#x27;</span>,<br>      <span class="hljs-attr">completed</span>: <span class="hljs-literal">true</span>,<br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;res&#x27;</span>, res.data))<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> console.log(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="DELETE-方法"><a href="#DELETE-方法" class="headerlink" title="DELETE 方法"></a>DELETE 方法</h4><p><code>DELETE</code> 这个只需指定<code>params</code> 而没有<code>data</code>属性</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteTodo</span><span class="hljs-params">()</span>&#123;</span><br>  axios(&#123;<br>    method: <span class="hljs-string">&#x27;DELETE&#x27;</span>,<br>    ur<span class="hljs-variable">l:</span> <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>,<br>  &#125;)<br>  .then(<span class="hljs-keyword">res</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;res&#x27;</span>, <span class="hljs-keyword">res</span>.data))<br>  .<span class="hljs-keyword">catch</span>(err =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;err&#x27;</span>, err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Axios-高级玩法"><a href="#Axios-高级玩法" class="headerlink" title="Axios 高级玩法"></a>Axios 高级玩法</h3><h4 id="并发请求"><a href="#并发请求" class="headerlink" title="并发请求"></a>并发请求</h4><p><code>SIMULATANEOUS DATA</code> (同时请求多种数据)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;<br>  axios<br>  .all([<br>    axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>),<br>    axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)<br>  ])<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(res[<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">console</span>.log(res[<span class="hljs-number">1</span>]);<br>  &#125;)<br>  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 方法同上</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;<br>axios.<br>all([<br>  axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>),<br>  axios.get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)<br>]).then(axios.spread(<span class="hljs-function">(<span class="hljs-params">todos,posts</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(todos);<br>  <span class="hljs-built_in">console</span>.log(posts)<br>&#125;))<br>.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="INTERCEPTING-REQUESTS-amp-RESPONSES"><a href="#INTERCEPTING-REQUESTS-amp-RESPONSES" class="headerlink" title="INTERCEPTING REQUESTS &amp; RESPONSES"></a>INTERCEPTING REQUESTS &amp; RESPONSES</h4><p>拦截器</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">axios.interceptors.request.use(<br>  <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<br>      <span class="hljs-string">`<span class="hljs-subst">$&#123;config.method.toUpperCase()&#125;</span> request sent to <span class="hljs-subst">$&#123;config.url&#125;</span> at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()&#125;</span>`</span><br>    )<br>    <span class="hljs-keyword">return</span> config;<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);<br>  &#125;<br>)<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>一篇文章解决Promise...then，async/await执行顺序类型题</title>

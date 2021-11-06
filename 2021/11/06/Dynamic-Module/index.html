@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="Dynamic Module进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快… 看看案例：如下是普通的模块导入： 12&#x2F;* html 代码片段 *&#x2F;&lt;script type&#x3D;&quot;module&quot; defer src&#x3D;&quot;.&#x2F;script.js&quot;&gt;&lt;&#x2F;script&gt;  12345&#x2F;* script.js 代码片段 *&#x2F;impo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Module">
+<meta property="og:url" content="http://example.com/2021/11/06/Dynamic-Module/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="Dynamic Module进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快… 看看案例：如下是普通的模块导入： 12&#x2F;* html 代码片段 *&#x2F;&lt;script type&#x3D;&quot;module&quot; defer src&#x3D;&quot;.&#x2F;script.js&quot;&gt;&lt;&#x2F;script&gt;  12345&#x2F;* script.js 代码片段 *&#x2F;impo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-11.25.17-AM.63cc4nodfyo0.png">
+<meta property="article:published_time" content="2021-11-06T02:47:43.000Z">
+<meta property="article:modified_time" content="2021-11-06T06:35:00.541Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-11.25.17-AM.63cc4nodfyo0.png">
+  
+  <title>Dynamic Module - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Dynamic Module">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-06 10:47" pubdate>
+        2021年11月6日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Dynamic Module</h1>
+            
+            <div class="markdown-body">
+              <h3 id="Dynamic-Module"><a href="#Dynamic-Module" class="headerlink" title="Dynamic Module"></a>Dynamic Module</h3><p>进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快…</p>
+<p>看看案例：<br>如下是普通的模块导入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">User</span>, &#123;printUser&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span>;<br><br>const <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>printUser(<span class="hljs-keyword">user</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>打印结果为 Bruce Cook</p>
+</blockquote>
+<p>文件运行逻辑： 先下载 script.js 文件，然后立刻下载 user.js 文件 (如果是 webpack 打包，可能会有一点点的变化)<br>但无论如何。只要页面进行加载，这些文件就会被下载…</p>
+<p>但是<code>Dynamic Module</code>就如同前面所说是按需加载(需要的时候才加载代码)的</p>
+<p><strong>import 变成一个函数</strong></p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-number">1.</span> <span class="hljs-keyword">import</span>(&#x27;文件相对路径&#x27;)<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;)<br><span class="hljs-number">2.</span> <span class="hljs-keyword">import</span>函数返回一个promise<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;).then(module =&gt; &#123;     // 这里会提供该文件的所有module信息<br>  console.log(module)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-11.25.17-AM.63cc4nodfyo0.png" srcset="/img/loading.gif" lazyload alt="module信息"></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-number">3.</span> 解构 <span class="hljs-keyword">then</span> 中的参数module<br><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).<span class="hljs-keyword">then</span>((&#123;<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span>, printUser&#125;) =&gt; &#123;<br>  console.log(<span class="hljs-string">&#x27;User&#x27;</span>, <span class="hljs-keyword">User</span>);<br>  console.log(<span class="hljs-string">&#x27;printUser&#x27;</span>, printUser);<br>&#125;)<br>注意上面的<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span> 其实就和下述方式导出<span class="hljs-keyword">User</span> 很相似<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> <span class="hljs-keyword">User</span>, printUser &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>现在 我们的代码模块是动态导入的，而非静态导入<br>来看看整体代码</p>
+<h4 id="Dynamic-Module-的优势之一：页面加载更快"><a href="#Dynamic-Module-的优势之一：页面加载更快" class="headerlink" title="Dynamic Module 的优势之一：页面加载更快"></a>Dynamic Module 的优势之一：页面加载更快</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-comment">// 5s 后才会加载这个模块...</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:User, printUser&#125;</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>    printUser(user);<br>  &#125;)<br>&#125;, <span class="hljs-number">5000</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码让你的页面加载速度会更上一层楼！！</p>
+<h4 id="Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"><a href="#Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候" class="headerlink" title="Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"></a>Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候</h4><p>这里最能显示出<code>Dynamic Module</code>这个优势的是，不同国家语言文件！</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk">文件目录：<br>  |- index.html<br>  |- script.js<br>  |- en-translations.js   <span class="hljs-regexp">//</span> 英语文件<br>  |- sp-translations.js   <span class="hljs-regexp">//</span> 西班牙语文件<br>  |- fr-translations.js   <span class="hljs-regexp">//</span> 法语文件<br></code></pre></td></tr></table></figure>
+
+<p>如果使用静态导入方式：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/* html 代码片段 */</span><br>&lt;script <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;module&quot;</span> defer src=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;&lt;/script&gt;<br><br><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-keyword">let</span> translations;<br><span class="hljs-keyword">switch</span> (user.locale) &#123;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;sp&#x27;</span>:<br>    translations = spanishTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;fr&#x27;</span>:<br>    translations = frenchTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">default</span>:<br>    translations = englishTranslations<br>&#125;<br><br><span class="hljs-built_in">console</span>.log(translations.HI)<br><br><span class="hljs-comment">/* en-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hi&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* sp-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hola&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* fr-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;salut&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br></code></pre></td></tr></table></figure>
+
+<p>试想，如果我要弄 20 个国家的语言…我还用静态导入的方式，页面加载有多慢，代码文件上传体积有多大</p>
+<p>现在我使用 <code>dynamic module</code> 来实现一下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-comment">// 牛逼，还可以使用模板字符串</span><br><span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;user.locale&#125;</span>-translations.js`</span>)<br>.catch(<span class="hljs-function">() =&gt;</span> &#123;   <span class="hljs-comment">// 这里是用来解决默认选项问题的(当不存在想要的user.locale时会触发)</span><br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./en-translations.js&#x27;</span>)<br>&#125;)<br>.then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:translations&#125;</span>) =&gt;</span> &#123;  <span class="hljs-comment">// 这里使用重命名的方式</span><br>  <span class="hljs-built_in">console</span>.log(translations.HI)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>显然，上述的<code>dynamic module</code> 让代码更加的简洁了…并且性能会更高</p>
+<p><strong>再来一个例子</strong></p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs 1c">文件目录：<br>  <span class="hljs-string">|- index.html</span><br>  <span class="hljs-string">|- script.js</span><br>  <span class="hljs-string">|- rectangle.js</span><br>  <span class="hljs-string">|- triangle.js</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> renderRectangle from <span class="hljs-string">&#x27;./rectangle.js&#x27;</span>;<br><span class="hljs-keyword">import</span> renderTriangle from <span class="hljs-string">&#x27;./triangle.js&#x27;</span>;<br><br><span class="hljs-keyword">const</span> shapes = [<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br><span class="hljs-built_in">shape</span>.forEach(<span class="hljs-built_in">shape</span> =&gt; &#123;<br>  <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">shape</span>.type) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;rectangle&#x27;</span>:<br>      renderRectangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;triangle&#x27;</span>:<br>      renderTriangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* triangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Triangle&#x27;</span>)<br>&#125;<br><br><span class="hljs-comment">/* rectangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Rectangle&#x27;</span>)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>用 <code>dynamic module</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(<span class="hljs-function"><span class="hljs-params">shape</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;shape.<span class="hljs-keyword">type</span>&#125;</span>.js`</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:render&#125;</span>) =&gt;</span> &#123;<br>      render(shape)<br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>我们可以使用 <code>await/async</code> 来更进一步来解决问题</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(async shape =&gt; &#123;<br>    <span class="hljs-keyword">const</span> &#123;<span class="hljs-keyword">default</span>: render&#125; = await <span class="hljs-keyword">import</span>(<span class="hljs-string">`./$&#123;shape.type&#125;.js`</span>);<br>    render(shape)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/06/css-%E5%91%BD%E5%90%8D%E8%89%BA%E6%9C%AF/">
+                        <span class="hidden-mobile">css 命名艺术</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
