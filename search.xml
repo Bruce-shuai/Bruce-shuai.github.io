@@ -47,68 +47,10 @@
 <figure class="highlight handlebars"><table><tr><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">color:</span> <span class="hljs-string">&quot;red&quot;</span> &#125;&#125;</span><span class="xml"><span class="hljs-tag">&gt;</span>&#123;keyword&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Dynamic Module</title>
-    <url>/2021/11/06/Dynamic-Module/</url>
-    <content><![CDATA[<h3 id="Dynamic-Module"><a href="#Dynamic-Module" class="headerlink" title="Dynamic Module"></a>Dynamic Module</h3><p>进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快…</p>
-<p>看看案例：<br>如下是普通的模块导入：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">User</span>, &#123;printUser&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span>;<br><br>const <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>printUser(<span class="hljs-keyword">user</span>);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>打印结果为 Bruce Cook</p>
-</blockquote>
-<p>文件运行逻辑： 先下载 script.js 文件，然后立刻下载 user.js 文件 (如果是 webpack 打包，可能会有一点点的变化)<br>但无论如何。只要页面进行加载，这些文件就会被下载…</p>
-<p>但是<code>Dynamic Module</code>就如同前面所说是按需加载(需要的时候才加载代码)的</p>
-<p><strong>import 变成一个函数</strong></p>
-<figure class="highlight elm"><table><tr><td class="code"><pre><code class="hljs elm"><span class="hljs-number">1.</span> <span class="hljs-keyword">import</span>(&#x27;文件相对路径&#x27;)<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;)<br><span class="hljs-number">2.</span> <span class="hljs-keyword">import</span>函数返回一个promise<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;).then(module =&gt; &#123;     // 这里会提供该文件的所有module信息<br>  console.log(module)<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-11.25.17-AM.63cc4nodfyo0.png" alt="module信息"></p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-number">3.</span> 解构 <span class="hljs-keyword">then</span> 中的参数module<br><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).<span class="hljs-keyword">then</span>((&#123;<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span>, printUser&#125;) =&gt; &#123;<br>  console.log(<span class="hljs-string">&#x27;User&#x27;</span>, <span class="hljs-keyword">User</span>);<br>  console.log(<span class="hljs-string">&#x27;printUser&#x27;</span>, printUser);<br>&#125;)<br>注意上面的<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span> 其实就和下述方式导出<span class="hljs-keyword">User</span> 很相似<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> <span class="hljs-keyword">User</span>, printUser &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>现在 我们的代码模块是动态导入的，而非静态导入<br>来看看整体代码</p>
-<h4 id="Dynamic-Module-的优势之一：页面加载更快"><a href="#Dynamic-Module-的优势之一：页面加载更快" class="headerlink" title="Dynamic Module 的优势之一：页面加载更快"></a>Dynamic Module 的优势之一：页面加载更快</h4><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-comment">// 5s 后才会加载这个模块...</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:User, printUser&#125;</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>    printUser(user);<br>  &#125;)<br>&#125;, <span class="hljs-number">5000</span>)<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>上述代码让你的页面加载速度会更上一层楼！！</p>
-<h4 id="Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"><a href="#Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候" class="headerlink" title="Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"></a>Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候</h4><p>这里最能显示出<code>Dynamic Module</code>这个优势的是，不同国家语言文件！</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">文件目录：<br>  |- index.html<br>  |- script.js<br>  |- en-translations.js   <span class="hljs-regexp">//</span> 英语文件<br>  |- sp-translations.js   <span class="hljs-regexp">//</span> 西班牙语文件<br>  |- fr-translations.js   <span class="hljs-regexp">//</span> 法语文件<br></code></pre></td></tr></table></figure>
-
-<p>如果使用静态导入方式：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/* html 代码片段 */</span><br>&lt;script <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;module&quot;</span> defer src=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;&lt;/script&gt;<br><br><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-keyword">let</span> translations;<br><span class="hljs-keyword">switch</span> (user.locale) &#123;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;sp&#x27;</span>:<br>    translations = spanishTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;fr&#x27;</span>:<br>    translations = frenchTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">default</span>:<br>    translations = englishTranslations<br>&#125;<br><br><span class="hljs-built_in">console</span>.log(translations.HI)<br><br><span class="hljs-comment">/* en-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hi&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* sp-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hola&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* fr-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;salut&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br></code></pre></td></tr></table></figure>
-
-<p>试想，如果我要弄 20 个国家的语言…我还用静态导入的方式，页面加载有多慢，代码文件上传体积有多大</p>
-<p>现在我使用 <code>dynamic module</code> 来实现一下代码</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-comment">// 牛逼，还可以使用模板字符串</span><br><span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;user.locale&#125;</span>-translations.js`</span>)<br>.catch(<span class="hljs-function">() =&gt;</span> &#123;   <span class="hljs-comment">// 这里是用来解决默认选项问题的(当不存在想要的user.locale时会触发)</span><br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./en-translations.js&#x27;</span>)<br>&#125;)<br>.then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:translations&#125;</span>) =&gt;</span> &#123;  <span class="hljs-comment">// 这里使用重命名的方式</span><br>  <span class="hljs-built_in">console</span>.log(translations.HI)<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>显然，上述的<code>dynamic module</code> 让代码更加的简洁了…并且性能会更高</p>
-<p><strong>再来一个例子</strong></p>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">文件目录：<br>  <span class="hljs-string">|- index.html</span><br>  <span class="hljs-string">|- script.js</span><br>  <span class="hljs-string">|- rectangle.js</span><br>  <span class="hljs-string">|- triangle.js</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> renderRectangle from <span class="hljs-string">&#x27;./rectangle.js&#x27;</span>;<br><span class="hljs-keyword">import</span> renderTriangle from <span class="hljs-string">&#x27;./triangle.js&#x27;</span>;<br><br><span class="hljs-keyword">const</span> shapes = [<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br><span class="hljs-built_in">shape</span>.forEach(<span class="hljs-built_in">shape</span> =&gt; &#123;<br>  <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">shape</span>.type) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;rectangle&#x27;</span>:<br>      renderRectangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;triangle&#x27;</span>:<br>      renderTriangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* triangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Triangle&#x27;</span>)<br>&#125;<br><br><span class="hljs-comment">/* rectangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Rectangle&#x27;</span>)<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<p>用 <code>dynamic module</code></p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(<span class="hljs-function"><span class="hljs-params">shape</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;shape.<span class="hljs-keyword">type</span>&#125;</span>.js`</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:render&#125;</span>) =&gt;</span> &#123;<br>      render(shape)<br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>我们可以使用 <code>await/async</code> 来更进一步来解决问题</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(async shape =&gt; &#123;<br>    <span class="hljs-keyword">const</span> &#123;<span class="hljs-keyword">default</span>: render&#125; = await <span class="hljs-keyword">import</span>(<span class="hljs-string">`./$&#123;shape.type&#125;.js`</span>);<br>    render(shape)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -172,10 +114,71 @@
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-12.10.18-AM.1t4jj2z6k2gw.png" alt="神坑margin:auto-2"></p>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>CSS篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Dynamic Module</title>
+    <url>/2021/11/06/Dynamic-Module/</url>
+    <content><![CDATA[<h3 id="Dynamic-Module"><a href="#Dynamic-Module" class="headerlink" title="Dynamic Module"></a>Dynamic Module</h3><p>进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快…</p>
+<p>看看案例：<br>如下是普通的模块导入：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">User</span>, &#123;printUser&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span>;<br><br>const <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>printUser(<span class="hljs-keyword">user</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>打印结果为 Bruce Cook</p>
+</blockquote>
+<p>文件运行逻辑： 先下载 script.js 文件，然后立刻下载 user.js 文件 (如果是 webpack 打包，可能会有一点点的变化)<br>但无论如何。只要页面进行加载，这些文件就会被下载…</p>
+<p>但是<code>Dynamic Module</code>就如同前面所说是按需加载(需要的时候才加载代码)的</p>
+<p><strong>import 变成一个函数</strong></p>
+<figure class="highlight elm"><table><tr><td class="code"><pre><code class="hljs elm"><span class="hljs-number">1.</span> <span class="hljs-keyword">import</span>(&#x27;文件相对路径&#x27;)<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;)<br><span class="hljs-number">2.</span> <span class="hljs-keyword">import</span>函数返回一个promise<br>-&gt; <span class="hljs-keyword">import</span>(&#x27;./user.js&#x27;).then(module =&gt; &#123;     // 这里会提供该文件的所有module信息<br>  console.log(module)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-11.25.17-AM.63cc4nodfyo0.png" alt="module信息"></p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-number">3.</span> 解构 <span class="hljs-keyword">then</span> 中的参数module<br><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).<span class="hljs-keyword">then</span>((&#123;<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span>, printUser&#125;) =&gt; &#123;<br>  console.log(<span class="hljs-string">&#x27;User&#x27;</span>, <span class="hljs-keyword">User</span>);<br>  console.log(<span class="hljs-string">&#x27;printUser&#x27;</span>, printUser);<br>&#125;)<br>注意上面的<span class="hljs-keyword">default</span>: <span class="hljs-keyword">User</span> 其实就和下述方式导出<span class="hljs-keyword">User</span> 很相似<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> <span class="hljs-keyword">User</span>, printUser &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user.js&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>现在 我们的代码模块是动态导入的，而非静态导入<br>来看看整体代码</p>
+<h4 id="Dynamic-Module-的优势之一：页面加载更快"><a href="#Dynamic-Module-的优势之一：页面加载更快" class="headerlink" title="Dynamic Module 的优势之一：页面加载更快"></a>Dynamic Module 的优势之一：页面加载更快</h4><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html 代码片段 */<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js 代码片段 */</span><br><span class="hljs-comment">// 5s 后才会加载这个模块...</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./user.js&#x27;</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:User, printUser&#125;</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Cook&#x27;</span>)<br>    printUser(user);<br>  &#125;)<br>&#125;, <span class="hljs-number">5000</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* user.js 代码片段 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">first, last</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.first = first;<br>    <span class="hljs-built_in">this</span>.last = last;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">user</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;user.first&#125;</span> <span class="hljs-subst">$&#123;user.last&#125;</span>`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码让你的页面加载速度会更上一层楼！！</p>
+<h4 id="Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"><a href="#Dynamic-Module-的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候" class="headerlink" title="Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候"></a>Dynamic Module 的优势之二：如果你有一系列的文件。但根据不同用户只需要其中一个文件的时候</h4><p>这里最能显示出<code>Dynamic Module</code>这个优势的是，不同国家语言文件！</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">文件目录：<br>  |- index.html<br>  |- script.js<br>  |- en-translations.js   <span class="hljs-regexp">//</span> 英语文件<br>  |- sp-translations.js   <span class="hljs-regexp">//</span> 西班牙语文件<br>  |- fr-translations.js   <span class="hljs-regexp">//</span> 法语文件<br></code></pre></td></tr></table></figure>
+
+<p>如果使用静态导入方式：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/* html 代码片段 */</span><br>&lt;script <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;module&quot;</span> defer src=<span class="hljs-string">&quot;./script.js&quot;</span>&gt;&lt;/script&gt;<br><br><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-keyword">let</span> translations;<br><span class="hljs-keyword">switch</span> (user.locale) &#123;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;sp&#x27;</span>:<br>    translations = spanishTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;fr&#x27;</span>:<br>    translations = frenchTranslations<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">default</span>:<br>    translations = englishTranslations<br>&#125;<br><br><span class="hljs-built_in">console</span>.log(translations.HI)<br><br><span class="hljs-comment">/* en-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hi&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* sp-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;hola&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br><br><span class="hljs-comment">/* fr-translations.js */</span><br><span class="hljs-keyword">const</span> translations = &#123;<br>  <span class="hljs-attr">HI</span>: <span class="hljs-string">&#x27;salut&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> translations;<br></code></pre></td></tr></table></figure>
+
+<p>试想，如果我要弄 20 个国家的语言…我还用静态导入的方式，页面加载有多慢，代码文件上传体积有多大</p>
+<p>现在我使用 <code>dynamic module</code> 来实现一下代码</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> englishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./en-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> spanishTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./sp-translations.js&#x27;</span><br><span class="hljs-keyword">import</span> frenchTranslations <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./fr-translations.js&#x27;</span><br><br><br><br><span class="hljs-keyword">const</span> user = &#123; <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span> &#125;<br><span class="hljs-comment">// 牛逼，还可以使用模板字符串</span><br><span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;user.locale&#125;</span>-translations.js`</span>)<br>.catch(<span class="hljs-function">() =&gt;</span> &#123;   <span class="hljs-comment">// 这里是用来解决默认选项问题的(当不存在想要的user.locale时会触发)</span><br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./en-translations.js&#x27;</span>)<br>&#125;)<br>.then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:translations&#125;</span>) =&gt;</span> &#123;  <span class="hljs-comment">// 这里使用重命名的方式</span><br>  <span class="hljs-built_in">console</span>.log(translations.HI)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>显然，上述的<code>dynamic module</code> 让代码更加的简洁了…并且性能会更高</p>
+<p><strong>再来一个例子</strong></p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">文件目录：<br>  <span class="hljs-string">|- index.html</span><br>  <span class="hljs-string">|- script.js</span><br>  <span class="hljs-string">|- rectangle.js</span><br>  <span class="hljs-string">|- triangle.js</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* script.js文件 */</span><br><span class="hljs-keyword">import</span> renderRectangle from <span class="hljs-string">&#x27;./rectangle.js&#x27;</span>;<br><span class="hljs-keyword">import</span> renderTriangle from <span class="hljs-string">&#x27;./triangle.js&#x27;</span>;<br><br><span class="hljs-keyword">const</span> shapes = [<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; type: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br><span class="hljs-built_in">shape</span>.forEach(<span class="hljs-built_in">shape</span> =&gt; &#123;<br>  <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">shape</span>.type) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;rectangle&#x27;</span>:<br>      renderRectangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;triangle&#x27;</span>:<br>      renderTriangle(<span class="hljs-built_in">shape</span>)<br>      <span class="hljs-keyword">break</span>;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* triangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Triangle&#x27;</span>)<br>&#125;<br><br><span class="hljs-comment">/* rectangle.js */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderShape</span>(<span class="hljs-params">shape</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Render Rectangle&#x27;</span>)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>用 <code>dynamic module</code></p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(<span class="hljs-function"><span class="hljs-params">shape</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">import</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;shape.<span class="hljs-keyword">type</span>&#125;</span>.js`</span>).then(<span class="hljs-function">(<span class="hljs-params">&#123;<span class="hljs-keyword">default</span>:render&#125;</span>) =&gt;</span> &#123;<br>      render(shape)<br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>我们可以使用 <code>await/async</code> 来更进一步来解决问题</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> shapes = [<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;triangle&#x27;</span> &#125;,<br>  &#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;rectangle&#x27;</span> &#125;<br>]<br><br>shape.forEach(async shape =&gt; &#123;<br>    <span class="hljs-keyword">const</span> &#123;<span class="hljs-keyword">default</span>: render&#125; = await <span class="hljs-keyword">import</span>(<span class="hljs-string">`./$&#123;shape.type&#125;.js`</span>);<br>    render(shape)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -188,21 +191,10 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>CSS篇</category>
       </categories>
       <tags>
         <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git基本用法</title>
-    <url>/2021/10/20/Git%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>IT随笔</category>
-      </categories>
-      <tags>
-        <tag>互联网</tag>
       </tags>
   </entry>
   <entry>
@@ -211,7 +203,7 @@
     <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
 ]]></content>
       <categories>
-        <category>IT随笔</category>
+        <category>程序员基本素养</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -246,6 +238,9 @@
 </blockquote>
 <p>所以最好以 vscode 插件 Live Server 的(开启服务器的)方式打开</p>
 ]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
       <tags>
         <tag>基本功</tag>
       </tags>
@@ -268,7 +263,7 @@
 <p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>高级</tag>
@@ -370,7 +365,42 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> personOne = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;帅得乱七八糟&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">21</span>,<br>  <span class="hljs-attr">address</span>: &#123;<br>    <span class="hljs-attr">city</span>: <span class="hljs-string">&#x27;Somewhere&#x27;</span>,<br>    <span class="hljs-attr">state</span>: <span class="hljs-string">&#x27;One of them&#x27;</span><br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> personTwo = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">22</span>,<br>  <span class="hljs-attr">address</span>: &#123;<br>    <span class="hljs-attr">city</span>: <span class="hljs-string">&#x27;Somewhere&#x27;</span>,<br>    <span class="hljs-attr">state</span>: <span class="hljs-string">&#x27;Another one of them&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">favoriteFood</span>: <span class="hljs-string">&#x27;Watermelon&#x27;</span><br>&#125;<br><br><span class="hljs-comment">// const &#123;name, age&#125; = personTwo;   // 这个和数组解构有点不一样... 这里取出来的名字要和对象原来的属性一一对应才行...</span><br><span class="hljs-comment">// 如果想改名字 方法如下</span><br><span class="hljs-keyword">const</span> &#123;<span class="hljs-attr">name</span>: SecondName, age, favoriteFood = <span class="hljs-string">&#x27;Rice&#x27;</span>&#125; = personTwo;<br><br><span class="hljs-built_in">console</span>.log(name);        <span class="hljs-comment">// &#x27;&#x27;</span><br><span class="hljs-built_in">console</span>.log(SecondName);  <span class="hljs-comment">// &#x27;帅得歪瓜裂枣&#x27;</span><br><span class="hljs-built_in">console</span>.log(age);<br><span class="hljs-built_in">console</span>.log(favoriteFood)<br><br><span class="hljs-keyword">const</span> &#123;name, ...rest&#125; = personOne;<br><span class="hljs-keyword">const</span> &#123;<span class="hljs-attr">address</span>:&#123;city&#125;&#125; = personOne;<br><span class="hljs-built_in">console</span>.log(name);<br><span class="hljs-built_in">console</span>.log(rest);<br><span class="hljs-built_in">console</span>.log(city);  <span class="hljs-comment">// Somewhere</span><br><br><span class="hljs-keyword">const</span> personThree = &#123;...personOne, ...personTwo&#125;;   <span class="hljs-comment">// 前者属性覆盖后者</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;personThree&#x27;</span>, personThree)<br><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printUser</span>(<span class="hljs-params">&#123;name, age&#125;</span>) </span>&#123;  <span class="hljs-comment">// 解构大法...而不会再用user.name  user.age</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Name is:<span class="hljs-subst">$&#123;name&#125;</span>. Age is <span class="hljs-subst">$&#123;age&#125;</span>`</span>)<br>&#125;<br><br>printUser<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript Array 笔记</title>
+    <url>/2021/10/20/JavaScript-Array-%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>看代码</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">const <span class="hljs-built_in">items</span> = [<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Bike&#x27;</span>,     price: <span class="hljs-number">100</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;TV&#x27;</span>,       price: <span class="hljs-number">200</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Album&#x27;</span>,    price: <span class="hljs-number">10</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Book&#x27;</span>,     price: <span class="hljs-number">5</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Phone&#x27;</span>,    price: <span class="hljs-number">500</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Computer&#x27;</span>, price: <span class="hljs-number">1000</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Keyboard&#x27;</span>, price: <span class="hljs-number">25</span>&#125;,<br>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效"><a href="#filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效" class="headerlink" title="filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)"></a>filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> filteredItems = items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span>;     <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名"><a href="#map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名" class="headerlink" title="map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)"></a>map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)</h4><figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const itemNames = items.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-type">item</span><span class="hljs-built_in">.name</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了"><a href="#find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了" class="headerlink" title="find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)"></a>find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> foundItem = items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.name === <span class="hljs-string">&#x27;Book&#x27;</span>    <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="forEach-–-gt-不返回新内容。会对原数组继续修改"><a href="#forEach-–-gt-不返回新内容。会对原数组继续修改" class="headerlink" title="forEach –&gt; 不返回新内容。会对原数组继续修改"></a>forEach –&gt; 不返回新内容。会对原数组继续修改</h4><figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf"><span class="hljs-built_in">items</span>.<span class="hljs-keyword">forEach</span>(item =&gt; &#123;<br>  item.<span class="hljs-built_in">name</span> = <span class="hljs-string">&#x27;jack&#x27;</span><br>  console.<span class="hljs-built_in">log</span>(item.<span class="hljs-built_in">name</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素"><a href="#some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素" class="headerlink" title="some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)"></a>some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.some(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件"><a href="#every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件" class="headerlink" title="every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)"></a>every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.every(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和"><a href="#reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和" class="headerlink" title="reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)"></a>reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const total = items.reduce(<span class="hljs-function"><span class="hljs-params">(currentTotal, item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> currentTotal + item.price<br>&#125;, <span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>Reduce 具体讲解</strong></p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">const numbers = [<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> n of numbers) &#123;<br>    <span class="hljs-built_in">sum</span> += n;<br>&#125;<br><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">sum</span>);   // <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+
+<p>–&gt; 使用 reduce</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> numbers = [1, -1, 2, 3]<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 两个参数</span><br><span class="hljs-comment"> * 参数一：回调函数 (此回调函数必须有返回值。且返回值赋值新一次迭代的accmulator)</span><br><span class="hljs-comment"> * 参数二：一个值, 作为accmulator的初始值 (如果参数二不写，则数组第一个元素作为accmulator的初始值)</span><br><span class="hljs-comment"> * 效果： 迭代调用reduce的数组的每一个元素 即 currentValue(从数组第一个元素开始)</span><br><span class="hljs-comment"> */</span><br>let <span class="hljs-keyword">sum</span> = numbers.reduce((accmulator, currentValue) =&gt; &#123;<br>  <span class="hljs-comment">// 注意：这里是要有返回值才行的...</span><br>  <span class="hljs-comment">// 返回值赋值给accmulator</span><br>  <span class="hljs-keyword">return</span> accmulator + currentValue<br>&#125;, 0)<br><br><span class="hljs-comment">// 上述执行过程</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 1</span><br><span class="hljs-comment"> *    accmulator: 1     currentValue: -1</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 2</span><br><span class="hljs-comment"> *    accmulator: 2     currentValue: 3</span><br><span class="hljs-comment"> *    accmulator: 5     打断施法...</span><br><span class="hljs-comment"> */</span><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">sum</span>);   <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值"><a href="#includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值" class="headerlink" title="includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值"></a>includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值</h4><figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> items = [1, 2, 3, 4, 5]<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">total</span> = items.includes(2)<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -451,7 +481,7 @@
 </body>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -484,77 +514,10 @@
 <p>这样之后，我的 <code>IdSelect</code> 组件的类型属性就会丰富很多…</p>
 ]]></content>
       <categories>
-        <category>React</category>
-      </categories>
-      <tags>
-        <tag>基本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaScript Array 笔记</title>
-    <url>/2021/10/20/JavaScript-Array-%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>看代码</p>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">const <span class="hljs-built_in">items</span> = [<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Bike&#x27;</span>,     price: <span class="hljs-number">100</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;TV&#x27;</span>,       price: <span class="hljs-number">200</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Album&#x27;</span>,    price: <span class="hljs-number">10</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Book&#x27;</span>,     price: <span class="hljs-number">5</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Phone&#x27;</span>,    price: <span class="hljs-number">500</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Computer&#x27;</span>, price: <span class="hljs-number">1000</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Keyboard&#x27;</span>, price: <span class="hljs-number">25</span>&#125;,<br>]<br></code></pre></td></tr></table></figure>
-
-<h4 id="filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效"><a href="#filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效" class="headerlink" title="filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)"></a>filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> filteredItems = items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span>;     <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名"><a href="#map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名" class="headerlink" title="map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)"></a>map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)</h4><figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const itemNames = items.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-type">item</span><span class="hljs-built_in">.name</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了"><a href="#find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了" class="headerlink" title="find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)"></a>find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> foundItem = items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.name === <span class="hljs-string">&#x27;Book&#x27;</span>    <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="forEach-–-gt-不返回新内容。会对原数组继续修改"><a href="#forEach-–-gt-不返回新内容。会对原数组继续修改" class="headerlink" title="forEach –&gt; 不返回新内容。会对原数组继续修改"></a>forEach –&gt; 不返回新内容。会对原数组继续修改</h4><figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf"><span class="hljs-built_in">items</span>.<span class="hljs-keyword">forEach</span>(item =&gt; &#123;<br>  item.<span class="hljs-built_in">name</span> = <span class="hljs-string">&#x27;jack&#x27;</span><br>  console.<span class="hljs-built_in">log</span>(item.<span class="hljs-built_in">name</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素"><a href="#some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素" class="headerlink" title="some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)"></a>some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.some(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件"><a href="#every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件" class="headerlink" title="every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)"></a>every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.every(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br><br></code></pre></td></tr></table></figure>
-
-<h4 id="reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和"><a href="#reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和" class="headerlink" title="reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)"></a>reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const total = items.reduce(<span class="hljs-function"><span class="hljs-params">(currentTotal, item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> currentTotal + item.price<br>&#125;, <span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
-
-<p><strong>Reduce 具体讲解</strong></p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">const numbers = [<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> n of numbers) &#123;<br>    <span class="hljs-built_in">sum</span> += n;<br>&#125;<br><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">sum</span>);   // <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
-
-<p>–&gt; 使用 reduce</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> numbers = [1, -1, 2, 3]<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 两个参数</span><br><span class="hljs-comment"> * 参数一：回调函数 (此回调函数必须有返回值。且返回值赋值新一次迭代的accmulator)</span><br><span class="hljs-comment"> * 参数二：一个值, 作为accmulator的初始值 (如果参数二不写，则数组第一个元素作为accmulator的初始值)</span><br><span class="hljs-comment"> * 效果： 迭代调用reduce的数组的每一个元素 即 currentValue(从数组第一个元素开始)</span><br><span class="hljs-comment"> */</span><br>let <span class="hljs-keyword">sum</span> = numbers.reduce((accmulator, currentValue) =&gt; &#123;<br>  <span class="hljs-comment">// 注意：这里是要有返回值才行的...</span><br>  <span class="hljs-comment">// 返回值赋值给accmulator</span><br>  <span class="hljs-keyword">return</span> accmulator + currentValue<br>&#125;, 0)<br><br><span class="hljs-comment">// 上述执行过程</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 1</span><br><span class="hljs-comment"> *    accmulator: 1     currentValue: -1</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 2</span><br><span class="hljs-comment"> *    accmulator: 2     currentValue: 3</span><br><span class="hljs-comment"> *    accmulator: 5     打断施法...</span><br><span class="hljs-comment"> */</span><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">sum</span>);   <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值"><a href="#includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值" class="headerlink" title="includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值"></a>includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值</h4><figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> items = [1, 2, 3, 4, 5]<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">total</span> = items.includes(2)<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
+        <category>React篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SOLID Design Principles</title>
-    <url>/2021/11/04/SOLID-Design-Principles/</url>
-    <content><![CDATA[<h3 id="Single-Responsibility-Principle-唯一的-负责-原则"><a href="#Single-Responsibility-Principle-唯一的-负责-原则" class="headerlink" title="Single Responsibility Principle (唯一的 负责 原则)"></a>Single Responsibility Principle (唯一的 负责 原则)</h3><p>一个函数或一个类只能有一个原因去进行自身代码更改…<br>在 js 中用多函数(每个函数只能有一个功能)以及<code>ES Module</code>模块化来实现</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">maxCalories</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-built_in">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">trackCalories</span>(<span class="hljs-params">calorieCount</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.currentCalories &gt; <span class="hljs-built_in">this</span>.maxCalories) &#123;<br>      <span class="hljs-built_in">this</span>.logCalorieSurplus()<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>上述这个类看似非常正常完美…但事实上是有局限性的…<br>我们可以看见…这个类有两个方法：<code>trackCalories</code>、<code>logCalorieSurplus</code>。 我可以在这个类修改这两个函数…需求来了我有可能会在这个类中修改<code>trackCalories</code>函数或者修改<code>logCalorieSurplus</code>函数。但是当一个类有非常多这样的类。那么需求一来我就去修改这些…只会让代码变得非常臃肿且不好维护。更严重的是代码<strong>复用性</strong>太差</p>
-<p><code>Single Responsibility Principle</code> 的原则是一个函数或一个类只能有一个原因去解析自身代码修改</p>
-<figure class="highlight coq"><table><tr><td class="code"><pre><code class="hljs coq">之前的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br><br>利用ES <span class="hljs-keyword">Module</span>的特性<br><br>升级后的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br>   |<span class="hljs-type">- logger</span>.js<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* logger.js */</span><br><span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span><span class="hljs-params">(info)</span></span> &#123;<br>  console<span class="hljs-selector-class">.log</span>(info)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">/* CalorieTracker.js */</span><br><span class="hljs-keyword">import</span> logCalorieSurplus from <span class="hljs-string">&#x27;./logger.js&#x27;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span>(maxCalories) &#123;<br>    <span class="hljs-keyword">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-keyword">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  trackCalories(calorieCount) &#123;<br>    <span class="hljs-keyword">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentCalories &gt; <span class="hljs-keyword">this</span>.maxCalories) &#123;<br>      logCalorieSurplus(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>现在 <code>logCalorieSurplus</code> 已经模块化…可以在任何文件中去使用…复用性大大提高</p>
-<p>而且现在的<code>CalorieTracker</code>只需管理<code>trackCalories</code>这一个函数… <code>logCalorieSurplus</code>函数也只会因自身想改变而改变… 都遵循了<strong>Single Responsibility Principle (唯一的 负责 原则)</strong></p>
-<h3 id="Open-Closed-Principle"><a href="#Open-Closed-Principle" class="headerlink" title="Open/Closed Principle"></a>Open/Closed Principle</h3><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> printQuiz(questions) &#123;<br>  questions.<span class="hljs-keyword">forEach</span>(question =&gt; &#123;<br>    console.log(question.<span class="hljs-keyword">type</span>);<br>    switch (question.<span class="hljs-keyword">type</span>) &#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;boolean&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>        console.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;multipleChoice&#x27;</span>:<br>        question.<span class="hljs-keyword">options</span>.<span class="hljs-keyword">forEach</span>((<span class="hljs-keyword">option</span>, <span class="hljs-keyword">index</span>) =&gt; &#123;<br>          console.log(`$&#123;<span class="hljs-keyword">index</span> + <span class="hljs-number">1</span>&#125;. $&#123;<span class="hljs-keyword">option</span>&#125;`);<br>        &#125;)<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;text&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>        break;<br>    &#125;<br>    console.log(<span class="hljs-string">&#x27;+++++++++&#x27;</span>);<br>  &#125;)<br>&#125;<br><br>const questions = [<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;boolean&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;This video is useful.&#x27;</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;multipleChoice&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    <span class="hljs-keyword">options</span>: [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;text&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span><br>  &#125;<br>]<br><br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
-
-<p>上述代码看着非常正常…但是还是思考下…如果当<code>questions</code>的数组元素增加，则既要更改<code>questions</code>的内容，又要更改<code>printQuiz</code>。 灵活性相当的差劲…</p>
-<p>开始升级…</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// ------------- 问题 ---------------</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooleanQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultipleChoiceQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description, options</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description<br>    <span class="hljs-built_in">this</span>.options = options<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.options.forEach(<span class="hljs-function">(<span class="hljs-params">option, index</span>) =&gt;</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;index + <span class="hljs-number">1</span>&#125;</span>. <span class="hljs-subst">$&#123;option&#125;</span>`</span>);<br>    &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printQuiz</span>(<span class="hljs-params">questions</span>) </span>&#123;<br>  questions.forEach(<span class="hljs-function"><span class="hljs-params">question</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(question.description);<br>    question.printQuestionChoices()<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;&#x27;</span>);<br>  &#125;)<br>&#125;<br><br><span class="hljs-keyword">const</span> questions = [<br>  <span class="hljs-keyword">new</span> BooleanQuestion(<span class="hljs-string">&#x27;This video is useful.&#x27;</span>),<br>  <span class="hljs-keyword">new</span> MultipleChoiceQuestion(<br>    <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  ),<br>  <span class="hljs-keyword">new</span> TestQuestion(<span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span>)<br>]<br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
-
-<p>现在，我对<code>question</code>的<strong>增删改查</strong>变得易如反掌…<br>将长长的 <strong>switch…case</strong> 打断…</p>
-<blockquote>
-<p>当前感觉 Open/Closed Principle 就是用来解决 长长的’switch…case 的…’</p>
-</blockquote>
-<h3 id="Liskov-Substitution-Principle"><a href="#Liskov-Substitution-Principle" class="headerlink" title="Liskov Substitution Principle"></a>Liskov Substitution Principle</h3><p>—&gt; 这个原则似乎更加的偏向面向对象…</p>
-]]></content>
-      <tags>
-        <tag>优质代码</tag>
       </tags>
   </entry>
   <entry>
@@ -603,10 +566,45 @@
 <figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">// 创建一个空集合</span><br>let set1 = <span class="hljs-keyword">new</span> Set();<br><br><span class="hljs-comment">// 添加元素</span><br>set1.<span class="hljs-built_in">add</span>(<span class="hljs-string">&#x27;a&#x27;</span>)<br>set1.<span class="hljs-built_in">add</span>(<span class="hljs-string">&#x27;c&#x27;</span>)<br><br>console.<span class="hljs-built_in">log</span>(set1);<br>console.<span class="hljs-built_in">log</span>(set1.has(<span class="hljs-string">&#x27;b&#x27;</span>));  <span class="hljs-comment">// 集合中是否含有 &#x27;b&#x27;</span><br>set1.delete(<span class="hljs-string">&#x27;c&#x27;</span>);    <span class="hljs-comment">// 删除 &#x27;c&#x27;</span><br>set1.<span class="hljs-built_in">add</span>(<span class="hljs-string">&#x27;a&#x27;</span>);       <span class="hljs-comment">// 因为重复，所以只保留一个</span><br>console.<span class="hljs-built_in">log</span>(set1);<br>console.<span class="hljs-built_in">log</span>(set1.<span class="hljs-built_in">size</span>);   <span class="hljs-comment">// 元素个数</span><br>set1.<span class="hljs-built_in">clear</span>();        <span class="hljs-comment">// 清空集合</span><br>console.<span class="hljs-built_in">log</span>(set1);<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SOLID Design Principles</title>
+    <url>/2021/11/04/SOLID-Design-Principles/</url>
+    <content><![CDATA[<h3 id="Single-Responsibility-Principle-唯一的-负责-原则"><a href="#Single-Responsibility-Principle-唯一的-负责-原则" class="headerlink" title="Single Responsibility Principle (唯一的 负责 原则)"></a>Single Responsibility Principle (唯一的 负责 原则)</h3><p>一个函数或一个类只能有一个原因去进行自身代码更改…<br>在 js 中用多函数(每个函数只能有一个功能)以及<code>ES Module</code>模块化来实现</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">maxCalories</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-built_in">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">trackCalories</span>(<span class="hljs-params">calorieCount</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.currentCalories &gt; <span class="hljs-built_in">this</span>.maxCalories) &#123;<br>      <span class="hljs-built_in">this</span>.logCalorieSurplus()<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述这个类看似非常正常完美…但事实上是有局限性的…<br>我们可以看见…这个类有两个方法：<code>trackCalories</code>、<code>logCalorieSurplus</code>。 我可以在这个类修改这两个函数…需求来了我有可能会在这个类中修改<code>trackCalories</code>函数或者修改<code>logCalorieSurplus</code>函数。但是当一个类有非常多这样的类。那么需求一来我就去修改这些…只会让代码变得非常臃肿且不好维护。更严重的是代码<strong>复用性</strong>太差</p>
+<p><code>Single Responsibility Principle</code> 的原则是一个函数或一个类只能有一个原因去解析自身代码修改</p>
+<figure class="highlight coq"><table><tr><td class="code"><pre><code class="hljs coq">之前的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br><br>利用ES <span class="hljs-keyword">Module</span>的特性<br><br>升级后的文件夹：<br>   |<span class="hljs-type">- CalorieTracker</span>.js<br>   |<span class="hljs-type">- logger</span>.js<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* logger.js */</span><br><span class="hljs-function"><span class="hljs-title">logCalorieSurplus</span><span class="hljs-params">(info)</span></span> &#123;<br>  console<span class="hljs-selector-class">.log</span>(info)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">/* CalorieTracker.js */</span><br><span class="hljs-keyword">import</span> logCalorieSurplus from <span class="hljs-string">&#x27;./logger.js&#x27;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CalorieTracker</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span>(maxCalories) &#123;<br>    <span class="hljs-keyword">this</span>.maxCalories = maxCalories;<br>    <span class="hljs-keyword">this</span>.currentCalories = <span class="hljs-number">0</span>;<br>  &#125;<br><br>  trackCalories(calorieCount) &#123;<br>    <span class="hljs-keyword">this</span>.currentCalories += calorieCount;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentCalories &gt; <span class="hljs-keyword">this</span>.maxCalories) &#123;<br>      logCalorieSurplus(<span class="hljs-string">&#x27;Max calories exceeded&#x27;</span>)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在 <code>logCalorieSurplus</code> 已经模块化…可以在任何文件中去使用…复用性大大提高</p>
+<p>而且现在的<code>CalorieTracker</code>只需管理<code>trackCalories</code>这一个函数… <code>logCalorieSurplus</code>函数也只会因自身想改变而改变… 都遵循了<strong>Single Responsibility Principle (唯一的 负责 原则)</strong></p>
+<h3 id="Open-Closed-Principle"><a href="#Open-Closed-Principle" class="headerlink" title="Open/Closed Principle"></a>Open/Closed Principle</h3><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> printQuiz(questions) &#123;<br>  questions.<span class="hljs-keyword">forEach</span>(question =&gt; &#123;<br>    console.log(question.<span class="hljs-keyword">type</span>);<br>    switch (question.<span class="hljs-keyword">type</span>) &#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;boolean&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>        console.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;multipleChoice&#x27;</span>:<br>        question.<span class="hljs-keyword">options</span>.<span class="hljs-keyword">forEach</span>((<span class="hljs-keyword">option</span>, <span class="hljs-keyword">index</span>) =&gt; &#123;<br>          console.log(`$&#123;<span class="hljs-keyword">index</span> + <span class="hljs-number">1</span>&#125;. $&#123;<span class="hljs-keyword">option</span>&#125;`);<br>        &#125;)<br>        break;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;text&#x27;</span>:<br>        console.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>        break;<br>    &#125;<br>    console.log(<span class="hljs-string">&#x27;+++++++++&#x27;</span>);<br>  &#125;)<br>&#125;<br><br>const questions = [<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;boolean&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;This video is useful.&#x27;</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;multipleChoice&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    <span class="hljs-keyword">options</span>: [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  &#125;,<br>  &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;text&#x27;</span>,<br>    description: <span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span><br>  &#125;<br>]<br><br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
+
+<p>上述代码看着非常正常…但是还是思考下…如果当<code>questions</code>的数组元素增加，则既要更改<code>questions</code>的内容，又要更改<code>printQuiz</code>。 灵活性相当的差劲…</p>
+<p>开始升级…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// ------------- 问题 ---------------</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooleanQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1. True&#x27;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2. False&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultipleChoiceQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description, options</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description<br>    <span class="hljs-built_in">this</span>.options = options<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.options.forEach(<span class="hljs-function">(<span class="hljs-params">option, index</span>) =&gt;</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;index + <span class="hljs-number">1</span>&#125;</span>. <span class="hljs-subst">$&#123;option&#125;</span>`</span>);<br>    &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestQuestion</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">description</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.description = description;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-title">printQuestionChoices</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Answer:____________________&#x27;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printQuiz</span>(<span class="hljs-params">questions</span>) </span>&#123;<br>  questions.forEach(<span class="hljs-function"><span class="hljs-params">question</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(question.description);<br>    question.printQuestionChoices()<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;&#x27;</span>);<br>  &#125;)<br>&#125;<br><br><span class="hljs-keyword">const</span> questions = [<br>  <span class="hljs-keyword">new</span> BooleanQuestion(<span class="hljs-string">&#x27;This video is useful.&#x27;</span>),<br>  <span class="hljs-keyword">new</span> MultipleChoiceQuestion(<br>    <span class="hljs-string">&#x27;What is your favorite language?&#x27;</span>,<br>    [<span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-string">&#x27;HTML&#x27;</span>, <span class="hljs-string">&#x27;JS&#x27;</span>, <span class="hljs-string">&#x27;Python&#x27;</span>]<br>  ),<br>  <span class="hljs-keyword">new</span> TestQuestion(<span class="hljs-string">&#x27;Describe your favorite JS feature.&#x27;</span>)<br>]<br>printQuiz(questions);<br></code></pre></td></tr></table></figure>
+
+<p>现在，我对<code>question</code>的<strong>增删改查</strong>变得易如反掌…<br>将长长的 <strong>switch…case</strong> 打断…</p>
+<blockquote>
+<p>当前感觉 Open/Closed Principle 就是用来解决 长长的’switch…case 的…’</p>
+</blockquote>
+<h3 id="Liskov-Substitution-Principle"><a href="#Liskov-Substitution-Principle" class="headerlink" title="Liskov Substitution Principle"></a>Liskov Substitution Principle</h3><p>—&gt; 这个原则似乎更加的偏向面向对象…</p>
+]]></content>
+      <categories>
+        <category>Clean Code篇</category>
+      </categories>
+      <tags>
+        <tag>优质代码</tag>
       </tags>
   </entry>
   <entry>
@@ -628,7 +626,7 @@
 <h4 id="注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的"><a href="#注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的" class="headerlink" title="注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的"></a>注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的</h4><p>例如：<code>src/index.js</code> –&gt; 改为 ts 版本应该为 –&gt; <code>src/index.tsx(不是 ts)</code> 因为如果是 <code>ts</code> 的话 <code>&lt;React.StrictMode&gt;</code>这里会报错…需要的是 <code>tsx</code> 语法…</p>
 ]]></content>
       <categories>
-        <category>TypeScript</category>
+        <category>TypeScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -660,6 +658,9 @@
 <p>为了推论上述的 await 代码跳转问题。有了下述代码论证</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1&#x27;</span>);<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func1</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2&#x27;</span>);<br>  <span class="hljs-comment">// fetch是异步请求。所以执行栈先跳转到当前async函数外面的同步代码并且fetch以及其附带的then、catch执行完后继续执行赋值代码给data以及完成下一行代码</span><br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;3&#x27;</span>);<br>&#125;<br>func1();<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func2</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// console.log(&#x27;4&#x27;);是同步代码</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;4&#x27;</span>);<br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/2&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())<br>  .then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(json))<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;5&#x27;</span>);<br>&#125;<br>func2();<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;6&#x27;</span>);<br><span class="hljs-comment">// 执行结果顺序：</span><br><span class="hljs-comment">// 1、 2、 4、 6、 api_1、 3、 api_2、 5</span><br><span class="hljs-comment">// 或者 1、 2、 4、 6、 api_2、 5、 api_1、 3 (因为可能第二个接口请求数据更快所以更快完成await代码...)</span><br></code></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
       <tags>
         <tag>基本功</tag>
       </tags>
@@ -706,7 +707,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">axios.interceptors.request.use(<br>  <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<br>      <span class="hljs-string">`<span class="hljs-subst">$&#123;config.method.toUpperCase()&#125;</span> request sent to <span class="hljs-subst">$&#123;config.url&#125;</span> at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()&#125;</span>`</span><br>    )<br>    <span class="hljs-keyword">return</span> config;<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);<br>  &#125;<br>)<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -724,6 +725,9 @@
 
 <p>可见…组合的方法，非常方便且灵活~</p>
 ]]></content>
+      <categories>
+        <category>Clean Code篇</category>
+      </categories>
       <tags>
         <tag>优质代码</tag>
       </tags>
@@ -769,6 +773,9 @@
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-06-at-9.15.52-AM.3bf5galhx4w0.gif" alt="页面效果展示5"></p>
 ]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
       <tags>
         <tag>高级</tag>
       </tags>
@@ -777,6 +784,9 @@
     <title>css 命名艺术</title>
     <url>/2021/11/06/css-%E5%91%BD%E5%90%8D%E8%89%BA%E6%9C%AF/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
       <tags>
         <tag>优质代码</tag>
       </tags>
@@ -817,7 +827,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -853,6 +863,9 @@
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-02-at-10.12.54-AM.3hitoqy72fo0.gif" alt="解决问题后的效果图"></p>
 ]]></content>
+      <categories>
+        <category>React篇</category>
+      </categories>
       <tags>
         <tag>高级</tag>
       </tags>
@@ -875,7 +888,7 @@
 <h4 id="tailwindcss-和-antd-结合在-react-项目中使用"><a href="#tailwindcss-和-antd-结合在-react-项目中使用" class="headerlink" title="tailwindcss 和 antd 结合在 react 项目中使用"></a>tailwindcss 和 antd 结合在 react 项目中使用</h4><p>注意：tailwindcss 和 antd 是能够良好的适配的。只不过最好 tailwindcss 开启 <code>!important</code><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-26-at-8.23.00-PM.65an1pz1gzg0.png" alt="tailwindcss-antd"></p>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>CSS篇</category>
       </categories>
       <tags>
         <tag>高级</tag>
@@ -975,7 +988,7 @@
 <p>为何我给回调的参数加上<code>param</code>，则打印变为<code>undefined</code>？ 这其实是函数作用域在作怪！如果在回调的参数上加<code>param</code>，则该回调内的所有<code>param</code>(包括回调的参数<code>param</code>)都是属于该回调函数的作用域内。而很明显，回调里的<code>param</code>没有赋上任何值，所以是<code>undefined</code>。如果参数没有 param，则回调内的<code>param</code>就会向上一层作用域内寻找<code>param</code>，恰好 fn 里有定义<code>param</code> 且值为 123。</p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>高级</tag>
@@ -1023,6 +1036,9 @@
 </blockquote>
 <p><strong>HeroKu</strong><br>让代码部署到网络上…</p>
 ]]></content>
+      <categories>
+        <category>全栈篇</category>
+      </categories>
       <tags>
         <tag>全栈</tag>
       </tags>
@@ -1033,7 +1049,7 @@
     <content><![CDATA[<h4 id="不要写较长的函数-写短小精悍的函数才是硬道理…"><a href="#不要写较长的函数-写短小精悍的函数才是硬道理…" class="headerlink" title="不要写较长的函数 写短小精悍的函数才是硬道理…"></a>不要写较长的函数 写短小精悍的函数才是硬道理…</h4><h4 id="性能优化与可读性和可维护性比较"><a href="#性能优化与可读性和可维护性比较" class="headerlink" title="性能优化与可读性和可维护性比较"></a>性能优化与可读性和可维护性比较</h4><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-21-at-2.22.22-PM.35sbd0m61g00.png" alt="一个40年程序员如是说"></p>
 ]]></content>
       <categories>
-        <category>IT随笔</category>
+        <category>程序员素养篇</category>
       </categories>
       <tags>
         <tag>随笔</tag>
@@ -1053,6 +1069,9 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>使用的工具篇</category>
+      </categories>
       <tags>
         <tag>奇淫技巧</tag>
       </tags>
@@ -1223,7 +1242,7 @@
 </body>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -1284,6 +1303,9 @@
 </blockquote>
 <p>抽象出像工厂流水线一样的处理数据的标准过程</p>
 ]]></content>
+      <categories>
+        <category>编译原理</category>
+      </categories>
   </entry>
   <entry>
     <title>计算机网络</title>
@@ -1501,6 +1523,9 @@
 - IP 协议
 </code></pre>
 ]]></content>
+      <categories>
+        <category>计算机网络篇</category>
+      </categories>
   </entry>
   <entry>
     <title>计算机通识-随笔</title>
@@ -1526,6 +1551,9 @@
 <li><code>control + c</code> 终止当前终端</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>程序员素养篇</category>
+      </categories>
   </entry>
   <entry>
     <title>项目中的小技巧</title>
@@ -1549,6 +1577,12 @@
 
 <p>写代码不是为了追求短…而是为了让代码的可读性更好。就算有段代码写 10 行其实可以压缩成 1 行，但是如果写 10 行可读性大于写 1 行。那也应该选择写 10 行的代码…</p>
 ]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>奇淫技巧</tag>
+      </tags>
   </entry>
   <entry>
     <title>一篇文章解决Promise...then，async/await执行顺序类型题</title>
@@ -1713,7 +1747,7 @@
 </body>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
