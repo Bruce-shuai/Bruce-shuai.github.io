@@ -372,41 +372,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript Array 笔记</title>
-    <url>/2021/10/20/JavaScript-Array-%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>看代码</p>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">const <span class="hljs-built_in">items</span> = [<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Bike&#x27;</span>,     price: <span class="hljs-number">100</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;TV&#x27;</span>,       price: <span class="hljs-number">200</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Album&#x27;</span>,    price: <span class="hljs-number">10</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Book&#x27;</span>,     price: <span class="hljs-number">5</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Phone&#x27;</span>,    price: <span class="hljs-number">500</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Computer&#x27;</span>, price: <span class="hljs-number">1000</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Keyboard&#x27;</span>, price: <span class="hljs-number">25</span>&#125;,<br>]<br></code></pre></td></tr></table></figure>
-
-<h4 id="filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效"><a href="#filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效" class="headerlink" title="filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)"></a>filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> filteredItems = items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span>;     <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名"><a href="#map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名" class="headerlink" title="map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)"></a>map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)</h4><figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const itemNames = items.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-type">item</span><span class="hljs-built_in">.name</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了"><a href="#find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了" class="headerlink" title="find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)"></a>find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> foundItem = items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.name === <span class="hljs-string">&#x27;Book&#x27;</span>    <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="forEach-–-gt-不返回新内容。会对原数组继续修改"><a href="#forEach-–-gt-不返回新内容。会对原数组继续修改" class="headerlink" title="forEach –&gt; 不返回新内容。会对原数组继续修改"></a>forEach –&gt; 不返回新内容。会对原数组继续修改</h4><figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf"><span class="hljs-built_in">items</span>.<span class="hljs-keyword">forEach</span>(item =&gt; &#123;<br>  item.<span class="hljs-built_in">name</span> = <span class="hljs-string">&#x27;jack&#x27;</span><br>  console.<span class="hljs-built_in">log</span>(item.<span class="hljs-built_in">name</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素"><a href="#some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素" class="headerlink" title="some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)"></a>some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.some(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件"><a href="#every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件" class="headerlink" title="every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)"></a>every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.every(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br><br></code></pre></td></tr></table></figure>
-
-<h4 id="reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和"><a href="#reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和" class="headerlink" title="reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)"></a>reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const total = items.reduce(<span class="hljs-function"><span class="hljs-params">(currentTotal, item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> currentTotal + item.price<br>&#125;, <span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
-
-<p><strong>Reduce 具体讲解</strong></p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">const numbers = [<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> n of numbers) &#123;<br>    <span class="hljs-built_in">sum</span> += n;<br>&#125;<br><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">sum</span>);   // <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
-
-<p>–&gt; 使用 reduce</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> numbers = [1, -1, 2, 3]<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 两个参数</span><br><span class="hljs-comment"> * 参数一：回调函数 (此回调函数必须有返回值。且返回值赋值新一次迭代的accmulator)</span><br><span class="hljs-comment"> * 参数二：一个值, 作为accmulator的初始值 (如果参数二不写，则数组第一个元素作为accmulator的初始值)</span><br><span class="hljs-comment"> * 效果： 迭代调用reduce的数组的每一个元素 即 currentValue(从数组第一个元素开始)</span><br><span class="hljs-comment"> */</span><br>let <span class="hljs-keyword">sum</span> = numbers.reduce((accmulator, currentValue) =&gt; &#123;<br>  <span class="hljs-comment">// 注意：这里是要有返回值才行的...</span><br>  <span class="hljs-comment">// 返回值赋值给accmulator</span><br>  <span class="hljs-keyword">return</span> accmulator + currentValue<br>&#125;, 0)<br><br><span class="hljs-comment">// 上述执行过程</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 1</span><br><span class="hljs-comment"> *    accmulator: 1     currentValue: -1</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 2</span><br><span class="hljs-comment"> *    accmulator: 2     currentValue: 3</span><br><span class="hljs-comment"> *    accmulator: 5     打断施法...</span><br><span class="hljs-comment"> */</span><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">sum</span>);   <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值"><a href="#includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值" class="headerlink" title="includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值"></a>includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值</h4><figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> items = [1, 2, 3, 4, 5]<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">total</span> = items.includes(2)<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JSON 基础知识 &amp; Ajax 基础知识</title>
     <url>/2021/10/08/JSON&amp;Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h4 id="为什么我们要把对象转化为字符串？"><a href="#为什么我们要把对象转化为字符串？" class="headerlink" title="为什么我们要把对象转化为字符串？"></a>为什么我们要把对象转化为字符串？</h4><ol>
@@ -479,6 +444,41 @@
     });
   </script>
 </body>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript Array 笔记</title>
+    <url>/2021/10/20/JavaScript-Array-%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>看代码</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">const <span class="hljs-built_in">items</span> = [<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Bike&#x27;</span>,     price: <span class="hljs-number">100</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;TV&#x27;</span>,       price: <span class="hljs-number">200</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Album&#x27;</span>,    price: <span class="hljs-number">10</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Book&#x27;</span>,     price: <span class="hljs-number">5</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Phone&#x27;</span>,    price: <span class="hljs-number">500</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Computer&#x27;</span>, price: <span class="hljs-number">1000</span>&#125;,<br>  &#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;Keyboard&#x27;</span>, price: <span class="hljs-number">25</span>&#125;,<br>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效"><a href="#filter-–-gt-返回一个新的数组-对于排除原来数组的某些元素有奇效" class="headerlink" title="filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)"></a>filter –&gt; 返回一个新的数组(对于排除原来数组的某些元素有奇效)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> filteredItems = items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span>;     <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名"><a href="#map-–-gt-返回一个新的数组-对于修改或展现原来数组的每一个元素部分内容而闻名" class="headerlink" title="map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)"></a>map –&gt; 返回一个新的数组(对于修改或展现原来数组的每一个元素部分内容而闻名)</h4><figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const itemNames = items.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-type">item</span><span class="hljs-built_in">.name</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了"><a href="#find-–-gt-返回原来数组中的某个特定元素-对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了" class="headerlink" title="find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)"></a>find –&gt; 返回原来数组中的某个特定元素(对于查找原来数组特定元素有奇效。不过只要查找到一个元素后，就不会继续往后查找了)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> foundItem = items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.name === <span class="hljs-string">&#x27;Book&#x27;</span>    <span class="hljs-comment">// boolean</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="forEach-–-gt-不返回新内容。会对原数组继续修改"><a href="#forEach-–-gt-不返回新内容。会对原数组继续修改" class="headerlink" title="forEach –&gt; 不返回新内容。会对原数组继续修改"></a>forEach –&gt; 不返回新内容。会对原数组继续修改</h4><figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf"><span class="hljs-built_in">items</span>.<span class="hljs-keyword">forEach</span>(item =&gt; &#123;<br>  item.<span class="hljs-built_in">name</span> = <span class="hljs-string">&#x27;jack&#x27;</span><br>  console.<span class="hljs-built_in">log</span>(item.<span class="hljs-built_in">name</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素"><a href="#some-–-gt-返回一个布尔值-用于查看数组中是否有满足特定条件的元素" class="headerlink" title="some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)"></a>some –&gt; 返回一个布尔值(用于查看数组中是否有满足特定条件的元素)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.some(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件"><a href="#every-–-gt-返回一个布尔值-类似-some，但是是查看数组中是否每一个元素都满足特定条件" class="headerlink" title="every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)"></a>every –&gt; 返回一个布尔值(类似 some，但是是查看数组中是否每一个元素都满足特定条件)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const hasInexpensiveItems = items.every(<span class="hljs-function"><span class="hljs-params">(item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> item.price &lt;= <span class="hljs-number">100</span><br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和"><a href="#reduce-–-gt-返回一个值-常用于计算数组元素中某个属性的和" class="headerlink" title="reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)"></a>reduce –&gt; 返回一个值(常用于计算数组元素中某个属性的和)</h4><figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">const total = items.reduce(<span class="hljs-function"><span class="hljs-params">(currentTotal, item)</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> currentTotal + item.price<br>&#125;, <span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>Reduce 具体讲解</strong></p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">const numbers = [<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> n of numbers) &#123;<br>    <span class="hljs-built_in">sum</span> += n;<br>&#125;<br><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">sum</span>);   // <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+
+<p>–&gt; 使用 reduce</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> numbers = [1, -1, 2, 3]<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 两个参数</span><br><span class="hljs-comment"> * 参数一：回调函数 (此回调函数必须有返回值。且返回值赋值新一次迭代的accmulator)</span><br><span class="hljs-comment"> * 参数二：一个值, 作为accmulator的初始值 (如果参数二不写，则数组第一个元素作为accmulator的初始值)</span><br><span class="hljs-comment"> * 效果： 迭代调用reduce的数组的每一个元素 即 currentValue(从数组第一个元素开始)</span><br><span class="hljs-comment"> */</span><br>let <span class="hljs-keyword">sum</span> = numbers.reduce((accmulator, currentValue) =&gt; &#123;<br>  <span class="hljs-comment">// 注意：这里是要有返回值才行的...</span><br>  <span class="hljs-comment">// 返回值赋值给accmulator</span><br>  <span class="hljs-keyword">return</span> accmulator + currentValue<br>&#125;, 0)<br><br><span class="hljs-comment">// 上述执行过程</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 1</span><br><span class="hljs-comment"> *    accmulator: 1     currentValue: -1</span><br><span class="hljs-comment"> *    accmulator: 0     currentValue: 2</span><br><span class="hljs-comment"> *    accmulator: 2     currentValue: 3</span><br><span class="hljs-comment"> *    accmulator: 5     打断施法...</span><br><span class="hljs-comment"> */</span><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">sum</span>);   <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值"><a href="#includes-—-解决简单版的-find-问题。参数为简单数组。返回布尔值" class="headerlink" title="includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值"></a>includes — 解决简单版的 find 问题。参数为简单数组。返回布尔值</h4><figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> items = [1, 2, 3, 4, 5]<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">total</span> = items.includes(2)<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>JavaScript篇</category>
@@ -730,6 +730,34 @@
       </categories>
       <tags>
         <tag>优质代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css-color hsl</title>
+    <url>/2021/11/06/css-color-hsl/</url>
+    <content><![CDATA[<p>不多说…以后如果是自己来控制颜色，就采用 hsl()方法，而不是使用#十六进制、rgba、rgb 这种颜色控制…</p>
+<p>hsl 的优势，下面我一一列举</p>
+<h4 id="hsl-能让你具体把握住当前你想要的颜色大致是什么颜色"><a href="#hsl-能让你具体把握住当前你想要的颜色大致是什么颜色" class="headerlink" title="hsl 能让你具体把握住当前你想要的颜色大致是什么颜色"></a>hsl 能让你具体把握住当前你想要的颜色大致是什么颜色</h4><p>如果是十六进制、或者 rgb 你是不好掌握当前是什么颜色的。例如</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* css样式 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;<br>&#125;<br><span class="hljs-selector-class">.sixteen</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#3b3b3a</span>;         <span class="hljs-comment">// 你能看出这是什么颜色？？</span><br>&#125;<br><span class="hljs-selector-class">.rgb</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: rgb(<span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">58</span>); <span class="hljs-comment">// 你能看出这是什么颜色？？</span><br>&#125;<br><br><span class="hljs-comment">/* html样式 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;sixteen box&quot;</span>&gt;&lt;/div&gt;<br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;rgb box&quot;</span>&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>现在开始重点</strong><br><code>hsl</code> –&gt; <code>hue(色彩)</code>、<code>saturation(色彩饱和度)</code>、<code>lightness(明亮度)</code> 由这三者来控制</p>
+<p><code>hue</code>的范围在 0<del>360<br><code>saturation</code>的范围在 0</del>100%<br><code>lightness</code>的范围在 0~100%</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-4.02.10-PM.7a8g6h4qx7w0.png" alt="hue"><br>hue 为 0 的时候是红色 为 360 的时候是紫色。刚好一圈…<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-4.03.59-PM.1j8w24mrjxz4.png" alt="saturation"><br>saturation 为 100%的时候是正常饱和色度<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-06-at-4.04.46-PM.2vzblim4bai0.png" alt="lightness"><br>lightness 为 50%的时候是正常亮度 0% 永远是黑色 100% 永远是白色</p>
+<h4 id="hsl-的使用案例"><a href="#hsl-的使用案例" class="headerlink" title="hsl 的使用案例"></a>hsl 的使用案例</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* css样式 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.hsl</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>)<br>&#125;<br><span class="hljs-selector-class">.hsl</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">30%</span>)  <span class="hljs-comment">/* 颜色会更暗 */</span><br>&#125;<br><br><span class="hljs-comment">/* html样式 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;hsl box&quot;</span>&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-06-at-4.09.56-PM.7bpmbivvdrg0.gif" alt="hsl效果显示1"></p>
+<p>试想，如果使用的是十六进制或者 rgb。想要颜色更暗淡…是有多麻烦…</p>
+<p><strong>下面结合 css variable 来让功能更加的强大</strong></p>
+<figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* css样式 */</span><br>.<span class="hljs-built_in">box</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  margin: <span class="hljs-number">10</span>px;<br>&#125;<br><br>.hsl &#123;<br>  --<span class="hljs-built_in">hue</span>: <span class="hljs-number">200</span>;<br>  --<span class="hljs-built_in">saturation</span>: <span class="hljs-number">100</span>%;<br>  --lightness: <span class="hljs-number">50</span>%;<br>    <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(var(--<span class="hljs-built_in">hue</span>), var(--<span class="hljs-built_in">saturation</span>), var(--lightness))<br>&#125;<br>.hsl:hover &#123;<br>  --lightness: <span class="hljs-number">30</span>%<br>&#125;<br><br><span class="hljs-comment">/* html样式 */</span><br>&lt;div class=<span class="hljs-string">&quot;hsl box&quot;</span>&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-06-at-4.17.09-PM.6pt7vgotqk40.gif" alt="hsl效果显示2"></p>
+<p>这样，对于控制颜色更加的方便灵活了。</p>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -1176,35 +1204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>有效括号问题</title>
-    <url>/2021/10/07/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">/**<br> * 题目描述：给定一个只包括<span class="hljs-string">&#x27;(&#x27;</span>, <span class="hljs-string">&#x27;)&#x27;</span>, <span class="hljs-string">&#x27;&#123;&#x27;</span>, <span class="hljs-string">&#x27;&#125;&#x27;</span>, <span class="hljs-string">&#x27;[&#x27;</span>, <span class="hljs-string">&#x27;]&#x27;</span>的字符串,判断字符串是否有效<br> * <br> * 记住一个规律： 括号成立 意味着 对称性<br> */<br><br><span class="hljs-regexp">//</span> 括号问题，我们一般首选栈来做    ----&gt;   对称性<br><br><span class="hljs-regexp">//</span> 用一个map来维护左括号和右括号的对应关系<br><span class="hljs-regexp">//</span> map 关系真的非常的好用<br><span class="hljs-regexp">//</span> const leftToRight = &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br><span class="hljs-regexp">//</span> &#125;<br><br><span class="hljs-regexp">//</span> /**<br><span class="hljs-regexp">//</span>  * @param &#123;string&#125; s<br><span class="hljs-regexp">//</span>  * @return &#123;boolean&#125;<br><span class="hljs-regexp">//</span>  */<br><br><span class="hljs-regexp">//</span> <span class="hljs-regexp">//</span> 有些细节 我<br><span class="hljs-regexp">//</span> const isValid = <span class="hljs-keyword">function</span>(s) &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 结合题意，空字符串无条件判断为 true<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">if</span> (!s) &#123;<br><span class="hljs-regexp">//</span>     return true;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 初始化 stack 数组<br><span class="hljs-regexp">//</span>   const stack = [];<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; s.length; i++) &#123;<br><span class="hljs-regexp">//</span>     <span class="hljs-keyword">if</span> (s[i] === <span class="hljs-string">&#x27;(&#x27;</span> || s[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || s[i] === <span class="hljs-string">&#x27;[&#x27;</span>) &#123;<br><span class="hljs-regexp">//</span>       stack.push(leftToRight[s[i]])<br><span class="hljs-regexp">//</span>     &#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-regexp">//</span>       <span class="hljs-regexp">//</span> 但是人家写的是!stack.length || stack.pop() !== ch  好奇怪...<br><span class="hljs-regexp">//</span>       <span class="hljs-keyword">if</span> (stack.pop() !== s[i]) &#123;<br><span class="hljs-regexp">//</span>         return false;<br><span class="hljs-regexp">//</span>       &#125;<br><span class="hljs-regexp">//</span>     &#125;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 若所有的括号都能配对成功，那么最后栈应该是空的<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> return !stack.length;<br><br><span class="hljs-regexp">//</span>   return true;<br><span class="hljs-regexp">//</span> &#125;<br><br><br><br><span class="hljs-regexp">//</span> 注意： ))))(((( 这种是错误的。左括号必须以正确的顺序闭合<br><br><span class="hljs-regexp">//</span> 对象映射大法 ----&gt;  注意！变量名千万搞错不能出错, 有时要好好检查检查自己的变量名...<br>const leftToRight = &#123;<br>  <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br>  <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br>&#125;<br><br><br><span class="hljs-regexp">//</span> 我自己想到一个方法。设置两个栈。一个栈放入左侧符号的映射。  一个栈放入右侧符号。 两个栈进行一一对比<br>const isValid = (str) =&gt; &#123;<br>  const stack = [];<br>  <span class="hljs-regexp">//</span> 数组缓存<br>  let len = str.length;<br><br>  <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>    <span class="hljs-keyword">if</span> (str[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || str[i] === <span class="hljs-string">&#x27;[&#x27;</span> || str[i] === <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>      stack.push(leftToRight[str[i]]);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length !== <span class="hljs-number">0</span> &amp;&amp; str[i] === stack[stack.length - <span class="hljs-number">1</span>]) &#123;<br>      stack.pop();<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length === <span class="hljs-number">0</span>) &#123;<br>      return false;<br>    &#125;<br>  &#125;<br>  return stack.length === <span class="hljs-number">0</span>;<br>&#125;<br><br>console.log(<span class="hljs-string">&#x27;test&#x27;</span>, isValid(<span class="hljs-string">&#x27;()[]&#123;&#125;&#x27;</span>));<br></code></pre></td></tr></table></figure>
-
-<head>
-  ..
-  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
-  ...
-</head>
-<body>
-  ...
-  <div id="waline"></div>
-  <script>
-    Waline({
-      el: '#waline',
-       avatar: 'monsterid',
-      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
-    });
-  </script>
-</body>]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-        <category>栈类相关问题</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浅拷贝和深拷贝</title>
     <url>/2021/10/08/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
     <content><![CDATA[<blockquote>
@@ -1246,6 +1245,35 @@
       </categories>
       <tags>
         <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有效括号问题</title>
+    <url>/2021/10/07/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">/**<br> * 题目描述：给定一个只包括<span class="hljs-string">&#x27;(&#x27;</span>, <span class="hljs-string">&#x27;)&#x27;</span>, <span class="hljs-string">&#x27;&#123;&#x27;</span>, <span class="hljs-string">&#x27;&#125;&#x27;</span>, <span class="hljs-string">&#x27;[&#x27;</span>, <span class="hljs-string">&#x27;]&#x27;</span>的字符串,判断字符串是否有效<br> * <br> * 记住一个规律： 括号成立 意味着 对称性<br> */<br><br><span class="hljs-regexp">//</span> 括号问题，我们一般首选栈来做    ----&gt;   对称性<br><br><span class="hljs-regexp">//</span> 用一个map来维护左括号和右括号的对应关系<br><span class="hljs-regexp">//</span> map 关系真的非常的好用<br><span class="hljs-regexp">//</span> const leftToRight = &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br><span class="hljs-regexp">//</span>   <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br><span class="hljs-regexp">//</span> &#125;<br><br><span class="hljs-regexp">//</span> /**<br><span class="hljs-regexp">//</span>  * @param &#123;string&#125; s<br><span class="hljs-regexp">//</span>  * @return &#123;boolean&#125;<br><span class="hljs-regexp">//</span>  */<br><br><span class="hljs-regexp">//</span> <span class="hljs-regexp">//</span> 有些细节 我<br><span class="hljs-regexp">//</span> const isValid = <span class="hljs-keyword">function</span>(s) &#123;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 结合题意，空字符串无条件判断为 true<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">if</span> (!s) &#123;<br><span class="hljs-regexp">//</span>     return true;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 初始化 stack 数组<br><span class="hljs-regexp">//</span>   const stack = [];<br><span class="hljs-regexp">//</span>   <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; s.length; i++) &#123;<br><span class="hljs-regexp">//</span>     <span class="hljs-keyword">if</span> (s[i] === <span class="hljs-string">&#x27;(&#x27;</span> || s[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || s[i] === <span class="hljs-string">&#x27;[&#x27;</span>) &#123;<br><span class="hljs-regexp">//</span>       stack.push(leftToRight[s[i]])<br><span class="hljs-regexp">//</span>     &#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-regexp">//</span>       <span class="hljs-regexp">//</span> 但是人家写的是!stack.length || stack.pop() !== ch  好奇怪...<br><span class="hljs-regexp">//</span>       <span class="hljs-keyword">if</span> (stack.pop() !== s[i]) &#123;<br><span class="hljs-regexp">//</span>         return false;<br><span class="hljs-regexp">//</span>       &#125;<br><span class="hljs-regexp">//</span>     &#125;<br><span class="hljs-regexp">//</span>   &#125;<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> 若所有的括号都能配对成功，那么最后栈应该是空的<br><span class="hljs-regexp">//</span>   <span class="hljs-regexp">//</span> return !stack.length;<br><br><span class="hljs-regexp">//</span>   return true;<br><span class="hljs-regexp">//</span> &#125;<br><br><br><br><span class="hljs-regexp">//</span> 注意： ))))(((( 这种是错误的。左括号必须以正确的顺序闭合<br><br><span class="hljs-regexp">//</span> 对象映射大法 ----&gt;  注意！变量名千万搞错不能出错, 有时要好好检查检查自己的变量名...<br>const leftToRight = &#123;<br>  <span class="hljs-string">&quot;&#123;&quot;</span>:<span class="hljs-string">&quot;&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;(&quot;</span>:<span class="hljs-string">&quot;)&quot;</span>,<br>  <span class="hljs-string">&quot;[&quot;</span>:<span class="hljs-string">&quot;]&quot;</span><br>&#125;<br><br><br><span class="hljs-regexp">//</span> 我自己想到一个方法。设置两个栈。一个栈放入左侧符号的映射。  一个栈放入右侧符号。 两个栈进行一一对比<br>const isValid = (str) =&gt; &#123;<br>  const stack = [];<br>  <span class="hljs-regexp">//</span> 数组缓存<br>  let len = str.length;<br><br>  <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>    <span class="hljs-keyword">if</span> (str[i] === <span class="hljs-string">&#x27;&#123;&#x27;</span> || str[i] === <span class="hljs-string">&#x27;[&#x27;</span> || str[i] === <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>      stack.push(leftToRight[str[i]]);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length !== <span class="hljs-number">0</span> &amp;&amp; str[i] === stack[stack.length - <span class="hljs-number">1</span>]) &#123;<br>      stack.pop();<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stack.length === <span class="hljs-number">0</span>) &#123;<br>      return false;<br>    &#125;<br>  &#125;<br>  return stack.length === <span class="hljs-number">0</span>;<br>&#125;<br><br>console.log(<span class="hljs-string">&#x27;test&#x27;</span>, isValid(<span class="hljs-string">&#x27;()[]&#123;&#125;&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<head>
+  ..
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  ...
+</head>
+<body>
+  ...
+  <div id="waline"></div>
+  <script>
+    Waline({
+      el: '#waline',
+       avatar: 'monsterid',
+      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
+    });
+  </script>
+</body>]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>栈类相关问题</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
