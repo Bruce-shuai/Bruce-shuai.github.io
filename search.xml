@@ -82,6 +82,48 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS Units</title>
+    <url>/2021/11/08/CSS-Units/</url>
+    <content><![CDATA[<p>一篇文章解决 <code>px</code>、<code>%</code>、<code>vh</code>、<code>vw</code>、<code>em</code>、<code>rem</code> 这些 css 常用单位</p>
+<h4 id="最简单的单位：px-VS"><a href="#最简单的单位：px-VS" class="headerlink" title="最简单的单位：px VS %"></a>最简单的单位：<code>px</code> VS <code>%</code></h4><p>px 是一个绝对单位，无论在什么情况下，1px 的大小一定是固定的<br>% 是一个相对单位，1%的大小是相对它的父元素的</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;<span class="hljs-regexp">/div&gt;   /</span>* 这里的百分比是相对于父元素的大小 */<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-hundred-pixels</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.15.20-PM.png" alt="px和%"></p>
+<h4 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h4><p><code>1vw</code>等于当前所在的屏幕宽度的 <strong>1/100</strong><br><code>1vh</code>等于当前所在的屏幕高度的 <strong>1/100</strong></p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-vw</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50vw</span>;<br>&#125;<br><br><span class="hljs-selector-class">.twenty-five-vh</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">25vh</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-08-at-11.25.56-PM.gif" alt="vh&amp;vw"></p>
+<p>可见，无论当前页面如何放大或缩小。50vw 就一定是当前页面的 50%的宽度。25vh 就一定是当前页面的 25%的高度<br>这两者都不受<strong>父元素</strong>的影响</p>
+<h4 id="有点难度的单位：rem-和-em"><a href="#有点难度的单位：rem-和-em" class="headerlink" title="有点难度的单位：rem 和 em"></a>有点难度的单位：rem 和 em</h4><p>首先，rem 和 em 都是<strong>相对单位</strong></p>
+<p><strong>注意：</strong><br><code>rem</code>是相对 root 的<code>font-size</code>的大小<br><code>em</code>是相对 父元素的<code>font-size</code>的大小</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.one-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.44.58-PM.png" alt="em&amp;rem"></p>
+<p>事实上，root 元素的默认<code>font-size</code>是<code>16px</code>。对于分界线上面的字体大小，都是根据 root 来安排的大小。但是，分界线后面的字体大小。<code>rem</code>是根据<code>root</code>的 <code>font-size</code>，<code>em</code>是根据父元素的 <code>font-size</code></p>
+<p>如果 root 中<code>font-size</code>是<code>16px</code>, 则在任何位置：<code>font-size: 1rem === font-size: 16px</code><br>如果 root 中<code>font-size</code>是<code>16px</code>, 某一个父元素的<code>font-size: 20px</code>,则子元素的：<code>font-size: 1em === font-size: 20px</code></p>
+<p>所以，建议主要使用<code>rem</code>。因为<code>em</code>在嵌套的 font-size 中是非常难以把控的…</p>
+<hr>
+<p>当然，<code>rem</code>、<code>em</code>虽说是根据<code>font-size</code>的大小来定义的。但同样能作为盒子的长和宽的单位</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><br>.icon-container.large &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.em-icon &#123;<br>  width: <span class="hljs-number">1</span>em;<br>  height: <span class="hljs-number">1</span>em;<br>&#125;<br><br>.rem-icon &#123;<br>  width: <span class="hljs-number">1</span>rem;<br>  height: <span class="hljs-number">1</span>rem;<br>&#125;<br><br>.icon &#123;<br>  background-color: red;<br>&#125;<br><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.43.51-AM.png" alt="em和rem在盒子上的效果"></p>
+<p>可见，<code>1rem</code>的 icon 效果无论在哪都一样，但是<code>em</code>的 icon 会根据父元素的<code>font-size</code>的大小而做出相应的改变…</p>
+<p>有上述代码其实我们可以知道：<br><code>em</code> 最好用于规定盒子的大小，而不是用来控制字体的大小<br><code>rem</code>确恰恰适合规定字体的大小…</p>
+<h4 id="font-size-的-单位"><a href="#font-size-的-单位" class="headerlink" title="font-size 的%单位"></a>font-size 的%单位</h4><p>在文章的上面我已讲述了，<code>%</code>是根据父元素来进行比较大小的。而<code>em</code>同样如此。事实上，<code>font-size</code>中使用<code>%</code>单位和使用<code>em</code>单位效果是一样的</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.two-em &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>em;<br>&#125;<br><br>.two-rem &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>rem;<br>&#125;<br><br>.two-hundred &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">200</span>%;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.52.38-AM.png" alt="em VS %"></p>
+<p>可见，<code>1em === 100%</code></p>
+<h4 id="更多关于-css-units-内容细节"><a href="#更多关于-css-units-内容细节" class="headerlink" title="更多关于 css units 内容细节"></a>更多关于 css units 内容细节</h4><p><code>imooc网</code> 西门老舅 第六章有相关具体解析…</p>
+]]></content>
+  </entry>
+  <entry>
     <title>CSS-in-JS</title>
     <url>/2021/10/10/CSS-in-JS/</url>
     <content><![CDATA[<blockquote>
@@ -200,48 +242,6 @@
       <tags>
         <tag>基本功</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>CSS Units</title>
-    <url>/2021/11/08/CSS-Units/</url>
-    <content><![CDATA[<p>一篇文章解决 <code>px</code>、<code>%</code>、<code>vh</code>、<code>vw</code>、<code>em</code>、<code>rem</code> 这些 css 常用单位</p>
-<h4 id="最简单的单位：px-VS"><a href="#最简单的单位：px-VS" class="headerlink" title="最简单的单位：px VS %"></a>最简单的单位：<code>px</code> VS <code>%</code></h4><p>px 是一个绝对单位，无论在什么情况下，1px 的大小一定是固定的<br>% 是一个相对单位，1%的大小是相对它的父元素的</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;<span class="hljs-regexp">/div&gt;   /</span>* 这里的百分比是相对于父元素的大小 */<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-hundred-pixels</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.15.20-PM.png" alt="px和%"></p>
-<h4 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h4><p><code>1vw</code>等于当前所在的屏幕宽度的 <strong>1/100</strong><br><code>1vh</code>等于当前所在的屏幕高度的 <strong>1/100</strong></p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-vw</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50vw</span>;<br>&#125;<br><br><span class="hljs-selector-class">.twenty-five-vh</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">25vh</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-08-at-11.25.56-PM.gif" alt="vh&amp;vw"></p>
-<p>可见，无论当前页面如何放大或缩小。50vw 就一定是当前页面的 50%的宽度。25vh 就一定是当前页面的 25%的高度<br>这两者都不受<strong>父元素</strong>的影响</p>
-<h4 id="有点难度的单位：rem-和-em"><a href="#有点难度的单位：rem-和-em" class="headerlink" title="有点难度的单位：rem 和 em"></a>有点难度的单位：rem 和 em</h4><p>首先，rem 和 em 都是<strong>相对单位</strong></p>
-<p><strong>注意：</strong><br><code>rem</code>是相对 root 的<code>font-size</code>的大小<br><code>em</code>是相对 父元素的<code>font-size</code>的大小</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.one-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.44.58-PM.png" alt="em&amp;rem"></p>
-<p>事实上，root 元素的默认<code>font-size</code>是<code>16px</code>。对于分界线上面的字体大小，都是根据 root 来安排的大小。但是，分界线后面的字体大小。<code>rem</code>是根据<code>root</code>的 <code>font-size</code>，<code>em</code>是根据父元素的 <code>font-size</code></p>
-<p>如果 root 中<code>font-size</code>是<code>16px</code>, 则在任何位置：<code>font-size: 1rem === font-size: 16px</code><br>如果 root 中<code>font-size</code>是<code>16px</code>, 某一个父元素的<code>font-size: 20px</code>,则子元素的：<code>font-size: 1em === font-size: 20px</code></p>
-<p>所以，建议主要使用<code>rem</code>。因为<code>em</code>在嵌套的 font-size 中是非常难以把控的…</p>
-<hr>
-<p>当然，<code>rem</code>、<code>em</code>虽说是根据<code>font-size</code>的大小来定义的。但同样能作为盒子的长和宽的单位</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><br>.icon-container.large &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.em-icon &#123;<br>  width: <span class="hljs-number">1</span>em;<br>  height: <span class="hljs-number">1</span>em;<br>&#125;<br><br>.rem-icon &#123;<br>  width: <span class="hljs-number">1</span>rem;<br>  height: <span class="hljs-number">1</span>rem;<br>&#125;<br><br>.icon &#123;<br>  background-color: red;<br>&#125;<br><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.43.51-AM.png" alt="em和rem在盒子上的效果"></p>
-<p>可见，<code>1rem</code>的 icon 效果无论在哪都一样，但是<code>em</code>的 icon 会根据父元素的<code>font-size</code>的大小而做出相应的改变…</p>
-<p>有上述代码其实我们可以知道：<br><code>em</code> 最好用于规定盒子的大小，而不是用来控制字体的大小<br><code>rem</code>确恰恰适合规定字体的大小…</p>
-<h4 id="font-size-的-单位"><a href="#font-size-的-单位" class="headerlink" title="font-size 的%单位"></a>font-size 的%单位</h4><p>在文章的上面我已讲述了，<code>%</code>是根据父元素来进行比较大小的。而<code>em</code>同样如此。事实上，<code>font-size</code>中使用<code>%</code>单位和使用<code>em</code>单位效果是一样的</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.two-em &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>em;<br>&#125;<br><br>.two-rem &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>rem;<br>&#125;<br><br>.two-hundred &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">200</span>%;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.52.38-AM.png" alt="em VS %"></p>
-<p>可见，<code>1em === 100%</code></p>
-<h4 id="更多关于-css-units-内容细节"><a href="#更多关于-css-units-内容细节" class="headerlink" title="更多关于 css units 内容细节"></a>更多关于 css units 内容细节</h4><p><code>imooc网</code> 西门老舅 第六章有相关具体解析…</p>
-]]></content>
   </entry>
   <entry>
     <title>Calc css</title>
@@ -999,11 +999,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>grid 布局解析</title>
-    <url>/2021/11/09/grid-%E5%B8%83%E5%B1%80%E8%A7%A3%E6%9E%90/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2021/10/06/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -1020,6 +1015,11 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>grid 布局解析</title>
+    <url>/2021/11/09/grid-%E5%B8%83%E5%B1%80%E8%A7%A3%E6%9E%90/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>post请求和get请求的区别</title>
@@ -1043,6 +1043,30 @@
       </categories>
       <tags>
         <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tailwindcss-注意项</title>
+    <url>/2021/10/23/tailwindcss-%E6%B3%A8%E6%84%8F%E9%A1%B9/</url>
+    <content><![CDATA[<blockquote>
+<p>当前版本：<code>v2.2.15</code></p>
+</blockquote>
+<p>我 TM 发现，当前版本似乎是不支持<code>rotate3d</code>的。<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/3B9771F637F41E091B4FCE198208DFD9.76wwwpk22l40.png" alt="不支持y轴旋转"></p>
+<p>不知道有什么解决办法没…???</p>
+<p>有解决办法：自己去自定义功能</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-9.53.54-AM.5u636vtv5gk0.png" alt="自定义功能"></p>
+<hr>
+<blockquote>
+<p>tailwindcss 新特性：<code>JIT</code></p>
+</blockquote>
+<p>按需加载~也是在性能层次上的升级…<br><a href="https://tailwindcss.com/docs/just-in-time-mode">文档</a></p>
+<h4 id="tailwindcss-和-antd-结合在-react-项目中使用"><a href="#tailwindcss-和-antd-结合在-react-项目中使用" class="headerlink" title="tailwindcss 和 antd 结合在 react 项目中使用"></a>tailwindcss 和 antd 结合在 react 项目中使用</h4><p>注意：tailwindcss 和 antd 是能够良好的适配的。只不过最好 tailwindcss 开启 <code>!important</code><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-26-at-8.23.00-PM.65an1pz1gzg0.png" alt="tailwindcss-antd"></p>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -1077,30 +1101,6 @@
 ]]></content>
       <categories>
         <category>React篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tailwindcss-注意项</title>
-    <url>/2021/10/23/tailwindcss-%E6%B3%A8%E6%84%8F%E9%A1%B9/</url>
-    <content><![CDATA[<blockquote>
-<p>当前版本：<code>v2.2.15</code></p>
-</blockquote>
-<p>我 TM 发现，当前版本似乎是不支持<code>rotate3d</code>的。<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/3B9771F637F41E091B4FCE198208DFD9.76wwwpk22l40.png" alt="不支持y轴旋转"></p>
-<p>不知道有什么解决办法没…???</p>
-<p>有解决办法：自己去自定义功能</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-9.53.54-AM.5u636vtv5gk0.png" alt="自定义功能"></p>
-<hr>
-<blockquote>
-<p>tailwindcss 新特性：<code>JIT</code></p>
-</blockquote>
-<p>按需加载~也是在性能层次上的升级…<br><a href="https://tailwindcss.com/docs/just-in-time-mode">文档</a></p>
-<h4 id="tailwindcss-和-antd-结合在-react-项目中使用"><a href="#tailwindcss-和-antd-结合在-react-项目中使用" class="headerlink" title="tailwindcss 和 antd 结合在 react 项目中使用"></a>tailwindcss 和 antd 结合在 react 项目中使用</h4><p>注意：tailwindcss 和 antd 是能够良好的适配的。只不过最好 tailwindcss 开启 <code>!important</code><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-26-at-8.23.00-PM.65an1pz1gzg0.png" alt="tailwindcss-antd"></p>
-]]></content>
-      <categories>
-        <category>CSS篇</category>
       </categories>
       <tags>
         <tag>高级</tag>
@@ -1268,6 +1268,60 @@
       </tags>
   </entry>
   <entry>
+    <title>各种第三方库和有用的网站</title>
+    <url>/2021/10/26/%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</url>
+    <content><![CDATA[<ul>
+<li><p>创建各种随机的 id: <a href="https://www.npmjs.com/package/uuid">uuid</a></p>
+</li>
+<li><p>临时 email(temporary email): <a href="https://temp-mail.org/en?__cf_chl_captcha_tk__=pmd_3sqozgesOjiYQawAofglAq5i.BE_BIbQ82jvwb2nUWE-1635683915-0-gqNtZGzNAyWjcnBszQdR">temp-mail</a><br>(方便测试邮箱登录、修改密码等功能)</p>
+</li>
+<li><p>免费实现用户认证 firebase：<a href="https://console.firebase.google.com/">firebase</a></p>
+</li>
+<li><p>在 react 中使用方便的 icon：<a href="https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react">fontawesome</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>使用的工具篇</category>
+      </categories>
+      <tags>
+        <tag>奇淫技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在html文件里快速加载js代码</title>
+    <url>/2021/11/09/%E5%A6%82%E4%BD%95%E5%9C%A8html%E6%96%87%E4%BB%B6%E9%87%8C%E5%BF%AB%E9%80%9F%E5%8A%A0%E8%BD%BDjs%E4%BB%A3%E7%A0%81/</url>
+    <content><![CDATA[<blockquote>
+<p>本篇博客力图用最简单的操作提升页面加载性能</p>
+</blockquote>
+<p>首先来看看浏览器是如何解析我们的<code>html文件</code></p>
+<p>当浏览器把 html 文件下载后<br>从 html 文件顶部开始解析。当解析到例如<code>&lt;img&gt;</code>,<code>&lt;link&gt;</code>等资源的时候，就会根据指定的路径进行文件下载(一般是发送网络请求)…<br>但是浏览器会进行往下解析(即便图片仍在下载中)，所以<code>&lt;img&gt;</code>等资源下载不会造成 html 解析过程中的阻塞</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html文件 */<br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.png&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    ...<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>但是解析<code>js文件</code>就不同了。浏览器遇见 script 标签，然后网络请求，进行 js 文件的下载并解析，这个过程中，浏览器不会进行往<code>&lt;script&gt;</code>标签后进行解析，直到<code>&lt;script&gt;</code>里面的代码解析完成之后才会接着往下执行…</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html文件 */<br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.png&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    ...<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>所以，在大多数情况下，你不会看见<code>script标签</code>放在 html 文件的头部，相反，你会看见<code>script标签</code>是放在 html 文件的尾部。因为放在头部。html 主要的页面显示内容还没渲染，而仅仅开始渲染页面头部的 js 文件去了，极大的降低了用户的体验。</p>
+<p>现在来展示一下浏览器解析 html 文件的过程</p>
+<figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">HTML文件解析：|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;             <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">（js文件解析完之后，继续解析剩余的html文件)</span><br> <span class="hljs-comment">JS</span> <span class="hljs-comment">文件下载：</span>               <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">代码解析：</span>                       <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>事实上，上面这种普通使用 script 标签的方式，让整个页面在浏览器中的解析效果太慢了)</p>
+<p>下面，试试用 script 标签中的 async 属性，提升下 html 文件的解析速度</p>
+<h4 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck">                             <span class="hljs-comment">Async</span><br><span class="hljs-comment">HTML文件解析：|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;     <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">文件下载：</span>                <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">代码解析：</span>                         <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span>&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p>要创建<code>async script</code>标签，请使用<code>&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;</code>。此属性应用于 script 标签时，将使<code>script标签</code>的工作原理与解析器的<code>img标签</code>相同。这意味着解析器将在后台下载<code>JavaScript</code>，并继续正常解析，无需等待。下载<code>JavaScript</code>后，解析器将立即停止解析并执行<code>JavaScript</code>。这对任何不依赖于任何其他内容的小型<code>JavaScript</code>代码都非常有用，但由于<code>JavaScript</code>在下载后立即执行，解析器仍然可能会被需要很长时间才能执行的<code>JavaScript</code>延迟。<code>async</code>属性的另一个巨大缺点是，<code>JavaScript</code>文件的执行顺序不是 HTML 中定义的。相反，它们按下载顺序执行。这意味着更快的下载文件总是在下载速度较慢的文件之前执行，如果<code>JavaScript</code>文件相互依赖，这可能会导致大问题</p>
+<h4 id="Defer"><a href="#Defer" class="headerlink" title="Defer"></a>Defer</h4><figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">                             Defer<br>HTML文件解析：<span class="hljs-string">|--------------------------&gt;</span><br> JS 文件下载：                <span class="hljs-string">|-----&gt;</span><br> JS 代码解析：                            <span class="hljs-string">|---&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>与<code>async</code>属性类似，<code>defer</code>属性不会停止解析以下载<code>JavaScript</code>。要创建<code>defer script</code>标签，请使用<code>&lt;script defer src=&quot;script.js&quot;&gt;&lt;/script&gt;</code>。解析器将在后台下载<code>JavaScript</code>并继续解析，但与<code>async</code>属性不同，<code>defer</code>属性要到整个 HTML 文档解析后才会执行<code>JavaScript</code>。这意味着使用<code>defer</code>属性，HTML 解析永远不会因下载<code>JavaScript</code>而延迟。此外，由于<code>JavaScript</code>是在解析整个 HTML 文档后执行的，因此维护<code>JavaScript</code>文件的顺序。这是因为所有<code>defer</code>属性<code>JavaScript</code>文件都必须下载，然后才能执行其中任何文件。因此，我喜欢<code>defer</code>属性，几乎每次加载<code>JavaScript</code>时都会使用它。这是因为我可以把我的<code>JavaScript</code>放在 HTML 的头部，这样它就可以尽快开始下载，它还保留了我的<code>JavaScript</code>的顺序，就像在没有<code>defer</code>属性的情况下加载一样。使用<code>defer</code>属性加载<code>JavaScript</code>本质上与在正文末尾加载<code>JavaScript</code>相同，但它会更快地开始下载。此外，由于<code>JavaScript</code>的执行总是在 HTML 解析后完成，因此无需等待文档就绪事件。执行<code>defer</code>属性<code>script</code>标签时，文档将始终准备就绪</p>
+<hr>
+<p>事实上，我认为 <code>defer</code>的优势是非常明显的。首先是<code>按顺序执行JS代码</code>并且执行效率要比单纯的 <code>script标签</code>更高</p>
+<h4 id="浏览器兼容性问题"><a href="#浏览器兼容性问题" class="headerlink" title="浏览器兼容性问题"></a>浏览器兼容性问题</h4><p>事实上，主流浏览器都兼容<code>defer</code>、<code>async</code></p>
+]]></content>
+      <tags>
+        <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开发个人博客反思和总结</title>
     <url>/2021/10/09/%E5%BC%80%E5%8F%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8D%E6%80%9D%E5%92%8C%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h4 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h4><ol>
@@ -1340,27 +1394,6 @@
       </categories>
       <tags>
         <tag>互联网</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各种第三方库和有用的网站</title>
-    <url>/2021/10/26/%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</url>
-    <content><![CDATA[<ul>
-<li><p>创建各种随机的 id: <a href="https://www.npmjs.com/package/uuid">uuid</a></p>
-</li>
-<li><p>临时 email(temporary email): <a href="https://temp-mail.org/en?__cf_chl_captcha_tk__=pmd_3sqozgesOjiYQawAofglAq5i.BE_BIbQ82jvwb2nUWE-1635683915-0-gqNtZGzNAyWjcnBszQdR">temp-mail</a><br>(方便测试邮箱登录、修改密码等功能)</p>
-</li>
-<li><p>免费实现用户认证 firebase：<a href="https://console.firebase.google.com/">firebase</a></p>
-</li>
-<li><p>在 react 中使用方便的 icon：<a href="https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react">fontawesome</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>使用的工具篇</category>
-      </categories>
-      <tags>
-        <tag>奇淫技巧</tag>
       </tags>
   </entry>
   <entry>
@@ -1517,34 +1550,6 @@
 ]]></content>
       <categories>
         <category>编译原理</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>计算机通识-随笔</title>
-    <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
-    <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
-<li><code>pwd</code> 用于告诉你当前所在目录</li>
-<li><code>ls</code> 用于告诉你当前目录层级的所有文件</li>
-<li><code>ls -al</code></li>
-<li><code>ls -a</code></li>
-<li><code>clear</code> 清理当前终端内容</li>
-<li><code>cd</code> 进入某个文件 <code>cd ..</code> 往上一个文件走</li>
-<li><code>mkdir</code> 创建一个文件夹</li>
-<li><code>touch</code> 创建一个文件</li>
-<li><code>cp</code> 旧文件 新文件</li>
-<li><code>mv</code> 旧文件 新文件</li>
-<li>键盘上下键可以看前面自己写的命令</li>
-<li><code>rm</code> 删除一个文件</li>
-<li><code>rm -f</code> 删除一个文件夹</li>
-<li><code>rm -r</code></li>
-<li><code>vim</code> 修改文件 —&gt; <code>nano</code> 更好 vim 学习成本太高</li>
-<li><code>cat</code> 查看文件的具体内容</li>
-<li><code>echo</code></li>
-<li><code>control + c</code> 终止当前终端</li>
-</ol>
-]]></content>
-      <categories>
-        <category>程序员素养篇</category>
       </categories>
   </entry>
   <entry>
@@ -1765,6 +1770,34 @@
 ]]></content>
       <categories>
         <category>计算机网络篇</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>计算机通识-随笔</title>
+    <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
+<li><code>pwd</code> 用于告诉你当前所在目录</li>
+<li><code>ls</code> 用于告诉你当前目录层级的所有文件</li>
+<li><code>ls -al</code></li>
+<li><code>ls -a</code></li>
+<li><code>clear</code> 清理当前终端内容</li>
+<li><code>cd</code> 进入某个文件 <code>cd ..</code> 往上一个文件走</li>
+<li><code>mkdir</code> 创建一个文件夹</li>
+<li><code>touch</code> 创建一个文件</li>
+<li><code>cp</code> 旧文件 新文件</li>
+<li><code>mv</code> 旧文件 新文件</li>
+<li>键盘上下键可以看前面自己写的命令</li>
+<li><code>rm</code> 删除一个文件</li>
+<li><code>rm -f</code> 删除一个文件夹</li>
+<li><code>rm -r</code></li>
+<li><code>vim</code> 修改文件 —&gt; <code>nano</code> 更好 vim 学习成本太高</li>
+<li><code>cat</code> 查看文件的具体内容</li>
+<li><code>echo</code></li>
+<li><code>control + c</code> 终止当前终端</li>
+</ol>
+]]></content>
+      <categories>
+        <category>程序员素养篇</category>
       </categories>
   </entry>
   <entry>
