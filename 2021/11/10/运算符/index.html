@@ -18,23 +18,19 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="calc 的出现让 纯css 更加的强大 calc 基础应用123456789&#x2F;* html文件 *&#x2F;&lt;div class&#x3D;&quot;container&quot;&gt;&lt;&#x2F;div&gt;&#x2F;* css文件 *&#x2F;.container &amp;#123;  width: 100%;  height: 80px;  background-color: red;&amp;#125;   事实上，如果我想">
+  <meta name="description" content="在平常的项目中，我们会遇见这样的情况： 12345const obj &#x3D; &amp;#123;  score: 5&amp;#125;const score &#x3D; obj.score || 10;   &#x2F;&#x2F; 如果obj.score 返回false，那么score就等于10，不然就等于obj.score  但事实上会出现下面的问题：如果 12345const obj &#x3D; &amp;#123;  score: 0&amp;#125;c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Calc css">
-<meta property="og:url" content="http://example.com/2021/11/09/Calc-css/index.html">
+<meta property="og:title" content="??运算符">
+<meta property="og:url" content="http://example.com/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="calc 的出现让 纯css 更加的强大 calc 基础应用123456789&#x2F;* html文件 *&#x2F;&lt;div class&#x3D;&quot;container&quot;&gt;&lt;&#x2F;div&gt;&#x2F;* css文件 *&#x2F;.container &amp;#123;  width: 100%;  height: 80px;  background-color: red;&amp;#125;   事实上，如果我想">
+<meta property="og:description" content="在平常的项目中，我们会遇见这样的情况： 12345const obj &#x3D; &amp;#123;  score: 5&amp;#125;const score &#x3D; obj.score || 10;   &#x2F;&#x2F; 如果obj.score 返回false，那么score就等于10，不然就等于obj.score  但事实上会出现下面的问题：如果 12345const obj &#x3D; &amp;#123;  score: 0&amp;#125;c">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif">
-<meta property="article:published_time" content="2021-11-09T04:37:38.000Z">
-<meta property="article:modified_time" content="2021-11-10T14:36:56.479Z">
+<meta property="article:published_time" content="2021-11-10T07:29:15.000Z">
+<meta property="article:modified_time" content="2021-11-10T07:54:00.991Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png">
   
-  <title>Calc css - 何阳阳阳的小屋</title>
+  <title>??运算符 - 何阳阳阳的小屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -199,7 +195,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Calc css">
+            <span class="h2" id="subtitle" title="??运算符">
               
             </span>
 
@@ -209,8 +205,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-11-09 12:37" pubdate>
-        2021年11月9日 下午
+      <time datetime="2021-11-10 15:29" pubdate>
+        2021年11月10日 下午
       </time>
     </span>
   
@@ -220,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      778 字
     </span>
   
 
@@ -229,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      2 分钟
     </span>
   
 
@@ -258,34 +254,29 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Calc css</h1>
+            <h1 style="display: none">??运算符</h1>
             
             <div class="markdown-body">
-              <p><code>calc</code> 的出现让 <code>纯css</code> 更加的强大</p>
-<h4 id="calc-基础应用"><a href="#calc-基础应用" class="headerlink" title="calc 基础应用"></a>calc 基础应用</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">100</span>%;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <p>在平常的项目中，我们会遇见这样的情况：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;   <span class="hljs-comment">// 如果obj.score 返回false，那么score就等于10，不然就等于obj.score</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png" srcset="/img/loading.gif" lazyload alt="普通的一个模块"></p>
-<p>事实上，如果我想上面的这个盒子长度变为 300px 我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>但事实上会出现下面的问题：<br>如果</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;<br></code></pre></td></tr></table></figure>
 
-<p>但我如果使用<code>calc</code>。我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>我所得到的是 10 分。但是我想要 0 分 也作为有意义的值…<br>为了让 0 分变得有意义，我需要这样做</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> =  (obj.<span class="hljs-keyword">score</span> == null) ? 10 : obj.<span class="hljs-keyword">score</span>  <span class="hljs-comment">// 这里用==而不用===可以同时解决null 和 undefined这两种情况</span><br></code></pre></td></tr></table></figure>
 
-<p>甚至，我可以让 <code>calc</code> 进行嵌套操作…</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50px</span> + <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>));<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，我就可以排除<code>obj.score</code>为<code>undefined</code>和<code>null</code>却不影响<code>obj.score === 0</code>这种情况。但是，这样写太笨重了…</p>
+<p>下面来介绍本篇博客的主角 <code>??</code> 运算符</p>
+<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><p><code>??</code>运算符和<code>||</code>运算符执行逻辑很相似。但是<code>??</code>只会检查 <code>undefined/null</code><br>还是以上面我写的内容举例</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> ?? 10;  <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
 
-<p>我还可以在 <code>calc</code> 中使用不同的单位</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100%</span> - <span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>很轻松的，我就获得了 score 为 0 分…</p>
+<p>为了更全面的观察 <code>??</code> 效果，我来更具体的展示</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk">undefined ?? <span class="hljs-number">10</span> <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br>null ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br><span class="hljs-number">0</span> ?? <span class="hljs-number">10</span>         <span class="hljs-regexp">//</span> <span class="hljs-number">0</span><br>false ?? <span class="hljs-number">10</span>     <span class="hljs-regexp">//</span> false   &lt;- 这个值得注意注意<br><span class="hljs-string">&#x27;Hi&#x27;</span> ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> Hi<br><span class="hljs-number">20</span> ?? <span class="hljs-number">10</span>        <span class="hljs-regexp">//</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
 
-<p><strong>注意：calc(a - b) 操作符两边一定要留有一个空格并且 calc()这二者中间不能留空格，不然 calc 不起效果。</strong></p>
-<h4 id="calc-搭配-var-让-css-更加强大"><a href="#calc-搭配-var-让-css-更加强大" class="headerlink" title="calc 搭配 var() 让 css 更加强大"></a>calc 搭配 var() 让 css 更加强大</h4><p><code>calc</code>是可以结合<code>var()</code>的</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  --<span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">width</span>: calc(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">width</span>) * <span class="hljs-number">2</span>);<br>  <span class="hljs-built_in">height</span>: 80px;<br>  margin: <span class="hljs-number">0</span> auto;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png" srcset="/img/loading.gif" lazyload alt="calc + var"></p>
-<p>下面来进行一个有意思的(<code>calc</code> 结合 <code>var</code>)操作</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;button class=<span class="hljs-string">&quot;btn btn--primary&quot;</span>&gt;Primary&lt;/button&gt;<br>&lt;button class=<span class="hljs-string">&quot;btn btn--danger&quot;</span>&gt;Danger&lt;/button&gt;<br><span class="hljs-comment">/* css文件 */</span><br>:root &#123;<br>  --hue: <span class="hljs-number">200</span>;<br>&#125;<br><br>.btn &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 30px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">radius</span>: 15px;<br>&#125;<br><br>.btn--primary &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br>.btn--primary:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">70</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">30</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif" srcset="/img/loading.gif" lazyload alt="calc的神奇妙用"></p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>||</code>、<code>&amp;&amp;</code>、<code>??</code>可以合在一起用，但是要用括号来控制执行顺序，不然报错!!</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-number">0</span> || <span class="hljs-literal">null</span> ?? <span class="hljs-number">10</span>   <span class="hljs-comment">// 报错</span><br>(<span class="hljs-number">0</span> || <span class="hljs-literal">null</span>) ?? <span class="hljs-number">10</span> <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -306,9 +297,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/11/09/%E5%A6%82%E4%BD%95%E5%9C%A8html%E6%96%87%E4%BB%B6%E9%87%8C%E5%BF%AB%E9%80%9F%E5%8A%A0%E8%BD%BDjs%E4%BB%A3%E7%A0%81/">
+                      <a href="/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6-1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">如何在html文件里快速加载js代码</span>
+                        <span class="hidden-mobile">?.运算符</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -316,8 +307,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/09/grid-%E5%B8%83%E5%B1%80%E8%A7%A3%E6%9E%90/">
-                        <span class="hidden-mobile">grid 布局解析</span>
+                      <a href="/2021/11/10/css-%E4%B8%89%E8%A7%92%E5%BD%A2/">
+                        <span class="hidden-mobile">css 三角形</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
