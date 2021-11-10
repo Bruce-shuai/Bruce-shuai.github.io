@@ -66,6 +66,65 @@
 ]]></content>
   </entry>
   <entry>
+    <title>CSS Position</title>
+    <url>/2021/11/07/CSS-Position/</url>
+    <content><![CDATA[<p><code>position</code> 是 <code>css</code> 中一个非常重要的属性。它的作用是将元素在网页中定位。而设定值总共有 5 个。分别是 <code>static</code>、<code>absolute</code>、<code>relative</code>、<code>fixed</code> 以及 <code>sticky</code></p>
+<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><code>HTML</code> 里面所有元素的 <code>position</code> 默认值都是 <code>static</code></p>
+<p><code>static</code> 会跟随 HTML 排版的流程(flow)移动(最常见的 HTML 排版格式)(元素从上到下，非重叠的排列)<br><code>static</code>的元素对于 top、left、right、bottom 设定值不会生效</p>
+<p>例子代码：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-two</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-three</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">100</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果显示：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.06.35-PM.72mf9nnxe9k0.png" alt="static效果"></p>
+<h5 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h5><p><code>relative</code> 也会跟随 HTML 排版的流程(flow)移动。<strong>但是它比<code>static</code>多了 top、left、right、bottom 的设定。</strong><br>并且使用 relative 的模块的位置移动不影响其他模块(如果是使用了位置移动，则该模块脱离了文档流，似乎不太纯粹…)</p>
+<blockquote>
+<p>注意点：<code>relative</code> 事实上<strong>最好不要使用</strong>位置的移动，不然容易造成显示的混乱</p>
+</blockquote>
+<p>除此之外，**<code>relative</code>最重要的一个功能是在它里面的<code>absolute</code>元素会根据<code>relative</code>的位置去定位**</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br>// 其余代码部分和上述一样<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-comment">/*  进行relative操作  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">5px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.11.21-PM.1bun6g5kxrwg.png" alt="relative效果"></p>
+<h5 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h5><p>现在来看一下代码：<br>(其余代码和 static 那节没有变化)</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.24.10-PM.3bbsxkssqvi0.png" alt="absolute效果1"></p>
+<p>可见，<code>One</code> 这个<code>div元素</code>失去了宽度。原因是，<code>absolute</code>属性完完全全的让当前元素脱离了文档流, 对于其他没有设置为<code>absolute</code>的元素来说，<code>One</code>这个元素好似不存在！</p>
+<blockquote>
+<p><strong>注意点</strong>：事实上,我上面已说，<code>relative</code>不适合用位置移动。而<code>absolute</code>却是<strong>非常适合</strong>使用位置移动的！！</p>
+</blockquote>
+<p><code>absolute</code>这种方式会非常方便在你想在某个位置固定住一个元素，而其他元素不会影响这个被固定住的元素 (完全脱离文档流 + 位置的移动)</p>
+<blockquote>
+<p>还有一个<strong>注意点</strong>：absolute 的位置移动是相对于父元素的(非 static、absolute)。如果父元素是(static、absolute)的，则会进行找父元素的父元素进行看是否符合条件(非 static、absolute)。如果都不符合条件，则根据最顶层元素来进行位置的移动…</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.39.17-PM.4d2dsj8a49w.png" alt="absolute效果2"></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.41.30-PM.5stck9to3m00.png" alt="absolute效果3"></p>
+<p><strong>(absolute + relative 是绝配)</strong></p>
+<h5 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h5><p><code>fixed</code> 与 <code>absolute</code> 很相似。不同的地方有以下两个</p>
+<ol>
+<li><code>fixed</code> 会定位到荧幕中的固定位置。所以即使卷动页面，也会一直保持在那个位置</li>
+<li>即使放在<code>relative</code>页面，<code>fixed</code>元素也会根据页面，即 body 去定位，不会根据 relative 去定位(这是要在 fiex 设定了 top、left、right、bottom 等属性时才会出现的效果)</li>
+</ol>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* HTML文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt; * <span class="hljs-number">100</span><br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.child-one &#123;<br>  background-color: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80</span>%, <span class="hljs-number">50</span>%);<br>  position: fixed;<br>  bottom: <span class="hljs-number">10</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-1.59.31-PM.5f6b4g3m13w0.gif" alt="fixed效果显示"></p>
+<p>如果是 <code>absolute</code>。<code>absolute</code> 元素所在的容器(父元素)有卷轴的话，它就会随着卷动而移动<br><strong>(这是 fixed 和 absolute 二者最大的不同)</strong></p>
+<h4 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h4><p>sticky 是完美结合了 <code>relative</code> 和 <code>fixed</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: sticky;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>外表看似和 relative 效果差不多。可真正滚动滑条的时候就大大的不同了<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-2.11.58-PM.4gp9o7g2tf60.gif" alt="sticky效果"></p>
+<h5 id="sticky-效果图"><a href="#sticky-效果图" class="headerlink" title="sticky 效果图"></a>sticky 效果图</h5><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-4.45.31-PM.3ysiy6q3te40.gif" alt="sticky效果图1"><br><a href="https://codepen.io/bruce-shuai/pen/yLoKqqR?editors=1100">对应代码</a></p>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS-in-JS</title>
     <url>/2021/10/10/CSS-in-JS/</url>
     <content><![CDATA[<blockquote>
@@ -186,62 +245,19 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS Position</title>
-    <url>/2021/11/07/CSS-Position/</url>
-    <content><![CDATA[<p><code>position</code> 是 <code>css</code> 中一个非常重要的属性。它的作用是将元素在网页中定位。而设定值总共有 5 个。分别是 <code>static</code>、<code>absolute</code>、<code>relative</code>、<code>fixed</code> 以及 <code>sticky</code></p>
-<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><code>HTML</code> 里面所有元素的 <code>position</code> 默认值都是 <code>static</code></p>
-<p><code>static</code> 会跟随 HTML 排版的流程(flow)移动(最常见的 HTML 排版格式)(元素从上到下，非重叠的排列)<br><code>static</code>的元素对于 top、left、right、bottom 设定值不会生效</p>
-<p>例子代码：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-two</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-three</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">100</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>效果显示：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.06.35-PM.72mf9nnxe9k0.png" alt="static效果"></p>
-<h5 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h5><p><code>relative</code> 也会跟随 HTML 排版的流程(flow)移动。<strong>但是它比<code>static</code>多了 top、left、right、bottom 的设定。</strong><br>并且使用 relative 的模块的位置移动不影响其他模块(如果是使用了位置移动，则该模块脱离了文档流，似乎不太纯粹…)</p>
+    <title>Emotion的安装和基本使用</title>
+    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
+<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
 <blockquote>
-<p>注意点：<code>relative</code> 事实上<strong>最好不要使用</strong>位置的移动，不然容易造成显示的混乱</p>
+<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
 </blockquote>
-<p>除此之外，**<code>relative</code>最重要的一个功能是在它里面的<code>absolute</code>元素会根据<code>relative</code>的位置去定位**</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br>// 其余代码部分和上述一样<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-comment">/*  进行relative操作  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">5px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.11.21-PM.1bun6g5kxrwg.png" alt="relative效果"></p>
-<h5 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h5><p>现在来看一下代码：<br>(其余代码和 static 那节没有变化)</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.24.10-PM.3bbsxkssqvi0.png" alt="absolute效果1"></p>
-<p>可见，<code>One</code> 这个<code>div元素</code>失去了宽度。原因是，<code>absolute</code>属性完完全全的让当前元素脱离了文档流, 对于其他没有设置为<code>absolute</code>的元素来说，<code>One</code>这个元素好似不存在！</p>
-<blockquote>
-<p><strong>注意点</strong>：事实上,我上面已说，<code>relative</code>不适合用位置移动。而<code>absolute</code>却是<strong>非常适合</strong>使用位置移动的！！</p>
-</blockquote>
-<p><code>absolute</code>这种方式会非常方便在你想在某个位置固定住一个元素，而其他元素不会影响这个被固定住的元素 (完全脱离文档流 + 位置的移动)</p>
-<blockquote>
-<p>还有一个<strong>注意点</strong>：absolute 的位置移动是相对于父元素的(非 static、absolute)。如果父元素是(static、absolute)的，则会进行找父元素的父元素进行看是否符合条件(非 static、absolute)。如果都不符合条件，则根据最顶层元素来进行位置的移动…</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.39.17-PM.4d2dsj8a49w.png" alt="absolute效果2"></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.41.30-PM.5stck9to3m00.png" alt="absolute效果3"></p>
-<p><strong>(absolute + relative 是绝配)</strong></p>
-<h5 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h5><p><code>fixed</code> 与 <code>absolute</code> 很相似。不同的地方有以下两个</p>
-<ol>
-<li><code>fixed</code> 会定位到荧幕中的固定位置。所以即使卷动页面，也会一直保持在那个位置</li>
-<li>即使放在<code>relative</code>页面，<code>fixed</code>元素也会根据页面，即 body 去定位，不会根据 relative 去定位(这是要在 fiex 设定了 top、left、right、bottom 等属性时才会出现的效果)</li>
-</ol>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* HTML文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt; * <span class="hljs-number">100</span><br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.child-one &#123;<br>  background-color: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80</span>%, <span class="hljs-number">50</span>%);<br>  position: fixed;<br>  bottom: <span class="hljs-number">10</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-1.59.31-PM.5f6b4g3m13w0.gif" alt="fixed效果显示"></p>
-<p>如果是 <code>absolute</code>。<code>absolute</code> 元素所在的容器(父元素)有卷轴的话，它就会随着卷动而移动<br><strong>(这是 fixed 和 absolute 二者最大的不同)</strong></p>
-<h4 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h4><p>sticky 是完美结合了 <code>relative</code> 和 <code>fixed</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: sticky;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>外表看似和 relative 效果差不多。可真正滚动滑条的时候就大大的不同了<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-2.11.58-PM.4gp9o7g2tf60.gif" alt="sticky效果"></p>
-<h5 id="sticky-效果图"><a href="#sticky-效果图" class="headerlink" title="sticky 效果图"></a>sticky 效果图</h5><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-4.45.31-PM.3ysiy6q3te40.gif" alt="sticky效果图1"><br><a href="https://codepen.io/bruce-shuai/pen/yLoKqqR?editors=1100">对应代码</a></p>
 ]]></content>
       <categories>
         <category>CSS篇</category>
       </categories>
       <tags>
-        <tag>基本功</tag>
+        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -336,20 +352,38 @@
       </tags>
   </entry>
   <entry>
-    <title>Emotion的安装和基本使用</title>
-    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
-<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
-<blockquote>
-<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
-</blockquote>
+    <title>HTTP状态码</title>
+    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
 ]]></content>
       <categories>
-        <category>CSS篇</category>
+        <category>程序员基本素养</category>
       </categories>
       <tags>
-        <tag>高级</tag>
+        <tag>基本功</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>JS ES6 obj</title>
+    <url>/2021/11/10/JS-ES6-obj/</url>
+    <content><![CDATA[<p><code>ES6</code>中对于对象(<code>Object</code>)的升级</p>
+<h4 id="key-value"><a href="#key-value" class="headerlink" title="key:value"></a>key:value</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const name</span> = <span class="hljs-string">&#x27;Bruce&#x27;</span>;<br><span class="hljs-attribute">const age</span> = 25;<br><br><span class="hljs-attribute">const person</span> = &#123;<br>  name: name,<br>  age: age<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于<strong>对象键值对</strong>的键名和值名一致，可以用下面这种更加简便的方法来表示</p>
+<figure class="highlight delphi"><table><tr><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">const</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&#x27;Kyle&#x27;</span><br><span class="hljs-keyword">const</span> age = <span class="hljs-number">25</span><br><br><span class="hljs-keyword">const</span> person = <span class="hljs-comment">&#123;</span><br><span class="hljs-comment">  name,</span><br><span class="hljs-comment">  age</span><br><span class="hljs-comment">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="funcName-func"><a href="#funcName-func" class="headerlink" title="funcName:func"></a>funcName:func</h4><p>在 es6 中对于对象内，函数作为属性也有了新的简写方式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* 原来的写法 */</span><br><span class="hljs-keyword">const</span> person = &#123;<br>  <span class="hljs-attr">sayHi</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Hi&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">/* 现在的写法 */</span><br><span class="hljs-keyword">const</span> person = &#123;<br>  <span class="hljs-function"><span class="hljs-title">sayHi</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Hi&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="obj-property"><a href="#obj-property" class="headerlink" title="[obj-property]"></a><code>[obj-property]</code></h4><p>我们可以在创建对象的时候，使用<strong>变量</strong>来定义对象的键</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> dynamicKey = <span class="hljs-string">&#x27;name&#x27;</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">index</span> = <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">const</span> person = &#123;<br>  [dynamicKey]: <span class="hljs-string">&#x27;Bruce&#x27;</span>,<br>  [<span class="hljs-string">&#x27;age&#x27;</span> + <span class="hljs-keyword">index</span>]: <span class="hljs-number">21</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>事实上方括号中的属性名最后会转化为字符串，作为属性名</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Bruce&quot;</span>,<br>  <span class="hljs-attr">&quot;age&quot;</span>: <span class="hljs-number">21</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>灵活的使用动态属性：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> dynamicKey = <span class="hljs-string">&#x27;name&#x27;</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">index</span> = <span class="hljs-number">1</span><br><br><span class="hljs-keyword">const</span> person = &#123;&#125;<br>person[dynamicKey] = <span class="hljs-string">&#x27;Bruce&#x27;</span><br>person[<span class="hljs-string">&#x27;age&#x27;</span> + <span class="hljs-keyword">index</span>] = <span class="hljs-number">21</span><br></code></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>JS Module</title>
@@ -388,12 +422,105 @@
       </tags>
   </entry>
   <entry>
-    <title>HTTP状态码</title>
-    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
-    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
+    <title>JS sort 玩法</title>
+    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>似乎默认是按照字母顺序进行排序</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
+<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
+<p>比较函数需要两个参数…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
 ]]></content>
       <categories>
-        <category>程序员基本素养</category>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JSON 基础知识 &amp; Ajax 基础知识</title>
+    <url>/2021/10/08/JSON&amp;Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h4 id="为什么我们要把对象转化为字符串？"><a href="#为什么我们要把对象转化为字符串？" class="headerlink" title="为什么我们要把对象转化为字符串？"></a>为什么我们要把对象转化为字符串？</h4><ol>
+<li><p>在网页开发的时候，我们需要把<code>对象信息</code>进行长期保存, 因此我们需要把这些信息传递给<code>服务器</code>。所以，需要通过把对象(变量)转化为字符串才能传递给<code>服务器</code>。</p>
+</li>
+<li><p>我们采用的是<code>http协议</code>即超文本传输协议(其本质就是由文本的形式进行传输)</p>
+</li>
+<li><p>JSON 字符串是绝大多数编程语言都支持的…</p>
+</li>
+</ol>
+<h4 id="JSON-字符串的特征"><a href="#JSON-字符串的特征" class="headerlink" title="JSON 字符串的特征"></a>JSON 字符串的特征</h4><ol>
+<li><strong>属性名称</strong>必须加<strong>双引号</strong> (因为人家默认规定的字符串外层是<code>单引号</code>，所以内层必须是<code>双引号</code>)</li>
+<li><strong>属性值</strong>如果是字符串则必须加<strong>双引号</strong></li>
+<li>对象当中的<code>方法(函数)</code>不会被转化为字符串</li>
+</ol>
+<p>(注意： JSON 本质就是字符串！！)</p>
+<h4 id="JSON-和-对象的相互转换："><a href="#JSON-和-对象的相互转换：" class="headerlink" title="JSON 和 对象的相互转换："></a>JSON 和 对象的相互转换：</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xiaoming&#x27;</span>,<br>  <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;boy&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>  <span class="hljs-function"><span class="hljs-title">say</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;想吃, 想喝, 想爱&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 把对象转为JSON字符串</span><br><span class="hljs-keyword">let</span> str1 = <span class="hljs-built_in">JSON</span>.stringify(obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj&#x27;</span>, obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str1&#x27;</span>, str1);   <span class="hljs-comment">// 纯粹的字符串且没有say方法</span><br><br><span class="hljs-comment">// 把数组转为JSON字符串</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-number">100</span>, &#123;<span class="hljs-attr">key</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">obj</span>: &#123;&#125;, <span class="hljs-attr">str</span>: <span class="hljs-string">&#x27;测试&#x27;</span>&#125;]<br><span class="hljs-keyword">let</span> str2 = <span class="hljs-built_in">JSON</span>.stringify(arr);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;arr&#x27;</span>, arr);<br><span class="hljs-comment">// 内部的字符串元素全部被强制转化为双引号,数值不加引号，</span><br><span class="hljs-comment">// 对象元素进行深层改造(加双引号..),而且不再是对象，而是字符串了...</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str2&#x27;</span>, str2);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight openscad"><table><tr><td class="code"><pre><code class="hljs openscad"><span class="hljs-comment">// JSON字符串转成对象</span><br><span class="hljs-comment">// JSON 字符串外层是单引号哦!!</span><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">str</span> = &#x27;&#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;小明&quot;</span>, <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">18</span>&#125;&#x27;<br><span class="hljs-built_in">let</span> obj = JSON.parse(<span class="hljs-built_in">str</span>);<br>console.<span class="hljs-built_in">log</span>(&#x27;obj.name&#x27;, obj.name);   <span class="hljs-comment">// 小明</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="手写-ajax-核心方法"><a href="#手写-ajax-核心方法" class="headerlink" title="手写 ajax 核心方法"></a>手写 ajax 核心方法</h4><p>哈哈, 以不负责任的态度来说 🤪</p>
+<blockquote>
+<p><code>前端</code> 是用来显示数据的<br><code>后端</code> 是用来提供数据的</p>
+</blockquote>
+<p>所以，前端有一个非常重要的工作是向后端索要<code>数据</code>并将数据进行页面显示</p>
+<p>如何向后端索要数据呢？</p>
+<h5 id="书写-ajxa-4-个核心步骤"><a href="#书写-ajxa-4-个核心步骤" class="headerlink" title="书写 ajxa 4 个核心步骤"></a>书写 ajxa 4 个核心步骤</h5><blockquote>
+<p>4 个步骤！但要注意执行顺序哦！</p>
+</blockquote>
+<ol>
+<li>创建一个请求对象, js 提供的构造函数 XMLHttpRequest(分开记忆：XML Http Request)</li>
+</ol>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>设置请求的数据得到返回时的处理函数</p>
+<blockquote>
+<p>xhr.onloadend(分开记忆：on load end) –&gt; 执行方式有点类似 onclick 这类函数</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">xhr.onloadend = <span class="hljs-keyword">function</span>() &#123;<br>  <span class="hljs-regexp">//</span> 该数据全是服务器返回的json字符串<br>  <span class="hljs-regexp">//</span> 请求的数据放在哪了？请求的数据其实放在了请求对象上面<br>  xhr.responseText<br>  <span class="hljs-regexp">//</span> 进行转化<br>  let stus = JSON.parse(xhr.responseText)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>设置请求信息</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">向谁请求：<br>例如 http:<span class="hljs-regexp">//</span>www.jd.com、http:<span class="hljs-regexp">//</span>www.baidu.com<br>xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>发送请求</li>
+</ol>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><code class="hljs autoit">xhr.<span class="hljs-built_in">send</span>()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 整体操作如下：</span><br><br><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span>;<br>xhr.oploadend = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;<br>  <span class="hljs-keyword">let</span> stus = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>parse(xhr.responseTest)<br>  show<span class="hljs-constructor">Table(<span class="hljs-params">stus</span>)</span><br>&#125;<br>xhr.<span class="hljs-keyword">open</span>(&#x27;get&#x27;, &#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos&#x27;);</span><br>xhr.send<span class="hljs-literal">()</span>;<br></code></pre></td></tr></table></figure>
+
+<head>
+  ..
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  ...
+</head>
+<body>
+  ...
+  <div id="waline"></div>
+  <script>
+    Waline({
+      el: '#waline',
+       avatar: 'monsterid',
+      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
+    });
+  </script>
+</body>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -499,111 +626,6 @@
       </categories>
       <tags>
         <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JSON 基础知识 &amp; Ajax 基础知识</title>
-    <url>/2021/10/08/JSON&amp;Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h4 id="为什么我们要把对象转化为字符串？"><a href="#为什么我们要把对象转化为字符串？" class="headerlink" title="为什么我们要把对象转化为字符串？"></a>为什么我们要把对象转化为字符串？</h4><ol>
-<li><p>在网页开发的时候，我们需要把<code>对象信息</code>进行长期保存, 因此我们需要把这些信息传递给<code>服务器</code>。所以，需要通过把对象(变量)转化为字符串才能传递给<code>服务器</code>。</p>
-</li>
-<li><p>我们采用的是<code>http协议</code>即超文本传输协议(其本质就是由文本的形式进行传输)</p>
-</li>
-<li><p>JSON 字符串是绝大多数编程语言都支持的…</p>
-</li>
-</ol>
-<h4 id="JSON-字符串的特征"><a href="#JSON-字符串的特征" class="headerlink" title="JSON 字符串的特征"></a>JSON 字符串的特征</h4><ol>
-<li><strong>属性名称</strong>必须加<strong>双引号</strong> (因为人家默认规定的字符串外层是<code>单引号</code>，所以内层必须是<code>双引号</code>)</li>
-<li><strong>属性值</strong>如果是字符串则必须加<strong>双引号</strong></li>
-<li>对象当中的<code>方法(函数)</code>不会被转化为字符串</li>
-</ol>
-<p>(注意： JSON 本质就是字符串！！)</p>
-<h4 id="JSON-和-对象的相互转换："><a href="#JSON-和-对象的相互转换：" class="headerlink" title="JSON 和 对象的相互转换："></a>JSON 和 对象的相互转换：</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xiaoming&#x27;</span>,<br>  <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;boy&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>  <span class="hljs-function"><span class="hljs-title">say</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;想吃, 想喝, 想爱&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 把对象转为JSON字符串</span><br><span class="hljs-keyword">let</span> str1 = <span class="hljs-built_in">JSON</span>.stringify(obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj&#x27;</span>, obj);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str1&#x27;</span>, str1);   <span class="hljs-comment">// 纯粹的字符串且没有say方法</span><br><br><span class="hljs-comment">// 把数组转为JSON字符串</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-number">100</span>, &#123;<span class="hljs-attr">key</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">obj</span>: &#123;&#125;, <span class="hljs-attr">str</span>: <span class="hljs-string">&#x27;测试&#x27;</span>&#125;]<br><span class="hljs-keyword">let</span> str2 = <span class="hljs-built_in">JSON</span>.stringify(arr);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;arr&#x27;</span>, arr);<br><span class="hljs-comment">// 内部的字符串元素全部被强制转化为双引号,数值不加引号，</span><br><span class="hljs-comment">// 对象元素进行深层改造(加双引号..),而且不再是对象，而是字符串了...</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;str2&#x27;</span>, str2);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight openscad"><table><tr><td class="code"><pre><code class="hljs openscad"><span class="hljs-comment">// JSON字符串转成对象</span><br><span class="hljs-comment">// JSON 字符串外层是单引号哦!!</span><br><span class="hljs-built_in">let</span> <span class="hljs-built_in">str</span> = &#x27;&#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;小明&quot;</span>, <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">18</span>&#125;&#x27;<br><span class="hljs-built_in">let</span> obj = JSON.parse(<span class="hljs-built_in">str</span>);<br>console.<span class="hljs-built_in">log</span>(&#x27;obj.name&#x27;, obj.name);   <span class="hljs-comment">// 小明</span><br></code></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="手写-ajax-核心方法"><a href="#手写-ajax-核心方法" class="headerlink" title="手写 ajax 核心方法"></a>手写 ajax 核心方法</h4><p>哈哈, 以不负责任的态度来说 🤪</p>
-<blockquote>
-<p><code>前端</code> 是用来显示数据的<br><code>后端</code> 是用来提供数据的</p>
-</blockquote>
-<p>所以，前端有一个非常重要的工作是向后端索要<code>数据</code>并将数据进行页面显示</p>
-<p>如何向后端索要数据呢？</p>
-<h5 id="书写-ajxa-4-个核心步骤"><a href="#书写-ajxa-4-个核心步骤" class="headerlink" title="书写 ajxa 4 个核心步骤"></a>书写 ajxa 4 个核心步骤</h5><blockquote>
-<p>4 个步骤！但要注意执行顺序哦！</p>
-</blockquote>
-<ol>
-<li>创建一个请求对象, js 提供的构造函数 XMLHttpRequest(分开记忆：XML Http Request)</li>
-</ol>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span><br></code></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>设置请求的数据得到返回时的处理函数</p>
-<blockquote>
-<p>xhr.onloadend(分开记忆：on load end) –&gt; 执行方式有点类似 onclick 这类函数</p>
-</blockquote>
-</li>
-</ol>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">xhr.onloadend = <span class="hljs-keyword">function</span>() &#123;<br>  <span class="hljs-regexp">//</span> 该数据全是服务器返回的json字符串<br>  <span class="hljs-regexp">//</span> 请求的数据放在哪了？请求的数据其实放在了请求对象上面<br>  xhr.responseText<br>  <span class="hljs-regexp">//</span> 进行转化<br>  let stus = JSON.parse(xhr.responseText)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>设置请求信息</li>
-</ol>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">向谁请求：<br>例如 http:<span class="hljs-regexp">//</span>www.jd.com、http:<span class="hljs-regexp">//</span>www.baidu.com<br>xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>发送请求</li>
-</ol>
-<figure class="highlight autoit"><table><tr><td class="code"><pre><code class="hljs autoit">xhr.<span class="hljs-built_in">send</span>()<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 整体操作如下：</span><br><br><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-constructor">XMLHttpRequest()</span>;<br>xhr.oploadend = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;<br>  <span class="hljs-keyword">let</span> stus = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>parse(xhr.responseTest)<br>  show<span class="hljs-constructor">Table(<span class="hljs-params">stus</span>)</span><br>&#125;<br>xhr.<span class="hljs-keyword">open</span>(&#x27;get&#x27;, &#x27;https:<span class="hljs-comment">//jsonplaceholder.typicode.com/todos&#x27;);</span><br>xhr.send<span class="hljs-literal">()</span>;<br></code></pre></td></tr></table></figure>
-
-<head>
-  ..
-  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
-  ...
-</head>
-<body>
-  ...
-  <div id="waline"></div>
-  <script>
-    Waline({
-      el: '#waline',
-       avatar: 'monsterid',
-      serverURL: 'https://blog-api-9sizcti78-bruce-shuai.vercel.app/',
-    });
-  </script>
-</body>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS sort 玩法</title>
-    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
-    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-
-<p>似乎默认是按照字母顺序进行排序</p>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
-
-<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
-<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
-<p>比较函数需要两个参数…</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -1117,39 +1139,6 @@
       </tags>
   </entry>
   <entry>
-    <title>css 垂直居中</title>
-    <url>/2021/11/10/css-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/</url>
-    <content><![CDATA[<p>在上古时代，想要实现 CSS 的垂直居中，挺难的。而如今，想要实现垂直居中非常容易…</p>
-<h4 id="普通方法"><a href="#普通方法" class="headerlink" title="普通方法"></a>普通方法</h4><p>(利用子绝父相，并且要根据子元素的宽高和父元素的宽高进行计算)：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;<br><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>缺点： 自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用…</p>
-<p>例如：如果盒子里全装的文本。未设置高度。就需要<code>margin-auto</code>来救场</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>   自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>    自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>     自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-comment">/*  未设置高度  */</span><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br><br>  <span class="hljs-comment">/*  ---上下左右都为0 才让margin:auto发挥了真实的作用  */</span><br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">bottom</span>:<span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">margin</span>: auto;<br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-9.54.48-AM.png" alt="margin:auto"></p>
-<p>注意：absolute 会让元素脱离文档流。所以蓝色方块遮盖住了它下面的文字</p>
-<h4 id="使用-transform"><a href="#使用-transform" class="headerlink" title="使用 transform"></a>使用 transform</h4><blockquote>
-<p>其实我在 transform 那篇文章也有提到。我直接展示一下如何实现</p>
-</blockquote>
-<p>(还是需要子绝父相)</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>   自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>    自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>     自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-comment">/*  未设置高度  */</span><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br><br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">transform</span>: translate(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);<br><br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-9.54.48-AM.png" alt="transform-translate"></p>
-<p>事实上，上述的居中，我还是说的最简单的情况。如果居中的元素多了，有大有小的盒子需要居中，那么用上面的方法就很难实现。并且为了实现一个居中对齐，需要父元素和子元素都进行修改，非常麻烦。而下面的 flex 就非常容易就能实现，以及只需要对父元素进行修改就行了…</p>
-<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-10.07.46-AM.png" alt="flex-居中"></p>
-<h4 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;div class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  <span class="hljs-built_in">width</span>: 300px;<br>  <span class="hljs-built_in">height</span>: 300px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">display</span>: <span class="hljs-built_in">grid</span>;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>&#125;<br><br>.child &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-10.07.46-AM.png" alt="grid-居中"></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>事实上，如果当前你的元素处于绝对定位。用<code>flex</code>之前的方法都比较好。如果没有处于绝对定位。用<code>flex</code>、<code>grid</code>定位都比较好！</p>
-]]></content>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>css 命名艺术</title>
     <url>/2021/11/06/css-%E5%91%BD%E5%90%8D%E8%89%BA%E6%9C%AF/</url>
     <content><![CDATA[<p>(突然想到一个问题，是否我可以使用 BEM 的命名方式来解决 react 项目中，css 模块化问题？？)</p>
@@ -1198,6 +1187,39 @@
       </tags>
   </entry>
   <entry>
+    <title>css 垂直居中</title>
+    <url>/2021/11/10/css-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/</url>
+    <content><![CDATA[<p>在上古时代，想要实现 CSS 的垂直居中，挺难的。而如今，想要实现垂直居中非常容易…</p>
+<h4 id="普通方法"><a href="#普通方法" class="headerlink" title="普通方法"></a>普通方法</h4><p>(利用子绝父相，并且要根据子元素的宽高和父元素的宽高进行计算)：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;<br><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>缺点： 自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用…</p>
+<p>例如：如果盒子里全装的文本。未设置高度。就需要<code>margin-auto</code>来救场</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>   自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>    自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>     自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-comment">/*  未设置高度  */</span><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br><br>  <span class="hljs-comment">/*  ---上下左右都为0 才让margin:auto发挥了真实的作用  */</span><br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">bottom</span>:<span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">margin</span>: auto;<br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-9.54.48-AM.png" alt="margin:auto"></p>
+<p>注意：absolute 会让元素脱离文档流。所以蓝色方块遮盖住了它下面的文字</p>
+<h4 id="使用-transform"><a href="#使用-transform" class="headerlink" title="使用 transform"></a>使用 transform</h4><blockquote>
+<p>其实我在 transform 那篇文章也有提到。我直接展示一下如何实现</p>
+</blockquote>
+<p>(还是需要子绝父相)</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>   自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>    自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>     自己计算，比较麻烦。以及如果没有定义父元素的高度，那么上面的方法就不起作用...<br>   例如：如果盒子里全装的文本。未设置高度。就需要<span class="hljs-attribute">margin</span>-auto来救场<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-comment">/*  未设置高度  */</span><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br><br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">transform</span>: translate(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);<br><br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-9.54.48-AM.png" alt="transform-translate"></p>
+<p>事实上，上述的居中，我还是说的最简单的情况。如果居中的元素多了，有大有小的盒子需要居中，那么用上面的方法就很难实现。并且为了实现一个居中对齐，需要父元素和子元素都进行修改，非常麻烦。而下面的 flex 就非常容易就能实现，以及只需要对父元素进行修改就行了…</p>
+<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-10.07.46-AM.png" alt="flex-居中"></p>
+<h4 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;div class=<span class="hljs-string">&quot;child&quot;</span>&gt;<br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  <span class="hljs-built_in">width</span>: 300px;<br>  <span class="hljs-built_in">height</span>: 300px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">display</span>: <span class="hljs-built_in">grid</span>;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>&#125;<br><br>.child &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-10.07.46-AM.png" alt="grid-居中"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>事实上，如果当前你的元素处于绝对定位。用<code>flex</code>之前的方法都比较好。如果没有处于绝对定位。用<code>flex</code>、<code>grid</code>定位都比较好！</p>
+]]></content>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>flex 布局解析</title>
     <url>/2021/11/09/flex-%E5%B8%83%E5%B1%80%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<blockquote>
@@ -1243,6 +1265,30 @@
 ]]></content>
   </entry>
   <entry>
+    <title>post请求和get请求的区别</title>
+    <url>/2021/10/09/post%E8%AF%B7%E6%B1%82%E5%92%8Cget%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h4 id="1-有哪些请求方式？"><a href="#1-有哪些请求方式？" class="headerlink" title="1.有哪些请求方式？"></a>1.有哪些请求方式？</h4><ul>
+<li>get</li>
+<li>post</li>
+<li>put</li>
+<li>patch</li>
+<li>delete<br>…</li>
+</ul>
+<h4 id="2-get-请求和-post-请求的区别"><a href="#2-get-请求和-post-请求的区别" class="headerlink" title="2.get 请求和 post 请求的区别"></a>2.get 请求和 post 请求的区别</h4><p><strong>get 请求</strong><br>1）一般用来从服务器获取数据 (有时候会在 url 里增添参数 表示获取有一定限制(筛选数据)的数据)<br>2）1 中提到可以在 url 里添加参数，但这样做的话，安全性，隐私性就比较差。并且参数的长度是有限制的(不然，如果无限长，url 的长度就无限长…非常恐怖…)<br>3）当 发送 get 请求时，刷新浏览器或回退页面是没有影响的(只要 url 没有发生变化，就不会影响 get 请求发送)<br>4）get 请求可以缓存 (这是什么东西？有待查询) (因为 get 请求的数据一般是公开的…大家都可以看的东西)<br>5）get 请求会保留在浏览器历史记录当中<br>6）get 请求可以被收藏为书签(因为直接收藏 url 就可以了 url 带上了参数)<br>7）get 请求只能进行 url 编码(‘Content-type’: ‘application/x-www-form-urlencoded’)<br>8）get 请求通常是通过 url 地址栏发送请求<br><strong>post 请求</strong><br>1）一般用于提交数据到后台 (比如登录、注册时的操作)<br>2）post 请求的参数放在 请求的 body 中。所以不会再 url 中展示，相对而言比 get 要更加的安全<br>3）发送 post 请求过程中，回退页面，请求重新发送(因为参数会发送变化)<br>4）post 请求不会被缓存 (post 的请求的数据一般来说都是比较私密的…)<br>5）post 不会保存在浏览器历史记录当中<br>6）post 请求不可以被收藏为书签(post 参数放在 body 里面的。书签无法找到对应的参数…)<br>7）post 请求支持多种编码方式(例如 url：’application/x-www-form-urlencoded’ 表单提交：’multipart/form-data’ …有待补充)<br>8）post 请求通常是表单发送请求</p>
+<p><strong>get 和 post 请求比较深入的一些区别如下</strong></p>
+<ul>
+<li>post 请求和 get 请求都是 http 的请求方式。底层都是 tcp/ip 协议。get 产生一个 tcp 数据包。post 产生两个数据包(但是 firefox 只发送一个)<br>有个问题是，这个发送一个数据包或发送两个数据包的区别和意义是什么呢？<br>(在网络好的时候，发一次数据包和发两次数据包 其实效果都差不多。但是当网络条件很差的时候，发一次数据包的效果肯定比发两次数据包的速度要快！)</li>
+<li>get 请求会把 http header 和 data 一起发送出去，服务端反应 200。post 请求先发送 header，等服务端响应了 100 再继续发送 data。服务端再响应 200</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>react中常犯的错误</title>
     <url>/2021/11/01/react%E4%B8%AD%E5%B8%B8%E7%8A%AF%E7%9A%84%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<h3 id="useState-篇"><a href="#useState-篇" class="headerlink" title="useState 篇"></a>useState 篇</h3><h4 id="使用-useState-的时候，打印出来的结果往往是上一次渲染的结果-例如"><a href="#使用-useState-的时候，打印出来的结果往往是上一次渲染的结果-例如" class="headerlink" title="使用 useState 的时候，打印出来的结果往往是上一次渲染的结果 例如"></a>使用 useState 的时候，打印出来的结果往往是上一次渲染的结果 例如</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">App.js<br><span class="hljs-keyword">import</span> &#123;useState&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params"></span>) </span>&#123;<br>    setCount(count - <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 打印出的内容总是比当前的要慢一拍...</span><br>    <span class="hljs-built_in">console</span>.log(count);<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>&#123;<br>    setCount(count + <span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">console</span>.log(count);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;decrement&#125;</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">      &#123;count&#125;</span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;increment&#125;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -1277,30 +1323,6 @@
       </categories>
       <tags>
         <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>post请求和get请求的区别</title>
-    <url>/2021/10/09/post%E8%AF%B7%E6%B1%82%E5%92%8Cget%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h4 id="1-有哪些请求方式？"><a href="#1-有哪些请求方式？" class="headerlink" title="1.有哪些请求方式？"></a>1.有哪些请求方式？</h4><ul>
-<li>get</li>
-<li>post</li>
-<li>put</li>
-<li>patch</li>
-<li>delete<br>…</li>
-</ul>
-<h4 id="2-get-请求和-post-请求的区别"><a href="#2-get-请求和-post-请求的区别" class="headerlink" title="2.get 请求和 post 请求的区别"></a>2.get 请求和 post 请求的区别</h4><p><strong>get 请求</strong><br>1）一般用来从服务器获取数据 (有时候会在 url 里增添参数 表示获取有一定限制(筛选数据)的数据)<br>2）1 中提到可以在 url 里添加参数，但这样做的话，安全性，隐私性就比较差。并且参数的长度是有限制的(不然，如果无限长，url 的长度就无限长…非常恐怖…)<br>3）当 发送 get 请求时，刷新浏览器或回退页面是没有影响的(只要 url 没有发生变化，就不会影响 get 请求发送)<br>4）get 请求可以缓存 (这是什么东西？有待查询) (因为 get 请求的数据一般是公开的…大家都可以看的东西)<br>5）get 请求会保留在浏览器历史记录当中<br>6）get 请求可以被收藏为书签(因为直接收藏 url 就可以了 url 带上了参数)<br>7）get 请求只能进行 url 编码(‘Content-type’: ‘application/x-www-form-urlencoded’)<br>8）get 请求通常是通过 url 地址栏发送请求<br><strong>post 请求</strong><br>1）一般用于提交数据到后台 (比如登录、注册时的操作)<br>2）post 请求的参数放在 请求的 body 中。所以不会再 url 中展示，相对而言比 get 要更加的安全<br>3）发送 post 请求过程中，回退页面，请求重新发送(因为参数会发送变化)<br>4）post 请求不会被缓存 (post 的请求的数据一般来说都是比较私密的…)<br>5）post 不会保存在浏览器历史记录当中<br>6）post 请求不可以被收藏为书签(post 参数放在 body 里面的。书签无法找到对应的参数…)<br>7）post 请求支持多种编码方式(例如 url：’application/x-www-form-urlencoded’ 表单提交：’multipart/form-data’ …有待补充)<br>8）post 请求通常是表单发送请求</p>
-<p><strong>get 和 post 请求比较深入的一些区别如下</strong></p>
-<ul>
-<li>post 请求和 get 请求都是 http 的请求方式。底层都是 tcp/ip 协议。get 产生一个 tcp 数据包。post 产生两个数据包(但是 firefox 只发送一个)<br>有个问题是，这个发送一个数据包或发送两个数据包的区别和意义是什么呢？<br>(在网络好的时候，发一次数据包和发两次数据包 其实效果都差不多。但是当网络条件很差的时候，发一次数据包的效果肯定比发两次数据包的速度要快！)</li>
-<li>get 请求会把 http header 和 data 一起发送出去，服务端反应 200。post 请求先发送 header，等服务端响应了 100 再继续发送 data。服务端再响应 200</li>
-</ul>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
       </tags>
   </entry>
   <entry>
@@ -1774,66 +1796,6 @@
       </categories>
   </entry>
   <entry>
-    <title>计算机通识-随笔</title>
-    <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
-    <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
-<li><code>pwd</code> 用于告诉你当前所在目录</li>
-<li><code>ls</code> 用于告诉你当前目录层级的所有文件</li>
-<li><code>ls -al</code></li>
-<li><code>ls -a</code></li>
-<li><code>clear</code> 清理当前终端内容</li>
-<li><code>cd</code> 进入某个文件 <code>cd ..</code> 往上一个文件走</li>
-<li><code>mkdir</code> 创建一个文件夹</li>
-<li><code>touch</code> 创建一个文件</li>
-<li><code>cp</code> 旧文件 新文件</li>
-<li><code>mv</code> 旧文件 新文件</li>
-<li>键盘上下键可以看前面自己写的命令</li>
-<li><code>rm</code> 删除一个文件</li>
-<li><code>rm -f</code> 删除一个文件夹</li>
-<li><code>rm -r</code></li>
-<li><code>vim</code> 修改文件 —&gt; <code>nano</code> 更好 vim 学习成本太高</li>
-<li><code>cat</code> 查看文件的具体内容</li>
-<li><code>echo</code></li>
-<li><code>control + c</code> 终止当前终端</li>
-</ol>
-]]></content>
-      <categories>
-        <category>程序员素养篇</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>?.运算符</title>
-    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6-1/</url>
-    <content><![CDATA[<p>在做项目的时候，我们可能会遇见下面这种情况</p>
-<figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const DATA = [<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;重庆邮电大学&#x27;</span>,<br>      address: <span class="hljs-string">&#x27;南山街道&#x27;</span><br>    &#125;<br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span><br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;西南大学&#x27;</span><br>    &#125;<br>  &#125;<br>]<br><br>const CollageAddress = DATA.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  const address = <span class="hljs-type">item</span> &amp;&amp; <span class="hljs-type">item</span>.collage &amp;&amp; <span class="hljs-type">item</span>.collage.address;<br>  <span class="hljs-keyword">return</span> address;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>上述方法是访问对象属性是 undefined 还是 null 的相对优雅的方法。但，始终显得比较臃肿。</p>
-<p>下面用本篇文章的主题 <code>?.</code>来优雅的解决上述问题</p>
-<blockquote>
-<p>对象后面跟<code>?.</code>表示接下来的属性可能为<code>undefined</code>或者<code>null</code>或者有值</p>
-</blockquote>
-<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">const <span class="hljs-built_in">address</span> = item?.collage?.<span class="hljs-built_in">address</span><br></code></pre></td></tr></table></figure>
-
-<p>如果<code>collage</code>、<code>address</code>未定义，我们的代码将返回(<code>undefined</code>)未定义，而不是抛出错误</p>
-<h4 id="的其他用途"><a href="#的其他用途" class="headerlink" title="?.的其他用途"></a>?.的其他用途</h4><h5 id="调用某个对象的某个不确定是否存在的方法"><a href="#调用某个对象的某个不确定是否存在的方法" class="headerlink" title="调用某个对象的某个不确定是否存在的方法"></a>调用某个对象的某个不确定是否存在的方法</h5><p>例如：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const windowCount = house<span class="hljs-selector-class">.getWindowCount</span> &amp;&amp; house<span class="hljs-selector-class">.getWindowCount</span>()<br></code></pre></td></tr></table></figure>
-
-<p>上面的写法不够优雅，显得比较的笨重<br>使用<code>?.</code>进行优雅操作…</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> windowCount = house.getWindowCount?.()<br></code></pre></td></tr></table></figure>
-
-<p>如果在<code>house</code>对象中存在<code>getWindowCount</code>方法。就会调用，如果不存在，只会返回未定义的函数，而不会调用该函数<br>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;func1&#x27;</span>)<br>  &#125;<br>&#125;<br>obj.func1?.() <span class="hljs-comment">// func1</span><br>obj.func2?.() <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="搭配数组"><a href="#搭配数组" class="headerlink" title="?.搭配数组"></a>?.搭配数组</h5><p>如果你想按索引访问数组中的元素，但不确定是否定义了数组，那么你会用下面的代码：</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const firstElement</span> = arr &amp;&amp; arr[0];<br></code></pre></td></tr></table></figure>
-
-<p>使用<code>?.</code>运算符：</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> firstElement = arr?.[<span class="hljs-number">0</span>];<br></code></pre></td></tr></table></figure>
-
-<p>首先检查是否定义了<code>arr</code>变量，如果定义了，它将尝试访问指定的数组的索引。如果没有定义<code>arr</code>变量，则将返回未定义的变量，而不是尝试访问数组的索引。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>计算机网络</title>
     <url>/2021/10/28/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/30573146">对称加密和非对称加密</a></p>
@@ -2054,6 +2016,91 @@
       </categories>
   </entry>
   <entry>
+    <title>计算机通识-随笔</title>
+    <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
+<li><code>pwd</code> 用于告诉你当前所在目录</li>
+<li><code>ls</code> 用于告诉你当前目录层级的所有文件</li>
+<li><code>ls -al</code></li>
+<li><code>ls -a</code></li>
+<li><code>clear</code> 清理当前终端内容</li>
+<li><code>cd</code> 进入某个文件 <code>cd ..</code> 往上一个文件走</li>
+<li><code>mkdir</code> 创建一个文件夹</li>
+<li><code>touch</code> 创建一个文件</li>
+<li><code>cp</code> 旧文件 新文件</li>
+<li><code>mv</code> 旧文件 新文件</li>
+<li>键盘上下键可以看前面自己写的命令</li>
+<li><code>rm</code> 删除一个文件</li>
+<li><code>rm -f</code> 删除一个文件夹</li>
+<li><code>rm -r</code></li>
+<li><code>vim</code> 修改文件 —&gt; <code>nano</code> 更好 vim 学习成本太高</li>
+<li><code>cat</code> 查看文件的具体内容</li>
+<li><code>echo</code></li>
+<li><code>control + c</code> 终止当前终端</li>
+</ol>
+]]></content>
+      <categories>
+        <category>程序员素养篇</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>?.运算符</title>
+    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6-1/</url>
+    <content><![CDATA[<p>在做项目的时候，我们可能会遇见下面这种情况</p>
+<figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const DATA = [<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;重庆邮电大学&#x27;</span>,<br>      address: <span class="hljs-string">&#x27;南山街道&#x27;</span><br>    &#125;<br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span><br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;西南大学&#x27;</span><br>    &#125;<br>  &#125;<br>]<br><br>const CollageAddress = DATA.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  const address = <span class="hljs-type">item</span> &amp;&amp; <span class="hljs-type">item</span>.collage &amp;&amp; <span class="hljs-type">item</span>.collage.address;<br>  <span class="hljs-keyword">return</span> address;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>上述方法是访问对象属性是 undefined 还是 null 的相对优雅的方法。但，始终显得比较臃肿。</p>
+<p>下面用本篇文章的主题 <code>?.</code>来优雅的解决上述问题</p>
+<blockquote>
+<p>对象后面跟<code>?.</code>表示接下来的属性可能为<code>undefined</code>或者<code>null</code>或者有值</p>
+</blockquote>
+<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">const <span class="hljs-built_in">address</span> = item?.collage?.<span class="hljs-built_in">address</span><br></code></pre></td></tr></table></figure>
+
+<p>如果<code>collage</code>、<code>address</code>未定义，我们的代码将返回(<code>undefined</code>)未定义，而不是抛出错误</p>
+<h4 id="的其他用途"><a href="#的其他用途" class="headerlink" title="?.的其他用途"></a>?.的其他用途</h4><h5 id="调用某个对象的某个不确定是否存在的方法"><a href="#调用某个对象的某个不确定是否存在的方法" class="headerlink" title="调用某个对象的某个不确定是否存在的方法"></a>调用某个对象的某个不确定是否存在的方法</h5><p>例如：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const windowCount = house<span class="hljs-selector-class">.getWindowCount</span> &amp;&amp; house<span class="hljs-selector-class">.getWindowCount</span>()<br></code></pre></td></tr></table></figure>
+
+<p>上面的写法不够优雅，显得比较的笨重<br>使用<code>?.</code>进行优雅操作…</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> windowCount = house.getWindowCount?.()<br></code></pre></td></tr></table></figure>
+
+<p>如果在<code>house</code>对象中存在<code>getWindowCount</code>方法。就会调用，如果不存在，只会返回未定义的函数，而不会调用该函数<br>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;func1&#x27;</span>)<br>  &#125;<br>&#125;<br>obj.func1?.() <span class="hljs-comment">// func1</span><br>obj.func2?.() <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="搭配数组"><a href="#搭配数组" class="headerlink" title="?.搭配数组"></a>?.搭配数组</h5><p>如果你想按索引访问数组中的元素，但不确定是否定义了数组，那么你会用下面的代码：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const firstElement</span> = arr &amp;&amp; arr[0];<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>?.</code>运算符：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> firstElement = arr?.[<span class="hljs-number">0</span>];<br></code></pre></td></tr></table></figure>
+
+<p>首先检查是否定义了<code>arr</code>变量，如果定义了，它将尝试访问指定的数组的索引。如果没有定义<code>arr</code>变量，则将返回未定义的变量，而不是尝试访问数组的索引。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>??运算符</title>
+    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<p>在平常的项目中，我们会遇见这样的情况：</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;   <span class="hljs-comment">// 如果obj.score 返回false，那么score就等于10，不然就等于obj.score</span><br></code></pre></td></tr></table></figure>
+
+<p>但事实上会出现下面的问题：<br>如果</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;<br></code></pre></td></tr></table></figure>
+
+<p>我所得到的是 10 分。但是我想要 0 分 也作为有意义的值…<br>为了让 0 分变得有意义，我需要这样做</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> =  (obj.<span class="hljs-keyword">score</span> == null) ? 10 : obj.<span class="hljs-keyword">score</span>  <span class="hljs-comment">// 这里用==而不用===可以同时解决null 和 undefined这两种情况</span><br></code></pre></td></tr></table></figure>
+
+<p>这样，我就可以排除<code>obj.score</code>为<code>undefined</code>和<code>null</code>却不影响<code>obj.score === 0</code>这种情况。但是，这样写太笨重了…</p>
+<p>下面来介绍本篇博客的主角 <code>??</code> 运算符</p>
+<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><p><code>??</code>运算符和<code>||</code>运算符执行逻辑很相似。但是<code>??</code>只会检查 <code>undefined/null</code><br>还是以上面我写的内容举例</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> ?? 10;  <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
+
+<p>很轻松的，我就获得了 score 为 0 分…</p>
+<p>为了更全面的观察 <code>??</code> 效果，我来更具体的展示</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">undefined ?? <span class="hljs-number">10</span> <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br>null ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br><span class="hljs-number">0</span> ?? <span class="hljs-number">10</span>         <span class="hljs-regexp">//</span> <span class="hljs-number">0</span><br>false ?? <span class="hljs-number">10</span>     <span class="hljs-regexp">//</span> false   &lt;- 这个值得注意注意<br><span class="hljs-string">&#x27;Hi&#x27;</span> ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> Hi<br><span class="hljs-number">20</span> ?? <span class="hljs-number">10</span>        <span class="hljs-regexp">//</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>||</code>、<code>&amp;&amp;</code>、<code>??</code>可以合在一起用，但是要用括号来控制执行顺序，不然报错!!</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-number">0</span> || <span class="hljs-literal">null</span> ?? <span class="hljs-number">10</span>   <span class="hljs-comment">// 报错</span><br>(<span class="hljs-number">0</span> || <span class="hljs-literal">null</span>) ?? <span class="hljs-number">10</span> <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>项目中的小技巧</title>
     <url>/2021/10/31/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<h4 id="amp-amp-的使用"><a href="#amp-amp-的使用" class="headerlink" title="&amp;&amp;的使用"></a>&amp;&amp;的使用</h4><p>先看用法</p>
@@ -2081,31 +2128,6 @@
       <tags>
         <tag>奇淫技巧</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>??运算符</title>
-    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
-    <content><![CDATA[<p>在平常的项目中，我们会遇见这样的情况：</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;   <span class="hljs-comment">// 如果obj.score 返回false，那么score就等于10，不然就等于obj.score</span><br></code></pre></td></tr></table></figure>
-
-<p>但事实上会出现下面的问题：<br>如果</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;<br></code></pre></td></tr></table></figure>
-
-<p>我所得到的是 10 分。但是我想要 0 分 也作为有意义的值…<br>为了让 0 分变得有意义，我需要这样做</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> =  (obj.<span class="hljs-keyword">score</span> == null) ? 10 : obj.<span class="hljs-keyword">score</span>  <span class="hljs-comment">// 这里用==而不用===可以同时解决null 和 undefined这两种情况</span><br></code></pre></td></tr></table></figure>
-
-<p>这样，我就可以排除<code>obj.score</code>为<code>undefined</code>和<code>null</code>却不影响<code>obj.score === 0</code>这种情况。但是，这样写太笨重了…</p>
-<p>下面来介绍本篇博客的主角 <code>??</code> 运算符</p>
-<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><p><code>??</code>运算符和<code>||</code>运算符执行逻辑很相似。但是<code>??</code>只会检查 <code>undefined/null</code><br>还是以上面我写的内容举例</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> ?? 10;  <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
-
-<p>很轻松的，我就获得了 score 为 0 分…</p>
-<p>为了更全面的观察 <code>??</code> 效果，我来更具体的展示</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">undefined ?? <span class="hljs-number">10</span> <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br>null ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br><span class="hljs-number">0</span> ?? <span class="hljs-number">10</span>         <span class="hljs-regexp">//</span> <span class="hljs-number">0</span><br>false ?? <span class="hljs-number">10</span>     <span class="hljs-regexp">//</span> false   &lt;- 这个值得注意注意<br><span class="hljs-string">&#x27;Hi&#x27;</span> ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> Hi<br><span class="hljs-number">20</span> ?? <span class="hljs-number">10</span>        <span class="hljs-regexp">//</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>||</code>、<code>&amp;&amp;</code>、<code>??</code>可以合在一起用，但是要用括号来控制执行顺序，不然报错!!</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-number">0</span> || <span class="hljs-literal">null</span> ?? <span class="hljs-number">10</span>   <span class="hljs-comment">// 报错</span><br>(<span class="hljs-number">0</span> || <span class="hljs-literal">null</span>) ?? <span class="hljs-number">10</span> <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
-]]></content>
   </entry>
   <entry>
     <title>一篇文章解决Promise...then，async/await执行顺序类型题</title>
