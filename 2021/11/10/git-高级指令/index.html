@@ -18,20 +18,37 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="分享知识、感受生活~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2021/page/5/index.html">
+  <meta name="description" content="一般情况下我们提交代码到 git 的指令如下： 12git add .git commit -m &quot;Message&quot;  我们可以等同于下面这条命令 1git commit -a -m &quot;Message&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 高级指令">
+<meta property="og:url" content="http://example.com/2021/11/10/git-%E9%AB%98%E7%BA%A7%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="分享知识、感受生活~">
+<meta property="og:description" content="一般情况下我们提交代码到 git 的指令如下： 12git add .git commit -m &quot;Message&quot;  我们可以等同于下面这条命令 1git commit -a -m &quot;Message&quot;">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-10T05:53:48.000Z">
+<meta property="article:modified_time" content="2021-11-10T06:58:28.565Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>归档 - 何阳阳阳的小屋</title>
+  <title>git 高级指令 - 何阳阳阳的小屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -65,7 +82,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -173,14 +190,48 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg13.6gsoj0kqawg0.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="洗脸时认真洗脸，听音乐时认真听音乐">
+            <span class="h2" id="subtitle" title="git 高级指令">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-10 13:53" pubdate>
+        2021年11月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      106 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -193,94 +244,94 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">git 高级指令</h1>
+            
+            <div class="markdown-body">
+              <p>一般情况下我们提交代码到 git 的指令如下：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;Message&quot;<br></code></pre></td></tr></table></figure>
+
+<p>我们可以等同于下面这条命令</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">git commit -<span class="hljs-keyword">a</span> -m <span class="hljs-string">&quot;Message&quot;</span><br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/10/css-%E4%B8%89%E8%A7%92%E5%BD%A2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">css 三角形</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/10/css-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">
+                        <span class="hidden-mobile">css 垂直居中</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
                 
 
-<div class="list-group">
-  <p class="h4">共计 49 篇文章</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2021</p>
-    
-    <a href="/2021/10/09/%E5%BC%80%E5%8F%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8D%E6%80%9D%E5%92%8C%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">开发个人博客反思和总结</span>
-      <time style="float: right;">10-09</time>
-    </a>
-  
-    
-    <a href="/2021/10/09/post%E8%AF%B7%E6%B1%82%E5%92%8Cget%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">post请求和get请求的区别</span>
-      <time style="float: right;">10-09</time>
-    </a>
-  
-    
-    <a href="/2021/10/09/Set%E5%92%8CMap%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Set和Map基本使用方法</span>
-      <time style="float: right;">10-09</time>
-    </a>
-  
-    
-    <a href="/2021/10/08/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">浅拷贝和深拷贝</span>
-      <time style="float: right;">10-08</time>
-    </a>
-  
-    
-    <a href="/2021/10/08/JSON&amp;Ajax%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JSON 基础知识 &amp; Ajax 基础知识</span>
-      <time style="float: right;">10-08</time>
-    </a>
-  
-    
-    <a href="/2021/10/08/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E8%A7%A3%E5%86%B3Promise-then%EF%BC%8Casync-await%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E7%B1%BB%E5%9E%8B%E9%A2%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">一篇文章解决Promise...then，async/await执行顺序类型题</span>
-      <time style="float: right;">10-08</time>
-    </a>
-  
-    
-    <a href="/2021/10/07/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%E9%97%AE%E9%A2%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">有效括号问题</span>
-      <time style="float: right;">10-07</time>
-    </a>
-  
-    
-    <a href="/2021/10/07/%E5%BC%80%E5%A7%8B%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E6%97%85%E5%95%A6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">开始我的个人博客之旅啦</span>
-      <time style="float: right;">10-07</time>
-    </a>
-  
-    
-    <a href="/2021/10/06/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hello World</span>
-      <time style="float: right;">10-06</time>
-    </a>
-  
-</div>
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2021/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/3/#board">3</a><a class="page-number" href="/archives/2021/page/4/#board">4</a><span class="page-number current">5</span>
-    </span>
-  </nav>
-
-
-
-
-              </div>
-            </div>
-          </div>
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -369,6 +420,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 
