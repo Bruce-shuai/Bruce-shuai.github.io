@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="rotate 让元素旋转  rotaterotate3d 展示rotate效果:rotate有两个单位：deg、turndeg范围：0~360turn范围：0~1 12345&#x2F;* html文件 *&#x2F;&lt;div class&#x3D;&quot;box--default rotate-0&quot;&gt;Box&lt;&#x2F;div&gt;&lt;div class&#x3D;&quot;box--default ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css transform">
+<meta property="og:url" content="http://example.com/2021/11/09/css-transform/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="rotate 让元素旋转  rotaterotate3d 展示rotate效果:rotate有两个单位：deg、turndeg范围：0~360turn范围：0~1 12345&#x2F;* html文件 *&#x2F;&lt;div class&#x3D;&quot;box--default rotate-0&quot;&gt;Box&lt;&#x2F;div&gt;&lt;div class&#x3D;&quot;box--default ro">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.09.50-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.28.03-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.30.25-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.32.31-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.40.13-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.50.55-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-9.05.57-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.33.12-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.43.08-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.49.56-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.54.14-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-9.06.25-AM.png">
+<meta property="article:published_time" content="2021-11-09T11:42:16.000Z">
+<meta property="article:modified_time" content="2021-11-10T01:07:01.921Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.09.50-PM.png">
+  
+  <title>css transform - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="css transform">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-09 19:42" pubdate>
+        2021年11月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">css transform</h1>
+            
+            <div class="markdown-body">
+              <h4 id="rotate"><a href="#rotate" class="headerlink" title="rotate"></a>rotate</h4><blockquote>
+<p>让元素旋转</p>
+</blockquote>
+<p>rotate<br>rotate3d</p>
+<p>展示<code>rotate</code>效果:<br><code>rotate</code>有两个单位：<code>deg</code>、<code>turn</code><br><code>deg</code>范围：<code>0~360</code><br><code>turn</code>范围：<code>0~1</code></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotate-0&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotate-45&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotate-90&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotate-135&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><br><span class="hljs-selector-class">.box--default</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.rotate-0</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">0deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotate-45</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.125turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotate-90</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.25turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">90deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotate-135</span> &#123;<br>  <span class="hljs-comment">/*     transform: rotate(0.375turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">135deg</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.09.50-PM.png" srcset="/img/loading.gif" lazyload alt="rotate"></p>
+<p><code>rotate3D</code>的使用比较的复杂，所以一般要使用 r<code>otate3D</code>，推荐单独使用<code>rotateX</code>、<code>rotateY</code>、<code>rotateZ</code>来进行控制</p>
+<p>例如：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-0&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-45&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-90&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-135&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box--default</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.rotateX-0</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">0deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateX-45</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.125turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">45deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateX-90</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.25turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">90deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateX-135</span> &#123;<br>  <span class="hljs-comment">/*      transform: rotate(0.375turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">135deg</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.28.03-PM.png" srcset="/img/loading.gif" lazyload alt="rotate3D-X"></p>
+<p><code>rotateY</code></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateY-0&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateY-45&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateY-90&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateY-135&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box--default</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.rotateY-0</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">0deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateY-45</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.125turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">45deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateY-90</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.25turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">90deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateY-135</span> &#123;<br>  <span class="hljs-comment">/*      transform: rotate(0.375turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">135deg</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.30.25-PM.png" srcset="/img/loading.gif" lazyload alt="rotate3d-Y"></p>
+<p><code>rotateZ</code></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateZ-0&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateZ-45&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateZ-90&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;box--default rotateZ-135&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box--default</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.rotateZ-0</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateZ</span>(<span class="hljs-number">0deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateZ-45</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.125turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateZ</span>(<span class="hljs-number">45deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateZ-90</span> &#123;<br>  <span class="hljs-comment">/*    transform: rotate(0.25turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateZ</span>(<span class="hljs-number">90deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.rotateZ-135</span> &#123;<br>  <span class="hljs-comment">/*      transform: rotate(0.375turn);  */</span><br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateZ</span>(<span class="hljs-number">135deg</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.32.31-PM.png" srcset="/img/loading.gif" lazyload alt="rotate3d-Z"></p>
+<p>事实上，<code>rotate3d</code>用到的情况很少。一般都是用的<code>rotate</code></p>
+<h4 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h4><blockquote>
+<p>让元素放大或缩小</p>
+</blockquote>
+<p>scale<br>scale3d</p>
+<p><code>scale</code> 注意：放 1 个参数，和放 2 个参数的意义不同哦~</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br><br>&lt;div class=<span class="hljs-string">&quot;box--default scale-1&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default scale-2&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">box</span>--default &#123;<br>  margin: 100px;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">display</span>: flex;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>  <span class="hljs-built_in">font</span>-size: 2<span class="hljs-built_in">rem</span>;<br>&#125;<br><br>.<span class="hljs-built_in">scale</span>-<span class="hljs-number">1</span> &#123;<br>  <span class="hljs-built_in">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">1</span>);<br>&#125;<br><br>.<span class="hljs-built_in">scale</span>-<span class="hljs-number">2</span> &#123;<br><span class="hljs-comment">/*   transform: scale(2); <span class="hljs-comment">/* 比原来的样子整体放大了两倍 */</span></span><br><span class="hljs-comment">  transform: scale(2, 2); <span class="hljs-comment">/* 比原来的样子在x、y轴分别放大了两倍 */</span></span><br><span class="hljs-comment">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.40.13-PM.png" srcset="/img/loading.gif" lazyload alt="scale"></p>
+<p>和上述的<code>rotate3D</code>类似，这个<code>scale</code>也有<code>scale3D</code>。也建议分别使用<code>scaleX</code>、<code>scaleY</code>、<code>scaleZ</code>来表示…不过多赘述</p>
+<h4 id="比较难的用法：-translate"><a href="#比较难的用法：-translate" class="headerlink" title="比较难的用法： translate"></a>比较难的用法： translate</h4><blockquote>
+<p>用于位置的移动</p>
+</blockquote>
+<p>translate<br>translate3D</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;box--default&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;box--default tranlate-30&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;box--default tranlate-30-40&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box--default</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br><span class="hljs-selector-class">.tranlate-30</span> &#123;<br>  <span class="hljs-comment">// 正值是向右移动  负值是向左移动</span><br>  <span class="hljs-attribute">transform</span>: translate(<span class="hljs-number">100px</span>);<br>&#125;<br><span class="hljs-selector-class">.tranlate-30-40</span> &#123;<br>  <span class="hljs-comment">/*  向右移动100px，再向下移动100px  */</span><br>  <span class="hljs-attribute">transform</span>: translate(<span class="hljs-number">100px</span>, <span class="hljs-number">100px</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.50.55-PM.png" srcset="/img/loading.gif" lazyload alt="translate"></p>
+<p><code>translateX</code>、<code>translateY</code> 同理…<br>注意：<code>translateZ</code>效果只有在 3d 图中才会发挥效果</p>
+<p><code>translate</code> 的另一个单位 <code>%</code></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;box--default&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default hundred-100&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">box</span>--default &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">display</span>: flex;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>  <span class="hljs-built_in">font</span>-size: 2<span class="hljs-built_in">rem</span>;<br>&#125;<br><br>.hundred-<span class="hljs-number">100</span> &#123;<br>  <span class="hljs-comment">/* 表示向右移动自身宽度的100%的位置 */</span><br>  <span class="hljs-built_in">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-9.05.57-PM.png" srcset="/img/loading.gif" lazyload alt="translate-100%"></p>
+<p><strong>translate 常用于调整元素居中</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;box--default&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box--default</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.box--default</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;After&quot;</span>;<br>  <span class="hljs-attribute">position</span>: absolute;<br><br>  <span class="hljs-comment">/*  相对于父元素 以子元素的左上角为动点，往下移动50%的位置，往右移动50%的距离  */</span><br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br><br>  <span class="hljs-comment">/*  因为是参照的子元素本身，所以向左移动50%，向上移动50%都是参照的自身大小  */</span><br>  <span class="hljs-attribute">transform</span>: translate(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.33.12-AM.png" srcset="/img/loading.gif" lazyload alt="translate居中设置"></p>
+<h4 id="skew"><a href="#skew" class="headerlink" title="skew"></a>skew</h4><p><code>skew</code>(如果只有一个参数则默认是沿着 x 轴歪斜，如果有两个参数，左边一个是沿着 x 轴歪斜，右边一个沿着 y 轴歪斜)<br><code>skewX</code>(沿着 x 轴歪斜)<br><code>skewY</code>(沿着 y 轴歪斜)</p>
+<p>这个 <code>skew</code> 是没有<code>3d</code>效果的</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;box--default skew-30&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">box</span>--default &#123;<br>  <span class="hljs-built_in">display</span>: flex;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  margin: 50px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">font</span>-size: 2<span class="hljs-built_in">rem</span>;<br>&#125;<br><br>.skew-<span class="hljs-number">30</span> &#123;<br>  <span class="hljs-built_in">transform</span>: skew(30deg)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.43.08-AM.png" srcset="/img/loading.gif" lazyload alt="skew效果"></p>
+<h4 id="结合各种-transform-属性-以及-注意事项"><a href="#结合各种-transform-属性-以及-注意事项" class="headerlink" title="结合各种 transform 属性 以及 注意事项"></a>结合各种 transform 属性 以及 注意事项</h4><p>我可以任意任意组合：<code>rotate</code>、<code>scale</code>、<code>translate</code>、<code>skew</code></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;box--default&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default combine&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">box</span>--default &#123;<br>  <span class="hljs-built_in">display</span>: flex;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  margin: 50px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">font</span>-size: 2<span class="hljs-built_in">rem</span>;<br>&#125;<br>.<span class="hljs-built_in">combine</span> &#123;<br>  <span class="hljs-built_in">transform</span>: rotate(45deg) <span class="hljs-built_in">translate</span>(100px)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.49.56-AM.png" srcset="/img/loading.gif" lazyload alt="transfrom属性结合1"></p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>使用 transform 的属性组合，要注意一个问题，**<code>transform</code>不支持属性覆盖**</p>
+<p>例如：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;box--default&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default combine&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">box</span>--default &#123;<br>  <span class="hljs-built_in">display</span>: flex;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  margin: 50px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">font</span>-size: 2<span class="hljs-built_in">rem</span>;<br>&#125;<br>.<span class="hljs-built_in">combine</span> &#123;<br>  <span class="hljs-built_in">transform</span>: rotate(45deg) <span class="hljs-built_in">translate</span>(100px);<br>&#125;<br>.<span class="hljs-built_in">combine</span> &#123;<br>  <span class="hljs-built_in">transform</span>: rotate(90deg);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.54.14-AM.png" srcset="/img/loading.gif" lazyload alt="属性覆盖失效"></p>
+<p>上图看见，尽管我只是将<code>rotate</code>属性进行覆盖，但是由于没有重新设置<code>translate</code>，这在<code>transform</code>中是不会识别到<code>translate</code>效果的。所以，<code>translate</code>如果想要覆盖某个属性，则需所有属性都进行重写才行…</p>
+<h5 id="利用-css-变量解决上述这种覆盖问题-css-变量是牛爷爷"><a href="#利用-css-变量解决上述这种覆盖问题-css-变量是牛爷爷" class="headerlink" title="利用 css 变量解决上述这种覆盖问题(css 变量是牛爷爷)"></a>利用 css 变量解决上述这种覆盖问题(css 变量是牛爷爷)</h5><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;box--default&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default big&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default move&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default big move&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">box</span>--default &#123;<br>  <span class="hljs-built_in">display</span>: flex;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  margin: 50px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">font</span>-size: 2<span class="hljs-built_in">rem</span>;<br><br>  <span class="hljs-comment">/*  利用css变量  */</span><br>  <span class="hljs-built_in">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">scale</span>, <span class="hljs-number">1.2</span>)) translateX(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">translate</span>-x, 50px))<br>&#125;<br><br>.big &#123;<br>  --<span class="hljs-built_in">scale</span>: <span class="hljs-number">1.5</span>;<br>&#125;<br>.move &#123;<br>  --<span class="hljs-built_in">translate</span>-x: 150px;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-9.06.25-AM.png" srcset="/img/loading.gif" lazyload alt="css变量+transform"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/09/%E5%A6%82%E4%BD%95%E5%9C%A8html%E6%96%87%E4%BB%B6%E9%87%8C%E5%BF%AB%E9%80%9F%E5%8A%A0%E8%BD%BDjs%E4%BB%A3%E7%A0%81/">
+                        <span class="hidden-mobile">如何在html文件里快速加载js代码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
