@@ -18,20 +18,40 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="分享知识、感受生活~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2021/page/3/index.html">
+  <meta name="description" content="CORS(Cross-Origin Resource Sharing)前两天，我在做一个聊天功能的时候，就遇见了类似下面这种问题 上图的意思是 当我们在http:&#x2F;&#x2F;localhost:1234的环境下，试图发送一个请求到http:&#x2F;&#x2F;localhost:3000&#x2F;items。但是受到浏览器的同源策略(此处是因为违背同源策略中端口一致原则)影响。所以这就被判定为跨域行为。浏览器不允许这种操作，所以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨域">
+<meta property="og:url" content="http://example.com/2021/11/20/%E8%B7%A8%E5%9F%9F/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="分享知识、感受生活~">
+<meta property="og:description" content="CORS(Cross-Origin Resource Sharing)前两天，我在做一个聊天功能的时候，就遇见了类似下面这种问题 上图的意思是 当我们在http:&#x2F;&#x2F;localhost:1234的环境下，试图发送一个请求到http:&#x2F;&#x2F;localhost:3000&#x2F;items。但是受到浏览器的同源策略(此处是因为违背同源策略中端口一致原则)影响。所以这就被判定为跨域行为。浏览器不允许这种操作，所以">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-20-at-10.03.24-AM.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-20-at-10.07.41-AM.png">
+<meta property="article:published_time" content="2021-11-20T01:46:49.000Z">
+<meta property="article:modified_time" content="2021-11-20T05:57:34.528Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-20-at-10.03.24-AM.gif">
   
-  <title>归档 - 何阳阳阳的小屋</title>
+  <title>跨域 - 何阳阳阳的小屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -65,7 +85,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -173,14 +193,48 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg13.6gsoj0kqawg0.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="洗脸时认真洗脸，听音乐时认真听音乐">
+            <span class="h2" id="subtitle" title="跨域">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-20 09:46" pubdate>
+        2021年11月20日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      558 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      2 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -193,100 +247,101 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">跨域</h1>
+            
+            <div class="markdown-body">
+              <h4 id="CORS-Cross-Origin-Resource-Sharing"><a href="#CORS-Cross-Origin-Resource-Sharing" class="headerlink" title="CORS(Cross-Origin Resource Sharing)"></a>CORS(Cross-Origin Resource Sharing)</h4><p>前两天，我在做一个聊天功能<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-20-at-10.03.24-AM.gif" srcset="/img/loading.gif" lazyload alt="聊天功能"><br>的时候，就遇见了类似下面这种问题<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-20-at-10.07.41-AM.png" srcset="/img/loading.gif" lazyload alt="跨域"></p>
+<p>上图的意思是 当我们在<code>http://localhost:1234</code>的环境下，试图发送一个请求到<code>http://localhost:3000/items</code>。但是受到<strong>浏览器</strong>的<strong>同源策略</strong>(此处是因为违背同源策略中<code>端口一致</code>原则)影响。所以这就被判定为<strong>跨域行为</strong>。<strong>浏览器</strong>不允许这种操作，所以会禁止你请求发送！</p>
+<blockquote>
+<p>同源策略：协议一致(例如：http/https)、域名一致(例如：localhost)、端口一致(3000, 80 等等)</p>
+</blockquote>
+<p>我的聊天功能也是如此，在<code>localhost:3000</code>端口下运行<code>react</code>的代码，又在该<code>react项目</code>的<code>src文件夹</code>下创建了<code>server文件夹</code>并在此文件夹下运行<code>localhost:5000</code>端口同时进行<code>Socket.io</code>等通信操作, 导致跨域出现…</p>
+<h4 id="为什么会出现跨域？"><a href="#为什么会出现跨域？" class="headerlink" title="为什么会出现跨域？"></a>为什么会出现跨域？</h4><p>简单说：保护用户安全，防止不同网站都能使用我们其他网站的<code>cookie</code>。导致我们的财产、个人隐私被其他网站知晓!</p>
+<h4 id="如何解决跨域问题？"><a href="#如何解决跨域问题？" class="headerlink" title="如何解决跨域问题？"></a>如何解决跨域问题？</h4><blockquote>
+<p><code>Access-Control-Allow-Origin</code> <strong>允许访问控制</strong></p>
+</blockquote>
+<p>方法是，将需要跨域的请求 在服务端使用<code>Access-Control-Allow-Origin</code> header。 下面我用代码来进行理解</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-comment">--</span><br><br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/20/ExpressJS-%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ExpressJS 知识点总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/12/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E6%80%9D%E8%80%83/">
+                        <span class="hidden-mobile">项目开发经验总结&思考</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
                 
 
-<div class="list-group">
-  <p class="h4">共计 55 篇文章</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2021</p>
-    
-    <a href="/2021/11/06/css-%E5%91%BD%E5%90%8D%E8%89%BA%E6%9C%AF/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">css 命名艺术</span>
-      <time style="float: right;">11-06</time>
-    </a>
-  
-    
-    <a href="/2021/11/06/css-variable/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">css variable</span>
-      <time style="float: right;">11-06</time>
-    </a>
-  
-    
-    <a href="/2021/11/04/SOLID-Design-Principles/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SOLID Design Principles</span>
-      <time style="float: right;">11-04</time>
-    </a>
-  
-    
-    <a href="/2021/11/04/clean-Code/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">clean Code</span>
-      <time style="float: right;">11-04</time>
-    </a>
-  
-    
-    <a href="/2021/11/04/JS-Module/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JS Module</span>
-      <time style="float: right;">11-04</time>
-    </a>
-  
-    
-    <a href="/2021/11/01/react%E4%B8%AD%E5%B8%B8%E7%8A%AF%E7%9A%84%E9%94%99%E8%AF%AF/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">react中常犯的错误</span>
-      <time style="float: right;">11-01</time>
-    </a>
-  
-    
-    <a href="/2021/10/31/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">项目中的小技巧</span>
-      <time style="float: right;">10-31</time>
-    </a>
-  
-    
-    <a href="/2021/10/31/async-await/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">async/await</span>
-      <time style="float: right;">10-31</time>
-    </a>
-  
-    
-    <a href="/2021/10/28/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">计算机网络</span>
-      <time style="float: right;">10-28</time>
-    </a>
-  
-    
-    <a href="/2021/10/27/%E5%85%A8%E6%A0%88%E4%B9%8B%E8%B7%AF/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">全栈之路</span>
-      <time style="float: right;">10-27</time>
-    </a>
-  
-</div>
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2021/page/4/#board">4</a><a class="page-number" href="/archives/2021/page/5/#board">5</a><a class="page-number" href="/archives/2021/page/6/#board">6</a><a class="extend next" rel="next" href="/archives/2021/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-
-              </div>
-            </div>
-          </div>
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -375,6 +430,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 
