@@ -12,6 +12,18 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS Animation</title>
+    <url>/2021/11/07/CSS-Animation/</url>
+    <content><![CDATA[<p>先放代码</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: translateX(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码效果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-7.28.54-PM.gif" alt="Animation效果"></p>
+<p>事实上，css 有两种制作动画(Animate)的方式<br>方式 1：使用<code>transition</code>属性 -&gt; 用于制作简单的动画<br>方式 2：使用<code>animation</code>属性 -&gt; 用于制作复杂的动画</p>
+<h4 id="简单动画：transition-属性"><a href="#简单动画：transition-属性" class="headerlink" title="简单动画：transition 属性"></a>简单动画：transition 属性</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-attribute">transition</span>: 由下列四个属性组成<br><span class="hljs-attribute">transition-delay</span><br><span class="hljs-attribute">transition-duration</span><br><span class="hljs-attribute">transition-property</span><br><span class="hljs-attribute">transition-timing-function</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="复杂动画：animation-属性"><a href="#复杂动画：animation-属性" class="headerlink" title="复杂动画：animation 属性"></a>复杂动画：animation 属性</h4>]]></content>
+  </entry>
+  <entry>
     <title>CSS Position</title>
     <url>/2021/11/07/CSS-Position/</url>
     <content><![CDATA[<p><code>position</code> 是 <code>css</code> 中一个非常重要的属性。它的作用是将元素在网页中定位。而设定值总共有 5 个。分别是 <code>static</code>、<code>absolute</code>、<code>relative</code>、<code>fixed</code> 以及 <code>sticky</code></p>
@@ -69,18 +81,6 @@
       <tags>
         <tag>基本功</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>CSS Animation</title>
-    <url>/2021/11/07/CSS-Animation/</url>
-    <content><![CDATA[<p>先放代码</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: translateX(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>代码效果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-7.28.54-PM.gif" alt="Animation效果"></p>
-<p>事实上，css 有两种制作动画(Animate)的方式<br>方式 1：使用<code>transition</code>属性 -&gt; 用于制作简单的动画<br>方式 2：使用<code>animation</code>属性 -&gt; 用于制作复杂的动画</p>
-<h4 id="简单动画：transition-属性"><a href="#简单动画：transition-属性" class="headerlink" title="简单动画：transition 属性"></a>简单动画：transition 属性</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-attribute">transition</span>: 由下列四个属性组成<br><span class="hljs-attribute">transition-delay</span><br><span class="hljs-attribute">transition-duration</span><br><span class="hljs-attribute">transition-property</span><br><span class="hljs-attribute">transition-timing-function</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="复杂动画：animation-属性"><a href="#复杂动画：animation-属性" class="headerlink" title="复杂动画：animation 属性"></a>复杂动画：animation 属性</h4>]]></content>
   </entry>
   <entry>
     <title>CSS Units</title>
@@ -354,6 +354,123 @@
       </tags>
   </entry>
   <entry>
+    <title>Form表格</title>
+    <url>/2021/11/21/Form%E8%A1%A8%E6%A0%BC/</url>
+    <content><![CDATA[<blockquote>
+<p>本来说，<code>form</code> 表格是一个比较基础的内容！但我在做 <code>react</code> 项目的时候，使用 <code>antd</code> 里的 <code>form</code> 表格，感觉太繁琐且不灵活(应该是我菜的缘故)，所以我想自己手写一个 <code>form</code>，但无奈太久没自己手写 <code>form</code> 了，所以已经生疏，为此，我专门写一篇博客方便记忆学习</p>
+</blockquote>
+<h3 id="form-表格基础知识"><a href="#form-表格基础知识" class="headerlink" title="form 表格基础知识"></a>form 表格基础知识</h3><p>文件夹：</p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">|-form.html</span><br><span class="hljs-string">|-result.html</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="form-表格的重要属性："><a href="#form-表格的重要属性：" class="headerlink" title="form 表格的重要属性："></a>form 表格的重要属性：</h4><p><code>action</code>：用于表示你的表格提交到哪里<br><code>method</code>：<br>get 提交的内容会显示到 url 上面<br>post 一般是有服务器的才会使用</p>
+<h5 id="form-表格示例"><a href="#form-表格示例" class="headerlink" title="form 表格示例"></a>form 表格示例</h5><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* form.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;result.html&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户名：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key1&quot;</span>&gt;</span>  // name 会作为 url 的 key 值<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key2&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* result.html */<br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;results&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/form.html&quot;</span>&gt;</span>Back to Form<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span><br><span class="javascript">  <span class="hljs-keyword">const</span> resultsList = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;results&#x27;</span>);</span><br><span class="javascript">  <span class="hljs-comment">// URLSearchParams 接口定义了一些实用的方法来处理 URL 的查询字符串</span></span><br><span class="javascript">  <span class="hljs-comment">// window.location.search 用于获取页面URL中从?开始的部分</span></span><br><span class="javascript">  <span class="hljs-keyword">new</span> URLSearchParams(<span class="hljs-built_in">window</span>.location.search).forEach(<span class="hljs-function">(<span class="hljs-params">value, name</span>) =&gt;</span> &#123;</span><br><span class="javascript">    resultsList.append(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>: <span class="hljs-subst">$&#123;value&#125;</span>`</span>)</span><br><span class="javascript">    resultsList.append(<span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;br&#x27;</span>))</span><br><span class="javascript">  &#125;)</span><br><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>(可以看看 url 的变化)<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-1.42.47-PM.gif" alt="基本操作"></p>
+<h4 id="label-标签的使用"><a href="#label-标签的使用" class="headerlink" title="label 标签的使用"></a>label 标签的使用</h4><p>有两种写法：</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">// 写法一：带 for\id 属性</span><br>  &lt;<span class="hljs-keyword">label</span> <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;用户名：&lt;/<span class="hljs-keyword">label</span>&gt;<br>  &lt;<span class="hljs-keyword">input</span> id=<span class="hljs-string">&quot;username&quot;</span> name=<span class="hljs-string">&quot;key1&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p><label for="username">用户名：</label><br><input id="username" name="key1"></p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">// 写法二：不带 for\id 属性</span><br>  &lt;<span class="hljs-keyword">label</span>&gt;<br>    用户名：<br>    &lt;<span class="hljs-keyword">input</span> name=<span class="hljs-string">&quot;key1&quot;</span>&gt;<br>  &lt;/<span class="hljs-keyword">label</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<label>
+  用户名：<input id="username" name="key1">
+</label>
+
+<p>上述两种其实达到的效果是一致的</p>
+<h4 id="input-和-button-标签的-type-类型"><a href="#input-和-button-标签的-type-类型" class="headerlink" title="input 和 button 标签的 type 类型"></a>input 和 button 标签的 type 类型</h4><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* form.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;result.html&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户名：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span> (text 是默认属性)<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>   // 让输入框的内容重置<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-2.11.46-PM.gif" alt="type类型"></p>
+<h5 id="value-属性-placeholder-属性-required-属性"><a href="#value-属性-placeholder-属性-required-属性" class="headerlink" title="value 属性, placeholder 属性, required 属性"></a>value 属性, placeholder 属性, required 属性</h5><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* form.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;result.html&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户名：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;default&quot;</span>&gt;</span>  // 仅增添了value<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-2.15.06-PM.gif" alt="默认值"></p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">&lt;input <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;key1&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-string">&quot;哈哈哈&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+ <input name="key1" type="text" placeholder="哈哈哈">
+
+<p><code>required</code>会给出一些出错的提示</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">&lt;<span class="hljs-keyword">input</span> <span class="hljs-type">name</span>=&quot;key1&quot; <span class="hljs-keyword">type</span>=&quot;text&quot; placeholder=&quot;哈哈哈&quot; required&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-2.20.51-PM.gif" alt="required1"></p>
+<h5 id="type-”email”"><a href="#type-”email”" class="headerlink" title="type=”email”"></a>type=”email”</h5><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;result.html&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户名：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;哈哈哈&quot;</span> <span class="hljs-attr">required</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">required</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>邮箱：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key3&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">required</span>&gt;</span>   // 这里的类型变成email了<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>(注意：要达到 email 格式提示效果，需要 required + type=”email” 才行哦！)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-2.25.04-PM.gif" alt="requied2"></p>
+<h5 id="type-”number”"><a href="#type-”number”" class="headerlink" title="type=”number”"></a>type=”number”</h5><figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim"><span class="hljs-symbol">&lt;div&gt;</span><br>  <span class="hljs-symbol">&lt;label&gt;</span>年龄：&lt;/label&gt;<br>  &lt;<span class="hljs-built_in">input</span> name=<span class="hljs-string">&quot;key3&quot;</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;number&quot;</span> <span class="hljs-built_in">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-built_in">max</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;  // 可以设置最小值和最大值<br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-2.31.49-PM.gif" alt="number"></p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">&lt;div&gt;<br>  &lt;label&gt;年龄：&lt;/label&gt;<br>  &lt;input <span class="hljs-built_in">name</span>=<span class="hljs-string">&quot;key3&quot;</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;number&quot;</span> <span class="hljs-built_in">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-built_in">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-built_in">step</span>=<span class="hljs-string">&quot;10&quot;</span>&gt;  <span class="hljs-comment">// 每次增加10</span><br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>下面自己来试一下</p>
+<div>
+  <label>年龄：</label>
+  <input name="key3" type="number" min="0" max="100" step="10">
+</div>
+
+<h5 id="type-”date”"><a href="#type-”date”" class="headerlink" title="type=”date”"></a>type=”date”</h5><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>生日：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;date&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div>
+  <label>生日：</label>
+  <input type="date">
+</div>
+
+<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim"><span class="hljs-symbol">&lt;div&gt;</span><br>  <span class="hljs-symbol">&lt;label&gt;</span>生日：&lt;/label&gt;<br>  &lt;<span class="hljs-built_in">input</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;date&quot;</span> <span class="hljs-built_in">min</span>=<span class="hljs-string">&quot;2021-11-21&quot;</span>&gt;  // 可以设置<span class="hljs-built_in">min</span> 和 <span class="hljs-built_in">max</span><br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<div>
+  <label>生日：</label>
+  <input type="date" min="2021-11-21">
+</div>
+
+<h5 id="type-”checkbox”-“radio”"><a href="#type-”checkbox”-“radio”" class="headerlink" title="type=”checkbox”/“radio”"></a>type=”checkbox”/“radio”</h5><figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata">最爱水果(可多选)<br>&lt;div&gt;<br>  &lt;<span class="hljs-keyword">label</span>&gt;<br>    香蕉<br>    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span>&gt;<br>  &lt;/<span class="hljs-keyword">label</span>&gt;<br>  &lt;<span class="hljs-keyword">label</span>&gt;<br>    苹果<br>    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span>&gt;<br>  &lt;/<span class="hljs-keyword">label</span>&gt;<br>  &lt;<span class="hljs-keyword">label</span>&gt;<br>    葡萄<br>    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span>&gt;<br>  &lt;/<span class="hljs-keyword">label</span>&gt;<br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<div>
+  <label>
+    香蕉
+    <input type="checkbox">
+  </label>
+  <label>
+    苹果
+    <input type="checkbox">
+  </label>
+  <label>
+    葡萄
+    <input type="checkbox">
+  </label>
+</div>
+
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata">最爱水果(只能选一样)<br>&lt;div&gt;<br>  &lt;<span class="hljs-keyword">label</span>&gt;<br>    香蕉<br>    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;radio&quot;</span> name=&quot;fruit&gt;   <span class="hljs-comment">// name 要一致才行</span><br>  &lt;/<span class="hljs-keyword">label</span>&gt;<br>  &lt;<span class="hljs-keyword">label</span>&gt;<br>    苹果<br>    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;radio&quot;</span> name=&quot;fruit&gt;<br>  &lt;/<span class="hljs-keyword">label</span>&gt;<br>  &lt;<span class="hljs-keyword">label</span>&gt;<br>    葡萄<br>    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;radio&quot;</span> name=&quot;fruit&gt;<br>  &lt;/<span class="hljs-keyword">label</span>&gt;<br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<div>
+  <label>
+    香蕉
+    <input type="radio" name="fruit">
+  </label>
+  <label>
+    苹果
+    <input type="radio" name="fruit">
+  </label>
+  <label>
+    葡萄
+    <input type="radio" name="fruit">
+  </label>
+</div>
+
+<h5 id="select-标签"><a href="#select-标签" class="headerlink" title="select 标签"></a>select 标签</h5><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;result.html&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户名：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;哈哈哈&quot;</span> <span class="hljs-attr">required</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">required</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;eyeColor&quot;</span>&gt;</span>眼睛颜色<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;eyeColor&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;eyeColor&quot;</span> <span class="hljs-attr">multiple</span>&gt;</span>   <span class="hljs-comment">&lt;!-- multiple 可以达到多选的效果--&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Green&quot;</span>&gt;</span>绿色<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Black&quot;</span>&gt;</span>黑色<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Blue&quot;</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;蓝色&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>  <span class="hljs-comment">&lt;!-- label 在这里代替了option标签中间写的内容--&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-3.26.59-PM.gif" alt="select标签"></p>
+<h5 id="type-”hidden”"><a href="#type-”hidden”" class="headerlink" title="type=”hidden”"></a>type=”hidden”</h5><p>这个标签在表格中不会显示出来，但伴随表格提交是会有内容出现</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;result.html&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户名：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;哈哈哈&quot;</span> <span class="hljs-attr">required</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;key2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">required</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;我要隐藏&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-3.35.54-PM.gif" alt="hidden"></p>
+<h4 id="type-”file”"><a href="#type-”file”" class="headerlink" title="type=”file”"></a>type=”file”</h4><p>注意：因为文件是很大的，所以无法一次性上传到后端(所以这个应该用 post 的请求方法才会奏效)。我们需要给 <code>form</code> 增加新的属性：<code>enctype=&quot;multipart/form-data&quot;</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;result.html&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;file&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-21-at-3.45.25-PM.gif" alt="file"></p>
+<p>事实上 type 还有 tel、url、color 这几种属性。效果其实挺简单，在网上一查便知就不过多赘述了…</p>
+]]></content>
+  </entry>
+  <entry>
     <title>HTTP状态码</title>
     <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
     <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
@@ -364,6 +481,28 @@
       <tags>
         <tag>基本功</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>JS ES6 obj</title>
+    <url>/2021/11/10/JS-ES6-obj/</url>
+    <content><![CDATA[<p><code>ES6</code>中对于对象(<code>Object</code>)的升级</p>
+<h4 id="key-value"><a href="#key-value" class="headerlink" title="key:value"></a>key:value</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const name</span> = <span class="hljs-string">&#x27;Bruce&#x27;</span>;<br><span class="hljs-attribute">const age</span> = 25;<br><br><span class="hljs-attribute">const person</span> = &#123;<br>  name: name,<br>  age: age<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于<strong>对象键值对</strong>的键名和值名一致，可以用下面这种更加简便的方法来表示</p>
+<figure class="highlight delphi"><table><tr><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">const</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&#x27;Kyle&#x27;</span><br><span class="hljs-keyword">const</span> age = <span class="hljs-number">25</span><br><br><span class="hljs-keyword">const</span> person = <span class="hljs-comment">&#123;</span><br><span class="hljs-comment">  name,</span><br><span class="hljs-comment">  age</span><br><span class="hljs-comment">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="funcName-func"><a href="#funcName-func" class="headerlink" title="funcName:func"></a>funcName:func</h4><p>在 es6 中对于对象内，函数作为属性也有了新的简写方式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* 原来的写法 */</span><br><span class="hljs-keyword">const</span> person = &#123;<br>  <span class="hljs-attr">sayHi</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Hi&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">/* 现在的写法 */</span><br><span class="hljs-keyword">const</span> person = &#123;<br>  <span class="hljs-function"><span class="hljs-title">sayHi</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Hi&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="obj-property"><a href="#obj-property" class="headerlink" title="[obj-property]"></a><code>[obj-property]</code></h4><p>我们可以在创建对象的时候，使用<strong>变量</strong>来定义对象的键</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> dynamicKey = <span class="hljs-string">&#x27;name&#x27;</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">index</span> = <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">const</span> person = &#123;<br>  [dynamicKey]: <span class="hljs-string">&#x27;Bruce&#x27;</span>,<br>  [<span class="hljs-string">&#x27;age&#x27;</span> + <span class="hljs-keyword">index</span>]: <span class="hljs-number">21</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>事实上方括号中的属性名最后会转化为字符串，作为属性名</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Bruce&quot;</span>,<br>  <span class="hljs-attr">&quot;age&quot;</span>: <span class="hljs-number">21</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>灵活的使用动态属性：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> dynamicKey = <span class="hljs-string">&#x27;name&#x27;</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">index</span> = <span class="hljs-number">1</span><br><br><span class="hljs-keyword">const</span> person = &#123;&#125;<br>person[dynamicKey] = <span class="hljs-string">&#x27;Bruce&#x27;</span><br>person[<span class="hljs-string">&#x27;age&#x27;</span> + <span class="hljs-keyword">index</span>] = <span class="hljs-number">21</span><br></code></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>JS Module</title>
@@ -400,28 +539,6 @@
       <tags>
         <tag>基本功</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>JS ES6 obj</title>
-    <url>/2021/11/10/JS-ES6-obj/</url>
-    <content><![CDATA[<p><code>ES6</code>中对于对象(<code>Object</code>)的升级</p>
-<h4 id="key-value"><a href="#key-value" class="headerlink" title="key:value"></a>key:value</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const name</span> = <span class="hljs-string">&#x27;Bruce&#x27;</span>;<br><span class="hljs-attribute">const age</span> = 25;<br><br><span class="hljs-attribute">const person</span> = &#123;<br>  name: name,<br>  age: age<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>对于<strong>对象键值对</strong>的键名和值名一致，可以用下面这种更加简便的方法来表示</p>
-<figure class="highlight delphi"><table><tr><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">const</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&#x27;Kyle&#x27;</span><br><span class="hljs-keyword">const</span> age = <span class="hljs-number">25</span><br><br><span class="hljs-keyword">const</span> person = <span class="hljs-comment">&#123;</span><br><span class="hljs-comment">  name,</span><br><span class="hljs-comment">  age</span><br><span class="hljs-comment">&#125;</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="funcName-func"><a href="#funcName-func" class="headerlink" title="funcName:func"></a>funcName:func</h4><p>在 es6 中对于对象内，函数作为属性也有了新的简写方式</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* 原来的写法 */</span><br><span class="hljs-keyword">const</span> person = &#123;<br>  <span class="hljs-attr">sayHi</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Hi&#x27;</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">/* 现在的写法 */</span><br><span class="hljs-keyword">const</span> person = &#123;<br>  <span class="hljs-function"><span class="hljs-title">sayHi</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Hi&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="obj-property"><a href="#obj-property" class="headerlink" title="[obj-property]"></a><code>[obj-property]</code></h4><p>我们可以在创建对象的时候，使用<strong>变量</strong>来定义对象的键</p>
-<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> dynamicKey = <span class="hljs-string">&#x27;name&#x27;</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">index</span> = <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">const</span> person = &#123;<br>  [dynamicKey]: <span class="hljs-string">&#x27;Bruce&#x27;</span>,<br>  [<span class="hljs-string">&#x27;age&#x27;</span> + <span class="hljs-keyword">index</span>]: <span class="hljs-number">21</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>事实上方括号中的属性名最后会转化为字符串，作为属性名</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Bruce&quot;</span>,<br>  <span class="hljs-attr">&quot;age&quot;</span>: <span class="hljs-number">21</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>灵活的使用动态属性：</p>
-<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> dynamicKey = <span class="hljs-string">&#x27;name&#x27;</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">index</span> = <span class="hljs-number">1</span><br><br><span class="hljs-keyword">const</span> person = &#123;&#125;<br>person[dynamicKey] = <span class="hljs-string">&#x27;Bruce&#x27;</span><br>person[<span class="hljs-string">&#x27;age&#x27;</span> + <span class="hljs-keyword">index</span>] = <span class="hljs-number">21</span><br></code></pre></td></tr></table></figure>
-]]></content>
   </entry>
   <entry>
     <title>JS sort 玩法</title>
@@ -685,6 +802,39 @@
       </tags>
   </entry>
   <entry>
+    <title>React-随笔一</title>
+    <url>/2021/10/18/React-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
+    <content><![CDATA[<h4 id="推荐一个-vscode-的插件-针对-react-的-贼好用…"><a href="#推荐一个-vscode-的插件-针对-react-的-贼好用…" class="headerlink" title="推荐一个 vscode 的插件 针对 react 的(贼好用…)"></a>推荐一个 vscode 的插件 针对 react 的(贼好用…)</h4><p>ES7 React/Redux/GraphQL/React-Native snippets</p>
+<p><code>rfc</code></p>
+<h4 id="问题一：错误边界"><a href="#问题一：错误边界" class="headerlink" title="问题一：错误边界"></a>问题一：错误边界</h4><p>在<code>react</code>的渲染过程中如果出现了异常。那么整个组件树都会被卸载掉…(在开发环境下能够看见报错的原因…但是真正上线后。用户只能看见白茫茫的一片。其余什么也看不见…)<br><a href="https://reactjs.org/docs/error-boundaries.html">错误边界问题</a><br>注意，错误边界的实现是一定要使用<code>class component</code>来实现的。这也是<code>class 组件</code>和<code>函数组件</code>的区别。<br><a href="https://codesandbox.io/s/gong-ju-lei-oef90?file=/src/utils/error-bundary.tsx">我在 codesandbox 里写的一个 error-bundary 库</a></p>
+<p>—&gt; 在思考这题的时候有两个小问题<br>—&gt; <a href="https://stackoverflow.com/questions/58123398/when-to-use-jsx-element-vs-reactnode-vs-reactelement">ReactNode 和 ReactElement 的区别</a><br>—&gt; <a href="https://www.newline.co/@bespoyasov/how-to-define-props-with-children-in-react-typescript-app--56bd18be">PropsWithChildren 的用法</a> 其实就是 <code>react官方</code> 自己定义的一个<code>type utility</code>。类似<code>omit</code>这类<code>type utility</code></p>
+<h4 id="问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…"><a href="#问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…" class="headerlink" title="问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)"></a>问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)</h4><ol>
+<li>自定义 hook，动态改变文档标题 有两套方案：<ol>
+<li>使用第三方库 <a href="https://github.com/nfl/react-helmet">react-helmet</a></li>
+<li>自己写一个 hook</li>
+</ol>
+</li>
+</ol>
+<h4 id="问题三：-无限渲染问题-针对-useEffect…"><a href="#问题三：-无限渲染问题-针对-useEffect…" class="headerlink" title="问题三： 无限渲染问题(针对 useEffect…)"></a>问题三： 无限渲染问题(针对 useEffect…)</h4><p><a href="https://github.com/welldone-software/why-did-you-render">一个查找无限渲染原因的库-why-did-you-render</a></p>
+<p>下面是自己写的一个无限死循环组件</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> React, &#123; useEffect, useState &#125; from <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> InfiniteLoop = () =&gt; &#123;<br>  <span class="hljs-keyword">const</span> obj = &#123; name: <span class="hljs-string">&quot;bruce&quot;</span> &#125;; <span class="hljs-comment">// 按引用赋值</span><br>  <span class="hljs-keyword">const</span> [<span class="hljs-built_in">num</span>, setNum] = useState(<span class="hljs-number">0</span>);<br><br>  useEffect(() =&gt; &#123;<br>    console.log(<span class="hljs-string">&quot;effect&quot;</span>);<br>    <span class="hljs-comment">// num + 1 造成页面的重新渲染...</span><br>    <span class="hljs-comment">// 重新渲染后又会num + 1 又是重新渲染...</span><br>    <span class="hljs-comment">// 无限死循环...</span><br>    setNum(<span class="hljs-built_in">num</span> + <span class="hljs-number">1</span>);<br>  &#125;, [obj]);  <span class="hljs-comment">// 如果这里的依赖项是一个不变且不是引用类型的值，就不会触发useEffect，也就不会造成无限死循环...</span><br><br>  <span class="hljs-keyword">return</span> &lt;div&gt;<span class="hljs-built_in">num</span>: &#123;<span class="hljs-built_in">num</span>&#125;&lt;/div&gt;;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="问题四：组件类型透传-这是结合了-TS-以及-其他组件库例如-antd-来写的…"><a href="#问题四：组件类型透传-这是结合了-TS-以及-其他组件库例如-antd-来写的…" class="headerlink" title="问题四：组件类型透传(这是结合了 TS 以及 其他组件库例如(antd))来写的…"></a>问题四：组件类型透传(这是结合了 TS 以及 其他组件库例如(antd))来写的…</h4><p>在日常 react 项目开发中，我们可能会遇见这样的一个问题。例如：我们要自定义一个 select 组件。如下</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> IdSelectProps &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;<br>  onChange: <span class="hljs-function">(<span class="hljs-params">value?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;<br>  options?: &#123; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; id: <span class="hljs-built_in">number</span> &#125;[];<br>&#125;<br><br><span class="hljs-keyword">const</span> IdSelect = <span class="hljs-function">(<span class="hljs-params">&#123;</span></span><br><span class="hljs-params"><span class="hljs-function">  value,</span></span><br><span class="hljs-params"><span class="hljs-function">  onChange,</span></span><br><span class="hljs-params"><span class="hljs-function">  options</span></span><br><span class="hljs-params"><span class="hljs-function">&#125;: IdSelectProps</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;toNumber(value)&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> onChange(toNumber(e.target.value) || undefined)&#125;</span><br><span class="xml">    &gt;</span><br><span class="xml">      &#123;defaultOptionName ? (</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;0&#125;</span>&gt;</span>&#123;defaultOptionName&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="xml">      ) : null&#125;</span><br><span class="xml">      &#123;options?.map((option) =&gt; &#123;</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;option.name&#125;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;option.id&#125;</span>&gt;</span></span><br><span class="xml">          &#123;option.name&#125;</span><br><span class="xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>;</span><br><span class="xml">      &#125;)&#125;</span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br>  );<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>现在有出现一个问题。就是我想扩展我这个<code>IdSelect</code>组件。但是我如果一个一个的去更改组件的类型接口非常麻烦<br>而恰好在<code>antd库</code>里又有一个现有的<code>Select组件</code>功能齐全。我就想把我的组件和 Select 组件的<code>props的各种类型</code>结合起来。如下：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; Select &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;antd&#x27;</span>;  <span class="hljs-comment">// 导入antd里的Select组件</span><br><br><span class="hljs-comment">// React.ComponentProps 帮助我们获取一个组件的 props 类型声明</span><br><span class="hljs-keyword">type</span> SelectProps = React.ComponentProps&lt;<span class="hljs-keyword">typeof</span> Select&gt;<br><br><span class="hljs-comment">// Omit 是为了防止SelectProps类型中有些属性和IdSelectProps的属性发生冲突</span><br><span class="hljs-keyword">interface</span> IdSelectProps <span class="hljs-keyword">extends</span> Omit&lt;SelectProps, &#x27;value&#x27; | &#x27;onChange&#x27; | &#x27;option&#x27;&gt;&#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;<br>  onChange: <span class="hljs-function">(<span class="hljs-params">value?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;<br>  options?: &#123; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; id: <span class="hljs-built_in">number</span> &#125;[];<br>&#125;<br><br><span class="hljs-comment">// ... 后续代码一些正常</span><br></code></pre></td></tr></table></figure>
+
+<p>这样之后，我的 <code>IdSelect</code> 组件的类型属性就会丰富很多…</p>
+]]></content>
+      <categories>
+        <category>React篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SOLID Design Principles</title>
     <url>/2021/11/04/SOLID-Design-Principles/</url>
     <content><![CDATA[<h3 id="Single-Responsibility-Principle-唯一的-负责-原则"><a href="#Single-Responsibility-Principle-唯一的-负责-原则" class="headerlink" title="Single Responsibility Principle (唯一的 负责 原则)"></a>Single Responsibility Principle (唯一的 负责 原则)</h3><p>一个函数或一个类只能有一个原因去进行自身代码更改…<br>在 js 中用多函数(每个函数只能有一个功能)以及<code>ES Module</code>模块化来实现</p>
@@ -717,39 +867,6 @@
       </categories>
       <tags>
         <tag>优质代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>React-随笔一</title>
-    <url>/2021/10/18/React-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
-    <content><![CDATA[<h4 id="推荐一个-vscode-的插件-针对-react-的-贼好用…"><a href="#推荐一个-vscode-的插件-针对-react-的-贼好用…" class="headerlink" title="推荐一个 vscode 的插件 针对 react 的(贼好用…)"></a>推荐一个 vscode 的插件 针对 react 的(贼好用…)</h4><p>ES7 React/Redux/GraphQL/React-Native snippets</p>
-<p><code>rfc</code></p>
-<h4 id="问题一：错误边界"><a href="#问题一：错误边界" class="headerlink" title="问题一：错误边界"></a>问题一：错误边界</h4><p>在<code>react</code>的渲染过程中如果出现了异常。那么整个组件树都会被卸载掉…(在开发环境下能够看见报错的原因…但是真正上线后。用户只能看见白茫茫的一片。其余什么也看不见…)<br><a href="https://reactjs.org/docs/error-boundaries.html">错误边界问题</a><br>注意，错误边界的实现是一定要使用<code>class component</code>来实现的。这也是<code>class 组件</code>和<code>函数组件</code>的区别。<br><a href="https://codesandbox.io/s/gong-ju-lei-oef90?file=/src/utils/error-bundary.tsx">我在 codesandbox 里写的一个 error-bundary 库</a></p>
-<p>—&gt; 在思考这题的时候有两个小问题<br>—&gt; <a href="https://stackoverflow.com/questions/58123398/when-to-use-jsx-element-vs-reactnode-vs-reactelement">ReactNode 和 ReactElement 的区别</a><br>—&gt; <a href="https://www.newline.co/@bespoyasov/how-to-define-props-with-children-in-react-typescript-app--56bd18be">PropsWithChildren 的用法</a> 其实就是 <code>react官方</code> 自己定义的一个<code>type utility</code>。类似<code>omit</code>这类<code>type utility</code></p>
-<h4 id="问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…"><a href="#问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…" class="headerlink" title="问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)"></a>问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)</h4><ol>
-<li>自定义 hook，动态改变文档标题 有两套方案：<ol>
-<li>使用第三方库 <a href="https://github.com/nfl/react-helmet">react-helmet</a></li>
-<li>自己写一个 hook</li>
-</ol>
-</li>
-</ol>
-<h4 id="问题三：-无限渲染问题-针对-useEffect…"><a href="#问题三：-无限渲染问题-针对-useEffect…" class="headerlink" title="问题三： 无限渲染问题(针对 useEffect…)"></a>问题三： 无限渲染问题(针对 useEffect…)</h4><p><a href="https://github.com/welldone-software/why-did-you-render">一个查找无限渲染原因的库-why-did-you-render</a></p>
-<p>下面是自己写的一个无限死循环组件</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> React, &#123; useEffect, useState &#125; from <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> InfiniteLoop = () =&gt; &#123;<br>  <span class="hljs-keyword">const</span> obj = &#123; name: <span class="hljs-string">&quot;bruce&quot;</span> &#125;; <span class="hljs-comment">// 按引用赋值</span><br>  <span class="hljs-keyword">const</span> [<span class="hljs-built_in">num</span>, setNum] = useState(<span class="hljs-number">0</span>);<br><br>  useEffect(() =&gt; &#123;<br>    console.log(<span class="hljs-string">&quot;effect&quot;</span>);<br>    <span class="hljs-comment">// num + 1 造成页面的重新渲染...</span><br>    <span class="hljs-comment">// 重新渲染后又会num + 1 又是重新渲染...</span><br>    <span class="hljs-comment">// 无限死循环...</span><br>    setNum(<span class="hljs-built_in">num</span> + <span class="hljs-number">1</span>);<br>  &#125;, [obj]);  <span class="hljs-comment">// 如果这里的依赖项是一个不变且不是引用类型的值，就不会触发useEffect，也就不会造成无限死循环...</span><br><br>  <span class="hljs-keyword">return</span> &lt;div&gt;<span class="hljs-built_in">num</span>: &#123;<span class="hljs-built_in">num</span>&#125;&lt;/div&gt;;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h4 id="问题四：组件类型透传-这是结合了-TS-以及-其他组件库例如-antd-来写的…"><a href="#问题四：组件类型透传-这是结合了-TS-以及-其他组件库例如-antd-来写的…" class="headerlink" title="问题四：组件类型透传(这是结合了 TS 以及 其他组件库例如(antd))来写的…"></a>问题四：组件类型透传(这是结合了 TS 以及 其他组件库例如(antd))来写的…</h4><p>在日常 react 项目开发中，我们可能会遇见这样的一个问题。例如：我们要自定义一个 select 组件。如下</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> IdSelectProps &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;<br>  onChange: <span class="hljs-function">(<span class="hljs-params">value?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;<br>  options?: &#123; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; id: <span class="hljs-built_in">number</span> &#125;[];<br>&#125;<br><br><span class="hljs-keyword">const</span> IdSelect = <span class="hljs-function">(<span class="hljs-params">&#123;</span></span><br><span class="hljs-params"><span class="hljs-function">  value,</span></span><br><span class="hljs-params"><span class="hljs-function">  onChange,</span></span><br><span class="hljs-params"><span class="hljs-function">  options</span></span><br><span class="hljs-params"><span class="hljs-function">&#125;: IdSelectProps</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;toNumber(value)&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> onChange(toNumber(e.target.value) || undefined)&#125;</span><br><span class="xml">    &gt;</span><br><span class="xml">      &#123;defaultOptionName ? (</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;0&#125;</span>&gt;</span>&#123;defaultOptionName&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="xml">      ) : null&#125;</span><br><span class="xml">      &#123;options?.map((option) =&gt; &#123;</span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;option.name&#125;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;option.id&#125;</span>&gt;</span></span><br><span class="xml">          &#123;option.name&#125;</span><br><span class="xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>;</span><br><span class="xml">      &#125;)&#125;</span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br>  );<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<p>现在有出现一个问题。就是我想扩展我这个<code>IdSelect</code>组件。但是我如果一个一个的去更改组件的类型接口非常麻烦<br>而恰好在<code>antd库</code>里又有一个现有的<code>Select组件</code>功能齐全。我就想把我的组件和 Select 组件的<code>props的各种类型</code>结合起来。如下：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; Select &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;antd&#x27;</span>;  <span class="hljs-comment">// 导入antd里的Select组件</span><br><br><span class="hljs-comment">// React.ComponentProps 帮助我们获取一个组件的 props 类型声明</span><br><span class="hljs-keyword">type</span> SelectProps = React.ComponentProps&lt;<span class="hljs-keyword">typeof</span> Select&gt;<br><br><span class="hljs-comment">// Omit 是为了防止SelectProps类型中有些属性和IdSelectProps的属性发生冲突</span><br><span class="hljs-keyword">interface</span> IdSelectProps <span class="hljs-keyword">extends</span> Omit&lt;SelectProps, &#x27;value&#x27; | &#x27;onChange&#x27; | &#x27;option&#x27;&gt;&#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;<br>  onChange: <span class="hljs-function">(<span class="hljs-params">value?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;<br>  options?: &#123; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; id: <span class="hljs-built_in">number</span> &#125;[];<br>&#125;<br><br><span class="hljs-comment">// ... 后续代码一些正常</span><br></code></pre></td></tr></table></figure>
-
-<p>这样之后，我的 <code>IdSelect</code> 组件的类型属性就会丰富很多…</p>
-]]></content>
-      <categories>
-        <category>React篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
       </tags>
   </entry>
   <entry>
@@ -805,6 +922,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Socket.io 知识总结</title>
+    <url>/2021/11/21/Socket-io-%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>TypeScript-随笔一</title>
+    <url>/2021/10/20/TypeScript-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
+    <content><![CDATA[<h4 id="as-const-的妙用！"><a href="#as-const-的妙用！" class="headerlink" title="as const 的妙用！"></a>as const 的妙用！</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">a</span> = <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;jack&#x27;</span>, 12, &#123;gender: <span class="hljs-string">&#x27;male&#x27;</span>&#125;]</span>  <span class="hljs-comment">// ts 会默认认为这个a是数组,所以里面的元素类型都应该是保持一致的才行...</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-20-at-9.26.54-AM.44u177wjacg0.png" alt="未添加as const"></p>
+<p>如果要本身的原始类型则加上<code>as const</code></p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> a = [<span class="hljs-string">&#x27;jack&#x27;</span>, <span class="hljs-number">12</span>, &#123;gender: <span class="hljs-string">&#x27;male&#x27;</span>&#125;] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-20-at-9.28.46-AM.4pkaih8rjje0.png" alt="添加as const"></p>
+<hr>
+<p>再来一个例子：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> a = [<span class="hljs-string">&#x27;12&#x27;</span>]          <span class="hljs-comment">// const a: string[]</span><br><span class="hljs-keyword">const</span> b = [<span class="hljs-string">&#x27;12&#x27;</span>] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span> <span class="hljs-comment">// const b: readonly [&quot;12&quot;]</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：有了<code>as const</code>后,属性类型变成 <code>readonly</code></p>
+<h4 id="给已经存在的-react-项目添加-ts"><a href="#给已经存在的-react-项目添加-ts" class="headerlink" title="给已经存在的 react 项目添加 ts"></a>给已经存在的 react 项目添加 ts</h4><p><a href="https://create-react-app.dev/docs/adding-typescript/">安装教程</a></p>
+<h4 id="注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的"><a href="#注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的" class="headerlink" title="注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的"></a>注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的</h4><p>例如：<code>src/index.js</code> –&gt; 改为 ts 版本应该为 –&gt; <code>src/index.tsx(不是 ts)</code> 因为如果是 <code>ts</code> 的话 <code>&lt;React.StrictMode&gt;</code>这里会报错…需要的是 <code>tsx</code> 语法…</p>
+]]></content>
+      <categories>
+        <category>TypeScript篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>async/await</title>
     <url>/2021/10/31/async-await/</url>
     <content><![CDATA[<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><p><code>Promise</code> n. 许诺，允诺；希望<br>这个单词其实和真实生活中的<strong>承诺</strong>非常像<br>我承诺要做什么什么… 总共会得到两种结果<br>一种是承诺得以实现(<code>resolved</code>) 一种是承诺没有被实现(<code>rejected</code>)<br><code>Promise</code> 接受一个参数，该参数必须是一个函数,并且这个函数有两个参数(<code>resolve</code>, <code>reject</code>)</p>
@@ -832,31 +979,6 @@
 ]]></content>
       <categories>
         <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TypeScript-随笔一</title>
-    <url>/2021/10/20/TypeScript-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
-    <content><![CDATA[<h4 id="as-const-的妙用！"><a href="#as-const-的妙用！" class="headerlink" title="as const 的妙用！"></a>as const 的妙用！</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">a</span> = <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;jack&#x27;</span>, 12, &#123;gender: <span class="hljs-string">&#x27;male&#x27;</span>&#125;]</span>  <span class="hljs-comment">// ts 会默认认为这个a是数组,所以里面的元素类型都应该是保持一致的才行...</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-20-at-9.26.54-AM.44u177wjacg0.png" alt="未添加as const"></p>
-<p>如果要本身的原始类型则加上<code>as const</code></p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> a = [<span class="hljs-string">&#x27;jack&#x27;</span>, <span class="hljs-number">12</span>, &#123;gender: <span class="hljs-string">&#x27;male&#x27;</span>&#125;] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-20-at-9.28.46-AM.4pkaih8rjje0.png" alt="添加as const"></p>
-<hr>
-<p>再来一个例子：</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> a = [<span class="hljs-string">&#x27;12&#x27;</span>]          <span class="hljs-comment">// const a: string[]</span><br><span class="hljs-keyword">const</span> b = [<span class="hljs-string">&#x27;12&#x27;</span>] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span> <span class="hljs-comment">// const b: readonly [&quot;12&quot;]</span><br></code></pre></td></tr></table></figure>
-
-<p>注意：有了<code>as const</code>后,属性类型变成 <code>readonly</code></p>
-<h4 id="给已经存在的-react-项目添加-ts"><a href="#给已经存在的-react-项目添加-ts" class="headerlink" title="给已经存在的 react 项目添加 ts"></a>给已经存在的 react 项目添加 ts</h4><p><a href="https://create-react-app.dev/docs/adding-typescript/">安装教程</a></p>
-<h4 id="注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的"><a href="#注意：给-react-项目添加-ts-后。对于-ts-后缀和-tsx-后缀是有讲究的" class="headerlink" title="注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的"></a>注意：给 react 项目添加 ts 后。对于 ts 后缀和 tsx 后缀是有讲究的</h4><p>例如：<code>src/index.js</code> –&gt; 改为 ts 版本应该为 –&gt; <code>src/index.tsx(不是 ts)</code> 因为如果是 <code>ts</code> 的话 <code>&lt;React.StrictMode&gt;</code>这里会报错…需要的是 <code>tsx</code> 语法…</p>
-]]></content>
-      <categories>
-        <category>TypeScript篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -911,6 +1033,25 @@
       </tags>
   </entry>
   <entry>
+    <title>clean Code</title>
+    <url>/2021/11/04/clean-Code/</url>
+    <content><![CDATA[<h3 id="停止使用继承-迎接函数式组合"><a href="#停止使用继承-迎接函数式组合" class="headerlink" title="停止使用继承, 迎接函数式组合"></a>停止使用继承, 迎接函数式组合</h3><h4 id="继承法"><a href="#继承法" class="headerlink" title="继承法"></a>继承法</h4><p>试想用 class 的方法来完成一个继承问题</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Monster</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.name = name;<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-title">attack</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> attacked`</span>);<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-title">walk</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> walked`</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一个飞行的怪物类(利用传统的继承方法)</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingMonster</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Monster</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">fly</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> flew`</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一个游泳的怪物类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwimmingMonster</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Monster</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">swim</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> swam`</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> bear = <span class="hljs-keyword">new</span> Monster(<span class="hljs-string">&#x27;bear&#x27;</span>);<br>bear.walk();<br>bear.attack();<br><br><span class="hljs-keyword">const</span> eagle = <span class="hljs-keyword">new</span> FlyingMonster(<span class="hljs-string">&#x27;eagle&#x27;</span>);<br>eagle.walk();<br>eagle.attack();<br>eagle.fly();<br><br><span class="hljs-keyword">const</span> shark = <span class="hljs-keyword">new</span> SwimmingMonster(<span class="hljs-string">&#x27;shark&#x27;</span>);<br>shark.walk();<br>shark.attack();<br>shark.swim();<br></code></pre></td></tr></table></figure>
+
+<p>上述一些都比较的正常…<br>但是现在有个问题。如果我想创建一个即能够游泳又可以飞行的怪物类怎么办？<br>只能凉凉，js 只能支持单继承…<br>class FlyingSwimmingMonster extends FlyingMonster … ❌</p>
+<h4 id="组合大法"><a href="#组合大法" class="headerlink" title="组合大法"></a>组合大法</h4><p>现在抛开传统的类继承方法<br>以函数式编程的思维来解决问题</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建一个游泳函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swimmer</span>(<span class="hljs-params">&#123;name&#125;</span>) </span>&#123;<br>  <span class="hljs-comment">// 返回的是一个对象</span><br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">swim</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span> swam`</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一个飞行函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flyer</span>(<span class="hljs-params">&#123;name&#125;</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">fly</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span> fly`</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 现在我想创建一个能够产生会游泳的怪物的函数</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swimmingMonsterCreator</span>(<span class="hljs-params">name</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> monster = &#123;<span class="hljs-attr">name</span>: name&#125;<br>  <span class="hljs-comment">// 这里的解构用得挺好</span><br>  <span class="hljs-keyword">return</span> &#123;<br>    ...monster,<br>    ...swimmer(monster)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 现在我想创建一个既可以游泳又可以飞行的怪物的函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SwimmingFlyingMonsterCreator</span>(<span class="hljs-params">name</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> monster = &#123;<span class="hljs-attr">name</span>: name&#125;<br>  <span class="hljs-keyword">return</span> &#123;<br>    ...monster,<br>    ...swimmer(monster),<br>    ...flyer(monster)<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> obj1 = swimmingMonsterCreator(<span class="hljs-string">&#x27;Monster&#x27;</span>);<br>obj1.swim();<br><br><span class="hljs-keyword">const</span> obj2 = SwimmingFlyingMonsterCreator(<span class="hljs-string">&#x27;Monster2&#x27;</span>)<br>obj2.swim();<br>obj2.fly();<br></code></pre></td></tr></table></figure>
+
+<p>可见…组合的方法，非常方便且灵活~</p>
+]]></content>
+      <categories>
+        <category>Clean Code篇</category>
+      </categories>
+      <tags>
+        <tag>优质代码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>css-color hsl</title>
     <url>/2021/11/06/css-color-hsl/</url>
     <content><![CDATA[<p>不多说…以后如果是自己来控制颜色，就采用 hsl()方法，而不是使用#十六进制、rgba、rgb 这种颜色控制…</p>
@@ -936,25 +1077,6 @@
       </categories>
       <tags>
         <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>clean Code</title>
-    <url>/2021/11/04/clean-Code/</url>
-    <content><![CDATA[<h3 id="停止使用继承-迎接函数式组合"><a href="#停止使用继承-迎接函数式组合" class="headerlink" title="停止使用继承, 迎接函数式组合"></a>停止使用继承, 迎接函数式组合</h3><h4 id="继承法"><a href="#继承法" class="headerlink" title="继承法"></a>继承法</h4><p>试想用 class 的方法来完成一个继承问题</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Monster</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.name = name;<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-title">attack</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> attacked`</span>);<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-title">walk</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> walked`</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一个飞行的怪物类(利用传统的继承方法)</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingMonster</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Monster</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">fly</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> flew`</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一个游泳的怪物类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwimmingMonster</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Monster</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-title">swim</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> swam`</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> bear = <span class="hljs-keyword">new</span> Monster(<span class="hljs-string">&#x27;bear&#x27;</span>);<br>bear.walk();<br>bear.attack();<br><br><span class="hljs-keyword">const</span> eagle = <span class="hljs-keyword">new</span> FlyingMonster(<span class="hljs-string">&#x27;eagle&#x27;</span>);<br>eagle.walk();<br>eagle.attack();<br>eagle.fly();<br><br><span class="hljs-keyword">const</span> shark = <span class="hljs-keyword">new</span> SwimmingMonster(<span class="hljs-string">&#x27;shark&#x27;</span>);<br>shark.walk();<br>shark.attack();<br>shark.swim();<br></code></pre></td></tr></table></figure>
-
-<p>上述一些都比较的正常…<br>但是现在有个问题。如果我想创建一个即能够游泳又可以飞行的怪物类怎么办？<br>只能凉凉，js 只能支持单继承…<br>class FlyingSwimmingMonster extends FlyingMonster … ❌</p>
-<h4 id="组合大法"><a href="#组合大法" class="headerlink" title="组合大法"></a>组合大法</h4><p>现在抛开传统的类继承方法<br>以函数式编程的思维来解决问题</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建一个游泳函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swimmer</span>(<span class="hljs-params">&#123;name&#125;</span>) </span>&#123;<br>  <span class="hljs-comment">// 返回的是一个对象</span><br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">swim</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span> swam`</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一个飞行函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flyer</span>(<span class="hljs-params">&#123;name&#125;</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">fly</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span> fly`</span>)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 现在我想创建一个能够产生会游泳的怪物的函数</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swimmingMonsterCreator</span>(<span class="hljs-params">name</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> monster = &#123;<span class="hljs-attr">name</span>: name&#125;<br>  <span class="hljs-comment">// 这里的解构用得挺好</span><br>  <span class="hljs-keyword">return</span> &#123;<br>    ...monster,<br>    ...swimmer(monster)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 现在我想创建一个既可以游泳又可以飞行的怪物的函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SwimmingFlyingMonsterCreator</span>(<span class="hljs-params">name</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> monster = &#123;<span class="hljs-attr">name</span>: name&#125;<br>  <span class="hljs-keyword">return</span> &#123;<br>    ...monster,<br>    ...swimmer(monster),<br>    ...flyer(monster)<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> obj1 = swimmingMonsterCreator(<span class="hljs-string">&#x27;Monster&#x27;</span>);<br>obj1.swim();<br><br><span class="hljs-keyword">const</span> obj2 = SwimmingFlyingMonsterCreator(<span class="hljs-string">&#x27;Monster2&#x27;</span>)<br>obj2.swim();<br>obj2.fly();<br></code></pre></td></tr></table></figure>
-
-<p>可见…组合的方法，非常方便且灵活~</p>
-]]></content>
-      <categories>
-        <category>Clean Code篇</category>
-      </categories>
-      <tags>
-        <tag>优质代码</tag>
       </tags>
   </entry>
   <entry>
@@ -1069,32 +1191,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>css 三角形</title>
-    <url>/2021/11/10/css-%E4%B8%89%E8%A7%92%E5%BD%A2/</url>
-    <content><![CDATA[<p>三角形是 CSS 中最常用的形状之一，因为它们非常适合对话框弹出、工具提示等</p>
-<h4 id="普通方法-取巧采用遮盖方法"><a href="#普通方法-取巧采用遮盖方法" class="headerlink" title="普通方法(取巧采用遮盖方法)"></a>普通方法(取巧采用遮盖方法)</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.triangle</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br><br>  <span class="hljs-comment">/*  使用::after 日常子绝父相  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><br><span class="hljs-selector-class">.triangle</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">right</span>: -<span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">transform</span>: rotate(<span class="hljs-number">45deg</span>);<br>  <span class="hljs-attribute">z-index</span>:-<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.12.12-PM.png" alt="取巧的三角形" width="100px">
-
-<h4 id="利用元素的-border-来实现"><a href="#利用元素的-border-来实现" class="headerlink" title="利用元素的 border 来实现"></a>利用元素的 border 来实现</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-right-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">40</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-bottom-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">80</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">120</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.21.29-PM.png" alt="利用border实现三角形" width="100px">
-
-<p>进一步获取单个三角形</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>: 50px solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.23.36-PM.png" alt="利用border实现三角形2" width="100px">
-
-<p>好，我现在结合上面两种方法：实现一种比较优秀的制作箭头的方法：</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br><br>  <span class="hljs-comment">/*  要使用::after, 所以采用子绝父相  */</span><br>  <span class="hljs-built_in">position</span>: relative;<br>&#125;<br><br>.<span class="hljs-built_in">triangle</span>::after &#123;<br>  <span class="hljs-built_in">content</span>: &#x27;&#x27;;<br>  <span class="hljs-built_in">position</span>: absolute;<br>  --self-<span class="hljs-built_in">border</span>: 40px;<br>  <span class="hljs-built_in">border</span>: <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>) solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  top: calc(50px - <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>  right: calc(-<span class="hljs-number">2</span> * <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.58.16-PM.png" alt="三角形的最佳实践" width="100px">
-]]></content>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>css variable</title>
     <url>/2021/11/06/css-variable/</url>
     <content><![CDATA[<p>如果你想使用<code>CSS Variable</code>。大多数情况下，你可以把<code>CSS Variable</code>放在<code>:root</code>或者<code>html</code>选择器上。因为<code>CSS Variable</code>其实也和其他的 css 属性无太多区别…放在<strong>文件顶部</strong>其属性可以被后续选择器继承或覆盖属性等等操作。</p>
@@ -1140,6 +1236,32 @@
       </categories>
       <tags>
         <tag>高级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css 三角形</title>
+    <url>/2021/11/10/css-%E4%B8%89%E8%A7%92%E5%BD%A2/</url>
+    <content><![CDATA[<p>三角形是 CSS 中最常用的形状之一，因为它们非常适合对话框弹出、工具提示等</p>
+<h4 id="普通方法-取巧采用遮盖方法"><a href="#普通方法-取巧采用遮盖方法" class="headerlink" title="普通方法(取巧采用遮盖方法)"></a>普通方法(取巧采用遮盖方法)</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.triangle</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br><br>  <span class="hljs-comment">/*  使用::after 日常子绝父相  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><br><span class="hljs-selector-class">.triangle</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">right</span>: -<span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">transform</span>: rotate(<span class="hljs-number">45deg</span>);<br>  <span class="hljs-attribute">z-index</span>:-<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.12.12-PM.png" alt="取巧的三角形" width="100px">
+
+<h4 id="利用元素的-border-来实现"><a href="#利用元素的-border-来实现" class="headerlink" title="利用元素的 border 来实现"></a>利用元素的 border 来实现</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-right-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">40</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-bottom-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">80</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">120</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.21.29-PM.png" alt="利用border实现三角形" width="100px">
+
+<p>进一步获取单个三角形</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>: 50px solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.23.36-PM.png" alt="利用border实现三角形2" width="100px">
+
+<p>好，我现在结合上面两种方法：实现一种比较优秀的制作箭头的方法：</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br><br>  <span class="hljs-comment">/*  要使用::after, 所以采用子绝父相  */</span><br>  <span class="hljs-built_in">position</span>: relative;<br>&#125;<br><br>.<span class="hljs-built_in">triangle</span>::after &#123;<br>  <span class="hljs-built_in">content</span>: &#x27;&#x27;;<br>  <span class="hljs-built_in">position</span>: absolute;<br>  --self-<span class="hljs-built_in">border</span>: 40px;<br>  <span class="hljs-built_in">border</span>: <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>) solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  top: calc(50px - <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>  right: calc(-<span class="hljs-number">2</span> * <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.58.16-PM.png" alt="三角形的最佳实践" width="100px">
+]]></content>
+      <tags>
+        <tag>基本功</tag>
       </tags>
   </entry>
   <entry>
@@ -1539,6 +1661,39 @@
       </tags>
   </entry>
   <entry>
+    <title>如何在html文件里快速加载js代码</title>
+    <url>/2021/11/09/%E5%A6%82%E4%BD%95%E5%9C%A8html%E6%96%87%E4%BB%B6%E9%87%8C%E5%BF%AB%E9%80%9F%E5%8A%A0%E8%BD%BDjs%E4%BB%A3%E7%A0%81/</url>
+    <content><![CDATA[<blockquote>
+<p>本篇博客力图用最简单的操作提升页面加载性能</p>
+</blockquote>
+<p>首先来看看浏览器是如何解析我们的<code>html文件</code></p>
+<p>当浏览器把 html 文件下载后<br>从 html 文件顶部开始解析。当解析到例如<code>&lt;img&gt;</code>,<code>&lt;link&gt;</code>等资源的时候，就会根据指定的路径进行文件下载(一般是发送网络请求)…<br>但是浏览器会进行往下解析(即便图片仍在下载中)，所以<code>&lt;img&gt;</code>等资源下载不会造成 html 解析过程中的阻塞</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html文件 */<br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.png&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    ...<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>但是解析<code>js文件</code>就不同了。浏览器遇见 script 标签，然后网络请求，进行 js 文件的下载并解析，这个过程中，浏览器不会进行往<code>&lt;script&gt;</code>标签后进行解析，直到<code>&lt;script&gt;</code>里面的代码解析完成之后才会接着往下执行…</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html文件 */<br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.png&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    ...<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>所以，在大多数情况下，你不会看见<code>script标签</code>放在 html 文件的头部，相反，你会看见<code>script标签</code>是放在 html 文件的尾部。因为放在头部。html 主要的页面显示内容还没渲染，而仅仅开始渲染页面头部的 js 文件去了，极大的降低了用户的体验。</p>
+<p>现在来展示一下浏览器解析 html 文件的过程</p>
+<figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">HTML文件解析：|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;             <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">（js文件解析完之后，继续解析剩余的html文件)</span><br> <span class="hljs-comment">JS</span> <span class="hljs-comment">文件下载：</span>               <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">代码解析：</span>                       <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>事实上，上面这种普通使用 script 标签的方式，让整个页面在浏览器中的解析效果太慢了)</p>
+<p>下面，试试用 script 标签中的 async 属性，提升下 html 文件的解析速度</p>
+<h4 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck">                             <span class="hljs-comment">Async</span><br><span class="hljs-comment">HTML文件解析：|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;     <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">文件下载：</span>                <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">代码解析：</span>                         <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span>&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p>要创建<code>async script</code>标签，请使用<code>&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;</code>。此属性应用于 script 标签时，将使<code>script标签</code>的工作原理与解析器的<code>img标签</code>相同。这意味着解析器将在后台下载<code>JavaScript</code>，并继续正常解析，无需等待。下载<code>JavaScript</code>后，解析器将立即停止解析并执行<code>JavaScript</code>。这对任何不依赖于任何其他内容的小型<code>JavaScript</code>代码都非常有用，但由于<code>JavaScript</code>在下载后立即执行，解析器仍然可能会被需要很长时间才能执行的<code>JavaScript</code>延迟。<code>async</code>属性的另一个巨大缺点是，<code>JavaScript</code>文件的执行顺序不是 HTML 中定义的。相反，它们按下载顺序执行。这意味着更快的下载文件总是在下载速度较慢的文件之前执行，如果<code>JavaScript</code>文件相互依赖，这可能会导致大问题</p>
+<h4 id="Defer"><a href="#Defer" class="headerlink" title="Defer"></a>Defer</h4><figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">                             Defer<br>HTML文件解析：<span class="hljs-string">|--------------------------&gt;</span><br> JS 文件下载：                <span class="hljs-string">|-----&gt;</span><br> JS 代码解析：                            <span class="hljs-string">|---&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>与<code>async</code>属性类似，<code>defer</code>属性不会停止解析以下载<code>JavaScript</code>。要创建<code>defer script</code>标签，请使用<code>&lt;script defer src=&quot;script.js&quot;&gt;&lt;/script&gt;</code>。解析器将在后台下载<code>JavaScript</code>并继续解析，但与<code>async</code>属性不同，<code>defer</code>属性要到整个 HTML 文档解析后才会执行<code>JavaScript</code>。这意味着使用<code>defer</code>属性，HTML 解析永远不会因下载<code>JavaScript</code>而延迟。此外，由于<code>JavaScript</code>是在解析整个 HTML 文档后执行的，因此维护<code>JavaScript</code>文件的顺序。这是因为所有<code>defer</code>属性<code>JavaScript</code>文件都必须下载，然后才能执行其中任何文件。因此，我喜欢<code>defer</code>属性，几乎每次加载<code>JavaScript</code>时都会使用它。这是因为我可以把我的<code>JavaScript</code>放在 HTML 的头部，这样它就可以尽快开始下载，它还保留了我的<code>JavaScript</code>的顺序，就像在没有<code>defer</code>属性的情况下加载一样。使用<code>defer</code>属性加载<code>JavaScript</code>本质上与在正文末尾加载<code>JavaScript</code>相同，但它会更快地开始下载。此外，由于<code>JavaScript</code>的执行总是在 HTML 解析后完成，因此无需等待文档就绪事件。执行<code>defer</code>属性<code>script</code>标签时，文档将始终准备就绪</p>
+<hr>
+<p>事实上，我认为 <code>defer</code>的优势是非常明显的。首先是<code>按顺序执行JS代码</code>并且执行效率要比单纯的 <code>script标签</code>更高</p>
+<h4 id="浏览器兼容性问题"><a href="#浏览器兼容性问题" class="headerlink" title="浏览器兼容性问题"></a>浏览器兼容性问题</h4><p>事实上，主流浏览器都兼容<code>defer</code>、<code>async</code></p>
+]]></content>
+      <tags>
+        <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开发个人博客反思和总结</title>
     <url>/2021/10/09/%E5%BC%80%E5%8F%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8D%E6%80%9D%E5%92%8C%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h4 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h4><ol>
@@ -1612,39 +1767,6 @@
       </categories>
       <tags>
         <tag>互联网</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在html文件里快速加载js代码</title>
-    <url>/2021/11/09/%E5%A6%82%E4%BD%95%E5%9C%A8html%E6%96%87%E4%BB%B6%E9%87%8C%E5%BF%AB%E9%80%9F%E5%8A%A0%E8%BD%BDjs%E4%BB%A3%E7%A0%81/</url>
-    <content><![CDATA[<blockquote>
-<p>本篇博客力图用最简单的操作提升页面加载性能</p>
-</blockquote>
-<p>首先来看看浏览器是如何解析我们的<code>html文件</code></p>
-<p>当浏览器把 html 文件下载后<br>从 html 文件顶部开始解析。当解析到例如<code>&lt;img&gt;</code>,<code>&lt;link&gt;</code>等资源的时候，就会根据指定的路径进行文件下载(一般是发送网络请求)…<br>但是浏览器会进行往下解析(即便图片仍在下载中)，所以<code>&lt;img&gt;</code>等资源下载不会造成 html 解析过程中的阻塞</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html文件 */<br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.png&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    ...<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>但是解析<code>js文件</code>就不同了。浏览器遇见 script 标签，然后网络请求，进行 js 文件的下载并解析，这个过程中，浏览器不会进行往<code>&lt;script&gt;</code>标签后进行解析，直到<code>&lt;script&gt;</code>里面的代码解析完成之后才会接着往下执行…</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* html文件 */<br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx.png&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    ...<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>所以，在大多数情况下，你不会看见<code>script标签</code>放在 html 文件的头部，相反，你会看见<code>script标签</code>是放在 html 文件的尾部。因为放在头部。html 主要的页面显示内容还没渲染，而仅仅开始渲染页面头部的 js 文件去了，极大的降低了用户的体验。</p>
-<p>现在来展示一下浏览器解析 html 文件的过程</p>
-<figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">HTML文件解析：|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;             <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">（js文件解析完之后，继续解析剩余的html文件)</span><br> <span class="hljs-comment">JS</span> <span class="hljs-comment">文件下载：</span>               <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">代码解析：</span>                       <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<p>事实上，上面这种普通使用 script 标签的方式，让整个页面在浏览器中的解析效果太慢了)</p>
-<p>下面，试试用 script 标签中的 async 属性，提升下 html 文件的解析速度</p>
-<h4 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h4><figure class="highlight brainfuck"><table><tr><td class="code"><pre><code class="hljs brainfuck">                             <span class="hljs-comment">Async</span><br><span class="hljs-comment">HTML文件解析：|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;     <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">文件下载：</span>                <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<br> <span class="hljs-comment">JS</span> <span class="hljs-comment">代码解析：</span>                         <span class="hljs-comment">|</span>--<span class="hljs-literal">-</span>&gt;<br><br></code></pre></td></tr></table></figure>
-
-<p>要创建<code>async script</code>标签，请使用<code>&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;</code>。此属性应用于 script 标签时，将使<code>script标签</code>的工作原理与解析器的<code>img标签</code>相同。这意味着解析器将在后台下载<code>JavaScript</code>，并继续正常解析，无需等待。下载<code>JavaScript</code>后，解析器将立即停止解析并执行<code>JavaScript</code>。这对任何不依赖于任何其他内容的小型<code>JavaScript</code>代码都非常有用，但由于<code>JavaScript</code>在下载后立即执行，解析器仍然可能会被需要很长时间才能执行的<code>JavaScript</code>延迟。<code>async</code>属性的另一个巨大缺点是，<code>JavaScript</code>文件的执行顺序不是 HTML 中定义的。相反，它们按下载顺序执行。这意味着更快的下载文件总是在下载速度较慢的文件之前执行，如果<code>JavaScript</code>文件相互依赖，这可能会导致大问题</p>
-<h4 id="Defer"><a href="#Defer" class="headerlink" title="Defer"></a>Defer</h4><figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">                             Defer<br>HTML文件解析：<span class="hljs-string">|--------------------------&gt;</span><br> JS 文件下载：                <span class="hljs-string">|-----&gt;</span><br> JS 代码解析：                            <span class="hljs-string">|---&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>与<code>async</code>属性类似，<code>defer</code>属性不会停止解析以下载<code>JavaScript</code>。要创建<code>defer script</code>标签，请使用<code>&lt;script defer src=&quot;script.js&quot;&gt;&lt;/script&gt;</code>。解析器将在后台下载<code>JavaScript</code>并继续解析，但与<code>async</code>属性不同，<code>defer</code>属性要到整个 HTML 文档解析后才会执行<code>JavaScript</code>。这意味着使用<code>defer</code>属性，HTML 解析永远不会因下载<code>JavaScript</code>而延迟。此外，由于<code>JavaScript</code>是在解析整个 HTML 文档后执行的，因此维护<code>JavaScript</code>文件的顺序。这是因为所有<code>defer</code>属性<code>JavaScript</code>文件都必须下载，然后才能执行其中任何文件。因此，我喜欢<code>defer</code>属性，几乎每次加载<code>JavaScript</code>时都会使用它。这是因为我可以把我的<code>JavaScript</code>放在 HTML 的头部，这样它就可以尽快开始下载，它还保留了我的<code>JavaScript</code>的顺序，就像在没有<code>defer</code>属性的情况下加载一样。使用<code>defer</code>属性加载<code>JavaScript</code>本质上与在正文末尾加载<code>JavaScript</code>相同，但它会更快地开始下载。此外，由于<code>JavaScript</code>的执行总是在 HTML 解析后完成，因此无需等待文档就绪事件。执行<code>defer</code>属性<code>script</code>标签时，文档将始终准备就绪</p>
-<hr>
-<p>事实上，我认为 <code>defer</code>的优势是非常明显的。首先是<code>按顺序执行JS代码</code>并且执行效率要比单纯的 <code>script标签</code>更高</p>
-<h4 id="浏览器兼容性问题"><a href="#浏览器兼容性问题" class="headerlink" title="浏览器兼容性问题"></a>浏览器兼容性问题</h4><p>事实上，主流浏览器都兼容<code>defer</code>、<code>async</code></p>
-]]></content>
-      <tags>
-        <tag>性能优化</tag>
       </tags>
   </entry>
   <entry>
@@ -1745,34 +1867,6 @@
       </tags>
   </entry>
   <entry>
-    <title>计算机通识-随笔</title>
-    <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
-    <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
-<li><code>pwd</code> 用于告诉你当前所在目录</li>
-<li><code>ls</code> 用于告诉你当前目录层级的所有文件</li>
-<li><code>ls -al</code></li>
-<li><code>ls -a</code></li>
-<li><code>clear</code> 清理当前终端内容</li>
-<li><code>cd</code> 进入某个文件 <code>cd ..</code> 往上一个文件走</li>
-<li><code>mkdir</code> 创建一个文件夹</li>
-<li><code>touch</code> 创建一个文件</li>
-<li><code>cp</code> 旧文件 新文件</li>
-<li><code>mv</code> 旧文件 新文件</li>
-<li>键盘上下键可以看前面自己写的命令</li>
-<li><code>rm</code> 删除一个文件</li>
-<li><code>rm -f</code> 删除一个文件夹</li>
-<li><code>rm -r</code></li>
-<li><code>vim</code> 修改文件 —&gt; <code>nano</code> 更好 vim 学习成本太高</li>
-<li><code>cat</code> 查看文件的具体内容</li>
-<li><code>echo</code></li>
-<li><code>control + c</code> 终止当前终端</li>
-</ol>
-]]></content>
-      <categories>
-        <category>程序员素养篇</category>
-      </categories>
-  </entry>
-  <entry>
     <title>编译原理</title>
     <url>/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>人的语言(自然语言) —&gt; 是上下文有关的<br>机器的语言 —&gt; 不会考虑上下文的…</p>
@@ -1832,6 +1926,34 @@
       </categories>
   </entry>
   <entry>
+    <title>计算机通识-随笔</title>
+    <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
+<li><code>pwd</code> 用于告诉你当前所在目录</li>
+<li><code>ls</code> 用于告诉你当前目录层级的所有文件</li>
+<li><code>ls -al</code></li>
+<li><code>ls -a</code></li>
+<li><code>clear</code> 清理当前终端内容</li>
+<li><code>cd</code> 进入某个文件 <code>cd ..</code> 往上一个文件走</li>
+<li><code>mkdir</code> 创建一个文件夹</li>
+<li><code>touch</code> 创建一个文件</li>
+<li><code>cp</code> 旧文件 新文件</li>
+<li><code>mv</code> 旧文件 新文件</li>
+<li>键盘上下键可以看前面自己写的命令</li>
+<li><code>rm</code> 删除一个文件</li>
+<li><code>rm -f</code> 删除一个文件夹</li>
+<li><code>rm -r</code></li>
+<li><code>vim</code> 修改文件 —&gt; <code>nano</code> 更好 vim 学习成本太高</li>
+<li><code>cat</code> 查看文件的具体内容</li>
+<li><code>echo</code></li>
+<li><code>control + c</code> 终止当前终端</li>
+</ol>
+]]></content>
+      <categories>
+        <category>程序员素养篇</category>
+      </categories>
+  </entry>
+  <entry>
     <title>跨域</title>
     <url>/2021/11/20/%E8%B7%A8%E5%9F%9F/</url>
     <content><![CDATA[<h4 id="CORS-Cross-Origin-Resource-Sharing"><a href="#CORS-Cross-Origin-Resource-Sharing" class="headerlink" title="CORS(Cross-Origin Resource Sharing)"></a>CORS(Cross-Origin Resource Sharing)</h4><p>前两天，我在做一个聊天功能<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-20-at-10.03.24-AM.gif" alt="聊天功能"><br>的时候，就遇见了类似下面这种问题<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-20-at-10.07.41-AM.png" alt="跨域"></p>
@@ -1881,6 +2003,31 @@
 ]]></content>
   </entry>
   <entry>
+    <title>??运算符</title>
+    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<p>在平常的项目中，我们会遇见这样的情况：</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;   <span class="hljs-comment">// 如果obj.score 返回false，那么score就等于10，不然就等于obj.score</span><br></code></pre></td></tr></table></figure>
+
+<p>但事实上会出现下面的问题：<br>如果</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;<br></code></pre></td></tr></table></figure>
+
+<p>我所得到的是 10 分。但是我想要 0 分 也作为有意义的值…<br>为了让 0 分变得有意义，我需要这样做</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> =  (obj.<span class="hljs-keyword">score</span> == null) ? 10 : obj.<span class="hljs-keyword">score</span>  <span class="hljs-comment">// 这里用==而不用===可以同时解决null 和 undefined这两种情况</span><br></code></pre></td></tr></table></figure>
+
+<p>这样，我就可以排除<code>obj.score</code>为<code>undefined</code>和<code>null</code>却不影响<code>obj.score === 0</code>这种情况。但是，这样写太笨重了…</p>
+<p>下面来介绍本篇博客的主角 <code>??</code> 运算符</p>
+<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><p><code>??</code>运算符和<code>||</code>运算符执行逻辑很相似。但是<code>??</code>只会检查 <code>undefined/null</code><br>还是以上面我写的内容举例</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> ?? 10;  <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
+
+<p>很轻松的，我就获得了 score 为 0 分…</p>
+<p>为了更全面的观察 <code>??</code> 效果，我来更具体的展示</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">undefined ?? <span class="hljs-number">10</span> <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br>null ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br><span class="hljs-number">0</span> ?? <span class="hljs-number">10</span>         <span class="hljs-regexp">//</span> <span class="hljs-number">0</span><br>false ?? <span class="hljs-number">10</span>     <span class="hljs-regexp">//</span> false   &lt;- 这个值得注意注意<br><span class="hljs-string">&#x27;Hi&#x27;</span> ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> Hi<br><span class="hljs-number">20</span> ?? <span class="hljs-number">10</span>        <span class="hljs-regexp">//</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>||</code>、<code>&amp;&amp;</code>、<code>??</code>可以合在一起用，但是要用括号来控制执行顺序，不然报错!!</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-number">0</span> || <span class="hljs-literal">null</span> ?? <span class="hljs-number">10</span>   <span class="hljs-comment">// 报错</span><br>(<span class="hljs-number">0</span> || <span class="hljs-literal">null</span>) ?? <span class="hljs-number">10</span> <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>项目中的小技巧</title>
     <url>/2021/10/31/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<h4 id="amp-amp-的使用"><a href="#amp-amp-的使用" class="headerlink" title="&amp;&amp;的使用"></a>&amp;&amp;的使用</h4><p>先看用法</p>
@@ -1908,31 +2055,6 @@
       <tags>
         <tag>奇淫技巧</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>??运算符</title>
-    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
-    <content><![CDATA[<p>在平常的项目中，我们会遇见这样的情况：</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;   <span class="hljs-comment">// 如果obj.score 返回false，那么score就等于10，不然就等于obj.score</span><br></code></pre></td></tr></table></figure>
-
-<p>但事实上会出现下面的问题：<br>如果</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;<br></code></pre></td></tr></table></figure>
-
-<p>我所得到的是 10 分。但是我想要 0 分 也作为有意义的值…<br>为了让 0 分变得有意义，我需要这样做</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> =  (obj.<span class="hljs-keyword">score</span> == null) ? 10 : obj.<span class="hljs-keyword">score</span>  <span class="hljs-comment">// 这里用==而不用===可以同时解决null 和 undefined这两种情况</span><br></code></pre></td></tr></table></figure>
-
-<p>这样，我就可以排除<code>obj.score</code>为<code>undefined</code>和<code>null</code>却不影响<code>obj.score === 0</code>这种情况。但是，这样写太笨重了…</p>
-<p>下面来介绍本篇博客的主角 <code>??</code> 运算符</p>
-<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><p><code>??</code>运算符和<code>||</code>运算符执行逻辑很相似。但是<code>??</code>只会检查 <code>undefined/null</code><br>还是以上面我写的内容举例</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> ?? 10;  <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
-
-<p>很轻松的，我就获得了 score 为 0 分…</p>
-<p>为了更全面的观察 <code>??</code> 效果，我来更具体的展示</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">undefined ?? <span class="hljs-number">10</span> <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br>null ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br><span class="hljs-number">0</span> ?? <span class="hljs-number">10</span>         <span class="hljs-regexp">//</span> <span class="hljs-number">0</span><br>false ?? <span class="hljs-number">10</span>     <span class="hljs-regexp">//</span> false   &lt;- 这个值得注意注意<br><span class="hljs-string">&#x27;Hi&#x27;</span> ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> Hi<br><span class="hljs-number">20</span> ?? <span class="hljs-number">10</span>        <span class="hljs-regexp">//</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>||</code>、<code>&amp;&amp;</code>、<code>??</code>可以合在一起用，但是要用括号来控制执行顺序，不然报错!!</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-number">0</span> || <span class="hljs-literal">null</span> ?? <span class="hljs-number">10</span>   <span class="hljs-comment">// 报错</span><br>(<span class="hljs-number">0</span> || <span class="hljs-literal">null</span>) ?? <span class="hljs-number">10</span> <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
-]]></content>
   </entry>
   <entry>
     <title>项目开发经验总结&amp;思考</title>
