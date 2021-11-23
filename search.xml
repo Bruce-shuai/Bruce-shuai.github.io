@@ -12,6 +12,18 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS Animation</title>
+    <url>/2021/11/07/CSS-Animation/</url>
+    <content><![CDATA[<p>先放代码</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: translateX(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码效果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-7.28.54-PM.gif" alt="Animation效果"></p>
+<p>事实上，css 有两种制作动画(Animate)的方式<br>方式 1：使用<code>transition</code>属性 -&gt; 用于制作简单的动画<br>方式 2：使用<code>animation</code>属性 -&gt; 用于制作复杂的动画</p>
+<h4 id="简单动画：transition-属性"><a href="#简单动画：transition-属性" class="headerlink" title="简单动画：transition 属性"></a>简单动画：transition 属性</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-attribute">transition</span>: 由下列四个属性组成<br><span class="hljs-attribute">transition-delay</span><br><span class="hljs-attribute">transition-duration</span><br><span class="hljs-attribute">transition-property</span><br><span class="hljs-attribute">transition-timing-function</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="复杂动画：animation-属性"><a href="#复杂动画：animation-属性" class="headerlink" title="复杂动画：animation 属性"></a>复杂动画：animation 属性</h4>]]></content>
+  </entry>
+  <entry>
     <title>CSS Position</title>
     <url>/2021/11/07/CSS-Position/</url>
     <content><![CDATA[<p><code>position</code> 是 <code>css</code> 中一个非常重要的属性。它的作用是将元素在网页中定位。而设定值总共有 5 个。分别是 <code>static</code>、<code>absolute</code>、<code>relative</code>、<code>fixed</code> 以及 <code>sticky</code></p>
@@ -69,18 +81,6 @@
       <tags>
         <tag>基本功</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>CSS Animation</title>
-    <url>/2021/11/07/CSS-Animation/</url>
-    <content><![CDATA[<p>先放代码</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: translateX(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>代码效果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-7.28.54-PM.gif" alt="Animation效果"></p>
-<p>事实上，css 有两种制作动画(Animate)的方式<br>方式 1：使用<code>transition</code>属性 -&gt; 用于制作简单的动画<br>方式 2：使用<code>animation</code>属性 -&gt; 用于制作复杂的动画</p>
-<h4 id="简单动画：transition-属性"><a href="#简单动画：transition-属性" class="headerlink" title="简单动画：transition 属性"></a>简单动画：transition 属性</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-attribute">transition</span>: 由下列四个属性组成<br><span class="hljs-attribute">transition-delay</span><br><span class="hljs-attribute">transition-duration</span><br><span class="hljs-attribute">transition-property</span><br><span class="hljs-attribute">transition-timing-function</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="复杂动画：animation-属性"><a href="#复杂动画：animation-属性" class="headerlink" title="复杂动画：animation 属性"></a>复杂动画：animation 属性</h4>]]></content>
   </entry>
   <entry>
     <title>CSS Units</title>
@@ -238,6 +238,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-10-23-at-12.10.18-AM.1t4jj2z6k2gw.png" alt="神坑margin:auto-2"></p>
 <h4 id="white-space-用法"><a href="#white-space-用法" class="headerlink" title="white-space 用法"></a>white-space 用法</h4><p><a href="https://www.w3schools.com/cssref/tryit.asp?filename=trycss_text_white-space">https://www.w3schools.com/cssref/tryit.asp?filename=trycss_text_white-space</a></p>
 <h4 id="css-伪类的用法-last-child"><a href="#css-伪类的用法-last-child" class="headerlink" title="css 伪类的用法 :last-child"></a>css 伪类的用法 :last-child</h4><h4 id="outline-none-有什么用？"><a href="#outline-none-有什么用？" class="headerlink" title="outline:none 有什么用？"></a>outline:none 有什么用？</h4><p>用于取消选中框的最外层颜色…</p>
+<h4 id="非常有用的针对字符换行的-css-属性："><a href="#非常有用的针对字符换行的-css-属性：" class="headerlink" title="非常有用的针对字符换行的 css 属性："></a>非常有用的针对字符换行的 css 属性：</h4><p><code>word-wrap: break-word;</code><br><code>word-break: break-all;</code></p>
 ]]></content>
       <categories>
         <category>CSS篇</category>
@@ -1381,6 +1382,69 @@
       </tags>
   </entry>
   <entry>
+    <title>express middleware</title>
+    <url>/2021/11/23/express-middleware/</url>
+    <content><![CDATA[<p>这篇博客是作为 ExpressJS 知识点总结 这篇文章的补充</p>
+<h4 id="中间件基础知识"><a href="#中间件基础知识" class="headerlink" title="中间件基础知识"></a>中间件基础知识</h4><p><code>middleware</code> 即 中间件。是在服务器发送响应或接受请求这一中间过程中执行的代码</p>
+<p>下面用代码来说话</p>
+<figure class="highlight livescript"><table><tr><td class="code"><pre><code class="hljs livescript"><span class="hljs-comment">/* 老三样 */</span><br><span class="hljs-built_in">npm</span> init -y<br><span class="hljs-built_in">npm</span> i nodemon<br><span class="hljs-built_in">npm</span> i express<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* server.js */</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><strong>中间件</strong>(注意：中间件本身是一个函数)可以访问响应（res）和请求（req）变量，并可以根据需要修改或使用它们。<br><strong>中间件函数</strong> 接受三个参数 <code>响应(res)</code>、<code>请求(req)</code>、<code>next</code>。重点来看看<code>next</code><br><code>next</code> 是一个函数。该函数很重要，因为它必须从中间件调用才能执行下一个中间件。如果不调用此函数，则不会调用包括控制器(这里指例如 app.get()的函数)操作在内的其他中间件</p>
+<p>用例子来讲解：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* server.js */</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><br><span class="hljs-comment">// 使用 中间件</span><br>app.use(loggingMiddleware)   <span class="hljs-comment">// 注意：这个中间件应该放在所有控制器前面</span><br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">// 定义一个关于打印的中间件</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingMiddleware</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inside Middleware&#x27;</span>)<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>此时会有比较有趣的事情发生！ 我重启服务器后，在本地 3000 端口的任何路由刷新，在终端控制台都会打印<code>Inside Middleware</code>。但是应用程序现在<strong>永远加载，从未实际完成请求</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.19.24-PM.gif" alt="loading..." width="300px"/>
+
+<p>出现问题的原因在于我在<code>loggingMiddleware</code>这个中间件里，没有调用 <code>next</code> 函数，所以永远不会调用控制器(例如 <code>app.get()</code>)操作(前文也提过)</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 定义一个关于打印的中间件<br><span class="hljs-keyword">function</span> loggingMiddleware(req, res, <span class="hljs-keyword">next</span>) &#123;<br>  console.log(<span class="hljs-string">&#x27;Inside Middleware&#x27;</span>);<br>  <span class="hljs-keyword">next</span>();     <span class="hljs-regexp">//</span> 这里用了<span class="hljs-keyword">next</span>()<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.26.05-PM.gif" alt="next" width="400px"/>
+
+<p>此时，我会发现无论进入哪条路由都顺通无阻，且中间件的记录一条不落！！</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br>app.use(loggingMiddleware)<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">// 一个关于打印的中间件</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingMiddleware</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-comment">// req.originalUrl 获取浏览器当前路由</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()&#125;</span>: <span class="hljs-subst">$&#123;req.originalUrl&#125;</span>`</span>)<br>  next();<br>&#125;<br><br><span class="hljs-comment">// 新的中间件 用于用户认证</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authorizeUsersAccess</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;authorizeUsersAccess Middleware&#x27;</span>)<br>  next()<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br><br></code></pre></td></tr></table></figure>
+
+<p>现在我不把<code>authorizeUsersAccess</code>通过<code>app.use()</code>使用，而是放在 <code>app.get(&#39;/users&#39;, ...)</code> 这个控制器里</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, authorizeUsersAccess, <span class="hljs-function"><span class="hljs-params">(req, res)</span> =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>此时，我们尝试调用页面的路由，我们会惊奇的发现 只有在<code>/users</code>这条路由时，控制台会打印</p>
+<figure class="highlight xl"><table><tr><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">authorizeUsersAccess</span> Middleware   ---&gt;</span> authorizeUsersAccess 发挥的效果<br></code></pre></td></tr></table></figure>
+
+<p>而在所有路由上，控制台都会打印</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Tue</span> Nov <span class="hljs-number">23</span> <span class="hljs-number">2021</span> <span class="hljs-number">17</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span> GMT+<span class="hljs-number">0800</span> (中国标准时间): /users   ---&gt; loggingMiddleware 发挥的效果<br></code></pre></td></tr></table></figure>
+
+<p>说明，现在中间件<code>authorizeUsersAccess</code>只能在<code>/users</code>这条路由里起作用</p>
+<p>现在来丰富一下<code>authorizeUsersAccess</code>这个中间件的功能</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, authorizeUsersAccess, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><br><span class="hljs-comment">// 新的中间件 用于用户认证</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authorizeUsersAccess</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (req.query.admin === <span class="hljs-string">&#x27;true&#x27;</span>) &#123;<br>    next()<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;错误！你必须要admin === true&#x27;</span>)<br>  &#125;<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.54.15-PM.gif" alt="升级的中间件"></p>
+<p>我们可以在中间件里设置新的变量，然后在所起效的控制器里使用 例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* server.js */</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, authorizeUsersAccess, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><br><span class="hljs-comment">// 新的中间件 用于用户认证</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authorizeUsersAccess</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (req.query.admin === <span class="hljs-string">&#x27;true&#x27;</span>) &#123;<br>    req.<br>    next()<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;错误！你必须要admin === true&#x27;</span>)<br>  &#125;<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-6.03.39-PM.gif" alt="升级的中间件"></p>
+<h4 id="中间件额外知识"><a href="#中间件额外知识" class="headerlink" title="中间件额外知识"></a>中间件额外知识</h4><h5 id="控制器也是中间件"><a href="#控制器也是中间件" class="headerlink" title="控制器也是中间件"></a>控制器也是中间件</h5><p>事实上控制器(例如 app.get())也是中间件。因为也是有<code>res</code>、<code>req</code>、<code>next()</code>(next 在这使用情况非常少)，但是控制器后面没有紧随其后的其他中间件。它们就是这条<strong>链</strong>的末端，这就是为什么在控制器动作中永远不会有任何下一个调用。</p>
+<h5 id="next-调用-不等于-return"><a href="#next-调用-不等于-return" class="headerlink" title="next()调用 不等于 return"></a>next()调用 不等于 return</h5><p>(注意：这里的理解其实我现在还不到位…)<br>例如</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">function</span> <span class="hljs-selector-tag">middleware</span>(req, res, next) &#123;<br>  <span class="hljs-selector-tag">if</span> (req.valid) &#123;<br>    <span class="hljs-selector-tag">next</span>()<br>  &#125;<br>  <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.send</span>(<span class="hljs-string">&#x27;无效请求&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">function</span> <span class="hljs-title">middleware</span>(req, res, next) &#123;<br>  if (req.valid) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-type">next()</span><br>  &#125;<br>  res.send(<span class="hljs-symbol">&#x27;Invalid</span> Request&#x27;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在，代码在<code>next</code>调用后将不再执行，因为它将从函数中返回</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, middleware, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inside Home Page&#x27;</span>)<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middleware</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Before Next&#x27;</span>)<br>  next()<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;After Next&#x27;</span>)<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>运行此代码并转到主页时，控制台将按顺序打印下面内容</p>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Before</span> <span class="hljs-built_in">Next</span><br><span class="hljs-variable">Inside</span> <span class="hljs-variable">Home</span> <span class="hljs-variable">Page</span><br><span class="hljs-built_in">After</span> <span class="hljs-built_in">Next</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="中间件的执行顺序"><a href="#中间件的执行顺序" class="headerlink" title="中间件的执行顺序"></a>中间件的执行顺序</h5><figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim">const express = require(<span class="hljs-string">&#x27;express&#x27;</span>)<br>const app = express()<br><br>app.use(middlewareThree)<br>app.use(middlewareOne)<br><br>app.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, middlewareTwo, middlewareFour, (req, <span class="hljs-keyword">res</span>) =&gt; &#123;<br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Inside Home Page&#x27;</span>)<br>  <span class="hljs-keyword">res</span>.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareOne</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware One&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareTwo</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware Two&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareThree</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware Three&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareFour</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware Four&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, () =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>由于<code>app.use</code>语句是第一位的，这些语句中的中间件将首先按照添加的顺序执行。接下来定义<code>app.get</code>中间件，然后按照<code>app.get</code>函数中的顺序执行它们。如果运行，这将导致以下控制台输出。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata">Middleware Three<br>Middleware <span class="hljs-keyword">One</span><br>Middleware <span class="hljs-keyword">Two</span><br>Middleware Four<br></code></pre></td></tr></table></figure>
+
+<p><strong>总结：中间件在清理代码和使用户授权和身份验证等事情变得容易得多方面非常强大，但由于中间件令人难以置信的灵活性，它可以用于更多用途。</strong></p>
+]]></content>
+  </entry>
+  <entry>
     <title>flex 布局解析</title>
     <url>/2021/11/09/flex-%E5%B8%83%E5%B1%80%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<p><a href="https://lhammer.cn/You-need-to-know-css/#/zh-cn/flexbox-layout">flex 可视化网站</a></p>
@@ -1518,7 +1582,8 @@
 <p>其实对于<code>版本一</code>有<code>版本二</code>的写法能够有同样的效果</p>
 <figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* 版本二 */</span><br>.<span class="hljs-built_in">grid</span>-container &#123;<br>  <span class="hljs-built_in">display</span>: <span class="hljs-built_in">grid</span>;<br>  <span class="hljs-built_in">grid</span>-template-<span class="hljs-built_in">columns</span>: repeat(<span class="hljs-number">2</span>, 100px);<br>  <span class="hljs-built_in">grid</span>-auto-rows: minmax(40px, auto);<br>&#125;<br><br>.<span class="hljs-built_in">grid</span>-item:nth-child(<span class="hljs-number">1</span>) &#123;<br>  <span class="hljs-built_in">grid</span>-column: span <span class="hljs-number">2</span><br>&#125;<br><br>.<span class="hljs-built_in">grid</span>-item:nth-child(<span class="hljs-number">2</span>) &#123;<br>  <span class="hljs-built_in">grid</span>-<span class="hljs-built_in">row</span>: span <span class="hljs-number">2</span><br>&#125;<br><br>.<span class="hljs-built_in">grid</span>-item:nth-child(<span class="hljs-number">3</span>) &#123;<br>  <span class="hljs-built_in">grid</span>-<span class="hljs-built_in">row</span>: span <span class="hljs-number">2</span><br>&#125;<br><br>.<span class="hljs-built_in">grid</span>-item:nth-child(<span class="hljs-number">4</span>) &#123;<br>  <span class="hljs-built_in">grid</span>-<span class="hljs-built_in">row</span>: span <span class="hljs-number">2</span><br>&#125;<br>.<span class="hljs-built_in">grid</span>-item:nth-child(<span class="hljs-number">5</span>) &#123;<br>  <span class="hljs-built_in">grid</span>-<span class="hljs-built_in">row</span>: span <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="justify-content-center-align-content-center"><a href="#justify-content-center-align-content-center" class="headerlink" title="justify-content: center / align-content: center"></a>justify-content: center / align-content: center</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><br><span class="hljs-selector-class">.grid-container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  grid-template-<span class="hljs-attribute">columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">100px</span>);<br>  grid-<span class="hljs-attribute">auto</span>-rows: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">justify-content</span>: center;  <span class="hljs-comment">/* 和flex的布局效果相似 这是对整个容器的位置布局 */</span><br>  <span class="hljs-attribute">align-content</span>: center;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h4 id="justify-content-center-align-content-center"><a href="#justify-content-center-align-content-center" class="headerlink" title="justify-content: center / align-content: center"></a>justify-content: center / align-content: center</h4><p>注意：这里的 <code>align-content</code> 和 <code>flex</code> 的 <code>align-content</code> 有一定的区别！！</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><br><span class="hljs-selector-class">.grid-container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  grid-template-<span class="hljs-attribute">columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">100px</span>);<br>  grid-<span class="hljs-attribute">auto</span>-rows: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">justify-content</span>: center;  <span class="hljs-comment">/* 和flex的布局效果相似 这是对整个容器的位置布局 */</span><br>  <span class="hljs-attribute">align-content</span>: center;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-22-at-7.17.18-PM.png" width="300px" alt="整体位置"/>
 
@@ -2026,6 +2091,16 @@
       </tags>
   </entry>
   <entry>
+    <title>盒子模型</title>
+    <url>/2021/11/23/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>类型转换</title>
+    <url>/2021/11/23/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>编译原理</title>
     <url>/2021/10/25/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>人的语言(自然语言) —&gt; 是上下文有关的<br>机器的语言 —&gt; 不会考虑上下文的…</p>
@@ -2187,12 +2262,34 @@
 ]]></content>
   </entry>
   <entry>
+    <title>项目开发经验总结&amp;思考</title>
+    <url>/2021/11/12/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<h4 id="项目文件命名"><a href="#项目文件命名" class="headerlink" title="项目文件命名"></a>项目文件命名</h4><p>建议在 <code>react</code> 项目开发中 css 文件的命名方式 应该是</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 名字全小写，内容用 - 来分割<br>abc.css<br>abc-def.css<br></code></pre></td></tr></table></figure>
+
+<p>建议在 <code>react</code> 项目开发中 js、jsx、ts、tsx 文件的命名方式应该是 驼峰式且首字母大写</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 一般来说上述的四种类型文件都分别项目中的模块。模块最好首字母大写</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Abc</span>.</span></span>js<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbcDef</span>.</span></span>js<br></code></pre></td></tr></table></figure>
+
+<h4 id="关于-css-命名"><a href="#关于-css-命名" class="headerlink" title="关于 css 命名"></a>关于 css 命名</h4><p>对于自定义 <code>css</code> 命名。遵循 <code>BEM</code> 的规范。我已经在博客里写过 <code>BEM</code> 的使用方法, 忘了就去看</p>
+<h4 id="关于-常量命名"><a href="#关于-常量命名" class="headerlink" title="关于 常量命名"></a>关于 常量命名</h4><p>常量全大写,取名字尽量有意义，用下划线进行分割</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> SAMPLE_DATA = ...<br></code></pre></td></tr></table></figure>
+
+<h4 id="关于路由命名"><a href="#关于路由命名" class="headerlink" title="关于路由命名"></a>关于路由命名</h4><figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">abc</span>-def   // 利用-来进行名称分割<br><span class="hljs-keyword">a</span><br><span class="hljs-keyword">ab</span><br><span class="hljs-keyword">abc</span><br></code></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>项目中的小技巧</title>
     <url>/2021/10/31/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<h4 id="amp-amp-的使用"><a href="#amp-amp-的使用" class="headerlink" title="&amp;&amp;的使用"></a>&amp;&amp;的使用</h4><p>先看用法</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容<br>true &amp;&amp; <span class="hljs-number">123</span>   <span class="hljs-regexp">//</span> <span class="hljs-number">123</span><br><br>false &amp;&amp; <span class="hljs-number">123</span>  <span class="hljs-regexp">//</span> false<br><br><span class="hljs-number">123</span> &amp;&amp; <span class="hljs-number">456</span>    <span class="hljs-regexp">//</span> <span class="hljs-number">456</span><br></code></pre></td></tr></table></figure>
 
-<p>更多知识有待扩充…</p>
+<h4 id="的使用"><a href="#的使用" class="headerlink" title="|| 的使用"></a>|| 的使用</h4><figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2</span> || <span class="hljs-number">3</span>       // <span class="hljs-number">2</span><br><span class="hljs-attribute">0</span> || <span class="hljs-number">3</span>       // <span class="hljs-number">3</span><br><span class="hljs-attribute">false</span> || <span class="hljs-number">3</span>   // <span class="hljs-number">3</span><br><span class="hljs-attribute">undefined</span>||<span class="hljs-number">3</span> // <span class="hljs-number">3</span><br><span class="hljs-attribute">null</span> || <span class="hljs-number">3</span>    // <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="的作用"><a href="#的作用" class="headerlink" title="== 的作用"></a>== 的作用</h4><p>正常情况下，能用 <code>===</code> 运算符就不要用 <code>==</code> 运算符。 我认为的唯一一种情况下推荐使用<code>==</code>的情况就是在你认为<code>undefined</code>、<code>null</code> 都应该为同一类状态的时候才可以使用<br>例如：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">undefined</span> == null  // <span class="hljs-literal">true</span><br><span class="hljs-attr">false</span> == null      // <span class="hljs-literal">false</span><br><span class="hljs-attr">false</span> == undefined // <span class="hljs-literal">false</span><br><span class="hljs-attr">0</span> == null          // <span class="hljs-literal">false</span><br><span class="hljs-attr">0</span> == undefined     // <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript">someValue == <span class="hljs-literal">null</span> <span class="hljs-regexp">//</span> 其实 someValue 与 <span class="hljs-literal">null</span> 或者 与 <span class="hljs-literal">undefined</span> 比较的时候 得到的结果是一致的<br></code></pre></td></tr></table></figure>
+
 <h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 常见情况：</span><br><span class="hljs-keyword">const</span> <span class="hljs-built_in">number</span> = <span class="hljs-number">5</span>;<br><span class="hljs-keyword">let</span> result;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-built_in">number</span> &gt;= <span class="hljs-number">50</span>) &#123;<br>  result = <span class="hljs-string">&#x27;Not to fifty!&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  result = <span class="hljs-string">&#x27;It could be worse&#x27;</span><br>&#125;<br><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight typescript"><table><tr><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 用三元运算符</span><br><span class="hljs-keyword">const</span> <span class="hljs-built_in">number</span> = <span class="hljs-number">5</span>;<br><span class="hljs-comment">// 完美的浓缩着代码....</span><br><span class="hljs-keyword">const</span> result = <span class="hljs-built_in">number</span> &gt;= <span class="hljs-number">50</span> ? <span class="hljs-string">&#x27;Not to fifty!&#x27;</span> : <span class="hljs-string">&#x27;It could be worse&#x27;</span><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
@@ -2214,22 +2311,6 @@
       <tags>
         <tag>奇淫技巧</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>项目开发经验总结&amp;思考</title>
-    <url>/2021/11/12/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E6%80%9D%E8%80%83/</url>
-    <content><![CDATA[<h4 id="项目文件命名"><a href="#项目文件命名" class="headerlink" title="项目文件命名"></a>项目文件命名</h4><p>建议在 <code>react</code> 项目开发中 css 文件的命名方式 应该是</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 名字全小写，内容用 - 来分割<br>abc.css<br>abc-def.css<br></code></pre></td></tr></table></figure>
-
-<p>建议在 <code>react</code> 项目开发中 js、jsx、ts、tsx 文件的命名方式应该是 驼峰式且首字母大写</p>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 一般来说上述的四种类型文件都分别项目中的模块。模块最好首字母大写</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Abc</span>.</span></span>js<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbcDef</span>.</span></span>js<br></code></pre></td></tr></table></figure>
-
-<h4 id="关于-css-命名"><a href="#关于-css-命名" class="headerlink" title="关于 css 命名"></a>关于 css 命名</h4><p>对于自定义 <code>css</code> 命名。遵循 <code>BEM</code> 的规范。我已经在博客里写过 <code>BEM</code> 的使用方法, 忘了就去看</p>
-<h4 id="关于-常量命名"><a href="#关于-常量命名" class="headerlink" title="关于 常量命名"></a>关于 常量命名</h4><p>常量全大写,取名字尽量有意义，用下划线进行分割</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> SAMPLE_DATA = ...<br></code></pre></td></tr></table></figure>
-
-<h4 id="关于路由命名"><a href="#关于路由命名" class="headerlink" title="关于路由命名"></a>关于路由命名</h4><figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">abc</span>-def   // 利用-来进行名称分割<br><span class="hljs-keyword">a</span><br><span class="hljs-keyword">ab</span><br><span class="hljs-keyword">abc</span><br></code></pre></td></tr></table></figure>
-]]></content>
   </entry>
   <entry>
     <title>ExpressJS 知识点总结</title>

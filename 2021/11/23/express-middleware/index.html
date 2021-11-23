@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="这篇博客是作为 ExpressJS 知识点总结 这篇文章的补充 中间件基础知识middleware 即 中间件。是在服务器发送响应或接受请求这一中间过程中执行的代码 下面用代码来说话 1234&#x2F;* 老三样 *&#x2F;npm init -ynpm i nodemonnpm i express  1234567891011121314&#x2F;* server.js *&#x2F;const express &#x3D; requir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express middleware">
+<meta property="og:url" content="http://example.com/2021/11/23/express-middleware/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="这篇博客是作为 ExpressJS 知识点总结 这篇文章的补充 中间件基础知识middleware 即 中间件。是在服务器发送响应或接受请求这一中间过程中执行的代码 下面用代码来说话 1234&#x2F;* 老三样 *&#x2F;npm init -ynpm i nodemonnpm i express  1234567891011121314&#x2F;* server.js *&#x2F;const express &#x3D; requir">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.19.24-PM.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.26.05-PM.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.54.15-PM.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-6.03.39-PM.gif">
+<meta property="article:published_time" content="2021-11-23T08:28:29.000Z">
+<meta property="article:modified_time" content="2021-11-23T11:02:42.623Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.19.24-PM.gif">
+  
+  <title>express middleware - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="express middleware">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-23 16:28" pubdate>
+        2021年11月23日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">express middleware</h1>
+            
+            <div class="markdown-body">
+              <p>这篇博客是作为 ExpressJS 知识点总结 这篇文章的补充</p>
+<h4 id="中间件基础知识"><a href="#中间件基础知识" class="headerlink" title="中间件基础知识"></a>中间件基础知识</h4><p><code>middleware</code> 即 中间件。是在服务器发送响应或接受请求这一中间过程中执行的代码</p>
+<p>下面用代码来说话</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-comment">/* 老三样 */</span><br><span class="hljs-built_in">npm</span> init -y<br><span class="hljs-built_in">npm</span> i nodemon<br><span class="hljs-built_in">npm</span> i express<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* server.js */</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><strong>中间件</strong>(注意：中间件本身是一个函数)可以访问响应（res）和请求（req）变量，并可以根据需要修改或使用它们。<br><strong>中间件函数</strong> 接受三个参数 <code>响应(res)</code>、<code>请求(req)</code>、<code>next</code>。重点来看看<code>next</code><br><code>next</code> 是一个函数。该函数很重要，因为它必须从中间件调用才能执行下一个中间件。如果不调用此函数，则不会调用包括控制器(这里指例如 app.get()的函数)操作在内的其他中间件</p>
+<p>用例子来讲解：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* server.js */</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><br><span class="hljs-comment">// 使用 中间件</span><br>app.use(loggingMiddleware)   <span class="hljs-comment">// 注意：这个中间件应该放在所有控制器前面</span><br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">// 定义一个关于打印的中间件</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingMiddleware</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inside Middleware&#x27;</span>)<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>此时会有比较有趣的事情发生！ 我重启服务器后，在本地 3000 端口的任何路由刷新，在终端控制台都会打印<code>Inside Middleware</code>。但是应用程序现在<strong>永远加载，从未实际完成请求</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.19.24-PM.gif" srcset="/img/loading.gif" lazyload alt="loading..." width="300px"/>
+
+<p>出现问题的原因在于我在<code>loggingMiddleware</code>这个中间件里，没有调用 <code>next</code> 函数，所以永远不会调用控制器(例如 <code>app.get()</code>)操作(前文也提过)</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 定义一个关于打印的中间件<br><span class="hljs-keyword">function</span> loggingMiddleware(req, res, <span class="hljs-keyword">next</span>) &#123;<br>  console.log(<span class="hljs-string">&#x27;Inside Middleware&#x27;</span>);<br>  <span class="hljs-keyword">next</span>();     <span class="hljs-regexp">//</span> 这里用了<span class="hljs-keyword">next</span>()<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.26.05-PM.gif" srcset="/img/loading.gif" lazyload alt="next" width="400px"/>
+
+<p>此时，我会发现无论进入哪条路由都顺通无阻，且中间件的记录一条不落！！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br>app.use(loggingMiddleware)<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">// 一个关于打印的中间件</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingMiddleware</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-comment">// req.originalUrl 获取浏览器当前路由</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()&#125;</span>: <span class="hljs-subst">$&#123;req.originalUrl&#125;</span>`</span>)<br>  next();<br>&#125;<br><br><span class="hljs-comment">// 新的中间件 用于用户认证</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authorizeUsersAccess</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;authorizeUsersAccess Middleware&#x27;</span>)<br>  next()<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br><br></code></pre></td></tr></table></figure>
+
+<p>现在我不把<code>authorizeUsersAccess</code>通过<code>app.use()</code>使用，而是放在 <code>app.get(&#39;/users&#39;, ...)</code> 这个控制器里</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, authorizeUsersAccess, <span class="hljs-function"><span class="hljs-params">(req, res)</span> =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>此时，我们尝试调用页面的路由，我们会惊奇的发现 只有在<code>/users</code>这条路由时，控制台会打印</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">authorizeUsersAccess</span> Middleware   ---&gt;</span> authorizeUsersAccess 发挥的效果<br></code></pre></td></tr></table></figure>
+
+<p>而在所有路由上，控制台都会打印</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Tue</span> Nov <span class="hljs-number">23</span> <span class="hljs-number">2021</span> <span class="hljs-number">17</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span> GMT+<span class="hljs-number">0800</span> (中国标准时间): /users   ---&gt; loggingMiddleware 发挥的效果<br></code></pre></td></tr></table></figure>
+
+<p>说明，现在中间件<code>authorizeUsersAccess</code>只能在<code>/users</code>这条路由里起作用</p>
+<p>现在来丰富一下<code>authorizeUsersAccess</code>这个中间件的功能</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, authorizeUsersAccess, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><br><span class="hljs-comment">// 新的中间件 用于用户认证</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authorizeUsersAccess</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (req.query.admin === <span class="hljs-string">&#x27;true&#x27;</span>) &#123;<br>    next()<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;错误！你必须要admin === true&#x27;</span>)<br>  &#125;<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-5.54.15-PM.gif" srcset="/img/loading.gif" lazyload alt="升级的中间件"></p>
+<p>我们可以在中间件里设置新的变量，然后在所起效的控制器里使用 例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* server.js */</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/users&#x27;</span>, authorizeUsersAccess, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&#x27;Users Page&#x27;</span>)<br>&#125;)<br><br><br><span class="hljs-comment">// 新的中间件 用于用户认证</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authorizeUsersAccess</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (req.query.admin === <span class="hljs-string">&#x27;true&#x27;</span>) &#123;<br>    req.<br>    next()<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;错误！你必须要admin === true&#x27;</span>)<br>  &#125;<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-23-at-6.03.39-PM.gif" srcset="/img/loading.gif" lazyload alt="升级的中间件"></p>
+<h4 id="中间件额外知识"><a href="#中间件额外知识" class="headerlink" title="中间件额外知识"></a>中间件额外知识</h4><h5 id="控制器也是中间件"><a href="#控制器也是中间件" class="headerlink" title="控制器也是中间件"></a>控制器也是中间件</h5><p>事实上控制器(例如 app.get())也是中间件。因为也是有<code>res</code>、<code>req</code>、<code>next()</code>(next 在这使用情况非常少)，但是控制器后面没有紧随其后的其他中间件。它们就是这条<strong>链</strong>的末端，这就是为什么在控制器动作中永远不会有任何下一个调用。</p>
+<h5 id="next-调用-不等于-return"><a href="#next-调用-不等于-return" class="headerlink" title="next()调用 不等于 return"></a>next()调用 不等于 return</h5><p>(注意：这里的理解其实我现在还不到位…)<br>例如</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">function</span> <span class="hljs-selector-tag">middleware</span>(req, res, next) &#123;<br>  <span class="hljs-selector-tag">if</span> (req.valid) &#123;<br>    <span class="hljs-selector-tag">next</span>()<br>  &#125;<br>  <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.send</span>(<span class="hljs-string">&#x27;无效请求&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">function</span> <span class="hljs-title">middleware</span>(req, res, next) &#123;<br>  if (req.valid) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-type">next()</span><br>  &#125;<br>  res.send(<span class="hljs-symbol">&#x27;Invalid</span> Request&#x27;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在，代码在<code>next</code>调用后将不再执行，因为它将从函数中返回</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, middleware, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inside Home Page&#x27;</span>)<br>  res.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middleware</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Before Next&#x27;</span>)<br>  next()<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;After Next&#x27;</span>)<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>运行此代码并转到主页时，控制台将按顺序打印下面内容</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Before</span> <span class="hljs-built_in">Next</span><br><span class="hljs-variable">Inside</span> <span class="hljs-variable">Home</span> <span class="hljs-variable">Page</span><br><span class="hljs-built_in">After</span> <span class="hljs-built_in">Next</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="中间件的执行顺序"><a href="#中间件的执行顺序" class="headerlink" title="中间件的执行顺序"></a>中间件的执行顺序</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs vim">const express = require(<span class="hljs-string">&#x27;express&#x27;</span>)<br>const app = express()<br><br>app.use(middlewareThree)<br>app.use(middlewareOne)<br><br>app.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, middlewareTwo, middlewareFour, (req, <span class="hljs-keyword">res</span>) =&gt; &#123;<br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Inside Home Page&#x27;</span>)<br>  <span class="hljs-keyword">res</span>.send(<span class="hljs-string">&#x27;Home Page&#x27;</span>)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareOne</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware One&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareTwo</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware Two&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareThree</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware Three&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middlewareFour</span><span class="hljs-params">(req, res, next)</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Middleware Four&#x27;</span>)<br>  <span class="hljs-keyword">next</span>()<br>&#125;<br><br>app.listen(<span class="hljs-number">3000</span>, () =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Server Started&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>由于<code>app.use</code>语句是第一位的，这些语句中的中间件将首先按照添加的顺序执行。接下来定义<code>app.get</code>中间件，然后按照<code>app.get</code>函数中的顺序执行它们。如果运行，这将导致以下控制台输出。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stata">Middleware Three<br>Middleware <span class="hljs-keyword">One</span><br>Middleware <span class="hljs-keyword">Two</span><br>Middleware Four<br></code></pre></td></tr></table></figure>
+
+<p><strong>总结：中间件在清理代码和使用户授权和身份验证等事情变得容易得多方面非常强大，但由于中间件令人难以置信的灵活性，它可以用于更多用途。</strong></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/23/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                        <span class="hidden-mobile">类型转换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>

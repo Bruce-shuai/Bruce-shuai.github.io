@@ -18,15 +18,15 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="&amp;&amp;的使用先看用法 123456&#x2F;&#x2F; 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容true &amp;&amp; 123   &#x2F;&#x2F; 123false &amp;&amp; 123  &#x2F;&#x2F; false123 &amp;&amp; 456    &#x2F;&#x2F; 456  更多知识有待扩充… 三元运算符1234567891011&#x2F;&#x2F; 常见情况：const numb">
+  <meta name="description" content="&amp;&amp;的使用先看用法 123456&#x2F;&#x2F; 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容true &amp;&amp; 123   &#x2F;&#x2F; 123false &amp;&amp; 123  &#x2F;&#x2F; false123 &amp;&amp; 456    &#x2F;&#x2F; 456  || 的使用123452 || 3       &#x2F;&#x2F; 20 || 3       &#x2F;&#x2F; 3f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目中的小技巧">
 <meta property="og:url" content="http://example.com/2021/10/31/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="&amp;&amp;的使用先看用法 123456&#x2F;&#x2F; 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容true &amp;&amp; 123   &#x2F;&#x2F; 123false &amp;&amp; 123  &#x2F;&#x2F; false123 &amp;&amp; 456    &#x2F;&#x2F; 456  更多知识有待扩充… 三元运算符1234567891011&#x2F;&#x2F; 常见情况：const numb">
+<meta property="og:description" content="&amp;&amp;的使用先看用法 123456&#x2F;&#x2F; 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容true &amp;&amp; 123   &#x2F;&#x2F; 123false &amp;&amp; 123  &#x2F;&#x2F; false123 &amp;&amp; 456    &#x2F;&#x2F; 456  || 的使用123452 || 3       &#x2F;&#x2F; 20 || 3       &#x2F;&#x2F; 3f">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-31T10:24:52.000Z">
-<meta property="article:modified_time" content="2021-11-09T03:57:51.746Z">
+<meta property="article:modified_time" content="2021-11-23T04:24:53.920Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="奇淫技巧">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.5k 字
     </span>
   
 
@@ -226,7 +226,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      5 分钟
     </span>
   
 
@@ -261,7 +261,13 @@
               <h4 id="amp-amp-的使用"><a href="#amp-amp-的使用" class="headerlink" title="&amp;&amp;的使用"></a>&amp;&amp;的使用</h4><p>先看用法</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容<br>true &amp;&amp; <span class="hljs-number">123</span>   <span class="hljs-regexp">//</span> <span class="hljs-number">123</span><br><br>false &amp;&amp; <span class="hljs-number">123</span>  <span class="hljs-regexp">//</span> false<br><br><span class="hljs-number">123</span> &amp;&amp; <span class="hljs-number">456</span>    <span class="hljs-regexp">//</span> <span class="hljs-number">456</span><br></code></pre></td></tr></table></figure>
 
-<p>更多知识有待扩充…</p>
+<h4 id="的使用"><a href="#的使用" class="headerlink" title="|| 的使用"></a>|| 的使用</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2</span> || <span class="hljs-number">3</span>       // <span class="hljs-number">2</span><br><span class="hljs-attribute">0</span> || <span class="hljs-number">3</span>       // <span class="hljs-number">3</span><br><span class="hljs-attribute">false</span> || <span class="hljs-number">3</span>   // <span class="hljs-number">3</span><br><span class="hljs-attribute">undefined</span>||<span class="hljs-number">3</span> // <span class="hljs-number">3</span><br><span class="hljs-attribute">null</span> || <span class="hljs-number">3</span>    // <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="的作用"><a href="#的作用" class="headerlink" title="== 的作用"></a>== 的作用</h4><p>正常情况下，能用 <code>===</code> 运算符就不要用 <code>==</code> 运算符。 我认为的唯一一种情况下推荐使用<code>==</code>的情况就是在你认为<code>undefined</code>、<code>null</code> 都应该为同一类状态的时候才可以使用<br>例如：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">undefined</span> == null  // <span class="hljs-literal">true</span><br><span class="hljs-attr">false</span> == null      // <span class="hljs-literal">false</span><br><span class="hljs-attr">false</span> == undefined // <span class="hljs-literal">false</span><br><span class="hljs-attr">0</span> == null          // <span class="hljs-literal">false</span><br><span class="hljs-attr">0</span> == undefined     // <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">someValue == <span class="hljs-literal">null</span> <span class="hljs-regexp">//</span> 其实 someValue 与 <span class="hljs-literal">null</span> 或者 与 <span class="hljs-literal">undefined</span> 比较的时候 得到的结果是一致的<br></code></pre></td></tr></table></figure>
+
 <h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 常见情况：</span><br><span class="hljs-keyword">const</span> <span class="hljs-built_in">number</span> = <span class="hljs-number">5</span>;<br><span class="hljs-keyword">let</span> result;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-built_in">number</span> &gt;= <span class="hljs-number">50</span>) &#123;<br>  result = <span class="hljs-string">&#x27;Not to fifty!&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  result = <span class="hljs-string">&#x27;It could be worse&#x27;</span><br>&#125;<br><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 用三元运算符</span><br><span class="hljs-keyword">const</span> <span class="hljs-built_in">number</span> = <span class="hljs-number">5</span>;<br><span class="hljs-comment">// 完美的浓缩着代码....</span><br><span class="hljs-keyword">const</span> result = <span class="hljs-built_in">number</span> &gt;= <span class="hljs-number">50</span> ? <span class="hljs-string">&#x27;Not to fifty!&#x27;</span> : <span class="hljs-string">&#x27;It could be worse&#x27;</span><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
