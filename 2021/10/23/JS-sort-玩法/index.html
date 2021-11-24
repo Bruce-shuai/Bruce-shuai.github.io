@@ -26,7 +26,7 @@
 <meta property="og:description" content="123let vals &#x3D; [5, 4, 4, 2, 1];vals.sort();         &#x2F;&#x2F; 不会反悔新的数组，而是对自己本身进行修改...console.log(vals);   &#x2F;&#x2F;  [1, 2, 4, 4, 5]  似乎默认是按照字母顺序进行排序 123let vals &#x3D; [&amp;#x27;a&amp;#x27;, &amp;#x27;A&amp;#x27;, 2, 10];vals.sort();c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-23T07:34:14.000Z">
-<meta property="article:modified_time" content="2021-11-06T06:47:38.048Z">
+<meta property="article:modified_time" content="2021-11-24T11:29:08.359Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="高级">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      576 字
+      639 字
     </span>
   
 
@@ -271,6 +271,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
+<h4 id="利用-sort-来写随机数组"><a href="#利用-sort-来写随机数组" class="headerlink" title="利用 sort 来写随机数组"></a>利用 sort 来写随机数组</h4><p>arr.sort((a, b) =&gt; Math.random() - 0.5); // 这是在原来数组中做变化</p>
 
             </div>
             <hr>
