@@ -30,6 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-1.41.11-PM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-1.53.30-PM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-1.56.54-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-11.46.03-AM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-2.06.10-PM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-2.10.36-PM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-2.17.24-PM.png">
@@ -37,7 +38,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-2.50.26-PM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-2.50.26-PM.png">
 <meta property="article:published_time" content="2021-11-24T03:49:20.000Z">
-<meta property="article:modified_time" content="2021-11-24T07:24:03.304Z">
+<meta property="article:modified_time" content="2021-11-25T03:46:35.655Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-12.13.37-PM.png">
@@ -228,7 +229,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.9k 字
+      5.1k 字
     </span>
   
 
@@ -237,7 +238,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15 分钟
+      16 分钟
     </span>
   
 
@@ -300,7 +301,9 @@
 
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-1.56.54-PM.png" srcset="/img/loading.gif" lazyload width="400px" alt="基础样式5">
 
-<h4 id="通过-children-来获取子类"><a href="#通过-children-来获取子类" class="headerlink" title="通过 children 来获取子类"></a>通过 children 来获取子类</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">const</span> grandparent = document.querySelector(<span class="hljs-string">&#x27;.grandparent&#x27;</span>)<br><span class="hljs-keyword">const</span> parents = <span class="hljs-keyword">Array</span>.<span class="hljs-keyword">from</span>(grandparent.children);    <span class="hljs-comment">// 通过 children 来获取子类</span><br><br>parents.<span class="hljs-keyword">forEach</span>(changeColor)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeColor</span>(<span class="hljs-params">element</span>) </span>&#123;<br>  element.style.backgroundColor = <span class="hljs-string">&#x27;black&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<hr>
+<p><strong>注意：</strong><br>有一个问题：我前文有说，<code>getElementsByClassName</code> 获取的是一个类数组(伪数组)，<code>querySelectorAll</code>也获取的是一个类数组(伪数组)。但是它们的伪数组是不一样的。<strong>getElementsByClassName 获取的是 HTMLCollection</strong> 而 <strong>querySelectorAll 获取全部对象集合，是一个 NodeList 类数组</strong> <code>querySelectorAll</code> 获取的元素即使不转化为 数组，也能够使用<code>forEach</code>，但是<code>getElementsByClassName</code>不可以</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-11.46.03-AM.png" srcset="/img/loading.gif" lazyload width="450px" alt="伪数组问题"></h2><h4 id="通过-children-来获取子类"><a href="#通过-children-来获取子类" class="headerlink" title="通过 children 来获取子类"></a>通过 children 来获取子类</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">const</span> grandparent = document.querySelector(<span class="hljs-string">&#x27;.grandparent&#x27;</span>)<br><span class="hljs-keyword">const</span> parents = <span class="hljs-keyword">Array</span>.<span class="hljs-keyword">from</span>(grandparent.children);    <span class="hljs-comment">// 通过 children 来获取子类</span><br><br>parents.<span class="hljs-keyword">forEach</span>(changeColor)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeColor</span>(<span class="hljs-params">element</span>) </span>&#123;<br>  element.style.backgroundColor = <span class="hljs-string">&#x27;black&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-2.06.10-PM.png" srcset="/img/loading.gif" lazyload width="400px" alt="基础样式6">
 
@@ -346,6 +349,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/11/25/JS-DOM%E6%93%8D%E4%BD%9C2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS-DOM操作2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

@@ -1,0 +1,585 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="文件夹目录：(下列全为空文件) 12|-index.html|-script.js  添加元素到页面append123&#x2F;* script.js *&#x2F;const body &#x3D; document.body;body.append(&quot;Hello World&quot;)  此时页面会显示 Hello World appendChild但是如果是这样 123&#x2F;* script.js *&#x2F;cons">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-DOM操作2">
+<meta property="og:url" content="http://example.com/2021/11/25/JS-DOM%E6%93%8D%E4%BD%9C2/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="文件夹目录：(下列全为空文件) 12|-index.html|-script.js  添加元素到页面append123&#x2F;* script.js *&#x2F;const body &#x3D; document.body;body.append(&quot;Hello World&quot;)  此时页面会显示 Hello World appendChild但是如果是这样 123&#x2F;* script.js *&#x2F;cons">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-3.48.20-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-3.53.04-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-4.03.20-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.27.02-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.42.41-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.48.16-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.59.41-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.03.01-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.06.30-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.08.32-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.17.39-PM.png">
+<meta property="article:published_time" content="2021-11-25T07:37:11.000Z">
+<meta property="article:modified_time" content="2021-11-25T10:18:14.256Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-3.48.20-PM.png">
+  
+  <title>JS-DOM操作2 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JS-DOM操作2">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-25 15:37" pubdate>
+        2021年11月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JS-DOM操作2</h1>
+            
+            <div class="markdown-body">
+              <p>文件夹目录：<br>(下列全为空文件)</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">|-index.html</span><br><span class="hljs-string">|-script.js</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="添加元素到页面"><a href="#添加元素到页面" class="headerlink" title="添加元素到页面"></a>添加元素到页面</h4><h5 id="append"><a href="#append" class="headerlink" title="append"></a>append</h5><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">body</span> = document.<span class="hljs-keyword">body</span>;<br><span class="hljs-keyword">body</span>.append(<span class="hljs-string">&quot;Hello World&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>此时页面会显示 <strong><code>Hello World</code></strong></p>
+<h5 id="appendChild"><a href="#appendChild" class="headerlink" title="appendChild"></a>appendChild</h5><p>但是如果是这样</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">body</span> = document.<span class="hljs-keyword">body</span>;<br><span class="hljs-keyword">body</span>.appendChild(<span class="hljs-string">&quot;Hello World&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>页面控制台报错：script.js:2 Uncaught TypeError: Failed to execute ‘appendChild’ on ‘Node’: parameter 1 is not of type ‘Node’.</p>
+</blockquote>
+<p>告诉我们页面需要 <code>node</code>，而不是 <code>string</code></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>事实上，对于<code>appendChild</code>你只能添加 <code>div</code>、<code>span</code>这种<code>node</code>结点; 但是<code>append</code> 去可以添加任何元素…甚至字符串…</p>
+<h4 id="创建元素"><a href="#创建元素" class="headerlink" title="创建元素"></a>创建元素</h4><p><code>document.createElement(&#39;&#39;)</code> 这种方式可以创建各种元素<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-3.48.20-PM.png" srcset="/img/loading.gif" lazyload alt="创建元素"></p>
+<p>例如创建一个<code>div</code>标签: <code>const div = document.createElement(&#39;div&#39;)</code></p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> body = document.body;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);<br>body.append(<span class="hljs-keyword">div</span>);    <span class="hljs-comment">// 此时，div标签已经放在了页面上</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-3.53.04-PM.png" srcset="/img/loading.gif" lazyload alt="创建元素"></p>
+<h4 id="给创建的元素增添内容"><a href="#给创建的元素增添内容" class="headerlink" title="给创建的元素增添内容"></a>给创建的元素增添内容</h4><h5 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h5><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> body = document.body;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);<br><br><span class="hljs-keyword">div</span>.innerText = <span class="hljs-string">&#x27;Hello World&#x27;</span><br>body.append(<span class="hljs-keyword">div</span>);<br></code></pre></td></tr></table></figure>
+
+<p>此时，页面会打印出<code>Hello World</code></p>
+<h5 id="textContent"><a href="#textContent" class="headerlink" title="textContent"></a>textContent</h5><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> body = document.body;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);<br><br><span class="hljs-keyword">div</span>.textContent = <span class="hljs-string">&#x27;Hello World&#x27;</span><br>body.append(<span class="hljs-keyword">div</span>);<br></code></pre></td></tr></table></figure>
+
+<p>此时，页面也会打印出<code>Hello World</code></p>
+<h5 id="innerText-VS-textContent"><a href="#innerText-VS-textContent" class="headerlink" title="innerText VS textContent"></a>innerText VS textContent</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml">/* index.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Hello<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display:none;&quot;</span>&gt;</span>Bye<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs applescript">/* <span class="hljs-keyword">script</span>.js */<br>const <span class="hljs-keyword">div</span> = document.querySelector(&#x27;<span class="hljs-keyword">div</span>&#x27;);<br><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">div</span>.textContent);<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">div</span>.innerText);<br></code></pre></td></tr></table></figure>
+
+<p>打印结果：<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-4.03.20-PM.png" srcset="/img/loading.gif" lazyload alt="innerText VS textContent"></p>
+<p>它们的区别如下：<br><strong>textContent</strong> 不仅会获得 html 中实实在在出现的内容(不受 css 影响)，甚至连标签空了多少格也会知晓<br><strong>innerText</strong> 只会获得应该显示的内容(受 css 影响)</p>
+<h5 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h5><p><strong>作用：往页面注射 html 标签</strong></p>
+<p>当前 <code>index.html</code> 页面 <code>body</code> 部分内容为空</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.body;<br><span class="hljs-keyword">div</span>.innerText = <span class="hljs-string">&#x27;&lt;strong&gt;你好&lt;/strong&gt;&#x27;</span> <span class="hljs-comment">// div.textContent效果一样</span><br></code></pre></td></tr></table></figure>
+
+<p>页面打印内容为：<code>&lt;strong&gt;你好&lt;/strong&gt;</code></p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.body;<br><span class="hljs-keyword">div</span>.innerHTML = <span class="hljs-string">&#x27;&lt;strong&gt;你好&lt;/strong&gt;&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>页面打印内容为：<strong>你好</strong> (加粗版)</p>
+<p><strong>注意：这种方式看似非常方便，但会有极大的安全问题！！</strong> 因此我也有了一篇相关博客</p>
+<p>在 <code>js</code> 中，我目前知道的也只有这样的方式能注射 <code>html</code> 内容。不过，以上面例子为例，我可以用另外的方式达到同样的效果</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> body = document.body;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">strong</span> = document.createElement(<span class="hljs-string">&#x27;strong&#x27;</span>);<br><span class="hljs-keyword">strong</span>.innerText=<span class="hljs-string">&#x27;你好&#x27;</span>;<br>body.append(<span class="hljs-keyword">strong</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h4><h5 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* index.html */</span><br>&lt;div&gt;<br>  &lt;span <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">var1</span>&quot;&gt;好吗？&lt;/<span class="hljs-symbol">span</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">var2</span>&quot;&gt;好的！&lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;var2&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>页面显示： <strong>好吗？好的！</strong></p>
+<p>现在使用<code>remove()</code>方法<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.27.02-PM.png" srcset="/img/loading.gif" lazyload alt="remove"></p>
+<p>可见，使用了 <code>remove</code> 后，整个 <code>html页面</code> 该元素已经被彻底销毁了</p>
+<h5 id="removeChild"><a href="#removeChild" class="headerlink" title="removeChild()"></a>removeChild()</h5><p>可以移除自己的子元素</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>div.removeChild(var1);<br></code></pre></td></tr></table></figure>
+
+<p>同样可以达到整个 <code>html页面</code> 中把该元素彻底销毁</p>
+<p>但使用 <code>remove()</code> 更加的简单明了</p>
+<h4 id="元素的属性"><a href="#元素的属性" class="headerlink" title="元素的属性"></a>元素的属性</h4><h5 id="getAttribute-获取元素的属性值"><a href="#getAttribute-获取元素的属性值" class="headerlink" title="getAttribute 获取元素的属性值"></a>getAttribute 获取元素的属性值</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* index.html */</span><br>&lt;div&gt;<br>  &lt;span title=<span class="hljs-string">&quot;hi&quot;</span> <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">var1</span>&quot;&gt;好吗？&lt;/<span class="hljs-symbol">span</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">var2</span>&quot;&gt;好的！&lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br><span class="hljs-built_in">console</span>.log(var1.getAttribute(<span class="hljs-string">&#x27;class&#x27;</span>));    <span class="hljs-comment">// var1 (获取了元素的类名)</span><br><span class="hljs-built_in">console</span>.log(var1.getAttribute(<span class="hljs-string">&#x27;title&#x27;</span>));    <span class="hljs-comment">// hi (获取了元素的title属性的内容)</span><br><br>当然，你直接这样写也可以获取属性<br><span class="hljs-built_in">console</span>.log(var1.className);    <span class="hljs-comment">// var1 (获取了元素的类名)  注意，这里是className</span><br><span class="hljs-built_in">console</span>.log(var1.title);        <span class="hljs-comment">// hi (获取了元素的title属性的内容)</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="setAttribute-修改元素的属性值"><a href="#setAttribute-修改元素的属性值" class="headerlink" title="setAttribute 修改元素的属性值"></a>setAttribute 修改元素的属性值</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* index.html */</span><br>&lt;div&gt;<br>  &lt;span title=<span class="hljs-string">&quot;hi&quot;</span> <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">var1</span>&quot;&gt;好吗？&lt;/<span class="hljs-symbol">span</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">var2</span>&quot;&gt;好的！&lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>console.log(var1.setAttribute(<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-string">&#x27;self&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>这里还甚至自动给 <code>var1</code> 添加了 <code>id</code> 属性<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.42.41-PM.png" srcset="/img/loading.gif" lazyload alt="setAttribute"></p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gml">当然，你直接这样写也可以修改属性<br>var1.<span class="hljs-symbol">id</span> = <span class="hljs-string">&#x27;123&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="removeAttribute-移除元素属性值"><a href="#removeAttribute-移除元素属性值" class="headerlink" title="removeAttribute 移除元素属性值"></a>removeAttribute 移除元素属性值</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* index.html */</span><br>&lt;div&gt;<br>  &lt;span title=<span class="hljs-string">&quot;hi&quot;</span> <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">var1</span>&quot;&gt;好吗？&lt;/<span class="hljs-symbol">span</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">var2</span>&quot;&gt;好的！&lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>var1.removeAttribute(<span class="hljs-string">&#x27;title&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.48.16-PM.png" srcset="/img/loading.gif" lazyload alt="removeAttribute"></p>
+<h4 id="data-attribute"><a href="#data-attribute" class="headerlink" title="data-attribute"></a>data-attribute</h4><h5 id="获取-Data-属性名"><a href="#获取-Data-属性名" class="headerlink" title="获取 Data 属性名"></a>获取 Data 属性名</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml">/* index.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;var1&quot;</span> <span class="hljs-attr">data-test</span>=<span class="hljs-string">&quot;this is a test&quot;</span> <span class="hljs-attr">data-another-test</span>=<span class="hljs-string">&quot;this is another test&quot;</span>&gt;</span>好吗？<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;var2&quot;</span>&gt;</span>好的！<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>console.log(var1.dataset);<br>console.log(var1.dataset.test);<br>console.log(var1.dataset.anotherTest);  <span class="hljs-comment">// 这里是驼峰写法(用 驼峰 代替 -)</span><br></code></pre></td></tr></table></figure>
+
+<p>打印结果：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-5.59.41-PM.png" srcset="/img/loading.gif" lazyload alt="data-attribute"></p>
+<h5 id="修改-Data-属性内容"><a href="#修改-Data-属性内容" class="headerlink" title="修改 Data 属性内容"></a>修改 Data 属性内容</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml">/* index.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;var1&quot;</span> <span class="hljs-attr">data-test</span>=<span class="hljs-string">&quot;this is a test&quot;</span> <span class="hljs-attr">data-another-test</span>=<span class="hljs-string">&quot;this is another test&quot;</span>&gt;</span>好吗？<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;var2&quot;</span>&gt;</span>好的！<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>console.log(var1.dataset);<br>console.log(var1.dataset.test);<br>console.log(var1.dataset.anotherTest);  <span class="hljs-comment">// 这里是驼峰写法(用 驼峰 代替 -)</span><br><br>var1.dataset.newTest = <span class="hljs-string">&#x27;new test&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>打印结果：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.03.01-PM.png" srcset="/img/loading.gif" lazyload alt="chang-attribute"></p>
+<h4 id="对于-class-的控制"><a href="#对于-class-的控制" class="headerlink" title="对于 class 的控制"></a>对于 class 的控制</h4><h5 id="add"><a href="#add" class="headerlink" title="add"></a>add</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* index.html */</span><br>&lt;div&gt;<br>  &lt;span <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">var1</span>&quot;&gt;好吗？&lt;/<span class="hljs-symbol">span</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">var2</span>&quot;&gt;好的！&lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>var1.classList.add(<span class="hljs-string">&#x27;new-class&#x27;</span>);   <span class="hljs-comment">// 给var1 又添加了一个类名</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.06.30-PM.png" srcset="/img/loading.gif" lazyload alt="classList"></p>
+<h5 id="remove-1"><a href="#remove-1" class="headerlink" title="remove"></a>remove</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* index.html */</span><br>&lt;div&gt;<br>  &lt;span <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">var1</span>&quot;&gt;好吗？&lt;/<span class="hljs-symbol">span</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">var2</span>&quot;&gt;好的！&lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>var1.classList.add(<span class="hljs-string">&#x27;new-class&#x27;</span>)    <span class="hljs-comment">// 添加</span><br>var1.classList.remove(<span class="hljs-string">&#x27;new-class&#x27;</span>) <span class="hljs-comment">// 又移除</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.08.32-PM.png" srcset="/img/loading.gif" lazyload alt="add&amp;remove"></p>
+<h5 id="toggle"><a href="#toggle" class="headerlink" title="toggle"></a>toggle</h5><p>(第二参数为 true 的时候，添加该类名 为 false 的时候删除该类名)</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>var1.classList.toggle(<span class="hljs-string">&#x27;toggle-name&#x27;</span>, <span class="hljs-keyword">false</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="修改元素的-style-样式"><a href="#修改元素的-style-样式" class="headerlink" title="修改元素的 style 样式"></a>修改元素的 style 样式</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* index.html */</span><br>&lt;div&gt;<br>  &lt;span <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">var1</span>&quot;&gt;好吗？&lt;/<span class="hljs-symbol">span</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">var2</span>&quot;&gt;好的！&lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">const</span> var1 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var1&quot;</span>);<br><span class="hljs-keyword">const</span> var2 = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">&quot;.var2&quot;</span>);<br><br>var1.style.color = <span class="hljs-string">&#x27;white&#x27;</span>;<br>var1.style.backgroundColor = <span class="hljs-string">&#x27;green&#x27;</span>;   <span class="hljs-comment">// 驼峰命名</span><br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-6.17.39-PM.png" srcset="/img/loading.gif" lazyload width="250px" alt="style"/>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/25/%E8%B7%A8%E7%AB%99%E7%82%B9%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">跨站点脚本攻击</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/24/JS-DOM%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">JS DOM操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
