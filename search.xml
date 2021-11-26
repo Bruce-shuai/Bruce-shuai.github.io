@@ -3322,4 +3322,30 @@
         <category>计算机网络篇</category>
       </categories>
   </entry>
+  <entry>
+    <title>JS Dom data-attributes</title>
+    <url>/2021/11/26/JS-Dom-data-attributes/</url>
+    <content><![CDATA[<p><code>data-attributes</code>让<code>HTML</code>和<code>JS</code>完美的搭配</p>
+<p>如果要使用<code>data-attributes</code>，则必须以<code>data-</code>来开头命名</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">/* index.html */<br>&lt;<span class="hljs-keyword">div</span><br>  <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;test-div&quot;</span><br>  data-user-<span class="hljs-built_in">name</span>=<span class="hljs-string">&quot;帅得乱七八糟&quot;</span><br>  data-age<br>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="读取data-attributes值"><a href="#读取data-attributes值" class="headerlink" title="读取data-attributes值"></a>读取<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br>const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span>.dataset)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.23.02-PM.png" alt="获取data-attributes"></p>
+<p>注意：这个<code>DOMStringMap</code>是个对象，包含了所有该元素的<code>data-</code>属性。 并且打印的例如：<code>userName</code>是驼峰命名方式，这里是为了对应 <code>-</code> 运算符。并且如果定义了<code>data-attribute</code>但却没赋值，最后是以<code>&quot;&quot;</code>这个空字符串来作为值</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.age)  <span class="hljs-comment">// &quot;&quot;</span><br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.userName) <span class="hljs-comment">// &quot;帅得乱七八糟&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="修改和增加data-attributes值"><a href="#修改和增加data-attributes值" class="headerlink" title="修改和增加data-attributes值"></a>修改和增加<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.newAttr</span> = <span class="hljs-string">&#x27;haha&#x27;</span>          <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.userName</span> = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>  <span class="hljs-comment">// 修改原来的属性</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.29.15-PM.png" alt="change-attributes"></p>
+<h4 id="删除data-attributes值"><a href="#删除data-attributes值" class="headerlink" title="删除data-attributes值"></a>删除<code>data-attributes</code>值</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.getElementById(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-keyword">div</span>.dataset.newAttr = <span class="hljs-string">&#x27;haha&#x27;</span>;         <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-keyword">div</span>.dataset.userName = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>;  <span class="hljs-comment">// 修改原来的属性</span><br>delete <span class="hljs-keyword">div</span>.dataset.newAttr;           <span class="hljs-comment">// 删除原来的属性</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.33.28-PM.png" alt="delet"></p>
+<h4 id="JS-操作data-attributes值"><a href="#JS-操作data-attributes值" class="headerlink" title="JS 操作data-attributes值"></a>JS 操作<code>data-attributes</code>值</h4><figure class="highlight hsp"><table><tr><td class="code"><pre><code class="hljs hsp"><span class="hljs-comment">/* html */</span><br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-1&quot;</span>&gt;Open Modal <span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-2&quot;</span>&gt;Open Modal <span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* js */</span><br><span class="hljs-keyword">const</span> buttons = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelectorAll</span>(<span class="hljs-string">&quot;[data-modal-id]&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>然后，可以有其他任何操作…</p>
+]]></content>
+  </entry>
 </search>
