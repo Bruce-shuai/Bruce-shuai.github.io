@@ -248,6 +248,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Calc css</title>
+    <url>/2021/11/09/Calc-css/</url>
+    <content><![CDATA[<p><code>calc</code> 的出现让 <code>纯css</code> 更加的强大</p>
+<h4 id="calc-基础应用"><a href="#calc-基础应用" class="headerlink" title="calc 基础应用"></a>calc 基础应用</h4><figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">100</span>%;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png" alt="普通的一个模块"></p>
+<p>事实上，如果我想上面的这个盒子长度变为 300px 我可以这样做</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但我如果使用<code>calc</code>。我可以这样做</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>甚至，我可以让 <code>calc</code> 进行嵌套操作…</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50px</span> + <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>));<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我还可以在 <code>calc</code> 中使用不同的单位</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100%</span> - <span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：calc(a - b) 操作符两边一定要留有一个空格并且 calc()这二者中间不能留空格，不然 calc 不起效果。</strong></p>
+<h4 id="calc-搭配-var-让-css-更加强大"><a href="#calc-搭配-var-让-css-更加强大" class="headerlink" title="calc 搭配 var() 让 css 更加强大"></a>calc 搭配 var() 让 css 更加强大</h4><p><code>calc</code>是可以结合<code>var()</code>的</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  --<span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">width</span>: calc(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">width</span>) * <span class="hljs-number">2</span>);<br>  <span class="hljs-built_in">height</span>: 80px;<br>  margin: <span class="hljs-number">0</span> auto;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png" alt="calc + var"></p>
+<p>下面来进行一个有意思的(<code>calc</code> 结合 <code>var</code>)操作</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;button class=<span class="hljs-string">&quot;btn btn--primary&quot;</span>&gt;Primary&lt;/button&gt;<br>&lt;button class=<span class="hljs-string">&quot;btn btn--danger&quot;</span>&gt;Danger&lt;/button&gt;<br><span class="hljs-comment">/* css文件 */</span><br>:root &#123;<br>  --hue: <span class="hljs-number">200</span>;<br>&#125;<br><br>.btn &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 30px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">radius</span>: 15px;<br>&#125;<br><br>.btn--primary &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br>.btn--primary:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">70</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">30</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif" alt="calc的神奇妙用"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Dynamic Module</title>
     <url>/2021/11/06/Dynamic-Module/</url>
     <content><![CDATA[<h3 id="Dynamic-Module"><a href="#Dynamic-Module" class="headerlink" title="Dynamic Module"></a>Dynamic Module</h3><p>进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快…</p>
@@ -323,36 +353,6 @@
       <tags>
         <tag>高级</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Calc css</title>
-    <url>/2021/11/09/Calc-css/</url>
-    <content><![CDATA[<p><code>calc</code> 的出现让 <code>纯css</code> 更加的强大</p>
-<h4 id="calc-基础应用"><a href="#calc-基础应用" class="headerlink" title="calc 基础应用"></a>calc 基础应用</h4><figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">100</span>%;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png" alt="普通的一个模块"></p>
-<p>事实上，如果我想上面的这个盒子长度变为 300px 我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>但我如果使用<code>calc</code>。我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>甚至，我可以让 <code>calc</code> 进行嵌套操作…</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50px</span> + <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>));<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>我还可以在 <code>calc</code> 中使用不同的单位</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100%</span> - <span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>注意：calc(a - b) 操作符两边一定要留有一个空格并且 calc()这二者中间不能留空格，不然 calc 不起效果。</strong></p>
-<h4 id="calc-搭配-var-让-css-更加强大"><a href="#calc-搭配-var-让-css-更加强大" class="headerlink" title="calc 搭配 var() 让 css 更加强大"></a>calc 搭配 var() 让 css 更加强大</h4><p><code>calc</code>是可以结合<code>var()</code>的</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  --<span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">width</span>: calc(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">width</span>) * <span class="hljs-number">2</span>);<br>  <span class="hljs-built_in">height</span>: 80px;<br>  margin: <span class="hljs-number">0</span> auto;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png" alt="calc + var"></p>
-<p>下面来进行一个有意思的(<code>calc</code> 结合 <code>var</code>)操作</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;button class=<span class="hljs-string">&quot;btn btn--primary&quot;</span>&gt;Primary&lt;/button&gt;<br>&lt;button class=<span class="hljs-string">&quot;btn btn--danger&quot;</span>&gt;Danger&lt;/button&gt;<br><span class="hljs-comment">/* css文件 */</span><br>:root &#123;<br>  --hue: <span class="hljs-number">200</span>;<br>&#125;<br><br>.btn &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 30px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">radius</span>: 15px;<br>&#125;<br><br>.btn--primary &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br>.btn--primary:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">70</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">30</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif" alt="calc的神奇妙用"></p>
-]]></content>
   </entry>
   <entry>
     <title>Form表格</title>
@@ -811,31 +811,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS sort 玩法</title>
-    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
-    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-
-<p>似乎默认是按照字母顺序进行排序</p>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
-
-<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
-<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
-<p>比较函数需要两个参数…</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
-<h4 id="利用-sort-来写随机数组"><a href="#利用-sort-来写随机数组" class="headerlink" title="利用 sort 来写随机数组"></a>利用 sort 来写随机数组</h4><p>arr.sort((a, b) =&gt; Math.random() - 0.5); // 这是在原来数组中做变化</p>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS-随笔一</title>
     <url>/2021/10/18/JS-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
     <content><![CDATA[<h4 id="问题一：Promise-中-catch-消化异常"><a href="#问题一：Promise-中-catch-消化异常" class="headerlink" title="问题一：Promise 中.catch 消化异常"></a>问题一：Promise 中.catch 消化异常</h4><p>看代码：</p>
@@ -937,6 +912,31 @@
       </categories>
       <tags>
         <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS sort 玩法</title>
+    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>似乎默认是按照字母顺序进行排序</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
+<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
+<p>比较函数需要两个参数…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
+<h4 id="利用-sort-来写随机数组"><a href="#利用-sort-来写随机数组" class="headerlink" title="利用 sort 来写随机数组"></a>利用 sort 来写随机数组</h4><p>arr.sort((a, b) =&gt; Math.random() - 0.5); // 这是在原来数组中做变化</p>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -1329,6 +1329,41 @@
       </tags>
   </entry>
   <entry>
+    <title>classList的一系列操作</title>
+    <url>/2021/11/25/classList%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h4 id="add-remove-value"><a href="#add-remove-value" class="headerlink" title="add / remove / value"></a>add / remove / value</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/* index.html */</span><br>&lt;<span class="hljs-keyword">div</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.querySelector(<span class="hljs-string">&#x27;div&#x27;</span>);<br><span class="hljs-keyword">div</span>.classList.add(<span class="hljs-string">&#x27;new-class&#x27;</span>, <span class="hljs-string">&#x27;another-class&#x27;</span>)  <span class="hljs-comment">// 我可以一次性放入多个class 类名</span><br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-25-at-11.26.16-PM.png" alt="add/remove" width="400px"/>
+
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.querySelector(<span class="hljs-string">&#x27;div&#x27;</span>);<br><span class="hljs-keyword">div</span>.classList.add(<span class="hljs-string">&#x27;new-class&#x27;</span>, <span class="hljs-string">&#x27;another-class&#x27;</span>)<br><span class="hljs-keyword">div</span>.classList.remover(<span class="hljs-string">&#x27;new-class&#x27;</span>, <span class="hljs-string">&#x27;another-class&#x27;</span>) <span class="hljs-comment">// 我也可以一次性删减多个 class 类名</span><br><br>console.log(<span class="hljs-keyword">div</span>.classList.value)   <span class="hljs-comment">// 我可以获取当前这个元素的所有类名</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="contains"><a href="#contains" class="headerlink" title="contains"></a>contains</h4><p>用于检查是否有这个类名( <code>true</code>表示有 <code>false</code>表示没有)</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">const <span class="hljs-keyword">div</span> = document.querySelector(&#x27;<span class="hljs-keyword">div</span>&#x27;);<br><span class="hljs-keyword">div</span>.classList.add(&#x27;new-<span class="hljs-built_in">class</span>&#x27;, &#x27;another-<span class="hljs-built_in">class</span>&#x27;);<br>console.<span class="hljs-built_in">log</span>(&#x27;new-<span class="hljs-built_in">class</span>&#x27;, <span class="hljs-keyword">div</span>.classList.<span class="hljs-keyword">contains</span>(&#x27;new-<span class="hljs-built_in">class</span>&#x27;));<br>console.<span class="hljs-built_in">log</span>(&#x27;nothing&#x27;, <span class="hljs-keyword">div</span>.classList.<span class="hljs-keyword">contains</span>(&#x27;nothing&#x27;));<br></code></pre></td></tr></table></figure>
+
+<p>控制台打印结果：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">new</span>-<span class="hljs-keyword">class</span> <span class="hljs-keyword">true</span><br><span class="hljs-keyword">nothing</span> <span class="hljs-keyword">false</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="toggle"><a href="#toggle" class="headerlink" title="toggle"></a>toggle</h4><p>有两个参数，第一个参数 是 指定一个类名。第二个参数是布尔值。<code>true</code> 表示添加这个类名。<code>false</code>表示去掉这个类名</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.querySelector(<span class="hljs-string">&#x27;div&#x27;</span>);<br><span class="hljs-keyword">div</span>.classList.add(<span class="hljs-string">&#x27;new-class&#x27;</span>, <span class="hljs-string">&#x27;another-class&#x27;</span>);<br><span class="hljs-keyword">div</span>.innerText = <span class="hljs-string">&#x27;点击&#x27;</span><br>let tog = <span class="hljs-literal">true</span>;<br><span class="hljs-keyword">div</span>.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, () =&gt; &#123;<br>  tog = tog ? <span class="hljs-literal">false</span> : <span class="hljs-literal">true</span>;<br>  console.log(tog);   <span class="hljs-comment">// 点击一次 变换一次</span><br>  <span class="hljs-keyword">div</span>.classList.toggle(<span class="hljs-string">&#x27;new&#x27;</span>, tog)<br>&#125;)<br><br>console.log(tog);  <span class="hljs-comment">// 这里始终为true  我估计是 因为这行代码在整个流程中只执行了一次。和react执行逻辑是不一样的</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-25-at-11.44.27-PM.gif" alt="toggle"></p>
+<h4 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h4><p>这里的 <code>forEach</code> 是来检索某个元素的系列类名的。操作和数组的<code>forEach</code>逻辑非常相似</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* index.html */</span><br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.querySelector(<span class="hljs-string">&#x27;div&#x27;</span>);<br><span class="hljs-keyword">div</span>.classList.add(<span class="hljs-string">&#x27;new-class&#x27;</span>, <span class="hljs-string">&#x27;another-class&#x27;</span>);<br><br><span class="hljs-keyword">div</span>.classList.forEach(className =&gt; &#123;<br>  console.log(className);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><code class="hljs smali">name<span class="hljs-built_in"></span><br><span class="hljs-built_in">new-class</span><br><span class="hljs-built_in"></span>another-class<br></code></pre></td></tr></table></figure>
+
+<h4 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h4><p>用新的类名 代替旧的类名</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">const div = document.querySelector(<span class="hljs-string">&#x27;div&#x27;</span>);<br>div.classList.<span class="hljs-keyword">add</span>(<span class="hljs-string">&#x27;new-class&#x27;</span>, <span class="hljs-string">&#x27;another-class&#x27;</span>);<br><br>div.classList.replace(<span class="hljs-string">&#x27;new-class&#x27;</span>, <span class="hljs-string">&#x27;old-class&#x27;</span>)  // 用 <span class="hljs-built_in">old</span>-<span class="hljs-keyword">class</span> 代替了 <span class="hljs-built_in">new</span>-<span class="hljs-keyword">class</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.12.20-PM.png" alt="replace"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>clean Code</title>
     <url>/2021/11/04/clean-Code/</url>
     <content><![CDATA[<h3 id="停止使用继承-迎接函数式组合"><a href="#停止使用继承-迎接函数式组合" class="headerlink" title="停止使用继承, 迎接函数式组合"></a>停止使用继承, 迎接函数式组合</h3><h4 id="继承法"><a href="#继承法" class="headerlink" title="继承法"></a>继承法</h4><p>试想用 class 的方法来完成一个继承问题</p>
@@ -1708,16 +1743,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>git 高级指令</title>
-    <url>/2021/11/10/git-%E9%AB%98%E7%BA%A7%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<p>一般情况下我们提交代码到 git 的指令如下：</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;Message&quot;<br></code></pre></td></tr></table></figure>
-
-<p>我们可以等同于下面这条命令</p>
-<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><code class="hljs livecodeserver">git commit -<span class="hljs-keyword">a</span> -m <span class="hljs-string">&quot;Message&quot;</span><br></code></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
     <title>flex 布局解析</title>
     <url>/2021/11/09/flex-%E5%B8%83%E5%B1%80%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<p><a href="https://lhammer.cn/You-need-to-know-css/#/zh-cn/flexbox-layout">flex 可视化网站</a></p>
@@ -1784,6 +1809,16 @@
 <figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.flexbox-item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">1</span>) &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">order</span>: <span class="hljs-number">2</span>;<br>&#125;<br><br><span class="hljs-selector-class">.flexbox-item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">2</span>) &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;<br>  <span class="hljs-attribute">order</span>:<span class="hljs-number">1</span><br>&#125;<br><br><span class="hljs-selector-class">.flexbox-item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">3</span>) &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-22-at-11.11.25-PM.png" alt="order"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>git 高级指令</title>
+    <url>/2021/11/10/git-%E9%AB%98%E7%BA%A7%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<p>一般情况下我们提交代码到 git 的指令如下：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;Message&quot;<br></code></pre></td></tr></table></figure>
+
+<p>我们可以等同于下面这条命令</p>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><code class="hljs livecodeserver">git commit -<span class="hljs-keyword">a</span> -m <span class="hljs-string">&quot;Message&quot;</span><br></code></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
