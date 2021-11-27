@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="闭包无处不在，下面这段非常简单的代码其实就暗含闭包之道！ 12345const print &#x3D; &amp;#x27;A&amp;#x27;function Print() &amp;#123;  console.log(print);&amp;#125;Print();   &#x2F;&#x2F;A   其实在其他编程语言中我们能够发现，函数内部是无法通过非参数的方式获取函数外部的变量。但是从上面我们习以为常的代码中，我们可以惊讶的发现，我们能够">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闭包">
+<meta property="og:url" content="http://example.com/2021/11/27/%E9%97%AD%E5%8C%85/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="闭包无处不在，下面这段非常简单的代码其实就暗含闭包之道！ 12345const print &#x3D; &amp;#x27;A&amp;#x27;function Print() &amp;#123;  console.log(print);&amp;#125;Print();   &#x2F;&#x2F;A   其实在其他编程语言中我们能够发现，函数内部是无法通过非参数的方式获取函数外部的变量。但是从上面我们习以为常的代码中，我们可以惊讶的发现，我们能够">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-27T07:43:57.000Z">
+<meta property="article:modified_time" content="2021-11-27T09:17:30.234Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>闭包 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="闭包">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-27 15:43" pubdate>
+        2021年11月27日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">闭包</h1>
+            
+            <div class="markdown-body">
+              <p><strong>闭包</strong>无处不在，下面这段非常简单的代码其实就暗含<strong>闭包</strong>之道！</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">const</span> <span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;A&#x27;</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Print</span>(<span class="hljs-params"></span>) </span>&#123;<br>  console.log(<span class="hljs-keyword">print</span>);<br>&#125;<br><span class="hljs-keyword">Print</span>();   <span class="hljs-comment">//A</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其实在其他编程语言中我们能够发现，函数内部是无法通过非参数的方式获取函数外部的变量。但是从上面我们习以为常的代码中，我们可以惊讶的发现，我们能够任意的在函数内部获取函数外面的变量！ 这种现象，其实我们就叫做<strong>闭包</strong></p>
+</blockquote>
+<p>每个作用域都能访问其外部作用域！ 所以在函数作用域中的 <code>print</code> 能够访问外部这个全局作用域下的 <code>print</code></p>
+<p>下面对代码做一个升级！</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php">let <span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;A&#x27;</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Print</span>(<span class="hljs-params"></span>) </span>&#123;<br>  console.log(<span class="hljs-keyword">print</span>);<br>&#125;<br><span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;B&#x27;</span>;<br><span class="hljs-keyword">Print</span>();    <span class="hljs-comment">// B</span><br><span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;C&#x27;</span><br><span class="hljs-keyword">Print</span>();    <span class="hljs-comment">// C</span><br></code></pre></td></tr></table></figure>
+
+<p>可见，<code>Print</code> 函数内部的 <code>print</code> 第一次记打印的是 <code>B</code>，说明是在<strong>函数执行的时候</strong>，才会真正确定当前 <code>print</code> 的值！</p>
+<h4 id="闭包的常用情景"><a href="#闭包的常用情景" class="headerlink" title="闭包的常用情景"></a>闭包的常用情景</h4><p>更多的人会把多个函数的嵌套作为闭包的使用场景</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outerFunction</span>(<span class="hljs-params">outerVariable</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> outer2 = <span class="hljs-string">&#x27;Hi&#x27;</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerFunction</span>(<span class="hljs-params">innerVariable</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(outer2);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Outer Variable: &#x27;</span> + outerVariable);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inner Variable: &#x27;</span> + innerVariable);<br>  &#125;<br>&#125;<br><span class="hljs-keyword">const</span> newFunction = outerFunction(<span class="hljs-string">&#x27;outside&#x27;</span>)<br>newFunction();<br>newFunction(<span class="hljs-string">&#x27;inside&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-comment">// 打印结果：</span><br>Hi<br>Outer <span class="hljs-keyword">Variable</span>: outside<br>Inner <span class="hljs-comment">Variable: undefined</span><br><br>Hi<br>Outer <span class="hljs-comment">Variable: outside</span><br>Inner <span class="hljs-comment">Variable: inside</span><br></code></pre></td></tr></table></figure>
+
+<p>当我们第一次调用<code>outerFunction</code>的时候，<code>outerVariable</code>我们设置为<code>outside</code>。而<code>innerFunction</code>中的 <code>outerVariable</code> 和 <code>outer2</code> 能够访问它外部的<code>outerVariable</code> 和 <code>outer2</code>这两个变量，这就是利用的闭包这个特性！</p>
+<p>注意一个点，当 <code>outerFunction</code> 执行后，其内部的<code>outerVariable</code> 和 <code>outer2</code> 这两个变量除了<code>innerFunction</code>能够访问得到，其余方式都不能访问到！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outerFunction</span>(<span class="hljs-params">outerVariable</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> outer2 = <span class="hljs-string">&#x27;Hi&#x27;</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerFunction</span>(<span class="hljs-params">innerVariable</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(outer2);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Outer Variable: &#x27;</span> + outerVariable);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inner Variable: &#x27;</span> + innerVariable);<br>  &#125;<br>&#125;<br><span class="hljs-keyword">const</span> newFunction = outerFunction(<span class="hljs-string">&#x27;outside&#x27;</span>)<br><span class="hljs-built_in">console</span>.log(outerVariable)   <span class="hljs-comment">// 报错：未定义</span><br><span class="hljs-built_in">console</span>.log(outer2)    <span class="hljs-comment">// 报错：未定义</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>思考：为何返回的<code>innerFunction</code> 即 <code>newFunction</code> 还能够访问到 <code>outerVariable</code> 和 <code>outer2</code> 呢？ 不是 <code>outerFunction</code> 已经被执行完毕了吗？</p>
+</blockquote>
+<p><strong>解答</strong>： 因为闭包的关系(这里有闭包是因为作用域的原因:大作用域包裹小作用域)，<code>innerFunction</code> 内部的<code>outerVariable</code> 和 <code>outer2</code>都能在<code>outerFunction</code>中找到，所以<code>innerFunction</code>中的<code>outerVariable</code> 和 <code>outer2</code>就是外部的<code>outerVariable</code> 和 <code>outer2</code>。本身就是同一个值！！即便外部这个函数已经执行完毕而不再了，但我内部函数仍拥有它曾经的变量！</p>
+<p>为了佐证我的说法有下面代码：</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs ceylon"><span class="hljs-keyword">function</span> <span class="hljs-keyword">outer</span>() &#123;<br>  const <span class="hljs-keyword">outer</span><span class="hljs-number">1</span> = &#123;a: <span class="hljs-number">123</span>&#125;;<br>  const <span class="hljs-keyword">outer</span><span class="hljs-number">2</span> = <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>;     <span class="hljs-comment">// 地址赋值 所以这里的outer2 和 outer1一定是一样的</span><br>  console.log(<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">function</span> inner() &#123;<br>    console.log(<span class="hljs-keyword">outer</span><span class="hljs-number">1</span> === <span class="hljs-keyword">outer</span><span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>.a = <span class="hljs-number">234</span>;<br>  &#125;<br>  inner();<br>  console.log(<span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-keyword">outer</span>();<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">// 打印结果：<br><span class="hljs-number">1</span> &#123;<span class="hljs-selector-tag">a</span>: <span class="hljs-number">123</span>&#125;<br>true<br><span class="hljs-number">2</span> &#123;<span class="hljs-selector-tag">a</span>: <span class="hljs-number">234</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里就说明了因为闭包的原因，上面例子中的<code>outer</code> 的变量<code>outer1</code>、<code>outer2</code>和 <code>inner</code> 上的变量<code>outer1</code>、<code>outer2</code>就是同一个变量</p>
+<blockquote>
+<p>只要有大作用域嵌套小作用域，就有闭包发挥威力的地方！</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/27/JSON%E7%BB%86%E8%8A%82%E7%9F%A5%E8%AF%86/">
+                        <span class="hidden-mobile">JSON细节知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>

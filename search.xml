@@ -3512,4 +3512,42 @@
         <category>计算机网络篇</category>
       </categories>
   </entry>
+  <entry>
+    <title>闭包</title>
+    <url>/2021/11/27/%E9%97%AD%E5%8C%85/</url>
+    <content><![CDATA[<p><strong>闭包</strong>无处不在，下面这段非常简单的代码其实就暗含<strong>闭包</strong>之道！</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">const</span> <span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;A&#x27;</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Print</span>(<span class="hljs-params"></span>) </span>&#123;<br>  console.log(<span class="hljs-keyword">print</span>);<br>&#125;<br><span class="hljs-keyword">Print</span>();   <span class="hljs-comment">//A</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其实在其他编程语言中我们能够发现，函数内部是无法通过非参数的方式获取函数外部的变量。但是从上面我们习以为常的代码中，我们可以惊讶的发现，我们能够任意的在函数内部获取函数外面的变量！ 这种现象，其实我们就叫做<strong>闭包</strong></p>
+</blockquote>
+<p>每个作用域都能访问其外部作用域！ 所以在函数作用域中的 <code>print</code> 能够访问外部这个全局作用域下的 <code>print</code></p>
+<p>下面对代码做一个升级！</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php">let <span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;A&#x27;</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Print</span>(<span class="hljs-params"></span>) </span>&#123;<br>  console.log(<span class="hljs-keyword">print</span>);<br>&#125;<br><span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;B&#x27;</span>;<br><span class="hljs-keyword">Print</span>();    <span class="hljs-comment">// B</span><br><span class="hljs-keyword">print</span> = <span class="hljs-string">&#x27;C&#x27;</span><br><span class="hljs-keyword">Print</span>();    <span class="hljs-comment">// C</span><br></code></pre></td></tr></table></figure>
+
+<p>可见，<code>Print</code> 函数内部的 <code>print</code> 第一次记打印的是 <code>B</code>，说明是在<strong>函数执行的时候</strong>，才会真正确定当前 <code>print</code> 的值！</p>
+<h4 id="闭包的常用情景"><a href="#闭包的常用情景" class="headerlink" title="闭包的常用情景"></a>闭包的常用情景</h4><p>更多的人会把多个函数的嵌套作为闭包的使用场景</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outerFunction</span>(<span class="hljs-params">outerVariable</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> outer2 = <span class="hljs-string">&#x27;Hi&#x27;</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerFunction</span>(<span class="hljs-params">innerVariable</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(outer2);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Outer Variable: &#x27;</span> + outerVariable);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inner Variable: &#x27;</span> + innerVariable);<br>  &#125;<br>&#125;<br><span class="hljs-keyword">const</span> newFunction = outerFunction(<span class="hljs-string">&#x27;outside&#x27;</span>)<br>newFunction();<br>newFunction(<span class="hljs-string">&#x27;inside&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight gams"><table><tr><td class="code"><pre><code class="hljs gams"><span class="hljs-comment">// 打印结果：</span><br>Hi<br>Outer <span class="hljs-keyword">Variable</span>: outside<br>Inner <span class="hljs-comment">Variable: undefined</span><br><br>Hi<br>Outer <span class="hljs-comment">Variable: outside</span><br>Inner <span class="hljs-comment">Variable: inside</span><br></code></pre></td></tr></table></figure>
+
+<p>当我们第一次调用<code>outerFunction</code>的时候，<code>outerVariable</code>我们设置为<code>outside</code>。而<code>innerFunction</code>中的 <code>outerVariable</code> 和 <code>outer2</code> 能够访问它外部的<code>outerVariable</code> 和 <code>outer2</code>这两个变量，这就是利用的闭包这个特性！</p>
+<p>注意一个点，当 <code>outerFunction</code> 执行后，其内部的<code>outerVariable</code> 和 <code>outer2</code> 这两个变量除了<code>innerFunction</code>能够访问得到，其余方式都不能访问到！</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outerFunction</span>(<span class="hljs-params">outerVariable</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> outer2 = <span class="hljs-string">&#x27;Hi&#x27;</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerFunction</span>(<span class="hljs-params">innerVariable</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(outer2);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Outer Variable: &#x27;</span> + outerVariable);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inner Variable: &#x27;</span> + innerVariable);<br>  &#125;<br>&#125;<br><span class="hljs-keyword">const</span> newFunction = outerFunction(<span class="hljs-string">&#x27;outside&#x27;</span>)<br><span class="hljs-built_in">console</span>.log(outerVariable)   <span class="hljs-comment">// 报错：未定义</span><br><span class="hljs-built_in">console</span>.log(outer2)    <span class="hljs-comment">// 报错：未定义</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>思考：为何返回的<code>innerFunction</code> 即 <code>newFunction</code> 还能够访问到 <code>outerVariable</code> 和 <code>outer2</code> 呢？ 不是 <code>outerFunction</code> 已经被执行完毕了吗？</p>
+</blockquote>
+<p><strong>解答</strong>： 因为闭包的关系(这里有闭包是因为作用域的原因:大作用域包裹小作用域)，<code>innerFunction</code> 内部的<code>outerVariable</code> 和 <code>outer2</code>都能在<code>outerFunction</code>中找到，所以<code>innerFunction</code>中的<code>outerVariable</code> 和 <code>outer2</code>就是外部的<code>outerVariable</code> 和 <code>outer2</code>。本身就是同一个值！！即便外部这个函数已经执行完毕而不再了，但我内部函数仍拥有它曾经的变量！</p>
+<p>为了佐证我的说法有下面代码：</p>
+<figure class="highlight ceylon"><table><tr><td class="code"><pre><code class="hljs ceylon"><span class="hljs-keyword">function</span> <span class="hljs-keyword">outer</span>() &#123;<br>  const <span class="hljs-keyword">outer</span><span class="hljs-number">1</span> = &#123;a: <span class="hljs-number">123</span>&#125;;<br>  const <span class="hljs-keyword">outer</span><span class="hljs-number">2</span> = <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>;     <span class="hljs-comment">// 地址赋值 所以这里的outer2 和 outer1一定是一样的</span><br>  console.log(<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">function</span> inner() &#123;<br>    console.log(<span class="hljs-keyword">outer</span><span class="hljs-number">1</span> === <span class="hljs-keyword">outer</span><span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>.a = <span class="hljs-number">234</span>;<br>  &#125;<br>  inner();<br>  console.log(<span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-keyword">outer</span><span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-keyword">outer</span>();<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">// 打印结果：<br><span class="hljs-number">1</span> &#123;<span class="hljs-selector-tag">a</span>: <span class="hljs-number">123</span>&#125;<br>true<br><span class="hljs-number">2</span> &#123;<span class="hljs-selector-tag">a</span>: <span class="hljs-number">234</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里就说明了因为闭包的原因，上面例子中的<code>outer</code> 的变量<code>outer1</code>、<code>outer2</code>和 <code>inner</code> 上的变量<code>outer1</code>、<code>outer2</code>就是同一个变量</p>
+<blockquote>
+<p>只要有大作用域嵌套小作用域，就有闭包发挥威力的地方！</p>
+</blockquote>
+]]></content>
+  </entry>
 </search>
