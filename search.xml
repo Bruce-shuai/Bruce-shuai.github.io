@@ -660,6 +660,32 @@
 ]]></content>
   </entry>
   <entry>
+    <title>JS Dom data-attributes</title>
+    <url>/2021/11/26/JS-Dom-data-attributes/</url>
+    <content><![CDATA[<p><code>data-attributes</code>让<code>HTML</code>和<code>JS</code>完美的搭配</p>
+<p>如果要使用<code>data-attributes</code>，则必须以<code>data-</code>来开头命名</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">/* index.html */<br>&lt;<span class="hljs-keyword">div</span><br>  <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;test-div&quot;</span><br>  data-user-<span class="hljs-built_in">name</span>=<span class="hljs-string">&quot;帅得乱七八糟&quot;</span><br>  data-age<br>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="读取data-attributes值"><a href="#读取data-attributes值" class="headerlink" title="读取data-attributes值"></a>读取<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br>const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span>.dataset)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.23.02-PM.png" alt="获取data-attributes"></p>
+<p>注意：这个<code>DOMStringMap</code>是个对象，包含了所有该元素的<code>data-</code>属性。 并且打印的例如：<code>userName</code>是驼峰命名方式，这里是为了对应 <code>-</code> 运算符。并且如果定义了<code>data-attribute</code>但却没赋值，最后是以<code>&quot;&quot;</code>这个空字符串来作为值</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.age)  <span class="hljs-comment">// &quot;&quot;</span><br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.userName) <span class="hljs-comment">// &quot;帅得乱七八糟&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="修改和增加data-attributes值"><a href="#修改和增加data-attributes值" class="headerlink" title="修改和增加data-attributes值"></a>修改和增加<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.newAttr</span> = <span class="hljs-string">&#x27;haha&#x27;</span>          <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.userName</span> = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>  <span class="hljs-comment">// 修改原来的属性</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.29.15-PM.png" alt="change-attributes"></p>
+<h4 id="删除data-attributes值"><a href="#删除data-attributes值" class="headerlink" title="删除data-attributes值"></a>删除<code>data-attributes</code>值</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.getElementById(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-keyword">div</span>.dataset.newAttr = <span class="hljs-string">&#x27;haha&#x27;</span>;         <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-keyword">div</span>.dataset.userName = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>;  <span class="hljs-comment">// 修改原来的属性</span><br>delete <span class="hljs-keyword">div</span>.dataset.newAttr;           <span class="hljs-comment">// 删除原来的属性</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.33.28-PM.png" alt="delet"></p>
+<h4 id="JS-操作data-attributes值"><a href="#JS-操作data-attributes值" class="headerlink" title="JS 操作data-attributes值"></a>JS 操作<code>data-attributes</code>值</h4><figure class="highlight hsp"><table><tr><td class="code"><pre><code class="hljs hsp"><span class="hljs-comment">/* html */</span><br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-1&quot;</span>&gt;Open Modal <span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-2&quot;</span>&gt;Open Modal <span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* js */</span><br><span class="hljs-keyword">const</span> buttons = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelectorAll</span>(<span class="hljs-string">&quot;[data-modal-id]&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>然后，可以有其他任何操作…</p>
+]]></content>
+  </entry>
+  <entry>
     <title>JS-DOM操作3 事件</title>
     <url>/2021/11/25/JS-DOM%E6%93%8D%E4%BD%9C3-%E4%BA%8B%E4%BB%B6/</url>
     <content><![CDATA[<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* index.html */<br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span> <span class="hljs-attr">defer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css">    <span class="hljs-selector-class">.grandparent</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">250px</span>;</span><br><span class="css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">250px</span>;</span><br><span class="css">      <span class="hljs-attribute">background-color</span>: red;</span><br><span class="css">      <span class="hljs-attribute">display</span>: flex;</span><br><span class="css">      <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="css">      <span class="hljs-attribute">align-items</span>: center;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-class">.parent</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">180px</span>;</span><br><span class="css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">180px</span>;</span><br><span class="css">      <span class="hljs-attribute">background-color</span>: blue;</span><br><span class="css">      <span class="hljs-attribute">display</span>: flex;</span><br><span class="css">      <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="css">      <span class="hljs-attribute">align-items</span>: center;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-class">.child</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">80px</span>;</span><br><span class="css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;</span><br><span class="css">      <span class="hljs-attribute">background-color</span>: green;</span><br><span class="css">    &#125;</span><br><span class="css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grandparent&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -811,6 +837,31 @@
       </tags>
   </entry>
   <entry>
+    <title>JS sort 玩法</title>
+    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>似乎默认是按照字母顺序进行排序</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
+<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
+<p>比较函数需要两个参数…</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+
+<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
+<h4 id="利用-sort-来写随机数组"><a href="#利用-sort-来写随机数组" class="headerlink" title="利用 sort 来写随机数组"></a>利用 sort 来写随机数组</h4><p>arr.sort((a, b) =&gt; Math.random() - 0.5); // 这是在原来数组中做变化</p>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS-随笔一</title>
     <url>/2021/10/18/JS-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
     <content><![CDATA[<h4 id="问题一：Promise-中-catch-消化异常"><a href="#问题一：Promise-中-catch-消化异常" class="headerlink" title="问题一：Promise 中.catch 消化异常"></a>问题一：Promise 中.catch 消化异常</h4><p>看代码：</p>
@@ -912,31 +963,6 @@
       </categories>
       <tags>
         <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS sort 玩法</title>
-    <url>/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/</url>
-    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-
-<p>似乎默认是按照字母顺序进行排序</p>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
-
-<p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
-<figure class="highlight gauss"><table><tr><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
-<p>比较函数需要两个参数…</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> b.y - a.y;<br>&#125;<br><span class="hljs-keyword">let</span> vals = [&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">20</span>&#125;, &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">40</span>&#125;]<br>vals.sort(compare);  <span class="hljs-comment">// 放置的是回调函数 不能选择执行...</span><br><span class="hljs-built_in">console</span>.log(vals)    <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
-
-<p><a href="https://www.w3schools.com/js/js_array_sort.asp">简洁的文档</a></p>
-<h4 id="利用-sort-来写随机数组"><a href="#利用-sort-来写随机数组" class="headerlink" title="利用 sort 来写随机数组"></a>利用 sort 来写随机数组</h4><p>arr.sort((a, b) =&gt; Math.random() - 0.5); // 这是在原来数组中做变化</p>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
       </tags>
   </entry>
   <entry>
@@ -1570,32 +1596,6 @@
       </tags>
   </entry>
   <entry>
-    <title>css 三角形</title>
-    <url>/2021/11/10/css-%E4%B8%89%E8%A7%92%E5%BD%A2/</url>
-    <content><![CDATA[<p>三角形是 CSS 中最常用的形状之一，因为它们非常适合对话框弹出、工具提示等</p>
-<h4 id="普通方法-取巧采用遮盖方法"><a href="#普通方法-取巧采用遮盖方法" class="headerlink" title="普通方法(取巧采用遮盖方法)"></a>普通方法(取巧采用遮盖方法)</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.triangle</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br><br>  <span class="hljs-comment">/*  使用::after 日常子绝父相  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><br><span class="hljs-selector-class">.triangle</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">right</span>: -<span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">transform</span>: rotate(<span class="hljs-number">45deg</span>);<br>  <span class="hljs-attribute">z-index</span>:-<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.12.12-PM.png" alt="取巧的三角形" width="100px">
-
-<h4 id="利用元素的-border-来实现"><a href="#利用元素的-border-来实现" class="headerlink" title="利用元素的 border 来实现"></a>利用元素的 border 来实现</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-right-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">40</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-bottom-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">80</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">120</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.21.29-PM.png" alt="利用border实现三角形" width="100px">
-
-<p>进一步获取单个三角形</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>: 50px solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.23.36-PM.png" alt="利用border实现三角形2" width="100px">
-
-<p>好，我现在结合上面两种方法：实现一种比较优秀的制作箭头的方法：</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br><br>  <span class="hljs-comment">/*  要使用::after, 所以采用子绝父相  */</span><br>  <span class="hljs-built_in">position</span>: relative;<br>&#125;<br><br>.<span class="hljs-built_in">triangle</span>::after &#123;<br>  <span class="hljs-built_in">content</span>: &#x27;&#x27;;<br>  <span class="hljs-built_in">position</span>: absolute;<br>  --self-<span class="hljs-built_in">border</span>: 40px;<br>  <span class="hljs-built_in">border</span>: <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>) solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  top: calc(50px - <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>  right: calc(-<span class="hljs-number">2</span> * <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.58.16-PM.png" alt="三角形的最佳实践" width="100px">
-]]></content>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>css 命名艺术</title>
     <url>/2021/11/06/css-%E5%91%BD%E5%90%8D%E8%89%BA%E6%9C%AF/</url>
     <content><![CDATA[<p>(突然想到一个问题，是否我可以使用 BEM 的命名方式来解决 react 项目中，css 模块化问题？？)</p>
@@ -1822,6 +1822,153 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/10/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>css 三角形</title>
+    <url>/2021/11/10/css-%E4%B8%89%E8%A7%92%E5%BD%A2/</url>
+    <content><![CDATA[<p>三角形是 CSS 中最常用的形状之一，因为它们非常适合对话框弹出、工具提示等</p>
+<h4 id="普通方法-取巧采用遮盖方法"><a href="#普通方法-取巧采用遮盖方法" class="headerlink" title="普通方法(取巧采用遮盖方法)"></a>普通方法(取巧采用遮盖方法)</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.triangle</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br><br>  <span class="hljs-comment">/*  使用::after 日常子绝父相  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><br><span class="hljs-selector-class">.triangle</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">right</span>: -<span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">transform</span>: rotate(<span class="hljs-number">45deg</span>);<br>  <span class="hljs-attribute">z-index</span>:-<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.12.12-PM.png" alt="取巧的三角形" width="100px">
+
+<h4 id="利用元素的-border-来实现"><a href="#利用元素的-border-来实现" class="headerlink" title="利用元素的 border 来实现"></a>利用元素的 border 来实现</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-right-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">40</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-bottom-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">80</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">120</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.21.29-PM.png" alt="利用border实现三角形" width="100px">
+
+<p>进一步获取单个三角形</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">width</span>:40px;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">style</span>: solid;<br>  <span class="hljs-built_in">border</span>: 50px solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-top-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.23.36-PM.png" alt="利用border实现三角形2" width="100px">
+
+<p>好，我现在结合上面两种方法：实现一种比较优秀的制作箭头的方法：</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;triangle&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">triangle</span> &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br><br>  <span class="hljs-comment">/*  要使用::after, 所以采用子绝父相  */</span><br>  <span class="hljs-built_in">position</span>: relative;<br>&#125;<br><br>.<span class="hljs-built_in">triangle</span>::after &#123;<br>  <span class="hljs-built_in">content</span>: &#x27;&#x27;;<br>  <span class="hljs-built_in">position</span>: absolute;<br>  --self-<span class="hljs-built_in">border</span>: 40px;<br>  <span class="hljs-built_in">border</span>: <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>) solid <span class="hljs-built_in">transparent</span>;<br>  <span class="hljs-built_in">border</span>-left-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>  top: calc(50px - <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>  right: calc(-<span class="hljs-number">2</span> * <span class="hljs-built_in">var</span>(--self-<span class="hljs-built_in">border</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-2.58.16-PM.png" alt="三角形的最佳实践" width="100px">
+]]></content>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>localStorage cookie sessionStorage</title>
+    <url>/2021/11/27/localStorage-cookie-sessionStorage/</url>
+    <content><![CDATA[<blockquote>
+<p>前言：<code>localStorage</code>、<code>cookie</code>、<code>sessionStorage</code> 用于将数据存储在用户的<strong>确切</strong>浏览器里。例如，你在你当前电脑的<code>Chrome</code>浏览器里使用上面 3 个方法来存储数据，你无法在<code>Safari</code>浏览器里获得存储的数据！</p>
+</blockquote>
+<h4 id="存储大小限制"><a href="#存储大小限制" class="headerlink" title="存储大小限制"></a>存储大小限制</h4><table>
+<thead>
+<tr>
+<th>存储方法</th>
+<th>存储最大容量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>localStorage</strong></td>
+<td><strong>10Mb</strong></td>
+</tr>
+<tr>
+<td><strong>sessionStorage</strong></td>
+<td><strong>5Mb</strong></td>
+</tr>
+<tr>
+<td><strong>cookie</strong></td>
+<td><strong>4kb</strong></td>
+</tr>
+</tbody></table>
+<figure class="highlight basic"><table><tr><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span>Byte = <span class="hljs-number">8</span> Bits<br><span class="hljs-symbol">1 </span>Kilobyte (KB) = <span class="hljs-number">1024</span> Bytes<br><span class="hljs-symbol">1 </span>Megabyte (MB) = <span class="hljs-number">1024</span> KB<br></code></pre></td></tr></table></figure>
+
+<p>事实上如果是仅存储数据，<code>localStorage</code>、<code>sessionStorage</code> 已经是非常非常大的了，所以几乎不用考虑存储容量大小问题！ <code>cookie</code>仅仅只有<code>4kb</code>的存储空间，但事实上，你用<code>cookie</code>存入的数据其实都是很关键的数据，所以，你也不必太关心<code>cookie</code>存储空间问题</p>
+<h4 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h4><table>
+<thead>
+<tr>
+<th>存储方法</th>
+<th>访问方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>localStorage</strong></td>
+<td>在用户使用同一个浏览器的基础上，打开多窗口上同一个网站(网址一致)，无论你打开多少个窗口，它们存储的数据是一致的</td>
+</tr>
+<tr>
+<td><strong>session</strong></td>
+<td>在用户使用同一个浏览器的基础上，打开多窗口上同一个网站(网址一致)，你在一个窗口存放的数据，另外的窗口是看不见的。你关闭了当前窗口，当前窗口的 <code>sessionStorage</code> 也会随之消失</td>
+</tr>
+<tr>
+<td><strong>cookie</strong></td>
+<td>在用户使用同一个浏览器的基础上，打开多窗口上同一个网站(网址一致)，无论你打开多少个窗口，它们存储的数据是一致的, 并且 <code>cookie</code> 还可以在服务器上访问。这是因为对于每个向后端服务器发出的请求，所有的 <code>cookie</code> 都会一起发送。这使得 <code>cookie</code> 非常适合于与身份验证相关的任务</td>
+</tr>
+</tbody></table>
+<h4 id="过期时间"><a href="#过期时间" class="headerlink" title="过期时间"></a>过期时间</h4><table>
+<thead>
+<tr>
+<th>存储方法</th>
+<th>过期时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>localStorage</strong></td>
+<td>无限期(除非人为删除)</td>
+</tr>
+<tr>
+<td><strong>sessionStorage</strong></td>
+<td>当前窗口关闭则数据过期，被删除</td>
+</tr>
+<tr>
+<td><strong>cookie</strong></td>
+<td>人为设定过期时间</td>
+</tr>
+</tbody></table>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><h5 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h5><p>(<code>localStorage</code> 和 <code>sessionStorage</code> 用法非常相似)</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 针对localStorage<br>localStorage.setItem(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;帅得乱七八糟&#x27;</span>)    <span class="hljs-regexp">//</span> 键值对方式： 且键和值都是字符串<br><span class="hljs-regexp">//</span> 针对sessionStorage<br>sessionStorage.setItem(<span class="hljs-string">&#x27;age&#x27;</span>, <span class="hljs-string">&#x27;21&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-27-at-9.01.03-AM.png" alt="数据存储"><br>注意：我在<strong>chrome 浏览器</strong>打开了两个窗口(设为<strong>窗口 A</strong> <strong>窗口 B</strong>)并且都进入了<strong>B 站</strong><br>我在窗口 A 进行了<code>localStorage</code> 和 <code>sessionStorage</code>的数据存储，并且在该窗口的控制台看到了对应存储的数据。而当我打开窗口 B 在该窗口的控制台，我只能看到<code>localStorage</code>存储的数据，而<code>sessionStorage</code>里面空空如也…</p>
+<p>对于<code>cookie</code>的数据存储如下：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">document.cookie</span> = <span class="hljs-string">&#x27;sex=male&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>控制台结果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-27-at-9.09.37-AM.png" alt="cookie1"><br>很遗憾，尽管我们设置了 <code>sex=male</code> 到 <code>cookie</code> 里去，但是该数据已过期！！</p>
+<p>解决办法：手动给 <code>cookie</code> 数据设置到期时间，这里我采用 <code>UTC</code> 日期格式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.cookie =<span class="hljs-string">`friends=帅得歪瓜裂枣; expires=<span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">9999</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>).toUTCString()&#125;</span>`</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-27-at-9.13.55-AM.png" alt="cookie2"><br>这里的到期时间：9998 年，几乎算永恒时间</p>
+<blockquote>
+<p>tips: 如果你想储存多个数据,就重复使用上述方法即可！</p>
+</blockquote>
+<h5 id="数据获取"><a href="#数据获取" class="headerlink" title="数据获取"></a>数据获取</h5><p>(<code>localStorage</code> 和 <code>sessionStorage</code> 用法非常相似)</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">localStorage</span><span class="hljs-selector-class">.setItem</span>(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;帅得乱七八糟&#x27;</span>)<br><span class="hljs-selector-tag">localStorage</span><span class="hljs-selector-class">.getItem</span>(<span class="hljs-string">&#x27;name&#x27;</span>) <span class="hljs-comment">// &#x27;帅得乱七八糟&#x27;</span><br><br><span class="hljs-selector-tag">sessionStorage</span><span class="hljs-selector-class">.setItem</span>(<span class="hljs-string">&#x27;age&#x27;</span>, <span class="hljs-string">&#x27;21&#x27;</span>)<br><span class="hljs-selector-tag">sessionStorage</span><span class="hljs-selector-class">.getItem</span>(<span class="hljs-string">&#x27;age&#x27;</span>) <span class="hljs-comment">// 21</span><br></code></pre></td></tr></table></figure>
+
+<p><code>cookie</code> 获取方法：<code>document.cookie</code><br>只不过，这样会把所有的 <code>cookie</code> 数据获取出来(事实上应该不是所有，服务器端似乎可以限制)</p>
+<h5 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h5><p>(<code>localStorage</code> 和 <code>sessionStorage</code> 用法非常相似)</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">localStorage</span><span class="hljs-selector-class">.removeItem</span>(<span class="hljs-string">&#x27;name&#x27;</span>)<br><span class="hljs-selector-tag">sessionStorage</span><span class="hljs-selector-class">.removeItem</span>(<span class="hljs-string">&#x27;age&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><code>cookie</code>删除方法：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">document.cookie = <span class="hljs-string">&quot;friends=; expires=Thu, 01 Jan 1970 00:00:00 GMT&quot;</span>  <span class="hljs-regexp">//</span> 把键值对中的值设置为空，且设置为已过期<br></code></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>mongoDB 基础知识</title>
+    <url>/2021/11/24/mongoDB-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<blockquote>
+<p>事实上，我现在完全用不着 MongoDB 技术，但是突然想学 😓，以此作为学习笔记<br>… 算了, 最近先不学这个</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>grid 布局解析</title>
     <url>/2021/11/09/grid-%E5%B8%83%E5%B1%80%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-22-at-5.06.43-PM.png" alt="flex-VS-grid"></p>
@@ -1895,66 +2042,6 @@
 <figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-class">.grid-container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  grid-template-<span class="hljs-attribute">columns</span>: repeat(<span class="hljs-number">2</span>, <span class="hljs-number">100px</span>);<br>  grid-<span class="hljs-attribute">auto</span>-rows: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">justify-content</span>: center; <span class="hljs-comment">/* 和flex的布局效果相似 */</span><br>  <span class="hljs-attribute">align-content</span>: center;<br>  <span class="hljs-comment">/* 这是对容器里的子元素起效果 */</span><br>  justify-items: stretch;<br>  <span class="hljs-attribute">align-items</span>: stretch;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;<br>&#125;<br><br><span class="hljs-selector-class">.grid-item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">4</span>) &#123;<br>  <span class="hljs-comment">/* 会覆盖上文的justify-items align-items */</span><br>  <span class="hljs-attribute">align-self</span>: flex-end;<br>  justify-self: flex-end;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-22-at-7.36.04-PM.png" width="300px" alt="子元素位置2"/>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/10/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>mongoDB 基础知识</title>
-    <url>/2021/11/24/mongoDB-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<blockquote>
-<p>事实上，我现在完全用不着 MongoDB 技术，但是突然想学 😓，以此作为学习笔记<br>… 算了, 最近先不学这个</p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
-    <title>nodejs 基础学习</title>
-    <url>/2021/11/24/nodejs-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>写 nodejs 代码 首先要下载 NodeJS: <a href="https://nodejs.org/en/">下载网页</a><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-9.27.15-AM.png" alt="nodejs下载"></p>
-<p>推荐下载<code>LTS(Long Time Support)</code>版本！因为更加稳定而<code>Current</code>版本太新了，可能出现问题！</p>
-<h4 id="什么是-NodeJS-以及-NodeJS-的优势"><a href="#什么是-NodeJS-以及-NodeJS-的优势" class="headerlink" title="什么是 NodeJS 以及 NodeJS 的优势"></a>什么是 NodeJS 以及 NodeJS 的优势</h4><blockquote>
-<p><strong>NodeJS</strong>: 一种 <code>javascript</code> 的运行环境，能够使得 <code>javascript</code> 脱离浏览器运行<br><strong>Node.js</strong> 在浏览器之外运行 <code>V8 JavaScript</code> 引擎（Google Chrome 的内核）。 这使得 <code>Node.js</code> 的性能非常好</p>
-</blockquote>
-<p>由于 <code>JavaScript</code> 发展的速度非常快，但是浏览器发展得慢一些，并且用户的升级速度也慢一些，因此有时在 web 上，不得不使用较旧的 <code>JavaScript / ECMAScript</code> 版本。可以使用 <code>Babel</code> 将代码转换为与 <code>ES5</code> 兼容的代码，再交付给浏览器，但是在 <code>Node.js</code> 中，则不需要这样做。<br>另一个区别是 <code>Node.js</code> 使用 <code>CommonJS</code> 模块系统，而在浏览器中，则还正在实现 <code>ES</code> 模块标准。<br>在实践中，这意味着在 <code>Node.js</code> 中使用 <code>require()</code>，而在浏览器中则使用 <code>import</code>。</p>
-<h4 id="NodeJS-初级知识"><a href="#NodeJS-初级知识" class="headerlink" title="NodeJS 初级知识"></a>NodeJS 初级知识</h4><p>创建一个 <code>js</code> 文件并搭建初始的 <code>server</code> 端如下</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* app.js */</span><br><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);      <span class="hljs-comment">// 引出http这个模块(这里的http是一个函数)</span><br><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;                 <span class="hljs-comment">// 设置在3000端口(方便后续服务器放置在3000端口上进行监听)</span><br><br><span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>&#123;  <span class="hljs-comment">// 创建 HTTP 服务器</span><br>  <span class="hljs-comment">// 参数req --&gt; 代表 request    参数res --&gt; 代表 response</span><br>  <span class="hljs-comment">// 这里面放置的是该服务器将要进行的所用工作</span><br>&#125;)<br><br>server.listen(port, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>&#123;  <span class="hljs-comment">// 服务器被设置为在指定的 3000 端口上进行监听。 当服务器就绪时，则 listen 回调函数会被调用</span><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;有一些错误！&#x27;</span>, error);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server 正在监听端口&#x27;</span> + port);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>现在来看一看效果：</p>
-<blockquote>
-<p>利用 vscode 在终端输入 <code>node + 文件名</code></p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-24-at-10.46.35-AM.gif" alt="nodejs效果"></p>
-<p>在浏览器(客户端)看见由 <code>server</code> 端发出的内容</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><code class="hljs lua">const http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br>const port = <span class="hljs-number">3000</span>;<br><br>const server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>&#123;<br>  // res.<span class="hljs-built_in">write</span>(<span class="hljs-string">&#x27;在浏览器可以看见我哦~&#x27;</span>);   // 注意：不能写中文，不然会在浏览器里为乱码<br>  res.<span class="hljs-built_in">write</span>(<span class="hljs-string">&#x27;You can see me in the browser~&#x27;</span>)<br>  res.<span class="hljs-keyword">end</span>();<br>&#125;)<br><br>server.listen(port, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span></span> &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">error</span>) &#123;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;有一些错误！&#x27;</span>, <span class="hljs-built_in">error</span>);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Server 正在监听端口&#x27;</span> + port);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 每一次更改 <code>nodejs </code>文件内容，都需要重启 <code>node js</code> 才能看到效果：即<code>node app.js</code></p>
-<p>可以安装<code>nodemon</code>避免上述问题。</p>
-<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> init -y<br><span class="hljs-built_in">npm</span> i nodemon<br>把 package.json 文件的 <span class="hljs-string">&quot;scripts&quot;</span> 部分进行修改<br>  <span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;devStart&quot;</span>: <span class="hljs-string">&quot;nodemon app.js&quot;</span><br>  &#125;,<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-24-at-10.53.30-AM.gif" alt="nodemon"></p>
-<p>这样，就不用再自己手动重启 <code>nodejs</code> 了</p>
-<p>现在我通过 <code>server</code> 端来传递 <code>html</code>文件！</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* index.html */</span><br>  &lt;<span class="hljs-selector-tag">div</span>&gt;<br>    &lt;<span class="hljs-selector-tag">h1</span>&gt;你好世界！&lt;/<span class="hljs-selector-tag">h1</span>&gt;<br>    &lt;<span class="hljs-selector-tag">p</span>&gt;好吗？好的！&lt;/<span class="hljs-selector-tag">p</span>&gt;<br>  &lt;/<span class="hljs-selector-tag">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* app.js */</span><br><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);   <span class="hljs-comment">// 用于文件处理的模块</span><br><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;<br><br><span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>&#123;<br>  <span class="hljs-comment">// &#x27;Content-Type&#x27;:&#x27;text/html&#x27;格式支持html文件</span><br>  res.writeHead(<span class="hljs-number">200</span>, &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>:<span class="hljs-string">&#x27;text/html&#x27;</span>&#125;)  <span class="hljs-comment">// 参数一：是http的状态码   参数二：告诉浏览器发送的数据类型</span><br>  fs.readFile(<span class="hljs-string">&#x27;index.html&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, data</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (error) &#123;<br>      res.writeHead(<span class="hljs-number">404</span>);<br>      res.write(<span class="hljs-string">&#x27;404 Not Found&#x27;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      res.write(data);   <span class="hljs-comment">// 这里的data 就是 index.html文件</span><br>    &#125;<br>  &#125;)<br>&#125;)<br><br>server.listen(port, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;有一些错误！&#x27;</span>, error);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server 正在监听端口&#x27;</span> + port);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-11.20.08-AM.png" alt="html在浏览器运行效果" width="300px">
 ]]></content>
   </entry>
   <entry>
@@ -2190,6 +2277,40 @@
       <tags>
         <tag>全栈</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>nodejs 基础学习</title>
+    <url>/2021/11/24/nodejs-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>写 nodejs 代码 首先要下载 NodeJS: <a href="https://nodejs.org/en/">下载网页</a><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-9.27.15-AM.png" alt="nodejs下载"></p>
+<p>推荐下载<code>LTS(Long Time Support)</code>版本！因为更加稳定而<code>Current</code>版本太新了，可能出现问题！</p>
+<h4 id="什么是-NodeJS-以及-NodeJS-的优势"><a href="#什么是-NodeJS-以及-NodeJS-的优势" class="headerlink" title="什么是 NodeJS 以及 NodeJS 的优势"></a>什么是 NodeJS 以及 NodeJS 的优势</h4><blockquote>
+<p><strong>NodeJS</strong>: 一种 <code>javascript</code> 的运行环境，能够使得 <code>javascript</code> 脱离浏览器运行<br><strong>Node.js</strong> 在浏览器之外运行 <code>V8 JavaScript</code> 引擎（Google Chrome 的内核）。 这使得 <code>Node.js</code> 的性能非常好</p>
+</blockquote>
+<p>由于 <code>JavaScript</code> 发展的速度非常快，但是浏览器发展得慢一些，并且用户的升级速度也慢一些，因此有时在 web 上，不得不使用较旧的 <code>JavaScript / ECMAScript</code> 版本。可以使用 <code>Babel</code> 将代码转换为与 <code>ES5</code> 兼容的代码，再交付给浏览器，但是在 <code>Node.js</code> 中，则不需要这样做。<br>另一个区别是 <code>Node.js</code> 使用 <code>CommonJS</code> 模块系统，而在浏览器中，则还正在实现 <code>ES</code> 模块标准。<br>在实践中，这意味着在 <code>Node.js</code> 中使用 <code>require()</code>，而在浏览器中则使用 <code>import</code>。</p>
+<h4 id="NodeJS-初级知识"><a href="#NodeJS-初级知识" class="headerlink" title="NodeJS 初级知识"></a>NodeJS 初级知识</h4><p>创建一个 <code>js</code> 文件并搭建初始的 <code>server</code> 端如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* app.js */</span><br><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);      <span class="hljs-comment">// 引出http这个模块(这里的http是一个函数)</span><br><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;                 <span class="hljs-comment">// 设置在3000端口(方便后续服务器放置在3000端口上进行监听)</span><br><br><span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>&#123;  <span class="hljs-comment">// 创建 HTTP 服务器</span><br>  <span class="hljs-comment">// 参数req --&gt; 代表 request    参数res --&gt; 代表 response</span><br>  <span class="hljs-comment">// 这里面放置的是该服务器将要进行的所用工作</span><br>&#125;)<br><br>server.listen(port, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>&#123;  <span class="hljs-comment">// 服务器被设置为在指定的 3000 端口上进行监听。 当服务器就绪时，则 listen 回调函数会被调用</span><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;有一些错误！&#x27;</span>, error);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server 正在监听端口&#x27;</span> + port);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>现在来看一看效果：</p>
+<blockquote>
+<p>利用 vscode 在终端输入 <code>node + 文件名</code></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-24-at-10.46.35-AM.gif" alt="nodejs效果"></p>
+<p>在浏览器(客户端)看见由 <code>server</code> 端发出的内容</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><code class="hljs lua">const http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br>const port = <span class="hljs-number">3000</span>;<br><br>const server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>&#123;<br>  // res.<span class="hljs-built_in">write</span>(<span class="hljs-string">&#x27;在浏览器可以看见我哦~&#x27;</span>);   // 注意：不能写中文，不然会在浏览器里为乱码<br>  res.<span class="hljs-built_in">write</span>(<span class="hljs-string">&#x27;You can see me in the browser~&#x27;</span>)<br>  res.<span class="hljs-keyword">end</span>();<br>&#125;)<br><br>server.listen(port, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span></span> &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">error</span>) &#123;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;有一些错误！&#x27;</span>, <span class="hljs-built_in">error</span>);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Server 正在监听端口&#x27;</span> + port);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 每一次更改 <code>nodejs </code>文件内容，都需要重启 <code>node js</code> 才能看到效果：即<code>node app.js</code></p>
+<p>可以安装<code>nodemon</code>避免上述问题。</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> init -y<br><span class="hljs-built_in">npm</span> i nodemon<br>把 package.json 文件的 <span class="hljs-string">&quot;scripts&quot;</span> 部分进行修改<br>  <span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;devStart&quot;</span>: <span class="hljs-string">&quot;nodemon app.js&quot;</span><br>  &#125;,<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-24-at-10.53.30-AM.gif" alt="nodemon"></p>
+<p>这样，就不用再自己手动重启 <code>nodejs</code> 了</p>
+<p>现在我通过 <code>server</code> 端来传递 <code>html</code>文件！</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* index.html */</span><br>  &lt;<span class="hljs-selector-tag">div</span>&gt;<br>    &lt;<span class="hljs-selector-tag">h1</span>&gt;你好世界！&lt;/<span class="hljs-selector-tag">h1</span>&gt;<br>    &lt;<span class="hljs-selector-tag">p</span>&gt;好吗？好的！&lt;/<span class="hljs-selector-tag">p</span>&gt;<br>  &lt;/<span class="hljs-selector-tag">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* app.js */</span><br><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);   <span class="hljs-comment">// 用于文件处理的模块</span><br><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;<br><br><span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>&#123;<br>  <span class="hljs-comment">// &#x27;Content-Type&#x27;:&#x27;text/html&#x27;格式支持html文件</span><br>  res.writeHead(<span class="hljs-number">200</span>, &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>:<span class="hljs-string">&#x27;text/html&#x27;</span>&#125;)  <span class="hljs-comment">// 参数一：是http的状态码   参数二：告诉浏览器发送的数据类型</span><br>  fs.readFile(<span class="hljs-string">&#x27;index.html&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, data</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (error) &#123;<br>      res.writeHead(<span class="hljs-number">404</span>);<br>      res.write(<span class="hljs-string">&#x27;404 Not Found&#x27;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      res.write(data);   <span class="hljs-comment">// 这里的data 就是 index.html文件</span><br>    &#125;<br>  &#125;)<br>&#125;)<br><br>server.listen(port, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;有一些错误！&#x27;</span>, error);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Server 正在监听端口&#x27;</span> + port);<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-11.20.08-AM.png" alt="html在浏览器运行效果" width="300px">
+]]></content>
   </entry>
   <entry>
     <title>前端技术-随笔</title>
@@ -3321,31 +3442,5 @@
       <categories>
         <category>计算机网络篇</category>
       </categories>
-  </entry>
-  <entry>
-    <title>JS Dom data-attributes</title>
-    <url>/2021/11/26/JS-Dom-data-attributes/</url>
-    <content><![CDATA[<p><code>data-attributes</code>让<code>HTML</code>和<code>JS</code>完美的搭配</p>
-<p>如果要使用<code>data-attributes</code>，则必须以<code>data-</code>来开头命名</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">/* index.html */<br>&lt;<span class="hljs-keyword">div</span><br>  <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;test-div&quot;</span><br>  data-user-<span class="hljs-built_in">name</span>=<span class="hljs-string">&quot;帅得乱七八糟&quot;</span><br>  data-age<br>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<h4 id="读取data-attributes值"><a href="#读取data-attributes值" class="headerlink" title="读取data-attributes值"></a>读取<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br>const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span>.dataset)<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.23.02-PM.png" alt="获取data-attributes"></p>
-<p>注意：这个<code>DOMStringMap</code>是个对象，包含了所有该元素的<code>data-</code>属性。 并且打印的例如：<code>userName</code>是驼峰命名方式，这里是为了对应 <code>-</code> 运算符。并且如果定义了<code>data-attribute</code>但却没赋值，最后是以<code>&quot;&quot;</code>这个空字符串来作为值</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.age)  <span class="hljs-comment">// &quot;&quot;</span><br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.userName) <span class="hljs-comment">// &quot;帅得乱七八糟&quot;</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="修改和增加data-attributes值"><a href="#修改和增加data-attributes值" class="headerlink" title="修改和增加data-attributes值"></a>修改和增加<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.newAttr</span> = <span class="hljs-string">&#x27;haha&#x27;</span>          <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.userName</span> = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>  <span class="hljs-comment">// 修改原来的属性</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.29.15-PM.png" alt="change-attributes"></p>
-<h4 id="删除data-attributes值"><a href="#删除data-attributes值" class="headerlink" title="删除data-attributes值"></a>删除<code>data-attributes</code>值</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.getElementById(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-keyword">div</span>.dataset.newAttr = <span class="hljs-string">&#x27;haha&#x27;</span>;         <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-keyword">div</span>.dataset.userName = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>;  <span class="hljs-comment">// 修改原来的属性</span><br>delete <span class="hljs-keyword">div</span>.dataset.newAttr;           <span class="hljs-comment">// 删除原来的属性</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.33.28-PM.png" alt="delet"></p>
-<h4 id="JS-操作data-attributes值"><a href="#JS-操作data-attributes值" class="headerlink" title="JS 操作data-attributes值"></a>JS 操作<code>data-attributes</code>值</h4><figure class="highlight hsp"><table><tr><td class="code"><pre><code class="hljs hsp"><span class="hljs-comment">/* html */</span><br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-1&quot;</span>&gt;Open Modal <span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-2&quot;</span>&gt;Open Modal <span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* js */</span><br><span class="hljs-keyword">const</span> buttons = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelectorAll</span>(<span class="hljs-string">&quot;[data-modal-id]&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<p>然后，可以有其他任何操作…</p>
-]]></content>
   </entry>
 </search>
