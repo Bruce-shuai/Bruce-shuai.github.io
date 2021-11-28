@@ -14,14 +14,135 @@
   <entry>
     <title>CSS Animation</title>
     <url>/2021/11/07/CSS-Animation/</url>
-    <content><![CDATA[<p>先放代码</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: translateX(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+    <content><![CDATA[<blockquote>
+<p>这篇文章 能让你的 <code>css</code>技术更上一层楼</p>
+</blockquote>
+<p><strong>注意：下面的代码中我在 css 文件中使用了 <code>//</code> 注释符，这在 css 文件中需删掉(css 文件不支持这种注释方式)</strong></p>
+<p>先看代码：</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>代码效果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-7.28.54-PM.gif" alt="Animation效果"></p>
-<p>事实上，css 有两种制作动画(Animate)的方式<br>方式 1：使用<code>transition</code>属性 -&gt; 用于制作简单的动画<br>方式 2：使用<code>animation</code>属性 -&gt; 用于制作复杂的动画</p>
-<h4 id="简单动画：transition-属性"><a href="#简单动画：transition-属性" class="headerlink" title="简单动画：transition 属性"></a>简单动画：transition 属性</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-attribute">transition</span>: 由下列四个属性组成<br><span class="hljs-attribute">transition-delay</span><br><span class="hljs-attribute">transition-duration</span><br><span class="hljs-attribute">transition-property</span><br><span class="hljs-attribute">transition-timing-function</span><br></code></pre></td></tr></table></figure>
+<p>上面的代码非常简单，没有任何动态效果，只有硬生生的红块跳动！ 因此，我要引出<code>CSS Animation</code>让生硬的跳动变得有趣！</p>
+<p>事实上，css 有两种制作动画(Animate)的方式</p>
+<table>
+<thead>
+<tr>
+<th><strong>动画制作方式</strong></th>
+<th><strong>动画效果</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>transition</td>
+<td>用于制作简单的动画</td>
+</tr>
+<tr>
+<td>animation</td>
+<td>用于制作复杂的动画</td>
+</tr>
+</tbody></table>
+<h4 id="简单动画：transition"><a href="#简单动画：transition" class="headerlink" title="简单动画：transition"></a>简单动画：transition</h4><h5 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h5><p><strong>针对上面的例子，我有一点说明：</strong><br>很多朋友会犯一个错误，会把 <code>transition</code> 放在 <code>hover</code> 伪类里使用或者把<code>transition</code>放在物块产生动画的环境里。但事实上，如果放在<code>hover</code>里面,我触控<code>parent</code>才会运动，而放弃触摸则动画会<strong>立刻消失</strong>，这会让动画效果非常不连贯！所以应该把<code>transition</code>放在 <code>child</code> 里面(即把<code>transition</code>放在本身需要运动的元素里)</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css 文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in-out<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="复杂动画：animation-属性"><a href="#复杂动画：animation-属性" class="headerlink" title="复杂动画：animation 属性"></a>复杂动画：animation 属性</h4>]]></content>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-11.08.05-AM.gif" alt="不连贯动画"></p>
+<h5 id="transition-基础属性"><a href="#transition-基础属性" class="headerlink" title="transition 基础属性"></a>transition 基础属性</h5><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">transition: 由下列四个属性组成<br>transition-delay           <span class="hljs-regexp">//</span> 动画延迟时间(多少时间后才开始动画) (默认是 <span class="hljs-number">0</span>s)<br>transition-duration        <span class="hljs-regexp">//</span> 动画使用时间  (默认是 <span class="hljs-number">0</span>s)<br>transition-property        <span class="hljs-regexp">//</span> 哪些属性会受到动画影响  (默认是 all)<br>transition-timing-<span class="hljs-keyword">function</span> <span class="hljs-regexp">//</span> 决定你的动画是以怎样的节奏进行 (默认是 ease)<br></code></pre></td></tr></table></figure>
+
+<h5 id="transition-duration-amp-transition-property"><a href="#transition-duration-amp-transition-property" class="headerlink" title="transition-duration &amp; transition-property"></a>transition-duration &amp; transition-property</h5><p>示例 1：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>  // <span class="hljs-attribute">transition</span>: all;           // 注意这里！ all 是默认值(<span class="hljs-attribute">transition-property</span>: all)，即会监视child所有属性的变化<br>  transition: transform <span class="hljs-number">2s</span>;     // 会监视child中 <span class="hljs-attribute">transform</span> 属性的变化；这里的 <span class="hljs-number">2s</span> 即 <span class="hljs-attribute">transition-duration</span><br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-11.20.13-AM.gif" alt="transition 1"></p>
+<p>示例 2：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">transition</span>: <span class="hljs-number">2s</span>;            // 我没有指定<span class="hljs-attribute">transition-property</span>内容，则<span class="hljs-attribute">transition-property</span>默认为all<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: green;   // 因为指定的是所有属性，所以也包括了这里的绿色<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-11.24.17-AM.gif" alt="transition 2"></p>
+<h5 id="transition-timing-function"><a href="#transition-timing-function" class="headerlink" title="transition-timing-function"></a>transition-timing-function</h5><p>示例 3：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">2s</span> ease-in-out;    // 注意这里！ 为了方便记忆<span class="hljs-attribute">transition-timing-function</span>各大属性的效果，下面我做了一个列表<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>transition-timing-function</strong></th>
+<th><strong>属性效果</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ease</td>
+<td>开始慢，然后快，然后慢结束</td>
+</tr>
+<tr>
+<td>linear</td>
+<td>从开始到结束具有相同速度</td>
+</tr>
+<tr>
+<td>ease-in</td>
+<td>缓慢启动</td>
+</tr>
+<tr>
+<td>ease-out</td>
+<td>指定一个缓慢结束的过渡效果</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>指定一个缓慢开始和结束的过渡效果</td>
+</tr>
+<tr>
+<td>cubic-bezier(n,n,n,n)</td>
+<td>允许您在三次贝塞尔函数中定义自己的值</td>
+</tr>
+</tbody></table>
+<p><code>cubic-bezier(n,n,n,n)</code> 这个属性是可以利用 <code>chrome</code> 的控制台，自己进行任意调节的</p>
+<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-28-at-11.39.51-AM.png" alt="自己调节cubic-bezier" width="300px"/>
+
+<h5 id="transition-delay"><a href="#transition-delay" class="headerlink" title="transition-delay"></a>transition-delay</h5><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">2s</span> ease-in-out <span class="hljs-number">2.5s</span>;    // 注意这里！ 我推迟了<span class="hljs-number">2.5s</span>运行动画<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-11.45.17-AM.gif" alt="transition-delay"></p>
+<p><strong>以上就是 <code>transition</code> 所能做的所有事，为了更复杂的动画实现，必须使用 <code>animation</code></strong></p>
+<h4 id="复杂动画：animation-属性"><a href="#复杂动画：animation-属性" class="headerlink" title="复杂动画：animation 属性"></a>复杂动画：animation 属性</h4><figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">animation 的属性：<br>animation-name       <span class="hljs-regexp">//</span> 给要实现的整体动画流程取个名字<br>@keyframes           <span class="hljs-regexp">//</span> 用这个动画名字 来进一步开展 动画行动逻辑<br>animation-duration   <span class="hljs-regexp">//</span> 动画使用时间<br>animation-delay      <span class="hljs-regexp">//</span> 动画延迟时间<br>animation-play-state <span class="hljs-regexp">//</span> 指定动画是正在运行还是暂停<br>animation-iteration-count  <span class="hljs-regexp">//</span> 设置动画播放次数<br>animation-direction        <span class="hljs-regexp">//</span> 设置动画的播放顺序<br>animation-timing-<span class="hljs-keyword">function</span>  <span class="hljs-regexp">//</span> 决定你的动画是以怎样的节奏进行<br>animation-fill-mode <span class="hljs-regexp">//</span> 指定了动画不播放时元素的样式<br>animation           <span class="hljs-regexp">//</span> 这是所有animation属性的集合<br></code></pre></td></tr></table></figure>
+
+<p><code>animation</code> 可以用在你想使用的地方(尽管放在 hover 上仍然会出现前面我讲的鼠标一撤退立即停止动画的效果)</p>
+<h5 id="animation-name-amp-keyframes"><a href="#animation-name-amp-keyframes" class="headerlink" title="animation-name &amp; @keyframes"></a>animation-name &amp; @keyframes</h5><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">animation</span>: left-to-right <span class="hljs-number">1s</span> ease-in <span class="hljs-number">0.5s</span>; <span class="hljs-comment">/* 可以取任意名字, 1s是动画时间, ease-in是缓慢启动, .5s是延迟时间 */</span><br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> left-to-right &#123;<br>  <span class="hljs-comment">/* 动画全流程 0%~100% */</span><br>  <span class="hljs-comment">/* 0% 默认是.child 的所有内容 */</span><br>  <span class="hljs-comment">/* 当 100%的内容执行完后，@keyframes 会立刻销毁所有添加的内容,回归最初的.child的内容 */</span><br>  <span class="hljs-number">100%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-12.06.59-PM.gif" alt="animation-name &amp; @keyframes"></p>
+<h5 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h5><table>
+<thead>
+<tr>
+<th><strong>animation-fill-mode 属性</strong></th>
+<th><strong>效果</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>none</td>
+<td>动画在执行之前或之后不会对元素应用任何样式</td>
+</tr>
+<tr>
+<td>forwards</td>
+<td>元素将保留最后一个关键帧设置的样式值</td>
+</tr>
+<tr>
+<td>backwards</td>
+<td>元素将获得由第一个关键帧设置的样式值(取决于动画方向)，并在动画延迟期间保留它</td>
+</tr>
+<tr>
+<td>both</td>
+<td>The animation will follow the rules for both forwards and backwards, extending the animation properties in both directions</td>
+</tr>
+</tbody></table>
+<p>还有两个属性：<code>initial</code> 和 <code>inherit</code> 就暂时不写了(自己查)</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">animation</span>: left-to-right <span class="hljs-number">1s</span> ease-in <span class="hljs-number">0.5s</span> forwards; <span class="hljs-comment">/* forwards元素将保留最后一个关键帧设置的样式, 不会像前面代码一样，执行完100%后理解回退到最初位置 */</span><br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> left-to-right &#123;<br>  <span class="hljs-number">100%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-12.20.42-PM.gif" alt="animation-fill-mode"></p>
+<h4 id="中间过渡动画"><a href="#中间过渡动画" class="headerlink" title="中间过渡动画"></a>中间过渡动画</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">animation</span>: left-to-right <span class="hljs-number">1s</span> ease-in <span class="hljs-number">0.5s</span> forwards;<br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> left-to-right &#123;<br>  <span class="hljs-number">0%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0</span>);<br>  &#125;<br>  <span class="hljs-number">33%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);<br>  &#125;<br>  <span class="hljs-number">66%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100%</span>, <span class="hljs-number">100%</span>);<br>  &#125;<br>  <span class="hljs-number">100%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100%</span>, <span class="hljs-number">0%</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-12.27.35-PM.gif" alt="中间过渡动画"></p>
+<h5 id="animation-iteration-count-amp-animation-direction"><a href="#animation-iteration-count-amp-animation-direction" class="headerlink" title="animation-iteration-count &amp; animation-direction"></a>animation-iteration-count &amp; animation-direction</h5><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">animation</span>: left-to-right <span class="hljs-number">1s</span> ease-in <span class="hljs-number">0.1s</span> forwards <span class="hljs-number">4</span> alternate; <span class="hljs-comment">/* 设置动画播放次数 并且是交替顺序播放(alternate) */</span><br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> left-to-right &#123;<br>  <span class="hljs-number">0%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0</span>);<br>  &#125;<br>  <span class="hljs-number">33%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);<br>  &#125;<br>  <span class="hljs-number">66%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100%</span>, <span class="hljs-number">100%</span>);<br>  &#125;<br>  <span class="hljs-number">100%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100%</span>, <span class="hljs-number">0%</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-12.33.41-PM.gif" alt="神奇动画"></p>
+<h5 id="animation-的神奇效果展示"><a href="#animation-的神奇效果展示" class="headerlink" title="animation 的神奇效果展示"></a>animation 的神奇效果展示</h5><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">animation</span>: left-to-right <span class="hljs-number">1s</span> ease-in <span class="hljs-number">5s</span> forwards infinite alternate; <span class="hljs-comment">/* 没有放在 hover位置，而是直接放在.child位置，并且我设置了 无限次的执行 infinite*/</span><br>&#125;<br><br><span class="hljs-selector-class">.parent</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">animation-play-state</span>: paused; <span class="hljs-comment">/* 我触碰parent时，child会暂停运动*/</span><br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> left-to-right &#123;<br>  <span class="hljs-number">0%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0</span>);<br>  &#125;<br>  <span class="hljs-number">33%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);<br>  &#125;<br>  <span class="hljs-number">66%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100%</span>, <span class="hljs-number">100%</span>);<br>  &#125;<br>  <span class="hljs-number">100%</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100%</span>, <span class="hljs-number">0%</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-28-at-12.40.28-PM.gif" alt="神奇动画2"></p>
+<p>内容已讲完，属性的很多值我没在博客里追溯！自己去查！哈哈~</p>
+]]></content>
   </entry>
   <entry>
     <title>CSS Position</title>
@@ -178,6 +299,13 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS 神奇属性</title>
+    <url>/2021/11/28/CSS-%E7%A5%9E%E5%A5%87%E5%B1%9E%E6%80%A7/</url>
+    <content><![CDATA[<h4 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h4><figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">position</span>: absolute;<br>inset: <span class="hljs-number">0</span>; <span class="hljs-comment">/* 等同于：top、right、bottom、left 全部为0 */</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="object-fit"><a href="#object-fit" class="headerlink" title="object-fit"></a>object-fit</h4><h4 id="object-position"><a href="#object-position" class="headerlink" title="object-position"></a>object-position</h4><h4 id="list-style"><a href="#list-style" class="headerlink" title="list-style"></a>list-style</h4><h4 id="focus-vs-active"><a href="#focus-vs-active" class="headerlink" title=":focus vs :active"></a>:focus vs :active</h4>]]></content>
+  </entry>
+  <entry>
     <title>CSS-随笔一</title>
     <url>/2021/10/18/CSS-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
     <content><![CDATA[<hr>
@@ -248,6 +376,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Calc css</title>
+    <url>/2021/11/09/Calc-css/</url>
+    <content><![CDATA[<p><code>calc</code> 的出现让 <code>纯css</code> 更加的强大</p>
+<h4 id="calc-基础应用"><a href="#calc-基础应用" class="headerlink" title="calc 基础应用"></a>calc 基础应用</h4><figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">100</span>%;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png" alt="普通的一个模块"></p>
+<p>事实上，如果我想上面的这个盒子长度变为 300px 我可以这样做</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但我如果使用<code>calc</code>。我可以这样做</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>甚至，我可以让 <code>calc</code> 进行嵌套操作…</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50px</span> + <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>));<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我还可以在 <code>calc</code> 中使用不同的单位</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100%</span> - <span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：calc(a - b) 操作符两边一定要留有一个空格并且 calc()这二者中间不能留空格，不然 calc 不起效果。</strong></p>
+<h4 id="calc-搭配-var-让-css-更加强大"><a href="#calc-搭配-var-让-css-更加强大" class="headerlink" title="calc 搭配 var() 让 css 更加强大"></a>calc 搭配 var() 让 css 更加强大</h4><p><code>calc</code>是可以结合<code>var()</code>的</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  --<span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">width</span>: calc(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">width</span>) * <span class="hljs-number">2</span>);<br>  <span class="hljs-built_in">height</span>: 80px;<br>  margin: <span class="hljs-number">0</span> auto;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png" alt="calc + var"></p>
+<p>下面来进行一个有意思的(<code>calc</code> 结合 <code>var</code>)操作</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;button class=<span class="hljs-string">&quot;btn btn--primary&quot;</span>&gt;Primary&lt;/button&gt;<br>&lt;button class=<span class="hljs-string">&quot;btn btn--danger&quot;</span>&gt;Danger&lt;/button&gt;<br><span class="hljs-comment">/* css文件 */</span><br>:root &#123;<br>  --hue: <span class="hljs-number">200</span>;<br>&#125;<br><br>.btn &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 30px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">radius</span>: 15px;<br>&#125;<br><br>.btn--primary &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br>.btn--primary:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">70</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">30</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif" alt="calc的神奇妙用"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Dynamic Module</title>
     <url>/2021/11/06/Dynamic-Module/</url>
     <content><![CDATA[<h3 id="Dynamic-Module"><a href="#Dynamic-Module" class="headerlink" title="Dynamic Module"></a>Dynamic Module</h3><p>进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快…</p>
@@ -307,36 +465,6 @@
       <tags>
         <tag>高级</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Calc css</title>
-    <url>/2021/11/09/Calc-css/</url>
-    <content><![CDATA[<p><code>calc</code> 的出现让 <code>纯css</code> 更加的强大</p>
-<h4 id="calc-基础应用"><a href="#calc-基础应用" class="headerlink" title="calc 基础应用"></a>calc 基础应用</h4><figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">100</span>%;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png" alt="普通的一个模块"></p>
-<p>事实上，如果我想上面的这个盒子长度变为 300px 我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>但我如果使用<code>calc</code>。我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>甚至，我可以让 <code>calc</code> 进行嵌套操作…</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50px</span> + <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>));<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>我还可以在 <code>calc</code> 中使用不同的单位</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100%</span> - <span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>注意：calc(a - b) 操作符两边一定要留有一个空格并且 calc()这二者中间不能留空格，不然 calc 不起效果。</strong></p>
-<h4 id="calc-搭配-var-让-css-更加强大"><a href="#calc-搭配-var-让-css-更加强大" class="headerlink" title="calc 搭配 var() 让 css 更加强大"></a>calc 搭配 var() 让 css 更加强大</h4><p><code>calc</code>是可以结合<code>var()</code>的</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  --<span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">width</span>: calc(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">width</span>) * <span class="hljs-number">2</span>);<br>  <span class="hljs-built_in">height</span>: 80px;<br>  margin: <span class="hljs-number">0</span> auto;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png" alt="calc + var"></p>
-<p>下面来进行一个有意思的(<code>calc</code> 结合 <code>var</code>)操作</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;button class=<span class="hljs-string">&quot;btn btn--primary&quot;</span>&gt;Primary&lt;/button&gt;<br>&lt;button class=<span class="hljs-string">&quot;btn btn--danger&quot;</span>&gt;Danger&lt;/button&gt;<br><span class="hljs-comment">/* css文件 */</span><br>:root &#123;<br>  --hue: <span class="hljs-number">200</span>;<br>&#125;<br><br>.btn &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 30px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">radius</span>: 15px;<br>&#125;<br><br>.btn--primary &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br>.btn--primary:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">70</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">30</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif" alt="calc的神奇妙用"></p>
-]]></content>
   </entry>
   <entry>
     <title>Emotion的安装和基本使用</title>
@@ -479,6 +607,18 @@
 ]]></content>
   </entry>
   <entry>
+    <title>HTTP状态码</title>
+    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
+]]></content>
+      <categories>
+        <category>程序员基本素养</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS DOM操作</title>
     <url>/2021/11/24/JS-DOM%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<p><strong>// TODO 还有些细节问题有待补充</strong></p>
@@ -542,18 +682,6 @@
 
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-24-at-2.50.26-PM.png" width="400px" alt="previousElementSibling">
 ]]></content>
-  </entry>
-  <entry>
-    <title>HTTP状态码</title>
-    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
-    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
-]]></content>
-      <categories>
-        <category>程序员基本素养</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
   </entry>
   <entry>
     <title>JS-DOM操作2</title>
@@ -660,32 +788,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>JS Dom data-attributes</title>
-    <url>/2021/11/26/JS-Dom-data-attributes/</url>
-    <content><![CDATA[<p><code>data-attributes</code>让<code>HTML</code>和<code>JS</code>完美的搭配</p>
-<p>如果要使用<code>data-attributes</code>，则必须以<code>data-</code>来开头命名</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">/* index.html */<br>&lt;<span class="hljs-keyword">div</span><br>  <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;test-div&quot;</span><br>  data-user-<span class="hljs-built_in">name</span>=<span class="hljs-string">&quot;帅得乱七八糟&quot;</span><br>  data-age<br>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<h4 id="读取data-attributes值"><a href="#读取data-attributes值" class="headerlink" title="读取data-attributes值"></a>读取<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br>const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span>.dataset)<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.23.02-PM.png" alt="获取data-attributes"></p>
-<p>注意：这个<code>DOMStringMap</code>是个对象，包含了所有该元素的<code>data-</code>属性。 并且打印的例如：<code>userName</code>是驼峰命名方式，这里是为了对应 <code>-</code> 运算符。并且如果定义了<code>data-attribute</code>但却没赋值，最后是以<code>&quot;&quot;</code>这个空字符串来作为值</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.age)  <span class="hljs-comment">// &quot;&quot;</span><br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.userName) <span class="hljs-comment">// &quot;帅得乱七八糟&quot;</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="修改和增加data-attributes值"><a href="#修改和增加data-attributes值" class="headerlink" title="修改和增加data-attributes值"></a>修改和增加<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.newAttr</span> = <span class="hljs-string">&#x27;haha&#x27;</span>          <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.userName</span> = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>  <span class="hljs-comment">// 修改原来的属性</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.29.15-PM.png" alt="change-attributes"></p>
-<h4 id="删除data-attributes值"><a href="#删除data-attributes值" class="headerlink" title="删除data-attributes值"></a>删除<code>data-attributes</code>值</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.getElementById(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-keyword">div</span>.dataset.newAttr = <span class="hljs-string">&#x27;haha&#x27;</span>;         <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-keyword">div</span>.dataset.userName = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>;  <span class="hljs-comment">// 修改原来的属性</span><br>delete <span class="hljs-keyword">div</span>.dataset.newAttr;           <span class="hljs-comment">// 删除原来的属性</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.33.28-PM.png" alt="delet"></p>
-<h4 id="JS-操作data-attributes值"><a href="#JS-操作data-attributes值" class="headerlink" title="JS 操作data-attributes值"></a>JS 操作<code>data-attributes</code>值</h4><figure class="highlight hsp"><table><tr><td class="code"><pre><code class="hljs hsp"><span class="hljs-comment">/* html */</span><br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-1&quot;</span>&gt;Open Modal <span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-2&quot;</span>&gt;Open Modal <span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* js */</span><br><span class="hljs-keyword">const</span> buttons = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelectorAll</span>(<span class="hljs-string">&quot;[data-modal-id]&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<p>然后，可以有其他任何操作…</p>
-]]></content>
-  </entry>
-  <entry>
     <title>JS-DOM操作3 事件</title>
     <url>/2021/11/25/JS-DOM%E6%93%8D%E4%BD%9C3-%E4%BA%8B%E4%BB%B6/</url>
     <content><![CDATA[<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">/* index.html */<br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./script.js&quot;</span> <span class="hljs-attr">defer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css">    <span class="hljs-selector-class">.grandparent</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">250px</span>;</span><br><span class="css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">250px</span>;</span><br><span class="css">      <span class="hljs-attribute">background-color</span>: red;</span><br><span class="css">      <span class="hljs-attribute">display</span>: flex;</span><br><span class="css">      <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="css">      <span class="hljs-attribute">align-items</span>: center;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-class">.parent</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">180px</span>;</span><br><span class="css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">180px</span>;</span><br><span class="css">      <span class="hljs-attribute">background-color</span>: blue;</span><br><span class="css">      <span class="hljs-attribute">display</span>: flex;</span><br><span class="css">      <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="css">      <span class="hljs-attribute">align-items</span>: center;</span><br><span class="css">    &#125;</span><br><span class="css">    <span class="hljs-selector-class">.child</span> &#123;</span><br><span class="css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">80px</span>;</span><br><span class="css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;</span><br><span class="css">      <span class="hljs-attribute">background-color</span>: green;</span><br><span class="css">    &#125;</span><br><span class="css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grandparent&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -776,6 +878,32 @@
 <figure class="highlight haxe"><table><tr><td class="code"><pre><code class="hljs haxe">const divs = document.querySelectorAll(<span class="hljs-string">&#x27;div&#x27;</span>)<br><br>document.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, e =&gt; &#123;  <span class="hljs-comment">// 注意：这里是最顶层的document，所以，无论在任何地方有新的元素生成，想影响该新元素，就能非常方便的影响这个新元素</span><br>  <span class="hljs-keyword">if</span> (e.target.matches(<span class="hljs-string">&#x27;div&#x27;</span>)) &#123;    <span class="hljs-comment">// matches 是e.target的一个特别的属性</span><br>    console.log(<span class="hljs-string">&#x27;hi&#x27;</span>);<br>  &#125;<br>&#125;)<br><br>const <span class="hljs-keyword">new</span><span class="hljs-type">Div</span> = document.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);<br><span class="hljs-keyword">new</span><span class="hljs-type">Div</span>.style.width = <span class="hljs-string">&quot;200px&quot;</span>;<br><span class="hljs-keyword">new</span><span class="hljs-type">Div</span>.style.height = <span class="hljs-string">&quot;200px&quot;</span>;<br><span class="hljs-keyword">new</span><span class="hljs-type">Div</span>.style.backgroundColor = <span class="hljs-string">&quot;purple&quot;</span>;<br>document.body.append(<span class="hljs-keyword">new</span><span class="hljs-type">Div</span>)<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-25-at-9.33.32-PM.gif" alt="事件委托2"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>JS Dom data-attributes</title>
+    <url>/2021/11/26/JS-Dom-data-attributes/</url>
+    <content><![CDATA[<p><code>data-attributes</code>让<code>HTML</code>和<code>JS</code>完美的搭配</p>
+<p>如果要使用<code>data-attributes</code>，则必须以<code>data-</code>来开头命名</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">/* index.html */<br>&lt;<span class="hljs-keyword">div</span><br>  <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;test-div&quot;</span><br>  data-user-<span class="hljs-built_in">name</span>=<span class="hljs-string">&quot;帅得乱七八糟&quot;</span><br>  data-age<br>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="读取data-attributes值"><a href="#读取data-attributes值" class="headerlink" title="读取data-attributes值"></a>读取<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br>const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span>.dataset)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.23.02-PM.png" alt="获取data-attributes"></p>
+<p>注意：这个<code>DOMStringMap</code>是个对象，包含了所有该元素的<code>data-</code>属性。 并且打印的例如：<code>userName</code>是驼峰命名方式，这里是为了对应 <code>-</code> 运算符。并且如果定义了<code>data-attribute</code>但却没赋值，最后是以<code>&quot;&quot;</code>这个空字符串来作为值</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.age)  <span class="hljs-comment">// &quot;&quot;</span><br>console<span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span>.userName) <span class="hljs-comment">// &quot;帅得乱七八糟&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="修改和增加data-attributes值"><a href="#修改和增加data-attributes值" class="headerlink" title="修改和增加data-attributes值"></a>修改和增加<code>data-attributes</code>值</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">div</span> = document<span class="hljs-selector-class">.getElementById</span>(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.newAttr</span> = <span class="hljs-string">&#x27;haha&#x27;</span>          <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.dataset</span><span class="hljs-selector-class">.userName</span> = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>  <span class="hljs-comment">// 修改原来的属性</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.29.15-PM.png" alt="change-attributes"></p>
+<h4 id="删除data-attributes值"><a href="#删除data-attributes值" class="headerlink" title="删除data-attributes值"></a>删除<code>data-attributes</code>值</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> <span class="hljs-keyword">div</span> = document.getElementById(<span class="hljs-string">&quot;test-div&quot;</span>)<br><br><span class="hljs-keyword">div</span>.dataset.newAttr = <span class="hljs-string">&#x27;haha&#x27;</span>;         <span class="hljs-comment">// 创建一个新的属性</span><br><span class="hljs-keyword">div</span>.dataset.userName = <span class="hljs-string">&#x27;帅得歪瓜裂枣&#x27;</span>;  <span class="hljs-comment">// 修改原来的属性</span><br>delete <span class="hljs-keyword">div</span>.dataset.newAttr;           <span class="hljs-comment">// 删除原来的属性</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-26-at-2.33.28-PM.png" alt="delet"></p>
+<h4 id="JS-操作data-attributes值"><a href="#JS-操作data-attributes值" class="headerlink" title="JS 操作data-attributes值"></a>JS 操作<code>data-attributes</code>值</h4><figure class="highlight hsp"><table><tr><td class="code"><pre><code class="hljs hsp"><span class="hljs-comment">/* html */</span><br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-1&quot;</span>&gt;Open Modal <span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br>&lt;<span class="hljs-keyword">button</span> data-modal-id=<span class="hljs-string">&quot;modal-2&quot;</span>&gt;Open Modal <span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">button</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">/* js */</span><br><span class="hljs-keyword">const</span> buttons = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelectorAll</span>(<span class="hljs-string">&quot;[data-modal-id]&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>然后，可以有其他任何操作…</p>
 ]]></content>
   </entry>
   <entry>
