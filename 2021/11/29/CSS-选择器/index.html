@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="最基本的选择器1234* 通配符选择器标签选择器class选择器id选择器  123456789&#x2F;* html *&#x2F;&lt;div&gt;This is a div&lt;&#x2F;div&gt;&lt;span id&#x3D;&quot;green&quot;&gt;This is a span&lt;&#x2F;span&gt;&lt;ul&gt;  &lt;li class&#x3D;&quot;purple&quot;&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 选择器">
+<meta property="og:url" content="http://example.com/2021/11/29/CSS-%E9%80%89%E6%8B%A9%E5%99%A8/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="最基本的选择器1234* 通配符选择器标签选择器class选择器id选择器  123456789&#x2F;* html *&#x2F;&lt;div&gt;This is a div&lt;&#x2F;div&gt;&lt;span id&#x3D;&quot;green&quot;&gt;This is a span&lt;&#x2F;span&gt;&lt;ul&gt;  &lt;li class&#x3D;&quot;purple&quot;&amp;gt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.02.25-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.11.22-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.19.13-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.25.59-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.35.29-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.40.47-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.44.37-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.49.54-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.51.43-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.55.46-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-29-at-10.09.26-AM.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-29-at-10.14.35-AM.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-10.20.38-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-29-at-10.23.41-AM.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.08.48-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.19.59-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.26.14-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.31.15-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.34.27-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.41.49-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.45.05-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.47.08-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.48.41-PM.png">
+<meta property="article:published_time" content="2021-11-29T00:46:51.000Z">
+<meta property="article:modified_time" content="2021-11-29T12:49:36.175Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.02.25-AM.png">
+  
+  <title>CSS 选择器 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSS 选择器">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-29 08:46" pubdate>
+        2021年11月29日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      10k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSS 选择器</h1>
+            
+            <div class="markdown-body">
+              <h4 id="最基本的选择器"><a href="#最基本的选择器" class="headerlink" title="最基本的选择器"></a>最基本的选择器</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">* 通配符选择器<br>标签选择器<br><span class="hljs-keyword">class</span>选择器<br><span class="hljs-symbol">id</span>选择器<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div&gt;This <span class="hljs-keyword">is</span> a div&lt;/div&gt;<br>&lt;span id=<span class="hljs-string">&quot;green&quot;</span>&gt;This <span class="hljs-keyword">is</span> a span&lt;/span&gt;<br>&lt;ul&gt;<br>  &lt;li <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">purple</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">purple</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* css */</span><br><span class="hljs-comment">/* 此选择器影响所有元素: 通配符选择器 */</span><br>* &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br><br><span class="hljs-comment">/* 选择独立的元素: 标签选择器 */</span><br><span class="hljs-comment">/* 影响div标签 */</span><br>div &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: yellow;<br>&#125;<br><br><span class="hljs-comment">/* 影响li标签 */</span><br>li &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">blue</span>;<br>&#125;<br><br><span class="hljs-comment">/* class选择器 非常常用，因为威力大 */</span><br>.purple &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: purple;<br>&#125;<br><br><span class="hljs-comment">/* id选择器(因为一个id选择器只能作用在一个地方“威力太小”，所以不太常用) */</span><br>#<span class="hljs-built_in">green</span> &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">green</span>;<br>&#125;<br><br><span class="hljs-comment">/* 注意！选择器受位置影响，放置在下面的选择器会覆盖上面的选择器(在选择器所支配的属性是一样的情况下) */</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.02.25-AM.png" srcset="/img/loading.gif" lazyload alt="基本选择器"></p>
+<h4 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h4><h5 id="限制-class-的使用范围"><a href="#限制-class-的使用范围" class="headerlink" title="限制 class 的使用范围"></a>限制 class 的使用范围</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml">/* html */<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red blue-text&quot;</span>&gt;</span>This is a div<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span>This is a div<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>This is a div too<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>This is a span<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* css */</span><br><span class="hljs-comment">/* 只想div标签中带red这个class名的受影响(注意，结合的时候没有空格,且div在class名前面) */</span><br>div.<span class="hljs-built_in">red</span>.<span class="hljs-built_in">blue</span>-<span class="hljs-built_in">text</span> &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>  <span class="hljs-built_in">color</span>: <span class="hljs-built_in">blue</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.11.22-AM.png" srcset="/img/loading.gif" lazyload alt="限制class"></p>
+<h5 id="多个选择器一起使用"><a href="#多个选择器一起使用" class="headerlink" title="多个选择器一起使用"></a>多个选择器一起使用</h5><p>(一起使用只需要一个 <code>,</code> 就可以了)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml">/* html */<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red blue-text&quot;</span>&gt;</span>This is a div<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span>This is a div<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>This is a div too<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>This is a span<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-selector-tag">span</span>,<br><span class="hljs-selector-tag">li</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-comment">/* 下面的选择器会覆盖上面选择器的部分内容 */</span><br><span class="hljs-selector-tag">span</span>,<br><span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.red</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: yellow;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.19.13-AM.png" srcset="/img/loading.gif" lazyload alt="多个选择器一起使用"></p>
+<p><strong>(说明：下面说的父选择器和子选择器只是为了方便理解嵌套关系，而非真的有父选择器、子选择器、子子孙孙选择器)</strong></p>
+<h5 id="使用嵌套选择器"><a href="#使用嵌套选择器" class="headerlink" title="使用嵌套选择器"></a>使用嵌套选择器</h5><p>(父选择器 子子孙孙选择器) –&gt; 选择器类型是不限的 只要是选择器之间嵌套即可</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-comment">/* 有空格，这里表示获取ul的子元素 li */</span><br><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">li</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br><br><span class="hljs-comment">/* b是div的子子孙孙*/</span><br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">b</span> &#123;<br>  <span class="hljs-attribute">color</span>: green;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.25.59-AM.png" srcset="/img/loading.gif" lazyload alt="嵌套选择器"></p>
+<h5 id="直接后代选择器"><a href="#直接后代选择器" class="headerlink" title="直接后代选择器"></a>直接后代选择器</h5><p>(父选择器 &gt; 子选择器) –&gt; 父选择器是子选择器(不是子子孙孙选择器)</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-comment">/* b标签选择器是span标签选择器的子选择器 */</span><br><span class="hljs-selector-tag">span</span> &gt; <span class="hljs-selector-tag">b</span> &#123;<br>  <span class="hljs-attribute">color</span>: purple;<br>&#125;<br><br><span class="hljs-comment">/* b标签不会显绿色字体，只会显紫色 因为b标签选择器不是div选择器的子选择器 */</span><br><span class="hljs-selector-tag">div</span> &gt; <span class="hljs-selector-tag">b</span> &#123;<br>  <span class="hljs-attribute">color</span>: green;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.35.29-AM.png" srcset="/img/loading.gif" lazyload alt="效果图"></p>
+<h5 id="兄弟姐妹选择器"><a href="#兄弟姐妹选择器" class="headerlink" title="兄弟姐妹选择器"></a>兄弟姐妹选择器</h5><p><strong>~ 选择器</strong> A ~ B (A 和 B 是同层级的选择器, A 后面的 B 类型选择器会受到影响)</p>
+<p>示例一：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;  // 注意观察位置<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-comment">/* li.red 后面的兄弟姐妹会受到影响 */</span><br><span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.red</span> ~ <span class="hljs-selector-tag">li</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.40.47-AM.png" srcset="/img/loading.gif" lazyload alt="~选择器1"></p>
+<p>示例 2：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;  // 注意观察位置<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-comment">/* li.red 后面的兄弟姐妹会受到影响 */</span><br><span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.red</span> ~ <span class="hljs-selector-tag">li</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.44.37-AM.png" srcset="/img/loading.gif" lazyload alt="~选择器2"></p>
+<h5 id="直接兄弟姐妹选择器"><a href="#直接兄弟姐妹选择器" class="headerlink" title="直接兄弟姐妹选择器"></a>直接兄弟姐妹选择器</h5><p><strong>+选择器</strong>： 所谓<strong>直接兄弟姐妹选择器</strong>即：在<strong>兄弟姐妹选择器</strong>的基础设定上再添一个设定：我只要我<strong>下一个</strong>兄弟姐妹</p>
+<p>(注意：和上面的兄弟姐妹选择器比较一下)<br>示例 1：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.red</span> + <span class="hljs-selector-tag">li</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.49.54-AM.png" srcset="/img/loading.gif" lazyload alt="+选择器1"></p>
+<p>示例 2：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.red</span> + <span class="hljs-selector-tag">li</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.51.43-AM.png" srcset="/img/loading.gif" lazyload alt="+选择器2"></p>
+<p>示例 3：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* css */</span><br><span class="hljs-comment">/* 没有效果，因为不是直接兄弟姐妹 */</span><br><span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.red</span> + <span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.green</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-comment">/* 没有效果，因为不是直接兄弟姐妹 */</span><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.red</span> + <span class="hljs-selector-tag">ul</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-9.55.46-AM.png" srcset="/img/loading.gif" lazyload alt="+选择器3"></p>
+<h4 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h4><h5 id="hover"><a href="#hover" class="headerlink" title=":hover"></a>:hover</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-29-at-10.09.26-AM.gif" srcset="/img/loading.gif" lazyload alt=":hover"></p>
+<h5 id="focus"><a href="#focus" class="headerlink" title=":focus"></a>:focus</h5><p>这个伪类一般用于 <code>input</code> 和 <code>button</code> 标签<br>效果：点击后会一直保持着某一种状态，除非点击其他地方才会取消状态</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html文件 */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br>&lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>=&quot;<span class="hljs-symbol">text</span>&quot;&gt;<br>&lt;<span class="hljs-symbol">button</span>&gt;按钮&lt;/<span class="hljs-symbol">button</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br><br><span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: green;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-29-at-10.14.35-AM.gif" srcset="/img/loading.gif" lazyload alt=":focus"></p>
+<h5 id="required"><a href="#required" class="headerlink" title=":required"></a>:required</h5><p>有种元素被选定的感觉 (似乎只能用在 <code>input</code> 标签)</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br>&lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>=&quot;<span class="hljs-symbol">text</span>&quot; <span class="hljs-symbol">required</span>&gt;   // 注意这里！<br>&lt;<span class="hljs-symbol">button</span>&gt;按钮&lt;/<span class="hljs-symbol">button</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:required</span> &#123;   // 只要有<span class="hljs-selector-tag">input</span>元素上绑定了 required 就会受到影响<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-10.20.38-AM.png" srcset="/img/loading.gif" lazyload alt=":required"></p>
+<h5 id="checked"><a href="#checked" class="headerlink" title=":checked"></a>:checked</h5><p>这个选择器和<code>&lt;input type=&quot;checkbox&quot;&gt;</code>搭配</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br>&lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>=&quot;<span class="hljs-symbol">checkbox</span>&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css */</span><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:checked</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-29-at-10.23.41-AM.gif" srcset="/img/loading.gif" lazyload alt=":checked"></p>
+<h5 id="disabled"><a href="#disabled" class="headerlink" title=":disabled"></a>:disabled</h5><p>表示元素禁止使用</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/* html */</span><br>&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br>&lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">disabled</span> <span class="hljs-symbol">type</span>=&quot;<span class="hljs-symbol">checkbox</span>&quot;&gt;  // 注意这里<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:disabled</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.08.48-PM.png" srcset="/img/loading.gif" lazyload alt="禁止使用"></p>
+<h5 id="first-child-amp-last-child-amp-nth-child"><a href="#first-child-amp-last-child-amp-nth-child" class="headerlink" title=":first-child &amp; :last-child &amp; nth-child"></a>:first-child &amp; :last-child &amp; nth-child</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:first</span>-child &#123;<br>  <span class="hljs-attribute">background</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.19.59-PM.png" srcset="/img/loading.gif" lazyload alt=":first-child"></p>
+<p><strong>但是注意一个问题：这里的 first-child 一定是第一个子元素。如果是下面这样的操作就会出错</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.red</span><span class="hljs-selector-pseudo">:first</span>-child &#123;<br>  <span class="hljs-attribute">background</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样不会有任何红色出现！因为 这里的 <code>li.red:first-child</code> 违背了第一个子元素的原则</p>
+<p><strong>:last-child</strong> 道理和 <strong>:first-child</strong> 是一致的</p>
+<p>如果你想选中中间的某个元素，使用 <code>:nth-child()</code>就好</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">2</span>n) &#123;   <span class="hljs-comment">// 选中的是偶数的li背景为红色</span><br>  <span class="hljs-attribute">background</span>: red;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.26.14-PM.png" srcset="/img/loading.gif" lazyload alt="nth-child"></p>
+<p>// TODO 还有些 nth-相关内容就暂且不想弄</p>
+<h4 id="not"><a href="#not" class="headerlink" title=":not()"></a>:not()</h4><p><code>A:not(B)</code> 表示除 B 元素之外的这系列 A 元素都会受到影响</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">This</span> <span class="hljs-symbol">is</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">div</span>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span>&gt;<br>  &lt;<span class="hljs-symbol">span</span>&gt;<br>    &lt;<span class="hljs-symbol">b</span>&gt;<span class="hljs-symbol">nexted</span> <span class="hljs-symbol">text</span>&lt;/<span class="hljs-symbol">b</span>&gt;<br>  &lt;/<span class="hljs-symbol">span</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">ul</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">red</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span>&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>  &lt;<span class="hljs-symbol">li</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">green</span>&quot;&gt;<span class="hljs-symbol">Item</span> <span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">li</span>&gt;<br>&lt;/<span class="hljs-symbol">ul</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:not</span>(.green) &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.31.15-PM.png" srcset="/img/loading.gif" lazyload alt=":not"></p>
+<h4 id="before-after"><a href="#before-after" class="headerlink" title="::before, ::after"></a>::before, ::after</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;Before&quot;</span>;<br>  <span class="hljs-attribute">background</span>: red;<br>&#125;<br><br><span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;After&quot;</span>;<br>  <span class="hljs-attribute">background</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.34.27-PM.png" srcset="/img/loading.gif" lazyload alt="before&amp;after"></p>
+<h4 id="data-attribute"><a href="#data-attribute" class="headerlink" title="data-attribute"></a>data-attribute</h4><p>示例一：</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">div</span> data-red&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;true&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;false&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;  <span class="hljs-comment">// 匹配不到下面的data-red=&quot;true&quot;，但能匹配data-red</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-attr">[data-red]</span> &#123;   <span class="hljs-comment">// 只写属性名 不写属性值，则能匹配所有相同属性名</span><br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background</span>: green;<br>&#125;<br><br><span class="hljs-selector-attr">[data-red=<span class="hljs-string">&quot;true&quot;</span>]</span> &#123;<br>  <span class="hljs-attribute">color</span>: black;<br>  <span class="hljs-attribute">background</span>: yellowgreen;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.41.49-PM.png" srcset="/img/loading.gif" lazyload alt="data-attribute1"></p>
+<p>示例二：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> data-red&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;123&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;124&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;2123&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-attr">[data-red]</span> &#123;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background</span>: green;<br>&#125;<br><br><span class="hljs-selector-attr">[data-red^=<span class="hljs-string">&quot;12&quot;</span>]</span> &#123;   <span class="hljs-comment">// 匹配12开头的属性值</span><br>  <span class="hljs-attribute">color</span>: black;<br>  <span class="hljs-attribute">background</span>: yellowgreen;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.45.05-PM.png" srcset="/img/loading.gif" lazyload alt="data-attribute2"></p>
+<p>示例三：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> data-red&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;123&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;124&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;2123&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-attr">[data-red]</span> &#123;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background</span>: green;<br>&#125;<br><br><span class="hljs-selector-attr">[data-red$=<span class="hljs-string">&quot;24&quot;</span>]</span> &#123;   <span class="hljs-comment">// 匹配以24结尾的属性值</span><br>  <span class="hljs-attribute">color</span>: black;<br>  <span class="hljs-attribute">background</span>: yellowgreen;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.47.08-PM.png" srcset="/img/loading.gif" lazyload alt="data-attribute3"></p>
+<p>示例四：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> data-red&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;123&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;124&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> data-red=<span class="hljs-string">&quot;2123&quot;</span>&gt;这是一个<span class="hljs-keyword">div</span>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-attr">[data-red]</span> &#123;<br>  <span class="hljs-attribute">color</span>: white;<br>  <span class="hljs-attribute">background</span>: green;<br>&#125;<br><br><span class="hljs-selector-attr">[data-red*=<span class="hljs-string">&quot;12&quot;</span>]</span> &#123;   <span class="hljs-comment">// 匹配只要属性值中有12的都可以</span><br>  <span class="hljs-attribute">color</span>: black;<br>  <span class="hljs-attribute">background</span>: yellowgreen;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-29-at-8.48.41-PM.png" srcset="/img/loading.gif" lazyload alt="data-attribute3"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/28/CSS-Media-Query/">
+                        <span class="hidden-mobile">CSS Media Query</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
