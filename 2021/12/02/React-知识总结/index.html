@@ -26,7 +26,7 @@
 <meta property="og:description" content="public 文件夹我常常会使用 npx create-react-app &#39;文件名&#39; 来创建一个 react 项目。 这个脚手架工具帮助我们生成的基本项目中 会有 public 文件夹。这个文件夹是什么有什么用？ 1234567public  |-favicon.ico  |-index.html  |-logoxx.png  |-...  |-mainifest.json  |">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-02T09:07:37.000Z">
-<meta property="article:modified_time" content="2021-12-02T10:29:44.000Z">
+<meta property="article:modified_time" content="2021-12-03T01:30:11.762Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      685 字
+      1.4k 字
     </span>
   
 
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      4 分钟
     </span>
   
 
@@ -264,6 +264,18 @@
 <p><code>public</code>文件夹里的<strong>图片、资源、字体等等内容</strong> 都是为 <code>public</code> 里面的<code>index.html</code>文件服务的<br><code>mainifest.json</code>是用来配置 <code>pwa</code> 的<br><code>robots.txt</code> 是想告诉搜索引擎如何来对待我们的项目(哪些内容可以访问，哪些内容不可以访问)</p>
 <h4 id="现在的-react-项目不再需要手动引入-React-了"><a href="#现在的-react-项目不再需要手动引入-React-了" class="headerlink" title="现在的 react 项目不再需要手动引入 React 了"></a>现在的 react 项目不再需要手动引入 React 了</h4><p>现在不需要手动引入 <code>React</code> 了即：<code>import React, &#123;...&#125; from &#39;react&#39;</code> –&gt; <code>import &#123;...&#125; from &#39;react&#39;</code> 不过前提是当前这个文件里没有用到 React 对象的一系列内容才行…</p>
 <p>我们的 jsx/tsx 文件是用的 babel 插件：<code>@babel/plugin-transform-react-jsx</code> 来转化成 js 代码的<br>新版本的<code>@babel/plugin-transform-react-jsx</code>新增了一些操作，让我们不必手动引入 <code>React </code>了</p>
+<h4 id="env-和-env-development-环境变量文件的使用"><a href="#env-和-env-development-环境变量文件的使用" class="headerlink" title=".env 和 .env.development 环境变量文件的使用"></a>.env 和 .env.development 环境变量文件的使用</h4><p><code>process</code> 是 <code>Node.js</code> 中的 一个<strong>全局变量</strong><br><code>process.env</code> 能够拿到当前项目运行环境的信息(开发环境 和 上线环境)</p>
+<p>我能想到的一个使用场景： 在开发和运行环境下不用自己手动更改 api。api 会根据当前环境自动更改内容</p>
+<p>一般这两个文件是放在 <code>src</code> 根目录下：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">src<br> |-<span class="hljs-string">...</span><br> |-<span class="hljs-string">.env</span>             <span class="hljs-string">//</span> 上线环境<br> |-<span class="hljs-string">.env.development</span> <span class="hljs-string">//</span> 开发环境<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/* .env */</span><br>REACT_APP_API_URL=http:<span class="hljs-regexp">//</span>online:<span class="hljs-number">3001</span>      <span class="hljs-regexp">//</span> REACT_APP_API_URL 变量名，自己任意取的  上线时的api：http:<span class="hljs-regexp">//</span>online:<span class="hljs-number">3001</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/* .env.development */</span><br>REACT_APP_API_URL=http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">3001</span>   <span class="hljs-regexp">//</span> REACT_APP_API_URL 变量名，这和.env的要一样<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* 某个src文件夹下的一个react 组件文件 */</span><br><span class="hljs-keyword">import</span> ...<br><br><span class="hljs-keyword">const</span> apiUrl = process.env.REACT_APP_API_URL;  <span class="hljs-comment">// 获取值(根据当前的运行环境(上线和开发)，值是不一样的)</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-function"><span class="hljs-title">SomeComponent</span>(<span class="hljs-params"></span>)</span> &#123;<br><br>  useEffect(<span class="hljs-function">() =&gt;</span> &#123;<br>    fetch(<span class="hljs-string">`<span class="hljs-subst">$&#123;apiUrl&#125;</span>`</span>)....<br>  &#125;, [...])<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="为什么在使用-map-函数的时候，列表值要写-key，且为何用-index-作为-key-是不好的？"><a href="#为什么在使用-map-函数的时候，列表值要写-key，且为何用-index-作为-key-是不好的？" class="headerlink" title="为什么在使用 map 函数的时候，列表值要写 key，且为何用 index 作为 key 是不好的？"></a>为什么在使用 map 函数的时候，列表值要写 key，且为何用 index 作为 key 是不好的？</h4><p><a target="_blank" rel="noopener" href="https://coding.imooc.com/lesson/482.html#mid=41840">https://coding.imooc.com/lesson/482.html#mid=41840</a></p>
 
             </div>
             <hr>
