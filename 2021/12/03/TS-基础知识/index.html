@@ -25,10 +25,13 @@
 <meta property="og:site_name" content="何阳阳阳的小屋">
 <meta property="og:description" content="TS 的类型number, string, boolean, 函数, array, any, void, object, tuple, enum, null, undefined, unknown, never number数字类型，包含小数、其他进制的数字： 12345let decimal: number &#x3D; 6;let hex: number &#x3D; 0xf00d;let binary: num">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-03-at-11.23.57-PM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-03-at-11.26.17-PM.png">
 <meta property="article:published_time" content="2021-12-03T02:55:41.000Z">
-<meta property="article:modified_time" content="2021-12-03T05:57:51.985Z">
+<meta property="article:modified_time" content="2021-12-03T15:45:19.251Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-03-at-11.23.57-PM.png">
   
   <title>TS 基础知识 - 何阳阳阳的小屋</title>
 
@@ -216,7 +219,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      3.7k 字
     </span>
   
 
@@ -225,7 +228,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10 分钟
+      12 分钟
     </span>
   
 
@@ -306,7 +309,23 @@
 <h4 id="d-ts"><a href="#d-ts" class="headerlink" title=".d.ts"></a>.d.ts</h4><p>JS 文件 + .d.ts 文件 === ts 文件。<br>.d.ts 一般是用于第三方库 <code>打补丁用的</code>。有些库为了方便更多用户使用没有直接用 ts 版本。但如果某些用户需要 ts 版本的这个库，可以下载该库的 ts 声明文件(前提是这个文件是别人已经写好的才行，写该库声明文件的人可以是原本库的作者或其他人)即 xxxx.d.ts 文件</p>
 <p>.d.ts 文件可以让 JS 文件继续维持自己 JS 文件的身份，而拥有 TS 的类型保护。</p>
 <p>一般我们写业务代码不会用到，但是点击类型跳转一般会跳转到 .d.ts 文件。</p>
-<h3 id="TS-泛型"><a href="#TS-泛型" class="headerlink" title="TS 泛型"></a>TS 泛型</h3>
+<h3 id="TS-泛型"><a href="#TS-泛型" class="headerlink" title="TS 泛型"></a>TS 泛型</h3><p>函数中泛型的书写位置：</p>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nim">箭头函数：<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">func</span> = &lt;V&gt;(...) =&gt; <span class="hljs-meta">&#123;...&#125;</span><br><br>普通函数：<br>function <span class="hljs-keyword">func</span>&lt;V&gt;(...) <span class="hljs-meta">&#123;...&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>泛型，先用占位符(自定义名字，一般用大写 T、V 表示)来占位。后用真实类型来替换占位符</p>
+<p>泛型不仅仅可以用于函数，还可以用在<code>interface</code>上。例如：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">interface</span> <span class="hljs-symbol">FormEvent</span>&lt;<span class="hljs-symbol">T</span> = <span class="hljs-symbol">Element</span>&gt; <span class="hljs-symbol">extends</span> <span class="hljs-symbol">SyntheticEvent</span>&lt;<span class="hljs-symbol">T</span>&gt; &#123;&#125;   <span class="hljs-comment">// 这里也可以看出，TS具备接口继承和参数默认值的能力</span><br></code></pre></td></tr></table></figure>
+
+<p>注意一个细节：一般在 react 项目中，我们会遇见一些标签事件，但是我们不好轻易找到这些事件它的参数类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;callback&#125;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-03-at-11.23.57-PM.png" srcset="/img/loading.gif" lazyload alt="找参数类型1"><br>我无法找到参数的类型，但下面的这种书写方式可以找到</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> &#123;&#125;&#125;&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-03-at-11.26.17-PM.png" srcset="/img/loading.gif" lazyload alt="找参数类型2"><br>我们可以发现：e 的类型为: <code>React.FormEvent&lt;HTMLFormElement&gt;</code></p>
+<h3 id="TS-是鸭子类型"><a href="#TS-是鸭子类型" class="headerlink" title="TS 是鸭子类型"></a>TS 是鸭子类型</h3><p>即只要类型相同就可以, 不管你接口名是不是一致… 我这话说得不太官方，可能有错！有空改改</p>
+<h3 id="TS-类型断言-as"><a href="#TS-类型断言-as" class="headerlink" title="TS 类型断言(as)"></a>TS 类型断言(as)</h3><p>… 有待补充</p>
+
             </div>
             <hr>
             <div>
@@ -325,6 +344,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/12/04/JWT-%E7%9F%A5%E8%AF%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JWT 知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
