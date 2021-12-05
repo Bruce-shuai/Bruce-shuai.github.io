@@ -28,8 +28,9 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-9.06.59-AM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-10.09.00-AM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-10.57.59-AM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-11.51.57-AM.png">
 <meta property="article:published_time" content="2021-12-04T00:55:58.000Z">
-<meta property="article:modified_time" content="2021-12-04T03:46:57.381Z">
+<meta property="article:modified_time" content="2021-12-04T08:21:26.803Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-9.06.59-AM.png">
@@ -220,7 +221,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2.6k 字
     </span>
   
 
@@ -229,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      8 分钟
     </span>
   
 
@@ -273,7 +274,7 @@
 <p>传统的用户登录方法 VS JWT 的用户登录方法<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-9.06.59-AM.png" srcset="/img/loading.gif" lazyload alt="session VS JWT"></p>
 <p>图表里可以看见是用户完成注册登录后 <code>Server</code> 端创建的 <code>JWT</code>，再返回给的客户端(把 <code>JWT</code> 全部传递给客户端, <code>JWT</code>里包含用户的全部信息)。而 <code>Server</code> 端创建的 <code>JWT</code> 是有 <code>Secret</code>(也只有 server 端会有 secret) 的。所以，如果你客户端或其他地方篡改 <code>JWT</code>。<code>Secret</code> 是会知道的(哈希算法)，下一次你把篡改的信息发送给服务端，服务端通过 <code>Secret</code> 就可以知道你是否篡改了信息，如果篡改了，这条 <code>JWT</code> 就无效了</p>
 <p>传统的方法，用户信息存储在 <code>server</code> 端。 而 <code>jwt</code> 是将信息存储在 <code>token</code> 里, 这也意味着将用户信息存储在 <code>client</code> 端,而 <code>server</code> 端不会记得任何用户信息，这样也就意味着一个 <code>jwt</code> 能够放在各种 <code>server</code> 端上使用</p>
-<p>注意：客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage</p>
+<p>注意：客户端收到服务器返回的 JWT –&gt; 放在 token 里面，token 可以储存在 Cookie 里面，也可以储存在 localStorage</p>
 <h3 id="为什么要使用-JWT"><a href="#为什么要使用-JWT" class="headerlink" title="为什么要使用 JWT"></a>为什么要使用 JWT</h3><p><a target="_blank" rel="noopener" href="https://jwt.io/">jwt 官网</a><br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-10.09.00-AM.png" srcset="/img/loading.gif" lazyload alt="JWT"></p>
 <p>上图的左边是加密后的 JWT(加密算法图中标出是:HS256) –&gt; 这将是从服务端发送到客户端以及从客户端发送给服务端的加密内容<br>上图的右边是解密后的 JWT：</p>
 <figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-built_in">HEADER</span>: 表示你用的是什么加密和解密算法,以及令牌：<span class="hljs-built_in">JWT</span>(jwt令牌统一写成JWT)<br>PAYLOAD:  表示你存储在<span class="hljs-built_in">token</span>里的所有用户信息  <span class="hljs-comment">/* 基础属性：sub: 类似用户id    name: 类似用户信息    iat: 签发时间*/</span><br>VERIFY SIGNATURE: 用于检验我们的<span class="hljs-built_in">token</span>信息是否在传回给server端之前就被修改 <span class="hljs-comment">/*这里使用了特别的加密算法 来加密HEADER和PAYLOAD, server也会通过secret来验证你的内容是否被篡改(secret只有服务器知道) */</span><br></code></pre></td></tr></table></figure>
@@ -285,6 +286,14 @@
 <p>好，如果你在 Bank 获得的 Session ID，你是无法通过此 Session ID，进入 Retirement 的！你需要登录 Retirement,获取从 Retirement 发送的 Session ID 才能进行系列授权操作</p>
 <p>如果你使用的是 JWT。当你的 jwt 中的 secret 发送给了 Bank 和 Retirement，之后你把你的 jwt(jwt 包含了你全部的用户信息)发送给这两个服务器，因为他们有你的 secret。所以能够验证你是否是该服务端里的用户以及所对应的用户权限有哪些</p>
 <p>无论有多少服务器，只要他们有你 jwt 的 secret(这是唯一的)，就能实现多服务器登录同一个用户</p>
+<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>token 的意思是“令牌”，是服务端生成的一串字符串，作为客户端进行请求的一个标识。</p>
+<p>当用户第一次登录后，服务器生成一个 token 并将此 token 返回给客户端，以后客户端只需带上这个 token 前来请求数据即可，无需再次带上用户名和密码。</p>
+<p><strong>注意，在实战中，如果要使用 jwt,则我们登录注册后，服务端会返回一个 token</strong><br>这个 token 就是我们要保存的 jwt 的数据了<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-12-04-at-11.51.57-AM.png" srcset="/img/loading.gif" lazyload alt="token"></p>
+<p>发送请求携带 token 的方法：这里用的 fetch</p>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs nim">fetch(&#x27;xxx&#x27;, &#123;<br>  <span class="hljs-keyword">method</span>: &#x27;xxx&#x27;,<br>  headers: &#123;<br>    <span class="hljs-type">Authorization</span>: token ? `<span class="hljs-type">Bearer</span> $&#123;token&#125;` : <span class="hljs-string">&quot;&quot;</span>, // 这里的token 是一个变量，值是server端获取来的<br>    ...<br>  &#125;,<br>  body: <span class="hljs-meta">&#123;...&#125;</span><br>&#125;).then(async (res) =&gt; &#123;<br>  ...<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="401-未授权"><a href="#401-未授权" class="headerlink" title="401 未授权"></a>401 未授权</h3><p>token 失效或未登录的时候，服务端就会返回 401</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript">fetch(<span class="hljs-string">&#x27;xxx&#x27;</span>, &#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;xxx&#x27;</span>,<br>  <span class="hljs-attr">headers</span>: &#123;<br>    <span class="hljs-attr">Authorization</span>: token ? <span class="hljs-string">`Bearer <span class="hljs-subst">$&#123;token&#125;</span>`</span> : <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-comment">// 这里的token 是一个变量，值是server端获取来的</span><br>    ...<br>  &#125;,<br>  <span class="hljs-attr">body</span>: &#123;...&#125;<br>&#125;).then(<span class="hljs-keyword">async</span> (res) =&gt; &#123;<br>    <span class="hljs-keyword">if</span> (res.status === <span class="hljs-number">401</span>) &#123;<br>      <span class="hljs-comment">// 401 是未登录或token失效的意思</span><br>      <span class="hljs-comment">// 设置一个退出登录的操作(方法)</span><br>      <span class="hljs-built_in">window</span>.location.reload(); <span class="hljs-comment">// 页面重新刷新</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;请重新登录&quot;</span> &#125;);<br>    &#125;<br>    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.json();<br>    <span class="hljs-keyword">if</span> (res.ok) &#123;<br>      <span class="hljs-keyword">return</span> data;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(data);<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -304,6 +313,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%B7%B1%E5%BA%A6%E4%B8%8E%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构与算法之深度与广度遍历</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
