@@ -18,15 +18,15 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="深度优先遍历 (不撞南墙不回头的“迷宫游戏”)“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索” 深度优先搜索的核心思想，是试图穷举所有的完整路径 深度优先搜索的本质 — 栈结构 二叉树的先序遍历正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树的先序遍">
+  <meta name="description" content="深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索” 深度优先搜索的核心思想，是试图穷举所有的完整路径 深度优先搜索的本质 — 栈结构 二叉树的先序遍历正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法之深度与广度遍历">
 <meta property="og:url" content="http://example.com/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%B7%B1%E5%BA%A6%E4%B8%8E%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="深度优先遍历 (不撞南墙不回头的“迷宫游戏”)“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索” 深度优先搜索的核心思想，是试图穷举所有的完整路径 深度优先搜索的本质 — 栈结构 二叉树的先序遍历正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树的先序遍">
+<meta property="og:description" content="深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索” 深度优先搜索的核心思想，是试图穷举所有的完整路径 深度优先搜索的本质 — 栈结构 二叉树的先序遍历正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-04T09:58:17.000Z">
-<meta property="article:modified_time" content="2021-12-04T10:12:53.551Z">
+<meta property="article:modified_time" content="2021-12-06T02:08:52.598Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      198 字
+      1.3k 字
     </span>
   
 
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      4 分钟
     </span>
   
 
@@ -257,10 +257,17 @@
             <h1 style="display: none">数据结构与算法之深度与广度遍历</h1>
             
             <div class="markdown-body">
-              <h3 id="深度优先遍历-不撞南墙不回头的“迷宫游戏”"><a href="#深度优先遍历-不撞南墙不回头的“迷宫游戏”" class="headerlink" title="深度优先遍历 (不撞南墙不回头的“迷宫游戏”)"></a>深度优先遍历 (不撞南墙不回头的“迷宫游戏”)</h3><p><strong>“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索”</strong></p>
+              <h3 id="深度优先遍历-不撞南墙不回头的“迷宫游戏”-DFS"><a href="#深度优先遍历-不撞南墙不回头的“迷宫游戏”-DFS" class="headerlink" title="深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS"></a>深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS</h3><p><strong>“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索”</strong></p>
 <p><strong>深度优先搜索的核心思想，是试图穷举所有的完整路径</strong></p>
 <p><strong>深度优先搜索的本质 — 栈结构</strong></p>
-<p>二叉树的先序遍历正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树的先序遍历的推广</p>
+<p>二叉树的<strong>先序遍历</strong>正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树的先序遍历的推广</p>
+<h3 id="广度优先搜索思想-BFS"><a href="#广度优先搜索思想-BFS" class="headerlink" title="广度优先搜索思想 BFS"></a>广度优先搜索思想 BFS</h3><p><strong>BFS 算法的实现过程，和队列有着密不可分的关系</strong><br><strong>广度优先和层序遍历是密不可分的</strong></p>
+<h4 id="二叉树的层序遍历-力扣-102"><a href="#二叉树的层序遍历-力扣-102" class="headerlink" title="二叉树的层序遍历 (力扣 102)"></a>二叉树的层序遍历 (力扣 102)</h4><p><strong>看到“层次”关键字，大家应该立刻想到“扫描”；想到“扫描”，就应该立刻想到 BFS</strong></p>
+<p>这招是自创的，命名逻辑正确(且只用一次循环)，但是力扣不给过…</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* 给结点设置新属性的方法 */</span><br>var levelOrder = <span class="hljs-built_in">function</span>(root) &#123;<br>    <span class="hljs-comment">// 层序遍历： 队列 和 while 的搭配</span><br>    <span class="hljs-keyword">const</span> queue = [];  <span class="hljs-comment">// queue 存放的是结点</span><br>    <span class="hljs-keyword">const</span> nums = [];<br><br>    <span class="hljs-comment">// 我给结点开辟个新的属性 表示层级</span><br>    root.level = <span class="hljs-number">0</span>;<br>    queue.<span class="hljs-built_in">push</span>(root);<br><br>    <span class="hljs-keyword">while</span>(queue.length) &#123;<br>        <span class="hljs-keyword">const</span> top = queue[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">if</span> (top.left) &#123;<br>            top.left.level = top.level + <span class="hljs-number">1</span>;<br>            queue.<span class="hljs-built_in">push</span>(top.left);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (top.right) &#123;<br>            top.right.level = top.level + <span class="hljs-number">1</span>;<br>            queue.<span class="hljs-built_in">push</span>(top.right);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!nums[queue[<span class="hljs-number">0</span>].level]) &#123;<br>            nums[queue[<span class="hljs-number">0</span>].level] = []<br>        &#125;<br>        nums[queue[<span class="hljs-number">0</span>].level].<span class="hljs-built_in">push</span>(queue[<span class="hljs-number">0</span>].val);<br>        queue.<span class="hljs-built_in">shift</span>();<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>传统解法… 感觉时间复杂度还要高很多…</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp">var levelOrder = <span class="hljs-built_in">function</span>(root) &#123;<br>    <span class="hljs-comment">// 层序遍历： 队列 和 while 的搭配</span><br>    <span class="hljs-keyword">const</span> nums = [];<br>    <span class="hljs-keyword">if</span> (!root) &#123;<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>    <span class="hljs-keyword">const</span> queue = [];  <span class="hljs-comment">// queue 存放的是结点</span><br>    queue.<span class="hljs-built_in">push</span>(root);<br><br>    <span class="hljs-keyword">while</span> (queue.length) &#123;<br>        <span class="hljs-keyword">const</span> temp = [];    <span class="hljs-comment">// 来一个临时数组</span><br>        let len = queue.length;<br>        <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            <span class="hljs-keyword">const</span> node = queue[<span class="hljs-number">0</span>]<br>            temp.<span class="hljs-built_in">push</span>(node.val);<br>            <span class="hljs-keyword">if</span> (node.left) queue.<span class="hljs-built_in">push</span>(node.left);<br>            <span class="hljs-keyword">if</span> (node.right) queue.<span class="hljs-built_in">push</span>(node.right);<br>            queue.<span class="hljs-built_in">shift</span>();<br>        &#125;<br>        nums.<span class="hljs-built_in">push</span>(temp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>

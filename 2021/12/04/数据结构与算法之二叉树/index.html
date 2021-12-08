@@ -26,7 +26,7 @@
 <meta property="og:description" content="树的基本概念树的层次计算规则：根结点所在的那一层记为第一层，其子结点所在的就是第二层，以此类推结点和树的“高度”计算规则：叶子结点高度记为 1，每向上一层高度就加 1，逐层向上累加至目标结点时，所得到的的值就是目标结点的高度。树中结点的最大高度，称为“树的高度”。度”的概念：一个结点开叉出去多少个子树，被记为结点的“度”“叶子结点”：叶子结点就是度为 0 的结点 二叉树 它可以没有根结点，作为一棵">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-04T10:12:49.000Z">
-<meta property="article:modified_time" content="2021-12-04T10:20:06.365Z">
+<meta property="article:modified_time" content="2021-12-07T15:28:53.420Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      372 字
+      1.8k 字
     </span>
   
 
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      6 分钟
     </span>
   
 
@@ -269,7 +269,37 @@
 <li>左侧子结点 (左子树根结点) 的引用</li>
 <li>右侧子结点 (右子树根结点) 的引用</li>
 </ul>
+<p>在定义二叉树<strong>构造函数</strong>时，我们需要把左侧子结点和右侧子结点都预置为空：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 二叉树结点的构造函数</span><br>function TreeNode(<span class="hljs-keyword">val</span>) &#123;<br>  <span class="hljs-keyword">this</span>.<span class="hljs-keyword">val</span> = <span class="hljs-keyword">val</span>;<br>  <span class="hljs-keyword">this</span>.left = <span class="hljs-keyword">this</span>.right =  <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h3 id="二叉树遍历-递归"><a href="#二叉树遍历-递归" class="headerlink" title="二叉树遍历(递归)"></a>二叉树遍历(递归)</h3><p><strong>对于二叉树的遍历 —&gt; 必须要达到当场直接默写的境界才行！！</strong></p>
+<p>遍历：</p>
+<ul>
+<li>递归遍历(先、中、后序遍历)</li>
+<li>迭代遍历(层次遍历)</li>
+</ul>
+<p>二叉树遍历： 左子树一定要优先于右子树遍历</p>
+<p>根结点 -&gt; 左子树 -&gt; 右子树 前序<br>左子树 -&gt; 根结点 -&gt; 右子树 中序<br>左子树 -&gt; 右子树 -&gt; 根结点 后序</p>
+<p><strong>编写一个递归函数之前，首先要明确两样东西</strong></p>
+<ul>
+<li>递归式</li>
+<li>递归边界</li>
+</ul>
+<h4 id="前序-先序-遍历"><a href="#前序-先序-遍历" class="headerlink" title="前序(先序)遍历"></a>前序(先序)遍历</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xquery">var preorderTraversal = <span class="hljs-keyword">function</span><span class="hljs-built_in">(root</span>) &#123;<br>    const nums = [];   // 这里应该有闭包  这里最好不要放在preorderTraversal外面，力扣机器识别不了。。。<br>    <span class="hljs-keyword">function</span> pre<span class="hljs-built_in">(root</span>) &#123;<br>        // 先要排除空节点<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">!root</span>) <span class="hljs-keyword">return</span> nums;<br>        nums.push<span class="hljs-built_in">(root</span>.val)<br>        pre<span class="hljs-built_in">(root</span>.left);<br>        pre<span class="hljs-built_in">(root</span>.right);<br>    &#125;<br>    pre<span class="hljs-built_in">(root</span>)<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xquery">var inorderTraversal = <span class="hljs-keyword">function</span><span class="hljs-built_in">(root</span>) &#123;<br>    // 前 中 后 都是一个套路<br>    const nums = [];<br><br>    <span class="hljs-keyword">function</span> inorder<span class="hljs-built_in">(root</span>) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">!root</span>) <span class="hljs-keyword">return</span> nums;<br>        inorder<span class="hljs-built_in">(root</span>.left);<br>        nums.push<span class="hljs-built_in">(root</span>.val);<br>        inorder<span class="hljs-built_in">(root</span>.right);<br>    &#125;<br><br>    inorder<span class="hljs-built_in">(root</span>)<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xquery">var postorderTraversal = <span class="hljs-keyword">function</span><span class="hljs-built_in">(root</span>) &#123;<br>    // 前 中 后都是一个套路<br>    const nums = [];<br><br>    <span class="hljs-keyword">function</span> postorder<span class="hljs-built_in">(root</span>) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">!root</span>) <span class="hljs-keyword">return</span> nums;<br><br>        postorder<span class="hljs-built_in">(root</span>.left);<br>        postorder<span class="hljs-built_in">(root</span>.right);<br>        nums.push<span class="hljs-built_in">(root</span>.val);<br>    &#125;<br>    postorder<span class="hljs-built_in">(root</span>);<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="二叉树遍历-迭代"><a href="#二叉树遍历-迭代" class="headerlink" title="二叉树遍历(迭代)"></a>二叉树遍历(迭代)</h3><h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><blockquote>
+<p>题目：给定一个二叉树，返回它的前序（先序）遍历序列</p>
+</blockquote>
+<p>做这道题的一个根本思路，就是通过合理地安排入栈和出栈的时机、使栈的出栈序列符合二叉树的前序遍历规则</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">var</span> preorderTraversal = function(root) &#123;<br>    <span class="hljs-keyword">const</span> nums = [];<br>    <span class="hljs-keyword">const</span> <span class="hljs-keyword">stack</span> = [];<br><br>    <span class="hljs-keyword">if</span> (!root) &#123;<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>    <span class="hljs-keyword">stack</span>.push(root);<br>    <span class="hljs-keyword">while</span>(<span class="hljs-keyword">stack</span>.length) &#123;<br>        <span class="hljs-keyword">const</span> node = <span class="hljs-keyword">stack</span>.pop();<br>        nums.push(node.val);<br>        <span class="hljs-comment">// 注意 入栈和出栈的逻辑</span><br>        <span class="hljs-keyword">if</span> (node.right) &#123;<br>            <span class="hljs-keyword">stack</span>.push(node.right);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (node.left) &#123;<br>            <span class="hljs-keyword">stack</span>.push(node.left);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="中序遍历-1"><a href="#中序遍历-1" class="headerlink" title="中序遍历"></a>中序遍历</h4><!-- 中序有点坑... -->
+
+<h4 id="后序遍历-1"><a href="#后序遍历-1" class="headerlink" title="后序遍历"></a>后序遍历</h4>
             </div>
             <hr>
             <div>

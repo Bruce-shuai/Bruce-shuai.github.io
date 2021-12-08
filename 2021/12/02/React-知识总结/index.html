@@ -26,7 +26,7 @@
 <meta property="og:description" content="public 文件夹我常常会使用 npx create-react-app &#39;文件名&#39; 来创建一个 react 项目。 这个脚手架工具帮助我们生成的基本项目中 会有 public 文件夹。这个文件夹是什么有什么用？ 1234567public  |-favicon.ico  |-index.html  |-logoxx.png  |-...  |-mainifest.json  |">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-02T09:07:37.000Z">
-<meta property="article:modified_time" content="2021-12-05T07:00:14.748Z">
+<meta property="article:modified_time" content="2021-12-07T06:13:43.794Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      2.2k 字
     </span>
   
 
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      7 分钟
     </span>
   
 
@@ -284,6 +284,9 @@
 
 <h4 id="注意，react-hooks-也是会受到闭包的影响的。毕竟这始终逃不出-react-本质是-js"><a href="#注意，react-hooks-也是会受到闭包的影响的。毕竟这始终逃不出-react-本质是-js" class="headerlink" title="注意，react hooks 也是会受到闭包的影响的。毕竟这始终逃不出 react 本质是 js"></a>注意，react hooks 也是会受到闭包的影响的。毕竟这始终逃不出 react 本质是 js</h4><p>特别是 useEffect 依赖项为 []的时候</p>
 <figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nim">useEffect(() =&gt; &#123;<br>  <span class="hljs-keyword">return</span> () =&gt; <span class="hljs-meta">&#123;...&#125;</span><br>&#125;, [])<br></code></pre></td></tr></table></figure>
+
+<h4 id="让-react-项目实现-url-的状态管理-让-url-能实时表示我们当前所看的内容"><a href="#让-react-项目实现-url-的状态管理-让-url-能实时表示我们当前所看的内容" class="headerlink" title="让 react 项目实现 url 的状态管理(让 url 能实时表示我们当前所看的内容)"></a>让 react 项目实现 url 的状态管理(让 url 能实时表示我们当前所看的内容)</h4><p>单页面开发应用的特点就是当我们在切换路由的时候，并不会重新加载文档，无论我们怎么切换路由，它们都永远是在同一个文档里的，切换路径的时候页面也不会进行刷新。所有的切换都是通过 js 来实现的(使用 vue 或 react 开发的应用大多都是单页面应用)</p>
+<p>对于单页面应用。<strong>url 的状态管理</strong>很多人都会去忽略…(非单页面应用，你点击任何内容，对应的 url 是会有对应参数的改变的，刷新页面，读取参数…) 自定义钩子 <code>useUrlQueryParam</code> 管理 URL 参数状态</p>
 
             </div>
             <hr>
