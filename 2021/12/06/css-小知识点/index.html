@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/截屏2021-12-07-上午10.15.24.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/截屏2021-12-07-上午10.17.56.png">
 <meta property="article:published_time" content="2021-12-06T14:53:45.000Z">
-<meta property="article:modified_time" content="2021-12-07T02:19:46.518Z">
+<meta property="article:modified_time" content="2021-12-10T07:23:11.321Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/屏幕录制2021-12-06-下午11.23.27.gif">
@@ -221,7 +221,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.2k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      7 分钟
     </span>
   
 
@@ -265,7 +265,7 @@
               <h4 id="box-sizing-boder-box"><a href="#box-sizing-boder-box" class="headerlink" title="box-sizing:boder-box"></a>box-sizing:boder-box</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">*,<br>*<span class="hljs-selector-pseudo">::before</span>,<br>*<span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">box-sizing</span>: border-box;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>上述操作是将所有元素，包括伪元素 都进行怪异盒模型操作(即我们设置的 <code>width</code> 或 <code>height</code> 等于盒子的 <code>content</code> + <code>padding</code> + <code>border</code> 的宽度)</p>
-<h4 id="top-0-left-0-right-0-bottom"><a href="#top-0-left-0-right-0-bottom" class="headerlink" title="top:0 left:0 right:0 bottom:"></a>top:0 left:0 right:0 bottom:</h4><p>在子绝父相中 如果子类这样操作,则表示子类覆盖父类的所有面积</p>
+<h4 id="top-0-left-0-right-0-bottom-0"><a href="#top-0-left-0-right-0-bottom-0" class="headerlink" title="top:0 left:0 right:0 bottom:0"></a>top:0 left:0 right:0 bottom:0</h4><p>在子绝父相中 如果子类这样操作,则表示子类覆盖父类的所有面积</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.test</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">background-color</span>: black;<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.test</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">transition</span>: background-color <span class="hljs-number">1s</span> ease-in-out;<br>&#125;<br><span class="hljs-selector-class">.test</span><span class="hljs-selector-pseudo">:hover</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
@@ -293,6 +293,11 @@
 
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/截屏2021-12-07-上午10.17.56.png" srcset="/img/loading.gif" lazyload width="100px"/>
 
+<h4 id="针对-svg-标签的颜色修改"><a href="#针对-svg-标签的颜色修改" class="headerlink" title="针对 svg 标签的颜色修改"></a>针对 svg 标签的颜色修改</h4><p>如果是<code>svg标签</code>，颜色修改属性是 <code>fill</code></p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">&lt;svg class=<span class="hljs-string">&quot;icon&quot;</span><span class="hljs-string">....</span>&gt;<span class="hljs-string">...</span>&lt;<span class="hljs-string">/svg</span>&gt;<br><br><span class="hljs-string">.icon</span> &#123;<br>  fill: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="top-0-right-0-bottom-0-left-0-可以用-inset-0-来代替"><a href="#top-0-right-0-bottom-0-left-0-可以用-inset-0-来代替" class="headerlink" title="top: 0 right: 0 bottom: 0 left: 0 可以用 inset: 0;来代替"></a>top: 0 right: 0 bottom: 0 left: 0 可以用 inset: 0;来代替</h4><h4 id="注意：例如-img、input、iframe-标签，是没有伪元素的-没有-before-after"><a href="#注意：例如-img、input、iframe-标签，是没有伪元素的-没有-before-after" class="headerlink" title="注意：例如 img、input、iframe 标签，是没有伪元素的(没有::before, ::after)"></a>注意：例如 img、input、iframe 标签，是没有伪元素的(没有::before, ::after)</h4><h4 id="margin、padding-的正负数搭配"><a href="#margin、padding-的正负数搭配" class="headerlink" title="margin、padding 的正负数搭配"></a>margin、padding 的正负数搭配</h4><p><a target="_blank" rel="noopener" href="https://codepen.io/bruce-shuai/pen/KKXgdLq">codepen</a></p>
+<h4 id="尽量减少自己手动设置一个元素的长宽，而是利用-100-max-width-flex-grid-等操作来灵活控制元素的大小"><a href="#尽量减少自己手动设置一个元素的长宽，而是利用-100-max-width-flex-grid-等操作来灵活控制元素的大小" class="headerlink" title="尽量减少自己手动设置一个元素的长宽，而是利用 100%, max-width, flex, grid 等操作来灵活控制元素的大小"></a>尽量减少自己手动设置一个元素的长宽，而是利用 100%, max-width, flex, grid 等操作来灵活控制元素的大小</h4><h4 id="对于使用-grid，-其实你可以专门弄个-css-类选择器-就叫做-grid-然后进行-grid-的配置。这样就方便其他元素来复用这个-grid-类选择器"><a href="#对于使用-grid，-其实你可以专门弄个-css-类选择器-就叫做-grid-然后进行-grid-的配置。这样就方便其他元素来复用这个-grid-类选择器" class="headerlink" title="对于使用 grid， 其实你可以专门弄个 css 类选择器 就叫做 grid 然后进行 grid 的配置。这样就方便其他元素来复用这个 .grid 类选择器"></a>对于使用 grid， 其实你可以专门弄个 css 类选择器 就叫做 grid 然后进行 grid 的配置。这样就方便其他元素来复用这个 .grid 类选择器</h4>
             </div>
             <hr>
             <div>
