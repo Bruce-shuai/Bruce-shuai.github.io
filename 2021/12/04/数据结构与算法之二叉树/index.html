@@ -26,7 +26,7 @@
 <meta property="og:description" content="树的基本概念树的层次计算规则：根结点所在的那一层记为第一层，其子结点所在的就是第二层，以此类推结点和树的“高度”计算规则：叶子结点高度记为 1，每向上一层高度就加 1，逐层向上累加至目标结点时，所得到的的值就是目标结点的高度。树中结点的最大高度，称为“树的高度”。度”的概念：一个结点开叉出去多少个子树，被记为结点的“度”“叶子结点”：叶子结点就是度为 0 的结点 二叉树 它可以没有根结点，作为一棵">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-04T10:12:49.000Z">
-<meta property="article:modified_time" content="2021-12-11T13:13:17.347Z">
+<meta property="article:modified_time" content="2021-12-12T13:21:18.110Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="面试之道">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.8k 字
+      5.3k 字
     </span>
   
 
@@ -226,7 +226,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15 分钟
+      16 分钟
     </span>
   
 
@@ -320,8 +320,14 @@
 <p>所以，此题可以利用中序遍历来反解出来…</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 注意这里的 高度平衡...</span><br>const sortedArrayToBST = <span class="hljs-keyword">function</span>(nums) &#123;<br>    <span class="hljs-comment">// 处理边界条件</span><br>    <span class="hljs-keyword">if</span>(!nums.length) &#123;<br>        return null<br>    &#125;<br><br>    <span class="hljs-comment">// root 结点是递归“提”起数组的结果</span><br>    const root = build<span class="hljs-constructor">BST(0, <span class="hljs-params">nums</span>.<span class="hljs-params">length</span>-1)</span><br><br>    <span class="hljs-comment">// 定义二叉树构建函数，入参是子序列的索引范围</span><br>    <span class="hljs-keyword">function</span> build<span class="hljs-constructor">BST(<span class="hljs-params">low</span>, <span class="hljs-params">high</span>)</span> &#123;<br>        <span class="hljs-comment">// 当 low &gt; high 时，意味着当前范围的数字已经被递归处理完全了</span><br>        <span class="hljs-keyword">if</span>(low &gt; high) &#123;<br>            return null<br>        &#125;<br>        <span class="hljs-comment">// 二分一下，取出当前子序列的中间元素</span><br>        const mid = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>floor(low + (high - low)/<span class="hljs-number">2</span>)<br>        <span class="hljs-comment">// 将中间元素的值作为当前子树的根结点值</span><br>        const cur = <span class="hljs-keyword">new</span> <span class="hljs-constructor">TreeNode(<span class="hljs-params">nums</span>[<span class="hljs-params">mid</span>])</span><br>        <span class="hljs-comment">// 递归构建左子树，范围二分为[low,mid)</span><br>        cur.left = build<span class="hljs-constructor">BST(<span class="hljs-params">low</span>,<span class="hljs-params">mid</span>-1)</span><br>        <span class="hljs-comment">// 递归构建左子树，范围二分为为(mid,high]</span><br>        cur.right = build<span class="hljs-constructor">BST(<span class="hljs-params">mid</span>+1, <span class="hljs-params">high</span>)</span><br>        <span class="hljs-comment">// 返回当前结点</span><br>        return cur<br>    &#125;<br>    <span class="hljs-comment">// 返回根结点</span><br>    return root<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>指的是任意结点的左右子树高度差绝对值都不大于 1 的二叉搜索树</p>
+<h3 id="平衡二叉树-AVL-Tree"><a href="#平衡二叉树-AVL-Tree" class="headerlink" title="平衡二叉树(AVL Tree)"></a>平衡二叉树(AVL Tree)</h3><p>指的是任意结点的左右子树高度差绝对值都不大于 1 的二叉搜索树<br>对于同一个遍历序列来说，平衡二叉树比非平衡二叉树的查找效率更高</p>
+<h4 id="判断是否为平衡二叉树"><a href="#判断是否为平衡二叉树" class="headerlink" title="判断是否为平衡二叉树"></a>判断是否为平衡二叉树</h4><blockquote>
+<p>题目(力扣 110)给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+</blockquote>
+<p><strong>平衡二叉树是任意结点的左右子树高度差绝对值都不大于 1 的二叉搜索树</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> isBalanced = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-comment">// 又是递归... 毕竟在遍历...</span><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">root</span>) </span>&#123;<br>        <span class="hljs-comment">// 返回的是高度，最底层是 0</span><br>        <span class="hljs-keyword">if</span> (!root || !flag) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">const</span> left = dfs(root.left);<br>        <span class="hljs-keyword">const</span> right = dfs(root.right);<br><br>        <span class="hljs-comment">// 同层相减</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.abs(left - right) &gt; <span class="hljs-number">1</span>) &#123;<br>            flag = <span class="hljs-literal">false</span>;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(left, right) + <span class="hljs-number">1</span>;<br>    &#125;<br>    dfs(root);<br>    <span class="hljs-keyword">return</span> flag;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
+<h3 id="堆结构"><a href="#堆结构" class="headerlink" title="堆结构"></a>堆结构</h3>
             </div>
             <hr>
             <div>

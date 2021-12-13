@@ -18,15 +18,15 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="手写 call、apply、bind手写 promise手写 防抖和节流数组扁平化、对象扁平化数组扁平化把多维数组转化成一维数组(降维) 1[1,2,[3,4,5,[6,7,8]]] &#x3D;&gt; [1,2,3,4,5,6,7,8]  使用 ES6 方法 flat12const testArray &#x3D; [1, [2, [3, [4, [5, [6, [7, [[[[[[8, [&amp;#x27;ha&amp;#x">
+  <meta name="description" content="手写 call、apply、bind12345678910call 方法的原理：var me &#x3D; &amp;#123;  name: &amp;#x27;HeYang&amp;#x27;&amp;#125;function showName() &amp;#123;  console.log(this.name)   &#x2F;&#x2F; 被call一改，指向了me&amp;#125;showName.call(me) &#x2F;&#x2F; HeYang  call 是可以被">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端面试之道 手写代码">
 <meta property="og:url" content="http://example.com/2021/12/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="手写 call、apply、bind手写 promise手写 防抖和节流数组扁平化、对象扁平化数组扁平化把多维数组转化成一维数组(降维) 1[1,2,[3,4,5,[6,7,8]]] &#x3D;&gt; [1,2,3,4,5,6,7,8]  使用 ES6 方法 flat12const testArray &#x3D; [1, [2, [3, [4, [5, [6, [7, [[[[[[8, [&amp;#x27;ha&amp;#x">
+<meta property="og:description" content="手写 call、apply、bind12345678910call 方法的原理：var me &#x3D; &amp;#123;  name: &amp;#x27;HeYang&amp;#x27;&amp;#125;function showName() &amp;#123;  console.log(this.name)   &#x2F;&#x2F; 被call一改，指向了me&amp;#125;showName.call(me) &#x2F;&#x2F; HeYang  call 是可以被">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-09T05:49:10.000Z">
-<meta property="article:modified_time" content="2021-12-11T13:12:58.393Z">
+<meta property="article:modified_time" content="2021-12-12T07:01:54.719Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="面试之道">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      2.4k 字
     </span>
   
 
@@ -226,7 +226,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      7 分钟
     </span>
   
 
@@ -258,7 +258,16 @@
             <h1 style="display: none">前端面试之道 手写代码</h1>
             
             <div class="markdown-body">
-              <h3 id="手写-call、apply、bind"><a href="#手写-call、apply、bind" class="headerlink" title="手写 call、apply、bind"></a>手写 call、apply、bind</h3><h3 id="手写-promise"><a href="#手写-promise" class="headerlink" title="手写 promise"></a>手写 promise</h3><h3 id="手写-防抖和节流"><a href="#手写-防抖和节流" class="headerlink" title="手写 防抖和节流"></a>手写 防抖和节流</h3><h3 id="数组扁平化、对象扁平化"><a href="#数组扁平化、对象扁平化" class="headerlink" title="数组扁平化、对象扁平化"></a>数组扁平化、对象扁平化</h3><h4 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h4><p>把多维数组转化成一维数组(降维)</p>
+              <h3 id="手写-call、apply、bind"><a href="#手写-call、apply、bind" class="headerlink" title="手写 call、apply、bind"></a>手写 call、apply、bind</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">call</span> 方法的原理：<br>var <span class="hljs-keyword">me</span> = &#123;<br>  name: <span class="hljs-string">&#x27;HeYang&#x27;</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showName</span><span class="hljs-params">()</span> &#123;</span><br>  console.<span class="hljs-built_in">log</span>(this.name)   // 被<span class="hljs-keyword">call</span>一改，指向了<span class="hljs-keyword">me</span><br>&#125;<br><br>showName.<span class="hljs-keyword">call</span>(<span class="hljs-keyword">me</span>) // HeYang<br></code></pre></td></tr></table></figure>
+
+<p>call 是可以被所有的函数继承的，所以 call 方法应该被定义在 Function.prototype 上<br>call 方法做了两件事：<br>改变 this 的指向，将 this 绑到第一个入参指定的的对象上去；<br>根据输入的参数，执行函数。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">/* 手写call */</span><br>Function.prototype.myCall = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj, <span class="hljs-rest_arg">...args</span>)</span> </span>&#123;  <span class="hljs-comment">// 这里的... 和 下面的... 用法是不一样的</span><br>    obj = obj || window <span class="hljs-comment">// 不传参数，则默认为window对象</span><br>    obj.self = <span class="hljs-keyword">this</span>;    <span class="hljs-comment">// 这里的this 指向的是 调用myCall方法的函数</span><br>    obj.self(...args);  <span class="hljs-comment">// 这里的...和上面的...效果不一样</span><br>    <span class="hljs-keyword">delete</span> obj.self;    <span class="hljs-comment">// 删除新增的属性 self</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/* 手写apply */</span><br>Function.prototype.myApply = <span class="hljs-keyword">function</span>(obj, args) &#123;  <span class="hljs-regexp">//</span> 这里的... 和 下面的... 用法是不一样的<br><br>    obj.self = this;   <span class="hljs-regexp">//</span> 这里的this 指向的是 调用myCall方法的函数<br>    obj.self(...args); <span class="hljs-regexp">//</span> 这里的...和上面的...效果不一样<br>    <span class="hljs-keyword">delete</span> obj.self;   <span class="hljs-regexp">//</span> 删除新增的属性 self<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/* 手写 bind */</span><br>... 待写<br></code></pre></td></tr></table></figure>
+
+<h3 id="手写-promise"><a href="#手写-promise" class="headerlink" title="手写 promise"></a>手写 promise</h3><h3 id="手写-防抖和节流"><a href="#手写-防抖和节流" class="headerlink" title="手写 防抖和节流"></a>手写 防抖和节流</h3><h3 id="数组扁平化、对象扁平化"><a href="#数组扁平化、对象扁平化" class="headerlink" title="数组扁平化、对象扁平化"></a>数组扁平化、对象扁平化</h3><h4 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h4><p>把多维数组转化成一维数组(降维)</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[1,2,<span class="hljs-comment">[3,4,5,<span class="hljs-comment">[6,7,8]</span>]</span>]</span> =&gt; <span class="hljs-comment">[1,2,3,4,5,6,7,8]</span><br></code></pre></td></tr></table></figure>
 
 <h5 id="使用-ES6-方法-flat"><a href="#使用-ES6-方法-flat" class="headerlink" title="使用 ES6 方法 flat"></a>使用 ES6 方法 flat</h5><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs prolog">const testArray = [<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [<span class="hljs-number">5</span>, [<span class="hljs-number">6</span>, [<span class="hljs-number">7</span>, [[[[[[<span class="hljs-number">8</span>, [<span class="hljs-string">&#x27;ha&#x27;</span>]]]]]]]]]]]]]];<br>const resultArray = testArray.flat(<span class="hljs-symbol">Infinity</span>);<br></code></pre></td></tr></table></figure>
