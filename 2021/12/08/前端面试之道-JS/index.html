@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-12-%E4%B8%8B%E5%8D%884.10.11.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-12-%E4%B8%8B%E5%8D%884.26.33.png">
 <meta property="article:published_time" content="2021-12-08T11:41:52.000Z">
-<meta property="article:modified_time" content="2021-12-12T09:20:12.455Z">
+<meta property="article:modified_time" content="2021-12-15T16:03:18.492Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="面试之道">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,7 +220,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      12k 字
+      13k 字
     </span>
   
 
@@ -229,7 +229,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      38 分钟
+      42 分钟
     </span>
   
 
@@ -444,6 +444,35 @@
 
 <p>这是一道坑爹题…</p>
 <h4 id="自有属性与原型继承属性"><a href="#自有属性与原型继承属性" class="headerlink" title="自有属性与原型继承属性"></a>自有属性与原型继承属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">A</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;a&#x27;</span><br>  <span class="hljs-built_in">this</span>.color = [<span class="hljs-string">&#x27;green&#x27;</span>, <span class="hljs-string">&#x27;yellow&#x27;</span>]<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">B</span>(<span class="hljs-params"></span>) </span>&#123;<br><br>&#125;<br>B.prototype = <span class="hljs-keyword">new</span> A()<br><span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> B()<br><span class="hljs-keyword">var</span> b2 = <span class="hljs-keyword">new</span> B()<br><br>b1.name = <span class="hljs-string">&#x27;change&#x27;</span><br>b1.color.push(<span class="hljs-string">&#x27;black&#x27;</span>)<br><br><span class="hljs-built_in">console</span>.log(b2.name) <span class="hljs-comment">// &#x27;a&#x27;</span><br><span class="hljs-built_in">console</span>.log(b2.color)<br></code></pre></td></tr></table></figure>
+
+<h2 id="变量提升与暂时性死区"><a href="#变量提升与暂时性死区" class="headerlink" title="变量提升与暂时性死区"></a>变量提升与暂时性死区</h2><h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>在 “var” 时代，有一个特别的现象：<strong>不管我们的变量声明是写在程序的哪个角落，最后都会被提到作用域的顶端去</strong></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart">console.log(<span class="hljs-built_in">num</span>);   <span class="hljs-comment">// undefined</span><br><span class="hljs-keyword">var</span> <span class="hljs-built_in">num</span> = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>// 等价于下面的代码</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-built_in">var</span> <span class="hljs-built_in">num</span>;<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">num</span>);<br><span class="hljs-built_in">num</span> = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>在函数作用域里，也会有类似的现象发生</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNum</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(num)<br>  <span class="hljs-keyword">var</span> num = <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNum</span>() &#123;</span><br>  var <span class="hljs-built_in">num</span><br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">num</span>)<br>  <span class="hljs-built_in">num</span> = <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="变量提升的原理"><a href="#变量提升的原理" class="headerlink" title="变量提升的原理"></a>变量提升的原理</h3><p>跟 js 编译过程有关<br>所有的 JS 代码片段在执行之前都会被编译，只是这个编译的过程非常短暂（可能就只有几微妙、或者更短的时间），紧接着这段代码就会被执行<br>正是在这个短暂的编译阶段里，JS 引擎会搜集所有的变量声明，并且提前让声明生效。至于剩下的语句，则需要等到执行阶段、等到执行到具体的某一句的时候才会生效</p>
+<h3 id="被禁用的变量提升"><a href="#被禁用的变量提升" class="headerlink" title="被禁用的变量提升"></a>被禁用的变量提升</h3><blockquote>
+<p>用 let 和 const 的变量提升仅仅是声明提升，var 的变量提升是声明提升加初始化提升</p>
+</blockquote>
+<blockquote>
+<p>const 声明的变量，必须在声明同时被初始化，否则会报错;const 声明的变量，在赋值过后，值不可以再被更改。否则同样会报错</p>
+</blockquote>
+<h3 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">var</span> me = <span class="hljs-string">&#x27;xiuyan&#x27;</span>;<br><br>&#123;<br>	me = <span class="hljs-string">&#x27;bear&#x27;</span>;   <span class="hljs-comment">// 这里是暂时性死区</span><br>	<span class="hljs-keyword">let</span> me;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码报错！</p>
+<h3 id="细小知识点"><a href="#细小知识点" class="headerlink" title="细小知识点"></a>细小知识点</h3><h4 id="typeof-操作符的用法"><a href="#typeof-操作符的用法" class="headerlink" title="typeof 操作符的用法"></a>typeof 操作符的用法</h4><p><code>typeof</code>用来返回一个值的变量类型，对于不同类型的变量其返回值如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span> === <span class="hljs-string">&#x27;undefined&#x27;</span>;<br><span class="hljs-keyword">typeof</span> <span class="hljs-literal">true</span> === <span class="hljs-string">&#x27;boolean&#x27;</span>;<br><span class="hljs-keyword">typeof</span> <span class="hljs-number">89</span> === <span class="hljs-string">&#x27;number&#x27;</span>;<br><span class="hljs-keyword">typeof</span> <span class="hljs-string">&#x27;Hey&#x27;</span> === <span class="hljs-string">&#x27;string&#x27;</span>;<br><span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Symbol</span>() === <span class="hljs-string">&#x27;symbol&#x27;</span>;<br><span class="hljs-keyword">typeof</span> <span class="hljs-built_in">BigInt</span>(<span class="hljs-number">1</span>) === <span class="hljs-string">&#x27;bigint&#x27;</span>;<br><span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&#x27;abc&#x27;</span>) === <span class="hljs-string">&#x27;object&#x27;</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span> === <span class="hljs-string">&#x27;object&#x27;</span>   <span class="hljs-comment">// 这里要注意</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;&#125; === <span class="hljs-string">&#x27;function&#x27;</span><br><span class="hljs-keyword">typeof</span> &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Jack&#x27;</span>&#125; === <span class="hljs-string">&#x27;object&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>注意 typeof 是用来返回值的类型，而不是返回<strong>变量的类型</strong>因为 JavaScript 中的变量是没有类型的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> a) <span class="hljs-comment">// &#x27;number&#x27;</span><br>a = <span class="hljs-string">&#x27;1&#x27;</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> a) <span class="hljs-comment">// &#x27;string&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>a 变量是没有类型的，但是赋给 a 变量的值确是有类型的</p>
 
             </div>
             <hr>
