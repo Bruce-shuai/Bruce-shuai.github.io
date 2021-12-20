@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="后端返回的数据过多，前端只用到其中一部分。或者后端返回的数据过少，前端需要发送多个请求来组合数据，api 分散，不容易统一管理工具。GraphQL 是一种新的 api 查询语言，前端可以自己决定需要那些数据，只需要发送一次请求就能获得所有的数据。访问集中提供的 api:http:&#x2F;&#x2F;xxx&#x2F;graphql。前后端独立，后端的改动基本不影响前端的接口 GraphQL 的结构和 js 的对象结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraphQL">
+<meta property="og:url" content="http://example.com/2021/12/17/GraphQL/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="后端返回的数据过多，前端只用到其中一部分。或者后端返回的数据过少，前端需要发送多个请求来组合数据，api 分散，不容易统一管理工具。GraphQL 是一种新的 api 查询语言，前端可以自己决定需要那些数据，只需要发送一次请求就能获得所有的数据。访问集中提供的 api:http:&#x2F;&#x2F;xxx&#x2F;graphql。前后端独立，后端的改动基本不影响前端的接口 GraphQL 的结构和 js 的对象结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.56.16.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.58.17.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.12.10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.13.23.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.21.10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62021-12-17-%E4%B8%8B%E5%8D%884.15.35.gif">
+<meta property="article:published_time" content="2021-12-17T02:50:32.000Z">
+<meta property="article:modified_time" content="2021-12-17T08:37:21.515Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta property="article:tag" content="api">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.56.16.png">
+  
+  <title>GraphQL - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="GraphQL">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-17 10:50" pubdate>
+        2021年12月17日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">GraphQL</h1>
+            
+            <div class="markdown-body">
+              <!-- 后端的GraphQL 先不学...先把我当前重点东西弄了来... -->
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.56.16.png" srcset="/img/loading.gif" lazyload alt="RESTful 的弊端1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.58.17.png" srcset="/img/loading.gif" lazyload alt="RESTful 的弊端2"></p>
+<p>后端返回的数据过多，前端只用到其中一部分。或者后端返回的数据过少，前端需要发送多个请求来组合数据，api 分散，不容易统一管理工具。<br>GraphQL 是一种新的 api 查询语言，前端可以自己决定需要那些数据，只需要发送一次请求就能获得所有的数据。访问集中提供的 api:<code>http://xxx/graphql</code>。前后端独立，后端的改动基本不影响前端的接口</p>
+<p>GraphQL 的结构和 js 的对象结构很像。数据是按照类型组织的,类型中的数据都是强类型，可以是：String、Int、Float、Boolean、ID、数组、自定义类型</p>
+<h3 id="前端使用-GraphQL"><a href="#前端使用-GraphQL" class="headerlink" title="前端使用 GraphQL"></a>前端使用 GraphQL</h3><p>一个免费的 graphql 的 api 的网站：<a target="_blank" rel="noopener" href="https://countries.trevorblades.com/">https://countries.trevorblades.com/</a></p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">|-index.html</span><br><span class="hljs-string">|-script.js</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br>/* index.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;continent-select&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">selected</span> <span class="hljs-attr">hidden</span>&gt;</span>Select a Continent<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>  // 这里的hidden写法是挺讲究的。可以去掉看看效果<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;countries-list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br><br>fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  method: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-selector-tag">body</span>: JSON<span class="hljs-selector-class">.stringify</span>(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          name<br>          <span class="hljs-selector-tag">code</span><br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br><span class="hljs-selector-class">.then</span>(res =&gt; res<span class="hljs-selector-class">.json</span>())<br><span class="hljs-selector-class">.then</span>(data =&gt; &#123;<br>  console<span class="hljs-selector-class">.log</span>(data<span class="hljs-selector-class">.data</span>.continent)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.12.10.png" srcset="/img/loading.gif" lazyload alt="打印结果1"></p>
+<p>如果去掉 <code>code</code></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br><br>fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  method: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-selector-tag">body</span>: JSON<span class="hljs-selector-class">.stringify</span>(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          name<br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br><span class="hljs-selector-class">.then</span>(res =&gt; res<span class="hljs-selector-class">.json</span>())<br><span class="hljs-selector-class">.then</span>(data =&gt; &#123;<br>  console<span class="hljs-selector-class">.log</span>(data<span class="hljs-selector-class">.data</span>.continent)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.13.23.png" srcset="/img/loading.gif" lazyload alt="打印结果2"></p>
+<p>现在结合 <code>select</code> 标签</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/* script.js */</span><br>const continentSelect = document.querySelector(<span class="hljs-string">&#x27;#continent-select&#x27;</span>);<br><br><span class="hljs-keyword">fetch</span>(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  <span class="hljs-keyword">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  body: <span class="hljs-type">JSON</span>.stringify(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          <span class="hljs-type">name</span><br>          code<br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br>.<span class="hljs-keyword">then</span>(res =&gt; res.json())<br>.<span class="hljs-keyword">then</span>(data =&gt; &#123;<br>  data.data.continents.<span class="hljs-keyword">forEach</span>(continent =&gt; &#123;<br>    const <span class="hljs-keyword">option</span> = document.createElement(<span class="hljs-string">&#x27;option&#x27;</span>);<br>    <span class="hljs-keyword">option</span>.<span class="hljs-keyword">value</span> = continent.code;<br>    <span class="hljs-keyword">option</span>.innerText = continent.name;<br>    continentSelect.append(<span class="hljs-keyword">option</span>);<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.21.10.png" srcset="/img/loading.gif" lazyload alt="select"></p>
+<h4 id="传递变量"><a href="#传递变量" class="headerlink" title="传递变量"></a>传递变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> continentSelect = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#continent-select&#x27;</span>);<br><span class="hljs-keyword">const</span> continentList = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#countries-list&#x27;</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">queryFetch</span>(<span class="hljs-params">query, variables</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  <span class="hljs-attr">headers</span>: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(&#123;<br>    <span class="hljs-attr">query</span>: query,<br>    <span class="hljs-attr">variables</span>: variables<br>  &#125;)<br>&#125;)<br>.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())<br>&#125;<br><br><br>continentSelect.addEventListener(<span class="hljs-string">&#x27;change&#x27;</span>,<span class="hljs-keyword">async</span> (e) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> continentCode = e.target.value;<br>  <span class="hljs-keyword">const</span> continentCountries = <span class="hljs-keyword">await</span> getContinentCountries(continentCode);<br>  continentList.innerText = <span class="hljs-string">&#x27;&#x27;</span>;  <span class="hljs-comment">// 每次使用先清零</span><br>  continentCountries.forEach(<span class="hljs-function"><span class="hljs-params">country</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);<br>    element.innerText = country.name;<br>    continentList.appendChild(element);<br>  &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getContinentCountries</span>(<span class="hljs-params">continentCode</span>) </span>&#123;<br>  <span class="hljs-comment">// 这里是带有变量的query查询</span><br>  <span class="hljs-keyword">return</span> queryFetch(<span class="hljs-string">`</span><br><span class="hljs-string">  query getCountries($code: ID!)&#123;</span><br><span class="hljs-string">    continent(code: $code) &#123;</span><br><span class="hljs-string">      countries &#123;</span><br><span class="hljs-string">        name</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">`</span>, &#123; <span class="hljs-attr">code</span>: continentCode &#125;).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.data.continent.countries)<br>&#125;<br><br><br>queryFetch(<span class="hljs-string">`</span><br><span class="hljs-string">  query &#123;</span><br><span class="hljs-string">    continents &#123;</span><br><span class="hljs-string">      name</span><br><span class="hljs-string">      code</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">`</span>)<br>.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;<br>  data.data.continents.forEach(<span class="hljs-function"><span class="hljs-params">continent</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> option = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;option&#x27;</span>);<br>    option.value = continent.code;<br>    option.innerText = continent.name;<br>    continentSelect.append(option);<br>  &#125;)<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62021-12-17-%E4%B8%8B%E5%8D%884.15.35.gif" srcset="/img/loading.gif" lazyload alt="效果图"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/api/">api</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/17/Pure-Functions/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Pure Functions</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/17/RESTful/">
+                        <span class="hidden-mobile">RESTful</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>

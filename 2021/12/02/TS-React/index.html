@@ -26,7 +26,7 @@
 <meta property="og:description" content="创建 TS + React 项目从开始就创建 TS + React创建一个 react + ts 的项目：npx create-react-app &#39;项目名&#39; --template typescript React 项目做了一段时间后，中途增添 TS… 这里有写操作 我还没写…把原项目中 src 文件夹下 后缀名为 .js&#x2F;.jsx 的改为 .ts&#x2F;.tsx因为你改为.ts&#x2F;.ts">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-02T08:50:19.000Z">
-<meta property="article:modified_time" content="2021-12-11T13:09:10.494Z">
+<meta property="article:modified_time" content="2021-12-18T11:22:02.753Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="基本功">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.6k 字
+      3.8k 字
     </span>
   
 
@@ -226,7 +226,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11 分钟
+      12 分钟
     </span>
   
 
@@ -286,6 +286,9 @@
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; Select &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;antd&#x27;</span>;  <span class="hljs-comment">// 导入antd里的Select组件</span><br><br><span class="hljs-comment">// React.ComponentProps 帮助我们获取一个组件的 props 类型声明</span><br><span class="hljs-keyword">type</span> SelectProps = React.ComponentProps&lt;<span class="hljs-keyword">typeof</span> Select&gt;<br><br><span class="hljs-comment">// Omit 是为了防止SelectProps类型中有些属性和IdSelectProps的属性发生冲突</span><br><span class="hljs-keyword">interface</span> IdSelectProps <span class="hljs-keyword">extends</span> Omit&lt;SelectProps, &#x27;value&#x27; | &#x27;onChange&#x27; | &#x27;option&#x27;&gt;&#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;<br>  onChange: <span class="hljs-function">(<span class="hljs-params">value?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;<br>  options?: &#123; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; id: <span class="hljs-built_in">number</span> &#125;[];<br>&#125;<br><br><span class="hljs-comment">// ... 后续代码一些正常</span><br></code></pre></td></tr></table></figure>
 
 <p>这样之后，我的 <code>IdSelect</code> 组件的类型属性就会丰富很多…</p>
+<h4 id="使用-tuple-的最大好处是可以给返回的元素任意拟定名字"><a href="#使用-tuple-的最大好处是可以给返回的元素任意拟定名字" class="headerlink" title="使用 tuple 的最大好处是可以给返回的元素任意拟定名字"></a>使用 tuple 的最大好处是可以给返回的元素任意拟定名字</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">例如: <span class="hljs-keyword">const</span> [a, setA] = useState(...);   <span class="hljs-comment">// 这里的a， setA 都是自己随意拟定的名字</span><br></code></pre></td></tr></table></figure>
+
+<p>但是，使用 tuple 的元素不要太多，tuple 超过了 3 个元素，其实还不如使用对象的键值对来表示数据</p>
 
             </div>
             <hr>
