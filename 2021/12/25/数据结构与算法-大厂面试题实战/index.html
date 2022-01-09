@@ -18,19 +18,19 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="动态规划是一种思想动态规划中每一个状态一定是由上一个状态推导出来的 总结一点规律：  一般稍微麻烦点的动态规划就是 dp[i][j] 这种二维数组 dp[i] 或者 dp[i][j] 就是最后要返回的结果 动态规划 for 循环 来遍历 一般要找的就是dp的递推公式  一般求最值问题 就少不了用方法： Math.max 进行比较 注意：动态规划很多时候需要使用二维数组 dp[i][j] 来解决问题">
+  <meta name="description" content="最长回文子串问题(力扣 5) 题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000  找关键词：字符串， 最长 –&gt; 动态规划问题—&gt; 这个动态规划问题 尽量学学人家代码随想录的思维 根据一棵树的前序遍历与中序遍历构造二叉树(二叉树类题目中的重复逻辑，90% 都是用递归来完成)两个核心规律：  前序序列头部的元素 p1 一定是当前二叉树的根结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法之动态规划">
-<meta property="og:url" content="http://example.com/2021/12/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.html">
+<meta property="og:title" content="数据结构与算法-大厂面试题实战">
+<meta property="og:url" content="http://example.com/2021/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="动态规划是一种思想动态规划中每一个状态一定是由上一个状态推导出来的 总结一点规律：  一般稍微麻烦点的动态规划就是 dp[i][j] 这种二维数组 dp[i] 或者 dp[i][j] 就是最后要返回的结果 动态规划 for 循环 来遍历 一般要找的就是dp的递推公式  一般求最值问题 就少不了用方法： Math.max 进行比较 注意：动态规划很多时候需要使用二维数组 dp[i][j] 来解决问题">
+<meta property="og:description" content="最长回文子串问题(力扣 5) 题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000  找关键词：字符串， 最长 –&gt; 动态规划问题—&gt; 这个动态规划问题 尽量学学人家代码随想录的思维 根据一棵树的前序遍历与中序遍历构造二叉树(二叉树类题目中的重复逻辑，90% 都是用递归来完成)两个核心规律：  前序序列头部的元素 p1 一定是当前二叉树的根结">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-13T02:29:21.000Z">
-<meta property="article:modified_time" content="2022-01-01T08:53:29.117Z">
+<meta property="article:published_time" content="2021-12-25T04:15:52.000Z">
+<meta property="article:modified_time" content="2021-12-27T04:34:46.424Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>数据结构与算法之动态规划 - 何阳阳阳的小屋</title>
+  <title>数据结构与算法-大厂面试题实战 - 何阳阳阳的小屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="数据结构与算法之动态规划">
+            <span class="h2" id="subtitle" title="数据结构与算法-大厂面试题实战">
               
             </span>
 
@@ -205,8 +205,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-13 10:29" pubdate>
-        2021年12月13日 上午
+      <time datetime="2021-12-25 12:15" pubdate>
+        2021年12月25日 中午
       </time>
     </span>
   
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      988 字
     </span>
   
 
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      3 分钟
     </span>
   
 
@@ -254,68 +254,24 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数据结构与算法之动态规划</h1>
+            <h1 style="display: none">数据结构与算法-大厂面试题实战</h1>
             
             <div class="markdown-body">
-              <p><strong>动态规划是一种思想</strong><br>动态规划中每一个状态一定是由上一个状态推导出来的</p>
-<p><strong>总结一点规律：</strong></p>
-<ol>
-<li>一般稍微麻烦点的动态规划就是 <code>dp[i][j]</code> 这种二维数组</li>
-<li><code>dp[i]</code> 或者 <code>dp[i][j]</code> 就是最后要返回的结果</li>
-<li>动态规划 for 循环 来遍历</li>
-<li>一般要找的就是dp的递推公式</li>
-</ol>
-<p>一般求最值问题 就少不了用方法： <code>Math.max</code> 进行比较</p>
-<p>注意：动态规划很多时候需要使用二维数组 <code>dp[i][j]</code> 来解决问题<br>一般<code>dp[i]</code> 或 <code>dp[i][j]</code>就是题目的结果</p>
-<p>动态规划五部曲</p>
-<ol>
-<li>确定dp数组 (dp table) 以及下标的含义</li>
-<li>确定递推公式(即状态转移公式)</li>
-<li>dp数组如何初始化</li>
-<li>确定遍历顺序</li>
-<li>举例推导dp数组</li>
-</ol>
-<h3 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h3><p>这道题目有两个关键的特征：</p>
+              <h3 id="最长回文子串问题-力扣-5"><a href="#最长回文子串问题-力扣-5" class="headerlink" title="最长回文子串问题(力扣 5)"></a>最长回文子串问题(力扣 5)</h3><blockquote>
+<p>题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000</p>
+</blockquote>
+<p><strong>找关键词：字符串， 最长</strong> –&gt; 动态规划问题<br>—&gt; 这个动态规划问题 尽量学学人家代码随想录的思维</p>
+<h3 id="根据一棵树的前序遍历与中序遍历构造二叉树"><a href="#根据一棵树的前序遍历与中序遍历构造二叉树" class="headerlink" title="根据一棵树的前序遍历与中序遍历构造二叉树"></a>根据一棵树的前序遍历与中序遍历构造二叉树</h3><p>(二叉树类题目中的重复逻辑，90% 都是用递归来完成)<br>两个核心规律：</p>
 <ul>
-<li>要求你给出达成某个目的的<strong>解法个数</strong></li>
-<li>不要求你给出每一种解法对应的具体路径<br>这样的问题，往往可以用动态规划进行求解</li>
+<li>前序序列头部的元素 p1 一定是<strong>当前</strong>二叉树的根结点</li>
+<li>中序遍历序列中，以<strong>当前</strong>二叉树的根结点为界划分出的两个子序列，分别对应着二叉树的左子树和二叉树的右子树</li>
 </ul>
-<p><strong>做动态规划题</strong></p>
-<ol>
-<li>先倒着分析问题。</li>
-</ol>
-<ul>
-<li>定位到问题的终点</li>
-<li>站在终点这个视角，思考后退的可能性</li>
-</ul>
-<ol start="2">
-<li>记忆化搜索来提效</li>
-</ol>
-<ul>
-<li>用空间换时间，也就是想办法记住之前已经求解过的结果</li>
-<li>在递归的过程中，不断保存已经计算出的结果，从而避免重复计算的手法，叫做<strong>记忆化搜索</strong></li>
-</ul>
-<ol start="3">
-<li>记忆化搜索转化为动态规划</li>
-</ol>
-<ul>
-<li>记忆化搜索可以理解为优化过后的递归。是一个自定向下的方法；动态规划，是一个<strong>自底向上</strong>的过程。它要求我们站在已知的角度，通过定位已知和未知之间的关系，一步一步向前推导，进而求解出未知的值</li>
-</ul>
-<p>和分治不同，动态规划划分出的子问题，往往是相互依赖、相互影响的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> climbStairs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-comment">// 初始化状态数组</span><br>  <span class="hljs-keyword">const</span> f = [];<br>  <span class="hljs-comment">// 初始化已知值</span><br>  f[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>  f[<span class="hljs-number">2</span>] = <span class="hljs-number">2</span>;<br>  <span class="hljs-comment">// 动态更新每一层楼梯对应的结果</span><br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">3</span>;i &lt;= n;i++)&#123;<br>      f[i] = f[i-<span class="hljs-number">2</span>] + f[i-<span class="hljs-number">1</span>];<br>  &#125;<br>  <span class="hljs-comment">// 返回目标值</span><br>  <span class="hljs-keyword">return</span> f[n];<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="复制带随机指针的链表"><a href="#复制带随机指针的链表" class="headerlink" title="复制带随机指针的链表"></a>复制带随机指针的链表</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
 
-<p>什么样的题应该用动态规划来做？我们要抓以下两个关键特征：</p>
-<ul>
-<li>最优子结构:它指的是问题的最优解包含着子问题的最优解——不管前面的决策如何，此后的状态必须是基于当前状态（由上次决策产生）的最优决策</li>
-<li>重叠子问题: 它指的是在递归的过程中，出现了反复计算的情况</li>
-</ul>
-<p><strong>树形思维模型将帮助我们更迅速地定位到状态转移关系，边界条件往往对应的就是已知子问题的解</strong></p>
-<p>递归思想明确树形思维模型：找到问题终点，思考倒退的姿势，往往可以帮助你更快速地明确状态间的关系<br>结合记忆化搜索，明确状态转移方程<br>递归代码转化为迭代表达（这一步不一定是必要的，1、2 本身为思维路径，而并非代码实现。若你成长为熟手，2 中分析出来的状态转移方程可以直接往循环里塞，根本不需要转换</p>
-<h3 id="如何优雅地找硬币"><a href="#如何优雅地找硬币" class="headerlink" title="如何优雅地找硬币"></a>如何优雅地找硬币</h3><p><strong>提示：最值问题是动态规划的常见对口题型，见到最值问题，应该想到动态规划</strong></p>
-<h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><h4 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h4><p>最值问题–&gt;要想到动态规划…</p>
-<p>先倒推，找状态转移关系</p>
-<p>找自变量和因变量 –&gt; 自变量是物品的索引 因变量是总价值</p>
-<h4 id="最长上升子序列模型"><a href="#最长上升子序列模型" class="headerlink" title="最长上升子序列模型"></a>最长上升子序列模型</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 因为只求长度，而不求具体有哪些元素。还是最值问题，故直接考虑动态规划问题</span><br><span class="hljs-keyword">var</span> lengthOfLIS = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> len = nums.length;<br>    <span class="hljs-keyword">const</span> db = <span class="hljs-built_in">Array</span>(len).fill(<span class="hljs-number">1</span>);<br>    result = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) &#123;<br>            <span class="hljs-keyword">if</span> (nums[j] &lt; nums[i]) db[i] = <span class="hljs-built_in">Math</span>.max(db[j] + <span class="hljs-number">1</span>, db[i])<br>        &#125;<br>        result = <span class="hljs-built_in">Math</span>.max(result, db[i])<br>    &#125;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="岛屿数量问题"><a href="#岛屿数量问题" class="headerlink" title="岛屿数量问题"></a>岛屿数量问题</h3><blockquote>
+<p>看到“所有” 必须想到“枚举”！看到“枚举”，必须回忆起 DFS 和 BFS</p>
+</blockquote>
+<h3 id="机器人扫地"><a href="#机器人扫地" class="headerlink" title="机器人扫地"></a>机器人扫地</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> cleanRoom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">robot</span>) </span>&#123;<br>  <span class="hljs-comment">// 初始化一个 set 结构来存储清扫过的坐标 set(无序、不重复)</span><br>  <span class="hljs-keyword">const</span> boxSet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();<br>  <span class="hljs-comment">// 初始化机器人的朝向</span><br>  <span class="hljs-keyword">let</span> dir = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 遍历 递归 dfs</span><br>  dfs(robot, boxSet, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">robot, boxSet, i, j, dir</span>) </span>&#123;<br>    <span class="hljs-comment">// 记录当前格子的坐标</span><br>    <span class="hljs-keyword">let</span> box = i + <span class="hljs-string">&#x27;+&#x27;</span> + j;<br>    <span class="hljs-comment">// 如果已经打扫过，则跳过</span><br>    <span class="hljs-keyword">if</span> (boxSet.has(box)) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">// 打扫当前这个格子</span><br>    robot.clean();<br>    <span class="hljs-comment">// 记住这个格子</span><br>    boxSet.add(box);<br><br>    <span class="hljs-comment">// 四个方向试探</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++) &#123;<br>      <span class="hljs-keyword">if</span> (robot.move()) &#123;<br>        <span class="hljs-keyword">let</span> x = i;<br>        <span class="hljs-keyword">let</span> y = j;<br><br>        <span class="hljs-comment">// 打扫方向</span><br>        <span class="hljs-keyword">switch</span>(dir) &#123;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>            x = i - <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向左</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">90</span>:<br>            y = j + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向上</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">180</span>:<br>            x = i + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向右</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">270</span>:<br>            y = j - <span class="hljs-number">1</span>;    <span class="hljs-comment">// 向下</span><br>          <span class="hljs-keyword">default</span>:<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        dfs(robot, boxSet, x, y, dir);<br>        <span class="hljs-comment">// 这时说明撞到墙了</span><br>        ...<br>      &#125;<br><br>      <span class="hljs-comment">// 转向</span><br>      robot.turnRight();<br>      dir += <span class="hljs-number">90</span>;<br>      dir %= <span class="hljs-number">360</span>;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -336,9 +292,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-%E5%BC%82%E6%AD%A5/">
+                      <a href="/2021/12/25/HTTP%E5%8D%8F%E8%AE%AE-%E9%9A%8F%E7%AC%94/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">前端面试之道-异步</span>
+                        <span class="hidden-mobile">HTTP协议-随笔</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -346,8 +302,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%8E%92%E5%BA%8F/">
-                        <span class="hidden-mobile">数据结构与算法之排序</span>
+                      <a href="/2021/12/25/post/">
+                        <span class="hidden-mobile">post</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

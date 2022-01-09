@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="透视 HTTP 协议 超链接文档系统三项关键技术：  URI: 即统一资源标识符，作为互联网上资源的唯一身份 HTML: 即超文本标记语言，描述超文本文档 HTTP：即超文本传输协议，用来传输超文本。  HTTP&#x2F;0.9HTTP&#x2F;0.9 是于1991年提出的 –&gt; 主要是用于学术交流 需求是非常简单的90 年代初期：结构简单，页面内容只可读。所以只允许 GET 请求 并且在响应请求之后立即关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议-随笔">
+<meta property="og:url" content="http://example.com/2021/12/25/HTTP%E5%8D%8F%E8%AE%AE-%E9%9A%8F%E7%AC%94/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="透视 HTTP 协议 超链接文档系统三项关键技术：  URI: 即统一资源标识符，作为互联网上资源的唯一身份 HTML: 即超文本标记语言，描述超文本文档 HTTP：即超文本传输协议，用来传输超文本。  HTTP&#x2F;0.9HTTP&#x2F;0.9 是于1991年提出的 –&gt; 主要是用于学术交流 需求是非常简单的90 年代初期：结构简单，页面内容只可读。所以只允许 GET 请求 并且在响应请求之后立即关">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-25T08:49:49.000Z">
+<meta property="article:modified_time" content="2022-01-02T05:08:03.019Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>HTTP协议-随笔 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HTTP协议-随笔">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-25 16:49" pubdate>
+        2021年12月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HTTP协议-随笔</h1>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://zq99299.github.io/note-book2/http-protocol/02/01.html#%E5%8F%B2%E5%89%8D%E6%97%B6%E6%9C%9F">透视 HTTP 协议</a></p>
+<p><strong>超链接文档系统三项关键技术：</strong></p>
+<ul>
+<li>URI: 即统一资源标识符，作为互联网上资源的<strong>唯一身份</strong></li>
+<li>HTML: 即超文本标记语言，描述超文本文档</li>
+<li>HTTP：即超文本传输协议，用来传输超文本。</li>
+</ul>
+<p><strong>HTTP/0.9</strong><br>HTTP/0.9 是于1991年提出的 –&gt; 主要是用于学术交流 需求是非常简单的<br>90 年代初期：结构简单，页面内容只可读。所以只允许 GET 请求 并且在响应请求之后立即关闭连接</p>
+<p><strong>HTTP/1.0</strong><br>1996 年正式发布</p>
+<ol>
+<li>增加了 HEAD\POST 等新方法</li>
+<li>增加了响应状态码，标记可能的错误原因</li>
+<li>引入了协议版本号概念</li>
+<li>引入了 HTTP Header（头部）的概念，让 HTTP 处理请求和响应更加灵活；</li>
+<li>传输的数据不再仅限于文本。</li>
+</ol>
+<p><strong>HTTP/1.1</strong><br>1999 年发布</p>
+<ol>
+<li>增加了 PUT、DELETE 等新的方法；</li>
+<li>增加了缓存管理和控制； (缓存管理是啥？ 控制是啥？)</li>
+<li>明确了连接管理，允许持久连接； (持久连接在HTTP/1.1中是默认开启的，所以你不需要专门为了持久连接去HTTP请求头设置信息，如果你不想要采用持久连接，可以在HTTP请求头中加上Connection:close 目前浏览器中对于同一个域名，默认允许同时建立6个TCP持久连接)</li>
+<li>允许响应数据分块（chunked），利于传输大文件； (何谓大文件？)</li>
+<li>强制要求 Host 头，让互联网主机托管成为可能(提供虚拟主机)(一台物理主机上绑定多个虚拟主机，每个虚拟主机都有自己的单独的域名，这些单独的域名都公用同一个IP地址，因此，HTTP/1.1的请求头中增加了Host字段，用来表示当前的域名地址，这样服务器就可以根据不同的Host值做不同的处理)。 </li>
+<li>引入了客户端Cookie机制</li>
+</ol>
+<p>使用CDN实现域名分片机制 这是什么鬼？！</p>
+<hr>
+<p>但是队头阻塞问题依旧严重<br>TCP的慢启动<br>同时开启了多条TCP连接，那么这些连接会竞争固定的带宽<br>HTTP/1.1队头阻塞</p>
+<h3 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h3><p>2015 年发布 –&gt; 以 google SPDY 协议为基础，综合其它多方的意见推出HTTP/2</p>
+<blockquote>
+<p>由于 <code>HTTPS</code> 已经在安全方面做的非常好了，所以 <code>HTTP/2</code> 的唯一目标就是改进性能</p>
+</blockquote>
+<h4 id="兼容HTTP-1"><a href="#兼容HTTP-1" class="headerlink" title="兼容HTTP/1"></a>兼容HTTP/1</h4><p>HTTP/2 对于 HTTP的兼容性非常强(降低了学习成本~) –&gt;<br>HTTP/2 把 HTTP 分解成了 <code>语义</code> 和 <code>语法</code> 这两个部分，语义层不做改动，与HTTP/1完全一致(例如：请求方法、URI、状态码、头字段等都没有变化)<br>甚至HTTP/2没有在URI里引入新的协议名，仍然用 <code>http</code> 表示明文协议,用 https 表示加密协议  –&gt; 让用户也是平滑过渡</p>
+<p>在语义保持稳定不变前提下，HTTP/2在语法层做了巨大的改变。<strong>完全更改了HTTP报文的传输格式</strong></p>
+<h4 id="HTTP-2的变化"><a href="#HTTP-2的变化" class="headerlink" title="HTTP/2的变化"></a>HTTP/2的变化</h4><h5 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h5><p>利用专门研发的算法：HPACK 进行报文 Header压缩 –&gt; 压缩率：50%~90%<br>因为在语义上 HTTP/2 和 HTTP/1是兼容的，所以报文还是有 <code>Header + Body</code> 构成的，但是在请求发送前，必须要用 <code>HPACK</code> 算法来压缩头部数据<br>HTTP/2 由于压缩头部，流量损耗会进一步降低</p>
+<h5 id="二进制格式"><a href="#二进制格式" class="headerlink" title="二进制格式"></a>二进制格式</h5><p>报文由纯文本格式 转变为 二进制格式：非常方便计算机的解析 精确度上升，速度上升<br>头部数据压缩之后，HTTP/2 就要把报文拆成二进制的帧准备发送<br>原来的Header + Body报文结构 –打散为–&gt;  多个 「二进制帧(HEADERS帧存放头数据、DATA帧存放实体数据)」 “碎片”</p>
+<h5 id="虚拟的「流」"><a href="#虚拟的「流」" class="headerlink" title="虚拟的「流」"></a>虚拟的「流」</h5><p>流是二进制帧的双向传输序列<br>以流(虚拟的)的方式传递 二进制帧<br>HTTP/2 可以在一个TCP连接上用 流 同时发送多个「碎片化」的消息 –&gt; 多路复用：多个往返通信都复用一个连接来处理<br>(注意：虽然帧是乱序收发，但是同一个流里都有相同的流ID)<br>流中的帧不是无序的，有着严格的先后顺序</p>
+<p>在流的层面上看，消息是一些有序的帧序列，而在连接的层面上看，消息却是乱序收发的帧。多个请求/响应之间没有了顺序关系，不需要排队等待，也就不会出现队头阻塞问题，降低了延迟，大幅度提高了连接的利用率</p>
+<h5 id="强化安全"><a href="#强化安全" class="headerlink" title="强化安全"></a>强化安全</h5><p>互联网上通常所能见到的 HTTP/2 都是使用 https 协议名，跑在 TLS 1.2+上面, 禁用了很多不安全的密码套件<br><code>h2</code>: 表示加密的HTTP/2<br><code>h2c</code>: 表示明文的 HTTP/2， 多出的字母<code>c</code>的意思是<code>clear text</code> </p>
+<hr>
+<p>HTTP/2 的制定充分考虑了现今互联网的现状：宽带、移动、不安全，在高度兼容 HTTP/1.1 的同时在性能改善方面做了很大努力，主要的特点有：</p>
+<ol>
+<li>二进制协议，不再是纯文本；(???)</li>
+<li>可发起多个请求，废弃了 1.1 里的管道；(何谓管道？)</li>
+<li>使用专用算法压缩头部，减少数据传输量；</li>
+<li>允许服务器主动向客户端推送数据；(WebSocket??)</li>
+<li>增强了安全性，「事实上」要求加密通信。</li>
+</ol>
+<p>HTTP/2.0 的普及率当前还很低…大多数网站是 HTTP/1.1</p>
+<p>HTTP/2 把 <strong>头部压缩</strong> 作为性能改进的一个重点</p>
+<p>HTTP/2 的消息不再是 <strong>Header+Body</strong> 的形式，而是分散为多个二进制帧</p>
+<p>HTTP/2 的大文件上传该怎么操作呢？</p>
+<blockquote>
+<p>把简单的系统变复杂，要比把复杂的系统变简单容易得多</p>
+</blockquote>
+<p>因为 HTTP/2 的侧重点是性能，所以是否迁移就需要在这方面进行评估。如果网站的流量很大，那么 HTTP/2 就可以带来可观的收益；反之，如果网站流量比较小，那么升级到 HTTP/2 就没有太多必要了，只要利用现有的 HTTP 再优化就足矣</p>
+<p>不过如果你是新建网站，我觉得完全可以跳过 HTTP/1、HTTPS，直接一步到位，上 HTTP/2，这样不仅可以获得性能提升，还免去了老旧的历史包袱，日后也不会再有迁移的烦恼</p>
+<p><strong>HTTP/2 流与多路复用</strong></p>
+<p><strong>HTTP/3</strong><br>2018 年发布 –&gt; google<br>在HTTP/2的基础上实现了质的飞跃，真正完美地解决了队头阻塞问题<br>基于UDP</p>
+<h4 id="HTTP-是什么？"><a href="#HTTP-是什么？" class="headerlink" title="HTTP 是什么？"></a>HTTP 是什么？</h4><p>HTTP: 超文本传输协议 –&gt; 拆成三个部分： 超文本、传输、协议<br>协议： 一种约束、规范，遵守协议则就要遵守这些约束和规范<br>传输： A 传给 B，B 传给 A。HTTP 是双向协议。 这里恰好可以用客户端、服务端的数据传送来说明<br>超文本：所谓超文本，字面意思就是超越文本的文本。它是文字、图片、视频、音乐等多媒体的混合体，并且它拥有超链接。能够从一个超文本跳跃到另一个超文本</p>
+<h4 id="Web-服务器"><a href="#Web-服务器" class="headerlink" title="Web 服务器"></a>Web 服务器</h4><p>Apache、 Nginx、IIS、Tomcat</p>
+<h4 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h4><p>TCP 属于传输层 IP 属于网际层</p>
+<p>HTTP 协议就运行在 TCP/IP 上</p>
+<h5 id="IP-协议"><a href="#IP-协议" class="headerlink" title="IP 协议"></a>IP 协议</h5><p>主要目的是解决寻址和路由问题，以及如何在两点间传送数据包</p>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>域名用 <code>.</code> 分割成多个单词，级别从左到右逐级升高<br>最右边的被称为 顶级域名</p>
+<h4 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h4><p>URI = URL + URN<br>URI 本质上是一个字符串，这个字符串的作用是 唯一地标记资源的位置或者名字</p>
+<h5 id="片段标识符-这个是牛爷爷"><a href="#片段标识符-这个是牛爷爷" class="headerlink" title="片段标识符 这个是牛爷爷"></a>片段标识符 这个是牛爷爷</h5><p>它是 URI 所定位的资源内部的一个 锚点 或者说是 标签，浏览器可以在获取资源后直接 跳转到它指示的位置。但片段标识符仅能由浏览器这样的客户端使用，服务器是看不到的。也就是说，浏览器永远不会把带 #fragment 的 URI 发送给服务器，服务器也永远不会用这种方式去处理资源的片段</p>
+<h5 id="URI的编码机制"><a href="#URI的编码机制" class="headerlink" title="URI的编码机制"></a>URI的编码机制</h5><h4 id="域名的解析"><a href="#域名的解析" class="headerlink" title="域名的解析"></a>域名的解析</h4><p>IP 地址必须转换成 MAC 地址才能访问主机一样，域名也必须要转换成 IP 地址，这个过程就是 域名解析</p>
+<h4 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h4><p>它的全称是 HTTP over SSL/TLS</p>
+<h4 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h4><p>计算机科学领域里的任何问题，都可以通过引入一个中间层来解决」（在这句话后面还可以再加上一句「如果一个中间层解决不了问题，那就再加一个中间层」</p>
+<h5 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h5><p>由 PHP、Java 等后台服务动态生成的页面属于「动态资源」，CDN 无法缓存，只能从目标网站获取 —&gt; 这里可以说明 PHP\Java做前端的局限性吗？</p>
+<h4 id="HTTP-特点"><a href="#HTTP-特点" class="headerlink" title="HTTP 特点"></a>HTTP 特点</h4><p>’</p>
+<h4 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h4><p>只有同时具备 机密性、完整性、身份认证、不可否认 这四个特性，通信双方的利益才能保障</p>
+<h6 id="HTTPS-1"><a href="#HTTPS-1" class="headerlink" title="HTTPS"></a>HTTPS</h6><p>HTTPS 本身并没有什么惊世骇俗的本事，全是靠着后面的 SSL/TLS 撑腰</p>
+<h5 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h5><h5 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h5><p>对称加密看上去好像完美地实现了机密性，但其中有一个很大的问题：如何把密钥安全地传递给对方 ，术语叫 密钥交换</p>
+<p>公钥和私钥有个特别的 单向 性，虽然都可以用来加密解密，但 公钥加密后只能用私钥解密 ，反过来，私钥加密后也只能用公钥解密</p>
+<h5 id="混合加密"><a href="#混合加密" class="headerlink" title="混合加密"></a>混合加密</h5><h4 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h4>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/25/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浏览器工作原理与实践</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E6%88%98/">
+                        <span class="hidden-mobile">数据结构与算法-大厂面试题实战</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
