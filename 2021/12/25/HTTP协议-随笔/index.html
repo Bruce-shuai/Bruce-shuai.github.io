@@ -18,17 +18,19 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="透视 HTTP 协议 超链接文档系统三项关键技术：  URI: 即统一资源标识符，作为互联网上资源的唯一身份 HTML: 即超文本标记语言，描述超文本文档 HTTP：即超文本传输协议，用来传输超文本。  HTTP&#x2F;0.9HTTP&#x2F;0.9 是于1991年提出的 –&gt; 主要是用于学术交流 需求是非常简单的90 年代初期：结构简单，页面内容只可读。所以只允许 GET 请求 并且在响应请求之后立即关">
+  <meta name="description" content="透视 HTTP 协议 超链接文档系统三项关键技术：  URI: 即统一资源标识符，作为互联网上资源的唯一身份 HTML: 即超文本标记语言，描述超文本文档 HTTP：即超文本传输协议，用来传输超文本。   URI 和 URL的区别？  互联网初期20世纪60年代，美国国防部高等研究生计划署(ARPA)建立了ARPA网，被认为是如今互联网的始祖 HTTP&#x2F;0.9HTTP&#x2F;0.9 是于1991年提出的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP协议-随笔">
 <meta property="og:url" content="http://example.com/2021/12/25/HTTP%E5%8D%8F%E8%AE%AE-%E9%9A%8F%E7%AC%94/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="透视 HTTP 协议 超链接文档系统三项关键技术：  URI: 即统一资源标识符，作为互联网上资源的唯一身份 HTML: 即超文本标记语言，描述超文本文档 HTTP：即超文本传输协议，用来传输超文本。  HTTP&#x2F;0.9HTTP&#x2F;0.9 是于1991年提出的 –&gt; 主要是用于学术交流 需求是非常简单的90 年代初期：结构简单，页面内容只可读。所以只允许 GET 请求 并且在响应请求之后立即关">
+<meta property="og:description" content="透视 HTTP 协议 超链接文档系统三项关键技术：  URI: 即统一资源标识符，作为互联网上资源的唯一身份 HTML: 即超文本标记语言，描述超文本文档 HTTP：即超文本传输协议，用来传输超文本。   URI 和 URL的区别？  互联网初期20世纪60年代，美国国防部高等研究生计划署(ARPA)建立了ARPA网，被认为是如今互联网的始祖 HTTP&#x2F;0.9HTTP&#x2F;0.9 是于1991年提出的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2022-01-10-%E4%B8%8A%E5%8D%889.19c21x1b8b8g.webp">
 <meta property="article:published_time" content="2021-12-25T08:49:49.000Z">
-<meta property="article:modified_time" content="2022-01-02T05:08:03.019Z">
+<meta property="article:modified_time" content="2022-01-10T02:03:42.109Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2022-01-10-%E4%B8%8A%E5%8D%889.19c21x1b8b8g.webp">
   
   <title>HTTP协议-随笔 - 何阳阳阳的小屋</title>
 
@@ -216,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.3k 字
+      3.2k 字
     </span>
   
 
@@ -260,14 +262,18 @@
               <p><a target="_blank" rel="noopener" href="https://zq99299.github.io/note-book2/http-protocol/02/01.html#%E5%8F%B2%E5%89%8D%E6%97%B6%E6%9C%9F">透视 HTTP 协议</a></p>
 <p><strong>超链接文档系统三项关键技术：</strong></p>
 <ul>
-<li>URI: 即统一资源标识符，作为互联网上资源的<strong>唯一身份</strong></li>
+<li>URI: 即<strong>统一资源标识符</strong>，作为互联网上资源的<strong>唯一身份</strong></li>
 <li>HTML: 即超文本标记语言，描述超文本文档</li>
 <li>HTTP：即超文本传输协议，用来传输超文本。</li>
 </ul>
-<p><strong>HTTP/0.9</strong><br>HTTP/0.9 是于1991年提出的 –&gt; 主要是用于学术交流 需求是非常简单的<br>90 年代初期：结构简单，页面内容只可读。所以只允许 GET 请求 并且在响应请求之后立即关闭连接</p>
-<p><strong>HTTP/1.0</strong><br>1996 年正式发布</p>
+<blockquote>
+<p>URI 和 URL的区别？</p>
+</blockquote>
+<p><strong>互联网初期</strong><br>20世纪60年代，美国国防部高等研究生计划署(ARPA)建立了ARPA网，被认为是如今互联网的始祖</p>
+<p><strong>HTTP/0.9</strong><br>HTTP/0.9 是于1991年提出的 –&gt; 主要是用于学术交流 需求是非常简单的 以纯文本格式交流<br>90 年代初期：结构简单，页面内容只可读。所以只允许 <code>GET</code> 请求 并且在响应请求之后立即关闭连接</p>
+<p><strong>HTTP/1.0</strong><br>1996 年正式发布<br>由于多媒体的发展(例如：图片格式、MP3音乐格式的出现)，开始准备往HTTP里添加各种特性</p>
 <ol>
-<li>增加了 HEAD\POST 等新方法</li>
+<li>增加了 <code>HEAD</code>、<code>POST</code> 等新方法   —&gt;  注意：POST 请求是在1.0版本才出现的…</li>
 <li>增加了响应状态码，标记可能的错误原因</li>
 <li>引入了协议版本号概念</li>
 <li>引入了 HTTP Header（头部）的概念，让 HTTP 处理请求和响应更加灵活；</li>
@@ -275,48 +281,38 @@
 </ol>
 <p><strong>HTTP/1.1</strong><br>1999 年发布</p>
 <ol>
-<li>增加了 PUT、DELETE 等新的方法；</li>
+<li>增加了 <code>PUT</code>、<code>DELETE</code> 等新的方法；</li>
 <li>增加了缓存管理和控制； (缓存管理是啥？ 控制是啥？)</li>
-<li>明确了连接管理，允许持久连接； (持久连接在HTTP/1.1中是默认开启的，所以你不需要专门为了持久连接去HTTP请求头设置信息，如果你不想要采用持久连接，可以在HTTP请求头中加上Connection:close 目前浏览器中对于同一个域名，默认允许同时建立6个TCP持久连接)</li>
-<li>允许响应数据分块（chunked），利于传输大文件； (何谓大文件？)</li>
+<li>明确了连接管理，<strong>允许持久连接</strong>； (持久连接在HTTP/1.1中是默认开启的，所以你不需要专门为了持久连接去HTTP请求头设置信息，如果你不想要采用持久连接，可以在HTTP请求头中加上 <code>Connection:close</code> 目前浏览器中对于同一个域名，默认允许同时建立6个TCP持久连接)</li>
+<li>允许<strong>响应数据分块</strong>（chunked），利于传输大文件</li>
 <li>强制要求 Host 头，让互联网主机托管成为可能(提供虚拟主机)(一台物理主机上绑定多个虚拟主机，每个虚拟主机都有自己的单独的域名，这些单独的域名都公用同一个IP地址，因此，HTTP/1.1的请求头中增加了Host字段，用来表示当前的域名地址，这样服务器就可以根据不同的Host值做不同的处理)。 </li>
-<li>引入了客户端Cookie机制</li>
+<li>引入了客户端 <code>Cookie</code> 机制</li>
 </ol>
-<p>使用CDN实现域名分片机制 这是什么鬼？！</p>
-<hr>
-<p>但是队头阻塞问题依旧严重<br>TCP的慢启动<br>同时开启了多条TCP连接，那么这些连接会竞争固定的带宽<br>HTTP/1.1队头阻塞</p>
+<p><strong>HTTP/1.1依旧存在的问题</strong><br>队头阻塞问题依旧严重<br>TCP的慢启动   —&gt; 不太懂…<br>同时开启了多条TCP连接，那么这些连接会竞争固定的带宽  —&gt; 这是一个细节<br>安全性问题</p>
 <h3 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h3><p>2015 年发布 –&gt; 以 google SPDY 协议为基础，综合其它多方的意见推出HTTP/2</p>
 <blockquote>
-<p>由于 <code>HTTPS</code> 已经在安全方面做的非常好了，所以 <code>HTTP/2</code> 的唯一目标就是改进性能</p>
+<p>由于 <code>HTTPS</code> 已经在安全方面做的非常好了，所以 <code>HTTP/2</code> 的<strong>唯一目标</strong>就是<strong>改进性能</strong></p>
 </blockquote>
-<h4 id="兼容HTTP-1"><a href="#兼容HTTP-1" class="headerlink" title="兼容HTTP/1"></a>兼容HTTP/1</h4><p>HTTP/2 对于 HTTP的兼容性非常强(降低了学习成本~) –&gt;<br>HTTP/2 把 HTTP 分解成了 <code>语义</code> 和 <code>语法</code> 这两个部分，语义层不做改动，与HTTP/1完全一致(例如：请求方法、URI、状态码、头字段等都没有变化)<br>甚至HTTP/2没有在URI里引入新的协议名，仍然用 <code>http</code> 表示明文协议,用 https 表示加密协议  –&gt; 让用户也是平滑过渡</p>
-<p>在语义保持稳定不变前提下，HTTP/2在语法层做了巨大的改变。<strong>完全更改了HTTP报文的传输格式</strong></p>
-<h4 id="HTTP-2的变化"><a href="#HTTP-2的变化" class="headerlink" title="HTTP/2的变化"></a>HTTP/2的变化</h4><h5 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h5><p>利用专门研发的算法：HPACK 进行报文 Header压缩 –&gt; 压缩率：50%~90%<br>因为在语义上 HTTP/2 和 HTTP/1是兼容的，所以报文还是有 <code>Header + Body</code> 构成的，但是在请求发送前，必须要用 <code>HPACK</code> 算法来压缩头部数据<br>HTTP/2 由于压缩头部，流量损耗会进一步降低</p>
-<h5 id="二进制格式"><a href="#二进制格式" class="headerlink" title="二进制格式"></a>二进制格式</h5><p>报文由纯文本格式 转变为 二进制格式：非常方便计算机的解析 精确度上升，速度上升<br>头部数据压缩之后，HTTP/2 就要把报文拆成二进制的帧准备发送<br>原来的Header + Body报文结构 –打散为–&gt;  多个 「二进制帧(HEADERS帧存放头数据、DATA帧存放实体数据)」 “碎片”</p>
-<h5 id="虚拟的「流」"><a href="#虚拟的「流」" class="headerlink" title="虚拟的「流」"></a>虚拟的「流」</h5><p>流是二进制帧的双向传输序列<br>以流(虚拟的)的方式传递 二进制帧<br>HTTP/2 可以在一个TCP连接上用 流 同时发送多个「碎片化」的消息 –&gt; 多路复用：多个往返通信都复用一个连接来处理<br>(注意：虽然帧是乱序收发，但是同一个流里都有相同的流ID)<br>流中的帧不是无序的，有着严格的先后顺序</p>
+<h4 id="高度兼容HTTP-1-1"><a href="#高度兼容HTTP-1-1" class="headerlink" title="高度兼容HTTP/1.1"></a>高度兼容HTTP/1.1</h4><p><code>HTTP/2</code> 对于 HTTP的兼容性非常强(降低了学习成本~) –&gt;<br> <code>HTTP/2</code> 把 HTTP 分解成了 <code>语义</code> 和 <code>语法</code> 这两个部分，<strong>语义层不做改动</strong>，与HTTP/1完全一致(例如：请求方法、URI、状态码、头字段等都没有变化)<br>甚至 <code>HTTP/2</code> 没有在 <code>URI</code> 里引入新的协议名，仍然用 <code>HTTP</code> 表示明文协议,用 <code>HTTPS</code> 表示加密协议  –&gt; 让用户也是平滑过渡</p>
+<p>在语义保持稳定不变前提下，<code>HTTP/2</code>在语法层做了巨大的改变。<strong>完全更改了HTTP报文的传输格式</strong>(不再是纯文本，而是二进制协议)</p>
+<h4 id="HTTP-2的变化"><a href="#HTTP-2的变化" class="headerlink" title="HTTP/2的变化"></a>HTTP/2的变化</h4><h5 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h5><p>利用专门研发的算法：HPACK 进行报文 Header压缩 –&gt; 压缩率：50%~90%<br>因为在语义上 HTTP/2 和 HTTP/1是兼容的，所以报文还是有 <code>Header + Body</code> 构成的，但是在<strong>请求发送前</strong>，必须要用 <code>HPACK</code> 算法来压缩头部数据<br>HTTP/2 由于压缩头部，流量损耗会进一步降低</p>
+<h5 id="二进制格式"><a href="#二进制格式" class="headerlink" title="二进制格式"></a>二进制格式</h5><p>报文由纯文本格式 转变为 二进制格式：非常方便计算机的解析 精确度上升，速度上升<br>头部数据压缩之后，<code>HTTP/2</code> 就要把报文拆成二进制的帧准备发送<br>原来的 <code>Header</code> + <code>Body</code> 报文结构 –打散为–&gt;  多个 「二进制帧(HEADERS帧存放头数据、DATA帧存放实体数据)」 “碎片”</p>
+<h5 id="虚拟的「流」"><a href="#虚拟的「流」" class="headerlink" title="虚拟的「流」"></a>虚拟的「流」</h5><p>流是二进制帧的<strong>双向传输序列</strong><br>以流(虚拟的)的方式传递 二进制帧<br>HTTP/2 可以在一个TCP连接上用 流 同时发送多个「碎片化」的消息 –&gt; 多路复用：多个往返通信都复用一个连接来处理<br>(注意：虽然帧是乱序收发，但是同一个流里都有相同的流ID)<br>流中的帧不是无序的，有着严格的先后顺序</p>
 <p>在流的层面上看，消息是一些有序的帧序列，而在连接的层面上看，消息却是乱序收发的帧。多个请求/响应之间没有了顺序关系，不需要排队等待，也就不会出现队头阻塞问题，降低了延迟，大幅度提高了连接的利用率</p>
-<h5 id="强化安全"><a href="#强化安全" class="headerlink" title="强化安全"></a>强化安全</h5><p>互联网上通常所能见到的 HTTP/2 都是使用 https 协议名，跑在 TLS 1.2+上面, 禁用了很多不安全的密码套件<br><code>h2</code>: 表示加密的HTTP/2<br><code>h2c</code>: 表示明文的 HTTP/2， 多出的字母<code>c</code>的意思是<code>clear text</code> </p>
-<hr>
-<p>HTTP/2 的制定充分考虑了现今互联网的现状：宽带、移动、不安全，在高度兼容 HTTP/1.1 的同时在性能改善方面做了很大努力，主要的特点有：</p>
-<ol>
-<li>二进制协议，不再是纯文本；(???)</li>
-<li>可发起多个请求，废弃了 1.1 里的管道；(何谓管道？)</li>
-<li>使用专用算法压缩头部，减少数据传输量；</li>
-<li>允许服务器主动向客户端推送数据；(WebSocket??)</li>
-<li>增强了安全性，「事实上」要求加密通信。</li>
-</ol>
-<p>HTTP/2.0 的普及率当前还很低…大多数网站是 HTTP/1.1</p>
+<h5 id="强化安全"><a href="#强化安全" class="headerlink" title="强化安全"></a>强化安全</h5><p>互联网上通常所能见到的 <code>HTTP/2</code> 都是使用 <code>HTTPS</code> 协议名，跑在 <code>TLS 1.2+</code>上面, 禁用了很多不安全的密码套件<br><code>h2</code>: 表示加密的HTTP/2<br><code>h2c</code>: 表示明文的 HTTP/2， 多出的字母<code>c</code>的意思是<code>clear text</code> </p>
+<h6 id="细节问题"><a href="#细节问题" class="headerlink" title="细节问题"></a>细节问题</h6><p>HTTP/2.0 的普及率不算太高， 很多网站是 HTTP/1.1</p>
 <p>HTTP/2 把 <strong>头部压缩</strong> 作为性能改进的一个重点</p>
-<p>HTTP/2 的消息不再是 <strong>Header+Body</strong> 的形式，而是分散为多个二进制帧</p>
-<p>HTTP/2 的大文件上传该怎么操作呢？</p>
+<p>HTTP/2 的消息不再是 <strong>Header+Body</strong> 的形式，而是分散为多个二进制帧(请求发送前会把<code>Header + Body</code>,进行头部压缩之后拆解为二进制的帧进行发送)</p>
+<blockquote>
+<p>问题：HTTP/2 的大文件上传该怎么操作呢？ </p>
+</blockquote>
 <blockquote>
 <p>把简单的系统变复杂，要比把复杂的系统变简单容易得多</p>
 </blockquote>
-<p>因为 HTTP/2 的侧重点是性能，所以是否迁移就需要在这方面进行评估。如果网站的流量很大，那么 HTTP/2 就可以带来可观的收益；反之，如果网站流量比较小，那么升级到 HTTP/2 就没有太多必要了，只要利用现有的 HTTP 再优化就足矣</p>
-<p>不过如果你是新建网站，我觉得完全可以跳过 HTTP/1、HTTPS，直接一步到位，上 HTTP/2，这样不仅可以获得性能提升，还免去了老旧的历史包袱，日后也不会再有迁移的烦恼</p>
-<p><strong>HTTP/2 流与多路复用</strong></p>
-<p><strong>HTTP/3</strong><br>2018 年发布 –&gt; google<br>在HTTP/2的基础上实现了质的飞跃，真正完美地解决了队头阻塞问题<br>基于UDP</p>
+<h3 id="HTTP-3"><a href="#HTTP-3" class="headerlink" title="HTTP/3"></a>HTTP/3</h3><p>2018 年发布 –&gt; 基于 <code>google</code> 的 <code>QUIC</code> 协议<br>在HTTP/2的基础上实现了质的飞跃，真正完美地解决了队头阻塞问题<br>基于UDP</p>
 <h4 id="HTTP-是什么？"><a href="#HTTP-是什么？" class="headerlink" title="HTTP 是什么？"></a>HTTP 是什么？</h4><p>HTTP: 超文本传输协议 –&gt; 拆成三个部分： 超文本、传输、协议<br>协议： 一种约束、规范，遵守协议则就要遵守这些约束和规范<br>传输： A 传给 B，B 传给 A。HTTP 是双向协议。 这里恰好可以用客户端、服务端的数据传送来说明<br>超文本：所谓超文本，字面意思就是超越文本的文本。它是文字、图片、视频、音乐等多媒体的混合体，并且它拥有超链接。能够从一个超文本跳跃到另一个超文本</p>
+<h4 id="URI-和-URL的区别？"><a href="#URI-和-URL的区别？" class="headerlink" title="URI 和 URL的区别？"></a>URI 和 URL的区别？</h4><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2022-01-10-%E4%B8%8A%E5%8D%889.19c21x1b8b8g.webp" srcset="/img/loading.gif" lazyload alt="URI 和 URL的区别"></p>
+<p>URI 和 URL 都能够指定唯一的一个资源。但是URI的宗旨是 无论你用的是什么方式，只要你能唯一的确定一个资源，就都算URI的一种实现，而URL就是用定位的方式(…/…/…/)来定位具体的资源<br>URI = URL + URN</p>
 <h4 id="Web-服务器"><a href="#Web-服务器" class="headerlink" title="Web 服务器"></a>Web 服务器</h4><p>Apache、 Nginx、IIS、Tomcat</p>
 <h4 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h4><p>TCP 属于传输层 IP 属于网际层</p>
 <p>HTTP 协议就运行在 TCP/IP 上</p>

@@ -18,15 +18,15 @@
   <meta name="description" content="分享知识、感受生活~">
   <meta name="author" content="帅得乱七八糟">
   <meta name="keywords" content="">
-  <meta name="description" content="123let vals &#x3D; [5, 4, 4, 2, 1];vals.sort();         &#x2F;&#x2F; 不会反悔新的数组，而是对自己本身进行修改...console.log(vals);   &#x2F;&#x2F;  [1, 2, 4, 4, 5]  似乎默认是按照字母顺序进行排序 123let vals &#x3D; [&amp;#x27;a&amp;#x27;, &amp;#x27;A&amp;#x27;, 2, 10];vals.sort();c">
+  <meta name="description" content="123let vals &#x3D; [5, 4, 4, 2, 1];vals.sort();         &#x2F;&#x2F; 不会返回新的数组，而是对自己本身进行修改...console.log(vals);   &#x2F;&#x2F;  [1, 2, 4, 4, 5]  似乎默认是按照字母顺序进行排序 123let vals &#x3D; [&amp;#x27;a&amp;#x27;, &amp;#x27;A&amp;#x27;, 2, 10];vals.sort();c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS sort 玩法">
 <meta property="og:url" content="http://example.com/2021/10/23/JS-sort-%E7%8E%A9%E6%B3%95/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="123let vals &#x3D; [5, 4, 4, 2, 1];vals.sort();         &#x2F;&#x2F; 不会反悔新的数组，而是对自己本身进行修改...console.log(vals);   &#x2F;&#x2F;  [1, 2, 4, 4, 5]  似乎默认是按照字母顺序进行排序 123let vals &#x3D; [&amp;#x27;a&amp;#x27;, &amp;#x27;A&amp;#x27;, 2, 10];vals.sort();c">
+<meta property="og:description" content="123let vals &#x3D; [5, 4, 4, 2, 1];vals.sort();         &#x2F;&#x2F; 不会返回新的数组，而是对自己本身进行修改...console.log(vals);   &#x2F;&#x2F;  [1, 2, 4, 4, 5]  似乎默认是按照字母顺序进行排序 123let vals &#x3D; [&amp;#x27;a&amp;#x27;, &amp;#x27;A&amp;#x27;, 2, 10];vals.sort();c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-23T07:34:14.000Z">
-<meta property="article:modified_time" content="2022-01-09T03:27:00.943Z">
+<meta property="article:modified_time" content="2022-01-13T05:14:13.056Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="高级">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      639 字
+      640 字
     </span>
   
 
@@ -258,13 +258,13 @@
             <h1 style="display: none">JS sort 玩法</h1>
             
             <div class="markdown-body">
-              <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会反悔新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+              <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">let vals = [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br>vals.sort();         <span class="hljs-regexp">//</span> 不会返回新的数组，而是对自己本身进行修改...<br>console.log(vals);   <span class="hljs-regexp">//</span>  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
 
 <p>似乎默认是按照字母顺序进行排序</p>
 <figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sqf">let vals = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>];<br>vals.<span class="hljs-built_in">sort</span>();<br>console.<span class="hljs-built_in">log</span>(vals)   <span class="hljs-comment">// [10, 2, &#x27;A&#x27;, &#x27;a&#x27;]</span><br></code></pre></td></tr></table></figure>
 
 <p>并且 sort 只会默认排序 <code>number</code>、<code>string</code> 这两种类型。 比如<code>对象类型</code>就不会有任何的变化…</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// 没有丝毫变化...</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">let</span> vals = [&#123;x: <span class="hljs-number">10</span>, y:<span class="hljs-number">20</span>&#125;, &#123;x: <span class="hljs-number">20</span>, y:<span class="hljs-number">40</span>&#125;]<br>vals.sort();<br>console.log(<span class="hljs-built_in">vals</span>)   <span class="hljs-comment">// y 的值从大到小排列过</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>如果想让 sort 具备灵活的比较功能就需要自己去设置比较函数</strong></p>
 <p>比较函数需要两个参数…</p>
