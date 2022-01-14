@@ -212,6 +212,57 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS Units</title>
+    <url>/2021/11/08/CSS-Units/</url>
+    <content><![CDATA[<p>一篇文章解决 <code>px</code>、<code>%</code>、<code>vh</code>、<code>vw</code>、<code>em</code>、<code>rem</code> 这些 css 常用单位</p>
+<h4 id="最简单的单位：px-VS"><a href="#最简单的单位：px-VS" class="headerlink" title="最简单的单位：px VS %"></a>最简单的单位：<code>px</code> VS <code>%</code></h4><p>px 是一个绝对单位，无论在什么情况下，1px 的大小一定是固定的<br>% 是一个相对单位，1%的大小是相对它的父元素的</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;<span class="hljs-regexp">/div&gt;   /</span>* 这里的百分比是相对于父元素的大小 */<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-hundred-pixels</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.15.20-PM.png" alt="px和%"></p>
+<h4 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h4><p><code>1vw</code>等于当前所在的屏幕宽度的 <strong>1/100</strong><br><code>1vh</code>等于当前所在的屏幕高度的 <strong>1/100</strong></p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-vw</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50vw</span>;<br>&#125;<br><br><span class="hljs-selector-class">.twenty-five-vh</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">25vh</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-08-at-11.25.56-PM.gif" alt="vh&amp;vw"></p>
+<p>可见，无论当前页面如何放大或缩小。50vw 就一定是当前页面的 50%的宽度。25vh 就一定是当前页面的 25%的高度<br>这两者都不受<strong>父元素</strong>的影响</p>
+<h4 id="有点难度的单位：rem-和-em"><a href="#有点难度的单位：rem-和-em" class="headerlink" title="有点难度的单位：rem 和 em"></a>有点难度的单位：rem 和 em</h4><p>首先，rem 和 em 都是<strong>相对单位</strong></p>
+<p><strong>注意：</strong><br><code>rem</code>是相对 root 的<code>font-size</code>的大小<br><code>em</code>是相对 父元素的<code>font-size</code>的大小</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.one-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.44.58-PM.png" alt="em&amp;rem"></p>
+<p>事实上，root 元素的默认<code>font-size</code>是<code>16px</code>。对于分界线上面的字体大小，都是根据 root 来安排的大小。但是，分界线后面的字体大小。<code>rem</code>是根据<code>root</code>的 <code>font-size</code>，<code>em</code>是根据父元素的 <code>font-size</code></p>
+<p>如果 root 中<code>font-size</code>是<code>16px</code>, 则在任何位置：<code>font-size: 1rem === font-size: 16px</code><br>如果 root 中<code>font-size</code>是<code>16px</code>, 某一个父元素的<code>font-size: 20px</code>,则子元素的：<code>font-size: 1em === font-size: 20px</code></p>
+<p>所以，建议主要使用<code>rem</code>。因为<code>em</code>在嵌套的 font-size 中是非常难以把控的…</p>
+<p>有时候为了方便控制字体大小和使用 rem，会这样做</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">html</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">62.5%</span>;    <span class="hljs-comment">// 16 * 62.5% = 10px  这样 1rem === 10px</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>当然，<code>rem</code>、<code>em</code>虽说是根据<code>font-size</code>的大小来定义的。但同样能作为盒子的长和宽的单位</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><br>.icon-container.large &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.em-icon &#123;<br>  width: <span class="hljs-number">1</span>em;<br>  height: <span class="hljs-number">1</span>em;<br>&#125;<br><br>.rem-icon &#123;<br>  width: <span class="hljs-number">1</span>rem;<br>  height: <span class="hljs-number">1</span>rem;<br>&#125;<br><br>.icon &#123;<br>  background-color: red;<br>&#125;<br><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.43.51-AM.png" alt="em和rem在盒子上的效果"></p>
+<p>可见，<code>1rem</code>的 icon 效果无论在哪都一样，但是<code>em</code>的 icon 会根据父元素的<code>font-size</code>的大小而做出相应的改变…</p>
+<p>有上述代码其实我们可以知道：<br><code>em</code> 最好用于规定盒子的大小，而不是用来控制字体的大小<br><code>rem</code>确恰恰适合规定字体的大小…</p>
+<h4 id="font-size-的-单位"><a href="#font-size-的-单位" class="headerlink" title="font-size 的%单位"></a>font-size 的%单位</h4><p>在文章的上面我已讲述了，<code>%</code>是根据父元素来进行比较大小的。而<code>em</code>同样如此。事实上，<code>font-size</code>中使用<code>%</code>单位和使用<code>em</code>单位效果是一样的</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.two-em &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>em;<br>&#125;<br><br>.two-rem &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>rem;<br>&#125;<br><br>.two-hundred &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">200</span>%;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.52.38-AM.png" alt="em VS %"></p>
+<p>可见，<code>1em === 100%</code></p>
+<h4 id="更多关于-css-units-内容细节"><a href="#更多关于-css-units-内容细节" class="headerlink" title="更多关于 css units 内容细节"></a>更多关于 css units 内容细节</h4><p><code>imooc网</code> 西门老舅 第六章有相关具体解析…</p>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS Position</title>
     <url>/2021/11/07/CSS-Position/</url>
     <content><![CDATA[<p><code>position</code> 是 <code>css</code> 中一个非常重要的属性。它的作用是将元素在网页中定位。而设定值总共有 5 个。分别是 <code>static</code>、<code>absolute</code>、<code>relative</code>、<code>fixed</code> 以及 <code>sticky</code></p>
@@ -271,48 +322,13 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS Units</title>
-    <url>/2021/11/08/CSS-Units/</url>
-    <content><![CDATA[<p>一篇文章解决 <code>px</code>、<code>%</code>、<code>vh</code>、<code>vw</code>、<code>em</code>、<code>rem</code> 这些 css 常用单位</p>
-<h4 id="最简单的单位：px-VS"><a href="#最简单的单位：px-VS" class="headerlink" title="最简单的单位：px VS %"></a>最简单的单位：<code>px</code> VS <code>%</code></h4><p>px 是一个绝对单位，无论在什么情况下，1px 的大小一定是固定的<br>% 是一个相对单位，1%的大小是相对它的父元素的</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;<span class="hljs-regexp">/div&gt;   /</span>* 这里的百分比是相对于父元素的大小 */<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+    <title>CSS 神奇属性</title>
+    <url>/2021/11/28/CSS-%E7%A5%9E%E5%A5%87%E5%B1%9E%E6%80%A7/</url>
+    <content><![CDATA[<h4 id="text-overflow"><a href="#text-overflow" class="headerlink" title="text-overflow"></a>text-overflow</h4><h4 id="white-space"><a href="#white-space" class="headerlink" title="white-space"></a>white-space</h4><h4 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h4><h4 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h4><figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">position</span>: absolute;<br>inset: <span class="hljs-number">0</span>; <span class="hljs-comment">/* 等同于：top、right、bottom、left 全部为0 */</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-hundred-pixels</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.15.20-PM.png" alt="px和%"></p>
-<h4 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h4><p><code>1vw</code>等于当前所在的屏幕宽度的 <strong>1/100</strong><br><code>1vh</code>等于当前所在的屏幕高度的 <strong>1/100</strong></p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-vw</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50vw</span>;<br>&#125;<br><br><span class="hljs-selector-class">.twenty-five-vh</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">25vh</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-08-at-11.25.56-PM.gif" alt="vh&amp;vw"></p>
-<p>可见，无论当前页面如何放大或缩小。50vw 就一定是当前页面的 50%的宽度。25vh 就一定是当前页面的 25%的高度<br>这两者都不受<strong>父元素</strong>的影响</p>
-<h4 id="有点难度的单位：rem-和-em"><a href="#有点难度的单位：rem-和-em" class="headerlink" title="有点难度的单位：rem 和 em"></a>有点难度的单位：rem 和 em</h4><p>首先，rem 和 em 都是<strong>相对单位</strong></p>
-<p><strong>注意：</strong><br><code>rem</code>是相对 root 的<code>font-size</code>的大小<br><code>em</code>是相对 父元素的<code>font-size</code>的大小</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.one-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.44.58-PM.png" alt="em&amp;rem"></p>
-<p>事实上，root 元素的默认<code>font-size</code>是<code>16px</code>。对于分界线上面的字体大小，都是根据 root 来安排的大小。但是，分界线后面的字体大小。<code>rem</code>是根据<code>root</code>的 <code>font-size</code>，<code>em</code>是根据父元素的 <code>font-size</code></p>
-<p>如果 root 中<code>font-size</code>是<code>16px</code>, 则在任何位置：<code>font-size: 1rem === font-size: 16px</code><br>如果 root 中<code>font-size</code>是<code>16px</code>, 某一个父元素的<code>font-size: 20px</code>,则子元素的：<code>font-size: 1em === font-size: 20px</code></p>
-<p>所以，建议主要使用<code>rem</code>。因为<code>em</code>在嵌套的 font-size 中是非常难以把控的…</p>
-<p>有时候为了方便控制字体大小和使用 rem，会这样做</p>
-<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">html</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">62.5%</span>;    <span class="hljs-comment">// 16 * 62.5% = 10px  这样 1rem === 10px</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>当然，<code>rem</code>、<code>em</code>虽说是根据<code>font-size</code>的大小来定义的。但同样能作为盒子的长和宽的单位</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><br>.icon-container.large &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.em-icon &#123;<br>  width: <span class="hljs-number">1</span>em;<br>  height: <span class="hljs-number">1</span>em;<br>&#125;<br><br>.rem-icon &#123;<br>  width: <span class="hljs-number">1</span>rem;<br>  height: <span class="hljs-number">1</span>rem;<br>&#125;<br><br>.icon &#123;<br>  background-color: red;<br>&#125;<br><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.43.51-AM.png" alt="em和rem在盒子上的效果"></p>
-<p>可见，<code>1rem</code>的 icon 效果无论在哪都一样，但是<code>em</code>的 icon 会根据父元素的<code>font-size</code>的大小而做出相应的改变…</p>
-<p>有上述代码其实我们可以知道：<br><code>em</code> 最好用于规定盒子的大小，而不是用来控制字体的大小<br><code>rem</code>确恰恰适合规定字体的大小…</p>
-<h4 id="font-size-的-单位"><a href="#font-size-的-单位" class="headerlink" title="font-size 的%单位"></a>font-size 的%单位</h4><p>在文章的上面我已讲述了，<code>%</code>是根据父元素来进行比较大小的。而<code>em</code>同样如此。事实上，<code>font-size</code>中使用<code>%</code>单位和使用<code>em</code>单位效果是一样的</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.two-em &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>em;<br>&#125;<br><br>.two-rem &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>rem;<br>&#125;<br><br>.two-hundred &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">200</span>%;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.52.38-AM.png" alt="em VS %"></p>
-<p>可见，<code>1em === 100%</code></p>
-<h4 id="更多关于-css-units-内容细节"><a href="#更多关于-css-units-内容细节" class="headerlink" title="更多关于 css units 内容细节"></a>更多关于 css units 内容细节</h4><p><code>imooc网</code> 西门老舅 第六章有相关具体解析…</p>
+<h4 id="object-fit"><a href="#object-fit" class="headerlink" title="object-fit"></a>object-fit</h4><h4 id="object-position"><a href="#object-position" class="headerlink" title="object-position"></a>object-position</h4><h4 id="list-style"><a href="#list-style" class="headerlink" title="list-style"></a>list-style</h4><h4 id="focus-vs-active"><a href="#focus-vs-active" class="headerlink" title=":focus vs :active"></a>:focus vs :active</h4><p><code>:focus</code> 表示 你点击了该元素，元素一直保持某一种状态。除非你点击其他部分。保持的状态才会消退</p>
+<p><code>:active</code> 表示 你点击某元素的时候，你要你不松开鼠标，则元素一直会维持着一种状态</p>
+<h4 id="letter-spacing"><a href="#letter-spacing" class="headerlink" title="letter-spacing"></a>letter-spacing</h4><p>控制文本中字符与字符之间的距离</p>
 ]]></content>
       <categories>
         <category>CSS篇</category>
@@ -371,6 +387,17 @@
 ]]></content>
       <categories>
         <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS-继承</title>
+    <url>/2021/12/10/CSS-%E7%BB%A7%E6%89%BF/</url>
+    <content><![CDATA[<h3 id="initial"><a href="#initial" class="headerlink" title="initial"></a>initial</h3><h3 id="inherit"><a href="#inherit" class="headerlink" title="inherit"></a>inherit</h3><h3 id="unset"><a href="#unset" class="headerlink" title="unset"></a>unset</h3><h3 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h3>]]></content>
+      <categories>
+        <category>CSS篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -532,9 +559,34 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS-继承</title>
-    <url>/2021/12/10/CSS-%E7%BB%A7%E6%89%BF/</url>
-    <content><![CDATA[<h3 id="initial"><a href="#initial" class="headerlink" title="initial"></a>initial</h3><h3 id="inherit"><a href="#inherit" class="headerlink" title="inherit"></a>inherit</h3><h3 id="unset"><a href="#unset" class="headerlink" title="unset"></a>unset</h3><h3 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h3>]]></content>
+    <title>Calc css</title>
+    <url>/2021/11/09/Calc-css/</url>
+    <content><![CDATA[<p><code>calc</code> 的出现让 <code>纯css</code> 更加的强大</p>
+<h4 id="calc-基础应用"><a href="#calc-基础应用" class="headerlink" title="calc 基础应用"></a>calc 基础应用</h4><figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">100</span>%;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png" alt="普通的一个模块"></p>
+<p>事实上，如果我想上面的这个盒子长度变为 300px 我可以这样做</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但我如果使用<code>calc</code>。我可以这样做</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>甚至，我可以让 <code>calc</code> 进行嵌套操作…</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50px</span> + <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>));<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我还可以在 <code>calc</code> 中使用不同的单位</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100%</span> - <span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：calc(a - b) 操作符两边一定要留有一个空格并且 calc()这二者中间不能留空格，不然 calc 不起效果。</strong></p>
+<h4 id="calc-搭配-var-让-css-更加强大"><a href="#calc-搭配-var-让-css-更加强大" class="headerlink" title="calc 搭配 var() 让 css 更加强大"></a>calc 搭配 var() 让 css 更加强大</h4><p><code>calc</code>是可以结合<code>var()</code>的</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  --<span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">width</span>: calc(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">width</span>) * <span class="hljs-number">2</span>);<br>  <span class="hljs-built_in">height</span>: 80px;<br>  margin: <span class="hljs-number">0</span> auto;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png" alt="calc + var"></p>
+<p>下面来进行一个有意思的(<code>calc</code> 结合 <code>var</code>)操作</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;button class=<span class="hljs-string">&quot;btn btn--primary&quot;</span>&gt;Primary&lt;/button&gt;<br>&lt;button class=<span class="hljs-string">&quot;btn btn--danger&quot;</span>&gt;Danger&lt;/button&gt;<br><span class="hljs-comment">/* css文件 */</span><br>:root &#123;<br>  --hue: <span class="hljs-number">200</span>;<br>&#125;<br><br>.btn &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 30px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">radius</span>: 15px;<br>&#125;<br><br>.btn--primary &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br>.btn--primary:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">70</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">30</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif" alt="calc的神奇妙用"></p>
+]]></content>
       <categories>
         <category>CSS篇</category>
       </categories>
@@ -613,74 +665,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS 神奇属性</title>
-    <url>/2021/11/28/CSS-%E7%A5%9E%E5%A5%87%E5%B1%9E%E6%80%A7/</url>
-    <content><![CDATA[<h4 id="text-overflow"><a href="#text-overflow" class="headerlink" title="text-overflow"></a>text-overflow</h4><h4 id="white-space"><a href="#white-space" class="headerlink" title="white-space"></a>white-space</h4><h4 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h4><h4 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h4><figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">position</span>: absolute;<br>inset: <span class="hljs-number">0</span>; <span class="hljs-comment">/* 等同于：top、right、bottom、left 全部为0 */</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="object-fit"><a href="#object-fit" class="headerlink" title="object-fit"></a>object-fit</h4><h4 id="object-position"><a href="#object-position" class="headerlink" title="object-position"></a>object-position</h4><h4 id="list-style"><a href="#list-style" class="headerlink" title="list-style"></a>list-style</h4><h4 id="focus-vs-active"><a href="#focus-vs-active" class="headerlink" title=":focus vs :active"></a>:focus vs :active</h4><p><code>:focus</code> 表示 你点击了该元素，元素一直保持某一种状态。除非你点击其他部分。保持的状态才会消退</p>
-<p><code>:active</code> 表示 你点击某元素的时候，你要你不松开鼠标，则元素一直会维持着一种状态</p>
-<h4 id="letter-spacing"><a href="#letter-spacing" class="headerlink" title="letter-spacing"></a>letter-spacing</h4><p>控制文本中字符与字符之间的距离</p>
-]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Calc css</title>
-    <url>/2021/11/09/Calc-css/</url>
-    <content><![CDATA[<p><code>calc</code> 的出现让 <code>纯css</code> 更加的强大</p>
-<h4 id="calc-基础应用"><a href="#calc-基础应用" class="headerlink" title="calc 基础应用"></a>calc 基础应用</h4><figure class="highlight processing"><table><tr><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  <span class="hljs-built_in">width</span>: <span class="hljs-number">100</span>%;<br>  <span class="hljs-built_in">height</span>: <span class="hljs-number">80</span>px;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-12.53.14-PM.png" alt="普通的一个模块"></p>
-<p>事实上，如果我想上面的这个盒子长度变为 300px 我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>但我如果使用<code>calc</code>。我可以这样做</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>甚至，我可以让 <code>calc</code> 进行嵌套操作…</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50px</span> + <span class="hljs-built_in">calc</span>(<span class="hljs-number">100px</span> + <span class="hljs-number">200px</span>));<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>我还可以在 <code>calc</code> 中使用不同的单位</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100%</span> - <span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>  <span class="hljs-attribute">background-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>注意：calc(a - b) 操作符两边一定要留有一个空格并且 calc()这二者中间不能留空格，不然 calc 不起效果。</strong></p>
-<h4 id="calc-搭配-var-让-css-更加强大"><a href="#calc-搭配-var-让-css-更加强大" class="headerlink" title="calc 搭配 var() 让 css 更加强大"></a>calc 搭配 var() 让 css 更加强大</h4><p><code>calc</code>是可以结合<code>var()</code>的</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.container &#123;<br>  --<span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">width</span>: calc(<span class="hljs-built_in">var</span>(--<span class="hljs-built_in">width</span>) * <span class="hljs-number">2</span>);<br>  <span class="hljs-built_in">height</span>: 80px;<br>  margin: <span class="hljs-number">0</span> auto;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-1.07.09-PM.png" alt="calc + var"></p>
-<p>下面来进行一个有意思的(<code>calc</code> 结合 <code>var</code>)操作</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;button class=<span class="hljs-string">&quot;btn btn--primary&quot;</span>&gt;Primary&lt;/button&gt;<br>&lt;button class=<span class="hljs-string">&quot;btn btn--danger&quot;</span>&gt;Danger&lt;/button&gt;<br><span class="hljs-comment">/* css文件 */</span><br>:root &#123;<br>  --hue: <span class="hljs-number">200</span>;<br>&#125;<br><br>.btn &#123;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 30px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">border</span>-<span class="hljs-built_in">radius</span>: 15px;<br>&#125;<br><br>.btn--primary &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br>.btn--primary:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(<span class="hljs-built_in">var</span>(--hue), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">70</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">50</span><span class="hljs-symbol">%</span>);<br>&#125;<br><br>.btn--danger:hover &#123;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: hsl(calc(<span class="hljs-number">200</span> - <span class="hljs-built_in">var</span>(--hue)), <span class="hljs-number">100</span><span class="hljs-symbol">%</span>, <span class="hljs-number">30</span><span class="hljs-symbol">%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-09-at-1.22.08-PM.gif" alt="calc的神奇妙用"></p>
-]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Emotion的安装和基本使用</title>
-    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
-<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
-<blockquote>
-<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Dynamic Module</title>
     <url>/2021/11/06/Dynamic-Module/</url>
     <content><![CDATA[<h3 id="Dynamic-Module"><a href="#Dynamic-Module" class="headerlink" title="Dynamic Module"></a>Dynamic Module</h3><p>进入按需加载(需要的时候才加载代码)的时代…让页面加载的速度更快…</p>
@@ -736,6 +720,22 @@
 ]]></content>
       <categories>
         <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Emotion的安装和基本使用</title>
+    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
+<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
+<blockquote>
+<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
       </categories>
       <tags>
         <tag>高级</tag>
@@ -1054,18 +1054,6 @@
 <h5 id="混合加密"><a href="#混合加密" class="headerlink" title="混合加密"></a>混合加密</h5><h4 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h4>]]></content>
   </entry>
   <entry>
-    <title>HTTP状态码</title>
-    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
-    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
-]]></content>
-      <categories>
-        <category>程序员素养篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS DOM操作</title>
     <url>/2021/11/24/JS-DOM%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<p><strong>// TODO 还有些细节问题有待补充</strong></p>
@@ -1131,6 +1119,18 @@
 ]]></content>
       <categories>
         <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTTP状态码</title>
+    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
+]]></content>
+      <categories>
+        <category>程序员素养篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -1929,6 +1929,42 @@
       <tags>
         <tag>api</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>React Hooks的思考与总结</title>
+    <url>/2022/01/13/React-Hooks%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%8E%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p><a href="https://codesandbox.io/s/react-hooks-course-20vzg">代码地址</a></p>
+<p>React 的中文含义即：“反应”或“创新”，它描述了 React 这样一个前端框架的核心原理：当数据发生变化时，UI 能够<strong>自动</strong>把变化反应出来</p>
+<p>JSX 仅是语法糖，意味着。你不用 JSX 的写法，同样能够写出 React 来</p>
+<p>JSX 不是一个新的概念，而只是原生 JS 的另一种写法，但是这种写法，将会大大降低你上手 React 的难度</p>
+<p>在 React 组件中，任何一个 state 发生变化时，整个函数组件其实是被完全执行一遍的， 而且除了 state，多次的执行之间没有任何关系。所以在考虑这样一个场景的实现时，我们 的思考方式就是要首先考虑这个组件有哪些状态(state)，这些状态的变化是由什么触发 的，从而将整个功能串联起来。</p>
+<blockquote>
+<p>Hooks 的使用规则：1. 只能在函数组件的顶级作用域中使用，2. 只能在函数组件或者其他 Hooks 中使用</p>
+</blockquote>
+<h4 id="useState-让函数组件具备维持状态的能力"><a href="#useState-让函数组件具备维持状态的能力" class="headerlink" title="useState: 让函数组件具备维持状态的能力"></a>useState: 让函数组件具备维持状态的能力</h4><h5 id="比较-Class-组件的-state-和-hooks-组件的-state"><a href="#比较-Class-组件的-state-和-hooks-组件的-state" class="headerlink" title="比较 Class 组件的 state 和 hooks 组件的 state"></a>比较 Class 组件的 state 和 hooks 组件的 state</h5><p>二者最大的区别就是， 类组件的 state 只能有一个，然后再通过不同的属性来表示不同的状态。 而 useState 则可以很容易地创建多个 state，所以它更加的语义化</p>
+<h4 id="useEffect-执行副作用"><a href="#useEffect-执行副作用" class="headerlink" title="useEffect: 执行副作用"></a>useEffect: 执行副作用</h4><p>副作用是指一段和当前执行结果无关的代码<br>useEffect 中代码的执行是不影响渲染出来的 UI 的。</p>
+<p>其实不必刻意把 useEffect 对应到某几个生命周期方法中，虽然我以前也尝试这样做过，但是，有了这样的思维后，就有点应试教育的那种感觉，不能完全拥抱 hooks。我现在对于 useEffect 的理解是<strong>每次组件 render 完后判断依赖并执行就可以了</strong></p>
+<p>注意一个小问题，useEffect 的 callback 要避免直接的 async 函数，需要封装一下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2022-01-14-%E4%B8%8A%E5%8D%889.2obivszc5g80.webp" alt="useEffect"></p>
+<p><strong>useEffect 关于依赖项的一些规则</strong>：</p>
+<ul>
+<li>没有依赖项，则每次 render 完后都会重新执行</li>
+<li>空数组作为依赖项，则只在首次执行 render 后触发</li>
+<li>普通依赖项,第一次以及依赖项发生变化后执行</li>
+<li>useEffect 还允许你返回一个函数，用于在<strong>组件销毁</strong>的时候做一些清理的操作</li>
+</ul>
+<p>在写 hooks 时候的注意点：</p>
+<ol>
+<li>在 useEffect 的回调函数中使用的变量，都必须在依赖项中声明 (这里的知识点有点重要)</li>
+<li>Hooks 不能出现在条件语句或者循环中，也不能出现在 return 之后</li>
+<li>Hooks 只能在函数组件或者自定义 Hooks 中使用</li>
+</ol>
+<p>(当然，React 官方给我们提供了一个 ESLint 的插件，专门用来检查 Hooks 是否正确被使用，它就是 eslint-plugin-react-hooks)</p>
+<h4 id="useCallback-缓存回调函数"><a href="#useCallback-缓存回调函数" class="headerlink" title="useCallback: 缓存回调函数"></a>useCallback: 缓存回调函数</h4><p>当没必要的变量(一些函数)更新后导致组件重新渲染，有了 useCallback 就能让没必要的变量不引起组件的渲染</p>
+<h4 id="useMemo-缓存计算的结果"><a href="#useMemo-缓存计算的结果" class="headerlink" title="useMemo: 缓存计算的结果"></a>useMemo: 缓存计算的结果</h4><p>可以避免重复的计算，对于性能的提升会有很大的帮助</p>
+<h4 id="useRef-在多次渲染之间共享数据"><a href="#useRef-在多次渲染之间共享数据" class="headerlink" title="useRef: 在多次渲染之间共享数据"></a>useRef: 在多次渲染之间共享数据</h4><h4 id="useContext-定义全局状态"><a href="#useContext-定义全局状态" class="headerlink" title="useContext: 定义全局状态"></a>useContext: 定义全局状态</h4><h3 id="如何理解函数生命周期"><a href="#如何理解函数生命周期" class="headerlink" title="如何理解函数生命周期"></a>如何理解函数生命周期</h3><p>忘掉 Class 组件的生命周期…</p>
+<p>在函数组件中你要思考的方式永远是：当某个状态发送变化时，我要做什么，而不是像在 Class 组件的某个生命周期方法中我要做什么</p>
+<p>在函数组件中，是没有生命周期机制的</p>
+]]></content>
   </entry>
   <entry>
     <title>React-Query</title>
@@ -3064,7 +3100,7 @@
 <h4 id="align-content-flex-wrap"><a href="#align-content-flex-wrap" class="headerlink" title="align-content/flex-wrap"></a>align-content/flex-wrap</h4><p><strong>flex-wrap 作用：决定项目在一条轴线排不下时如何换行。</strong></p>
 <p><strong>align-content 作用：定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</strong></p>
 <p><code>align-content</code> 一般用于多行控制。<br>但是 <code>flex</code> 是收缩布局，尽管一再压缩盒子，也不会换行。因为有一个属性：<code>flex-wrap: nowrap;</code> // nowrap 是默认属性,表示不会换行</p>
-<p>我把 <code>flex:wrap: wrap</code> 就可以换行了</p>
+<p>我把 <code>flex-wrap: wrap</code> 就可以换行了</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.flexbox-container</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid black;<br>  <span class="hljs-attribute">flex-direction</span>: row;<br>  <span class="hljs-attribute">justify-content</span>: flex-end;<br>  <span class="hljs-attribute">align-items</span>: flex-start;<br>  <span class="hljs-attribute">flex-wrap</span>: wrap;   <span class="hljs-comment">/* 注意！*/</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-22-at-10.21.37-PM.gif" alt="wrap"></p>
@@ -3087,9 +3123,10 @@
 
 <p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-22-at-10.53.05-PM.gif" alt="flex-shrinkVSflex-grow"></p>
 <p>事实上，如果多个子元素使用了 flex-grow。他们占剩余空间是有比例划分的<br>具体如下：</p>
-<h4 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h4><p>(这里的东西有待补充！！)</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span><br>--&gt;<br>flex-grow: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">0%</span>;<br><br><br><span class="hljs-attribute">flex</span>: <span class="hljs-number">0</span><br>--&gt;<br>flex-grow: <span class="hljs-number">0</span>;<br><span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">0%</span>;<br></code></pre></td></tr></table></figure>
+<h4 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h4><p>flex-basis :定义项目在分配多余的空间之前，项目占据的主轴空间 默认为 auto（item 本来大小）</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span><br>--&gt;<br>flex-grow: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">0%</span>;<br><br><span class="hljs-attribute">flex</span>: <span class="hljs-number">0</span><br>--&gt;<br>flex-grow: <span class="hljs-number">0</span>;<br><span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">0%</span>;<br><br><span class="hljs-attribute">flex</span>: auto<br>--&gt;<br>flex-grow: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">1</span>;<br><span class="hljs-attribute">flex-basis</span>: auto;<br></code></pre></td></tr></table></figure>
 
+<p>flex: 1 不管内容多少，一般都是平分空间，空间大小都一致<br>而 flex: auto 是根据内容的大小来分，不是均分的（除非内容都是一样，才均分）<br><a href="https://juejin.cn/post/6967177565458923557">flex: 1 flex:0 flex:auto</a></p>
 <h4 id="align-self-似乎-justify-self-不起效果"><a href="#align-self-似乎-justify-self-不起效果" class="headerlink" title="align-self (似乎 justify-self 不起效果)"></a>align-self (似乎 justify-self 不起效果)</h4><p><strong>align-self 作用：定义单个项目的对齐方式，可覆盖 align-items 属性。</strong></p>
 <figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">background</span>: grey;<br>&#125;<br><br><span class="hljs-selector-class">.flexbox-container</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid black;<br>  <span class="hljs-attribute">flex-direction</span>: row;<br>  <span class="hljs-attribute">justify-content</span>: flex-start;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><br><span class="hljs-selector-class">.flexbox-item</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">3px</span> solid <span class="hljs-number">#333</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#dfdfdf</span>;<br>  <span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.flexbox-item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">1</span>) &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">align-self</span>: flex-start;  <span class="hljs-comment">/* 单个子元素覆盖了align-items对其的影响 */</span><br>&#125;<br><br><span class="hljs-selector-class">.flexbox-item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">2</span>) &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.flexbox-item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">3</span>) &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -3390,30 +3427,6 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>post请求和get请求的区别</title>
-    <url>/2021/10/09/post%E8%AF%B7%E6%B1%82%E5%92%8Cget%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h4 id="1-有哪些请求方式？"><a href="#1-有哪些请求方式？" class="headerlink" title="1.有哪些请求方式？"></a>1.有哪些请求方式？</h4><ul>
-<li>get</li>
-<li>post</li>
-<li>put</li>
-<li>patch</li>
-<li>delete<br>…</li>
-</ul>
-<h4 id="2-get-请求和-post-请求的区别"><a href="#2-get-请求和-post-请求的区别" class="headerlink" title="2.get 请求和 post 请求的区别"></a>2.get 请求和 post 请求的区别</h4><p><strong>get 请求</strong><br>1）一般用来从服务器获取数据 (有时候会在 url 里增添参数 表示获取有一定限制(筛选数据)的数据)<br>2）1 中提到可以在 url 里添加参数，但这样做的话，安全性，隐私性就比较差。并且参数的长度是有限制的(不然，如果无限长，url 的长度就无限长…非常恐怖…)<br>3）当 发送 get 请求时，刷新浏览器或回退页面是没有影响的(只要 url 没有发生变化，就不会影响 get 请求发送)<br>4）get 请求可以缓存 (这是什么东西？有待查询) (因为 get 请求的数据一般是公开的…大家都可以看的东西)<br>5）get 请求会保留在浏览器历史记录当中<br>6）get 请求可以被收藏为书签(因为直接收藏 url 就可以了 url 带上了参数)<br>7）get 请求只能进行 url 编码(‘Content-type’: ‘application/x-www-form-urlencoded’)<br>8）get 请求通常是通过 url 地址栏发送请求<br><strong>post 请求</strong><br>1）一般用于提交数据到后台 (比如登录、注册时的操作)<br>2）post 请求的参数放在 请求的 body 中。所以不会再 url 中展示，相对而言比 get 要更加的安全<br>3）发送 post 请求过程中，回退页面，请求重新发送(因为参数会发送变化)<br>4）post 请求不会被缓存 (post 的请求的数据一般来说都是比较私密的…)<br>5）post 不会保存在浏览器历史记录当中<br>6）post 请求不可以被收藏为书签(post 参数放在 body 里面的。书签无法找到对应的参数…)<br>7）post 请求支持多种编码方式(例如 url：’application/x-www-form-urlencoded’ 表单提交：’multipart/form-data’ …有待补充)<br>8）post 请求通常是表单发送请求</p>
-<p><strong>get 和 post 请求比较深入的一些区别如下</strong></p>
-<ul>
-<li>post 请求和 get 请求都是 http 的请求方式。底层都是 tcp/ip 协议。get 产生一个 tcp 数据包。post 产生两个数据包(但是 firefox 只发送一个)<br>有个问题是，这个发送一个数据包或发送两个数据包的区别和意义是什么呢？<br>(在网络好的时候，发一次数据包和发两次数据包 其实效果都差不多。但是当网络条件很差的时候，发一次数据包的效果肯定比发两次数据包的速度要快！)</li>
-<li>get 请求会把 http header 和 data 一起发送出去，服务端反应 200。post 请求先发送 header，等服务端响应了 100 再继续发送 data。服务端再响应 200</li>
-</ul>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>react中常犯的错误</title>
     <url>/2021/11/01/react%E4%B8%AD%E5%B8%B8%E7%8A%AF%E7%9A%84%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<h3 id="useState-篇"><a href="#useState-篇" class="headerlink" title="useState 篇"></a>useState 篇</h3><h4 id="使用-useState-的时候，打印出来的结果往往是上一次渲染的结果-例如"><a href="#使用-useState-的时候，打印出来的结果往往是上一次渲染的结果-例如" class="headerlink" title="使用 useState 的时候，打印出来的结果往往是上一次渲染的结果 例如"></a>使用 useState 的时候，打印出来的结果往往是上一次渲染的结果 例如</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">App.js<br><span class="hljs-keyword">import</span> &#123;useState&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params"></span>) </span>&#123;<br>    setCount(count - <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 打印出的内容总是比当前的要慢一拍...</span><br>    <span class="hljs-built_in">console</span>.log(count);<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>&#123;<br>    setCount(count + <span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">console</span>.log(count);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;decrement&#125;</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">      &#123;count&#125;</span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;increment&#125;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -3509,6 +3522,30 @@
       </categories>
       <tags>
         <tag>奇淫技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>post请求和get请求的区别</title>
+    <url>/2021/10/09/post%E8%AF%B7%E6%B1%82%E5%92%8Cget%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h4 id="1-有哪些请求方式？"><a href="#1-有哪些请求方式？" class="headerlink" title="1.有哪些请求方式？"></a>1.有哪些请求方式？</h4><ul>
+<li>get</li>
+<li>post</li>
+<li>put</li>
+<li>patch</li>
+<li>delete<br>…</li>
+</ul>
+<h4 id="2-get-请求和-post-请求的区别"><a href="#2-get-请求和-post-请求的区别" class="headerlink" title="2.get 请求和 post 请求的区别"></a>2.get 请求和 post 请求的区别</h4><p><strong>get 请求</strong><br>1）一般用来从服务器获取数据 (有时候会在 url 里增添参数 表示获取有一定限制(筛选数据)的数据)<br>2）1 中提到可以在 url 里添加参数，但这样做的话，安全性，隐私性就比较差。并且参数的长度是有限制的(不然，如果无限长，url 的长度就无限长…非常恐怖…)<br>3）当 发送 get 请求时，刷新浏览器或回退页面是没有影响的(只要 url 没有发生变化，就不会影响 get 请求发送)<br>4）get 请求可以缓存 (这是什么东西？有待查询) (因为 get 请求的数据一般是公开的…大家都可以看的东西)<br>5）get 请求会保留在浏览器历史记录当中<br>6）get 请求可以被收藏为书签(因为直接收藏 url 就可以了 url 带上了参数)<br>7）get 请求只能进行 url 编码(‘Content-type’: ‘application/x-www-form-urlencoded’)<br>8）get 请求通常是通过 url 地址栏发送请求<br><strong>post 请求</strong><br>1）一般用于提交数据到后台 (比如登录、注册时的操作)<br>2）post 请求的参数放在 请求的 body 中。所以不会再 url 中展示，相对而言比 get 要更加的安全<br>3）发送 post 请求过程中，回退页面，请求重新发送(因为参数会发送变化)<br>4）post 请求不会被缓存 (post 的请求的数据一般来说都是比较私密的…)<br>5）post 不会保存在浏览器历史记录当中<br>6）post 请求不可以被收藏为书签(post 参数放在 body 里面的。书签无法找到对应的参数…)<br>7）post 请求支持多种编码方式(例如 url：’application/x-www-form-urlencoded’ 表单提交：’multipart/form-data’ …有待补充)<br>8）post 请求通常是表单发送请求</p>
+<p><strong>get 和 post 请求比较深入的一些区别如下</strong></p>
+<ul>
+<li>post 请求和 get 请求都是 http 的请求方式。底层都是 tcp/ip 协议。get 产生一个 tcp 数据包。post 产生两个数据包(但是 firefox 只发送一个)<br>有个问题是，这个发送一个数据包或发送两个数据包的区别和意义是什么呢？<br>(在网络好的时候，发一次数据包和发两次数据包 其实效果都差不多。但是当网络条件很差的时候，发一次数据包的效果肯定比发两次数据包的速度要快！)</li>
+<li>get 请求会把 http header 和 data 一起发送出去，服务端反应 200。post 请求先发送 header，等服务端响应了 100 再继续发送 data。服务端再响应 200</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
       </tags>
   </entry>
   <entry>
@@ -4561,6 +4598,43 @@
 ]]></content>
   </entry>
   <entry>
+    <title>数据结构与算法之排序</title>
+    <url>/2021/12/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<p><strong>基础排序算法：</strong></p>
+<ul>
+<li>冒泡排序</li>
+<li>插入排序</li>
+<li>选择排序<br><strong>进阶排序算法</strong></li>
+<li>归并排序</li>
+<li>快速排序</li>
+</ul>
+<blockquote>
+<p>注意：考虑到排序类题目在未经特别声明的情况下，都默认以“从小到大排列”为有序标准。因此下文中所有”有序“的描述指代的都是“从小到大排列”。</p>
+</blockquote>
+<h2 id="基础排序算法"><a href="#基础排序算法" class="headerlink" title="基础排序算法"></a>基础排序算法</h2><p>这个基础排序算法要求不高，直接能够默写下来就可以了</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>这套逻辑到底要执行多少次，是完全由数组中元素的个数来决定的：每一次从头到尾的遍历都只能定位到一个元素的位置，因此元素有多少个，总的循环就要执行多少轮</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的关键字是“最小值”：循环遍历数组，每次都找出当前范围内的最小值，把它放在当前范围的头部；然后缩小排序范围，继续重复以上操作，直至数组完全有序为止</p>
+<figure class="highlight inform7"><table><tr><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[5, 3, 2, 4, 1]</span><br>function selectSort(arr) &#123;<br>  for (let i = 0; i &lt; arr.length; i++) &#123;<br>    let minIndex = i;<br>    for (let j = i + 1; j &lt; arr.length; j++) &#123;<br>      if (arr<span class="hljs-comment">[minIndex]</span> &gt; arr<span class="hljs-comment">[j]</span>) &#123;<br>        minIndex = j;<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">[arr<span class="hljs-comment">[i]</span>, arr<span class="hljs-comment">[minIndex]</span>]</span> = <span class="hljs-comment">[arr<span class="hljs-comment">[minIndex]</span>, arr<span class="hljs-comment">[i]</span>]</span><br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序的核心思想是“找到元素在它前面那个序列中的正确位置”。<br>具体来说，插入排序所有的操作都基于一个这样的前提：当前元素前面的序列是有序的。基于这个前提，从后往前去寻找当前元素在前面那个序列里的正确位置。</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">[<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]<br><br>function <span class="hljs-keyword">insertSort(arr) </span>&#123;<br><br>  for (let i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; arr.length; i++) &#123;</span><br>    let temp = arr[i];<br>    let <span class="hljs-keyword">j </span>= i;<br>    while (<span class="hljs-keyword">j </span>&gt; <span class="hljs-number">0</span> &amp;&amp; temp &lt; arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>]) &#123;<br>      arr[<span class="hljs-keyword">j] </span>= arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>];<br>      <span class="hljs-keyword">j--;</span><br><span class="hljs-keyword"></span>    &#125;<br>    arr[<span class="hljs-keyword">j] </span>= temp;<br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="进阶排序算法"><a href="#进阶排序算法" class="headerlink" title="进阶排序算法"></a>进阶排序算法</h2><p>归并算法和快速排序算法 <strong>“分治”，分而治之。其思想就是将一个大问题分解为若干个子问题，针对子问题分别求解后，再将子问题的解整合为大问题的解</strong></p>
+<h3 id="归并排序：归并排序在实现上依托的就是递归思想"><a href="#归并排序：归并排序在实现上依托的就是递归思想" class="headerlink" title="归并排序：归并排序在实现上依托的就是递归思想"></a>归并排序：归并排序在实现上依托的就是<strong>递归</strong>思想</h3><figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> len = arr.length;<br>  <span class="hljs-comment">// 错误边界</span><br>  <span class="hljs-keyword">if</span> (len &lt;= <span class="hljs-number">1</span>) &#123;<br>    return arr;<br>  &#125;<br><br>  <span class="hljs-comment">// 进行分治</span><br>  <span class="hljs-keyword">let</span> mid = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>floor(len<span class="hljs-operator"> / </span><span class="hljs-number">2</span>);<br><br>  <span class="hljs-keyword">let</span> arr1 = arr.slice(<span class="hljs-number">0</span>, mid);<br>  <span class="hljs-keyword">let</span> arr2 = arr.slice(mid, len)<br>  <span class="hljs-keyword">let</span> left = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr1</span>)</span>;<br>  <span class="hljs-keyword">let</span> right = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr2</span>)</span>;<br><br>  return merge<span class="hljs-constructor">Arr(<span class="hljs-params">left</span>, <span class="hljs-params">right</span>)</span>;<br>&#125;<br><br><span class="hljs-comment">// 用于合并数组的函数</span><br><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Arr(<span class="hljs-params">arr1</span>, <span class="hljs-params">arr2</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-literal">[]</span>;<br>  <span class="hljs-keyword">let</span> index_1 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> index_2 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> len1 = arr1.length;   <span class="hljs-comment">// 这里要弄一个数组长度缓存。因为后面的调试中数组长度可能会有变化</span><br>  <span class="hljs-keyword">let</span> len2 = arr2.length;<br><br>  <span class="hljs-keyword">while</span>(index_1 &lt; len1<span class="hljs-operator"> &amp;&amp; </span>index_2 &lt; len2) &#123;<br>    <span class="hljs-keyword">if</span> (arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span> &lt;= arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>) &#123;<br>      res.push(arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span>);<br>      index_1++;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      res.push(arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>);<br>      index_2++;<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 把剩余的arr1或者arr2的尾巴接住</span><br>  <span class="hljs-keyword">if</span> (index_1 &lt; len1) &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr1</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_1</span>, <span class="hljs-identifier">len1</span>)]</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr2</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_2</span>, <span class="hljs-identifier">len2</span>)]</span><br>  &#125;<br> return res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序在基本思想上和归并排序是一致的，仍然坚持“分而治之”的原则不动摇。区别在于，快速排序并不会把真的数组分割开来再合并到一个新数组中去，而是直接在原有的数组内部进行排序。</p>
+<p>投降了…</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 快排入口 (下面的这个参数默认值使用挺厉害的...)</span><br><span class="hljs-keyword">function</span> quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span> = 0; <span class="hljs-params">right</span> = <span class="hljs-params">arr</span>.<span class="hljs-params">length</span> - 1)</span> &#123;<br><span class="hljs-comment">// 定义递归边界，若数组只有一个元素，则没有排序必要</span><br>  <span class="hljs-keyword">if</span>(arr.length &gt; <span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-comment">// lineIndex表示下一次划分左右子数组的索引位</span><br>      const lineIndex = partition(arr, left, right)<br>      <span class="hljs-comment">// 如果左边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(left &lt; lineIndex-<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 左子数组以 lineIndex-1 为右边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span>, <span class="hljs-params">lineIndex</span>-1)</span><br>      &#125;<br>      <span class="hljs-comment">// 如果右边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(lineIndex&lt;right) &#123;<br>        <span class="hljs-comment">// 右子数组以 lineIndex 为左边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">lineIndex</span>, <span class="hljs-params">right</span>)</span><br>      &#125;<br>  &#125;<br>  return arr<br>&#125;<br><br><span class="hljs-comment">// 以基准值为轴心，划分左右子数组的过程</span><br><span class="hljs-keyword">function</span> partition(arr, left, right) &#123;<br>  <span class="hljs-comment">// 基准值默认取中间位置的元素</span><br>  <span class="hljs-keyword">let</span> pivotValue = arr<span class="hljs-literal">[M<span class="hljs-identifier">ath</span>.<span class="hljs-identifier">floor</span>(<span class="hljs-identifier">left</span> + (<span class="hljs-identifier">right</span>-<span class="hljs-identifier">left</span>)<span class="hljs-operator">/</span><span class="hljs-number">2</span>)]</span><br>  <span class="hljs-comment">// 初始化左右指针</span><br>  <span class="hljs-keyword">let</span> i = left<br>  <span class="hljs-keyword">let</span> j = right<br>  <span class="hljs-comment">// 当左右指针不越界时，循环执行以下逻辑</span><br>  <span class="hljs-keyword">while</span>(i&lt;=j) &#123;<br>      <span class="hljs-comment">// 左指针所指元素若小于基准值，则右移左指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> &lt; pivotValue) &#123;<br>          i++<br>      &#125;<br>      <span class="hljs-comment">// 右指针所指元素大于基准值，则左移右指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> &gt; pivotValue) &#123;<br>          j--<br>      &#125;<br><br>      <span class="hljs-comment">// 若i&lt;=j，则意味着基准值左边存在较大元素或右边存在较小元素，交换两个元素确保左右两侧有序</span><br>      <span class="hljs-keyword">if</span>(i&lt;=j) &#123;<br>          swap(arr, i, j)<br>          i++<br>          j--<br>      &#125;<br><br>  &#125;<br>  <span class="hljs-comment">// 返回左指针索引作为下一次划分左右子数组的依据</span><br>  return i<br>&#125;<br><br><span class="hljs-comment">// 快速排序中使用 swap 的地方比较多，我们提取成一个独立的函数</span><br><span class="hljs-keyword">function</span> swap(arr, i, j) &#123;<br>  <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">i</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span>] = <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">j</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>面试篇</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>面试之道</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据结构与算法之栈与队列</title>
     <url>/2021/12/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/</url>
     <content><![CDATA[<blockquote>
@@ -4640,43 +4714,6 @@
 
 <p>传统解法… 感觉时间复杂度还要高很多…</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">var levelOrder = <span class="hljs-built_in">function</span>(root) &#123;<br>    <span class="hljs-comment">// 层序遍历： 队列 和 while 的搭配</span><br>    <span class="hljs-keyword">const</span> nums = [];<br>    <span class="hljs-keyword">if</span> (!root) &#123;<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>    <span class="hljs-keyword">const</span> queue = [];  <span class="hljs-comment">// queue 存放的是结点</span><br>    queue.<span class="hljs-built_in">push</span>(root);<br><br>    <span class="hljs-keyword">while</span> (queue.length) &#123;<br>        <span class="hljs-keyword">const</span> temp = [];    <span class="hljs-comment">// 来一个临时数组</span><br>        let len = queue.length;<br>        <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            <span class="hljs-keyword">const</span> node = queue[<span class="hljs-number">0</span>]<br>            temp.<span class="hljs-built_in">push</span>(node.val);<br>            <span class="hljs-keyword">if</span> (node.left) queue.<span class="hljs-built_in">push</span>(node.left);<br>            <span class="hljs-keyword">if</span> (node.right) queue.<span class="hljs-built_in">push</span>(node.right);<br>            queue.<span class="hljs-built_in">shift</span>();<br>        &#125;<br>        nums.<span class="hljs-built_in">push</span>(temp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>面试篇</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>面试之道</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构与算法之排序</title>
-    <url>/2021/12/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<p><strong>基础排序算法：</strong></p>
-<ul>
-<li>冒泡排序</li>
-<li>插入排序</li>
-<li>选择排序<br><strong>进阶排序算法</strong></li>
-<li>归并排序</li>
-<li>快速排序</li>
-</ul>
-<blockquote>
-<p>注意：考虑到排序类题目在未经特别声明的情况下，都默认以“从小到大排列”为有序标准。因此下文中所有”有序“的描述指代的都是“从小到大排列”。</p>
-</blockquote>
-<h2 id="基础排序算法"><a href="#基础排序算法" class="headerlink" title="基础排序算法"></a>基础排序算法</h2><p>这个基础排序算法要求不高，直接能够默写下来就可以了</p>
-<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>这套逻辑到底要执行多少次，是完全由数组中元素的个数来决定的：每一次从头到尾的遍历都只能定位到一个元素的位置，因此元素有多少个，总的循环就要执行多少轮</p>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的关键字是“最小值”：循环遍历数组，每次都找出当前范围内的最小值，把它放在当前范围的头部；然后缩小排序范围，继续重复以上操作，直至数组完全有序为止</p>
-<figure class="highlight inform7"><table><tr><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[5, 3, 2, 4, 1]</span><br>function selectSort(arr) &#123;<br>  for (let i = 0; i &lt; arr.length; i++) &#123;<br>    let minIndex = i;<br>    for (let j = i + 1; j &lt; arr.length; j++) &#123;<br>      if (arr<span class="hljs-comment">[minIndex]</span> &gt; arr<span class="hljs-comment">[j]</span>) &#123;<br>        minIndex = j;<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">[arr<span class="hljs-comment">[i]</span>, arr<span class="hljs-comment">[minIndex]</span>]</span> = <span class="hljs-comment">[arr<span class="hljs-comment">[minIndex]</span>, arr<span class="hljs-comment">[i]</span>]</span><br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序的核心思想是“找到元素在它前面那个序列中的正确位置”。<br>具体来说，插入排序所有的操作都基于一个这样的前提：当前元素前面的序列是有序的。基于这个前提，从后往前去寻找当前元素在前面那个序列里的正确位置。</p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">[<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]<br><br>function <span class="hljs-keyword">insertSort(arr) </span>&#123;<br><br>  for (let i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; arr.length; i++) &#123;</span><br>    let temp = arr[i];<br>    let <span class="hljs-keyword">j </span>= i;<br>    while (<span class="hljs-keyword">j </span>&gt; <span class="hljs-number">0</span> &amp;&amp; temp &lt; arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>]) &#123;<br>      arr[<span class="hljs-keyword">j] </span>= arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>];<br>      <span class="hljs-keyword">j--;</span><br><span class="hljs-keyword"></span>    &#125;<br>    arr[<span class="hljs-keyword">j] </span>= temp;<br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="进阶排序算法"><a href="#进阶排序算法" class="headerlink" title="进阶排序算法"></a>进阶排序算法</h2><p>归并算法和快速排序算法 <strong>“分治”，分而治之。其思想就是将一个大问题分解为若干个子问题，针对子问题分别求解后，再将子问题的解整合为大问题的解</strong></p>
-<h3 id="归并排序：归并排序在实现上依托的就是递归思想"><a href="#归并排序：归并排序在实现上依托的就是递归思想" class="headerlink" title="归并排序：归并排序在实现上依托的就是递归思想"></a>归并排序：归并排序在实现上依托的就是<strong>递归</strong>思想</h3><figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> len = arr.length;<br>  <span class="hljs-comment">// 错误边界</span><br>  <span class="hljs-keyword">if</span> (len &lt;= <span class="hljs-number">1</span>) &#123;<br>    return arr;<br>  &#125;<br><br>  <span class="hljs-comment">// 进行分治</span><br>  <span class="hljs-keyword">let</span> mid = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>floor(len<span class="hljs-operator"> / </span><span class="hljs-number">2</span>);<br><br>  <span class="hljs-keyword">let</span> arr1 = arr.slice(<span class="hljs-number">0</span>, mid);<br>  <span class="hljs-keyword">let</span> arr2 = arr.slice(mid, len)<br>  <span class="hljs-keyword">let</span> left = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr1</span>)</span>;<br>  <span class="hljs-keyword">let</span> right = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr2</span>)</span>;<br><br>  return merge<span class="hljs-constructor">Arr(<span class="hljs-params">left</span>, <span class="hljs-params">right</span>)</span>;<br>&#125;<br><br><span class="hljs-comment">// 用于合并数组的函数</span><br><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Arr(<span class="hljs-params">arr1</span>, <span class="hljs-params">arr2</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-literal">[]</span>;<br>  <span class="hljs-keyword">let</span> index_1 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> index_2 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> len1 = arr1.length;   <span class="hljs-comment">// 这里要弄一个数组长度缓存。因为后面的调试中数组长度可能会有变化</span><br>  <span class="hljs-keyword">let</span> len2 = arr2.length;<br><br>  <span class="hljs-keyword">while</span>(index_1 &lt; len1<span class="hljs-operator"> &amp;&amp; </span>index_2 &lt; len2) &#123;<br>    <span class="hljs-keyword">if</span> (arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span> &lt;= arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>) &#123;<br>      res.push(arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span>);<br>      index_1++;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      res.push(arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>);<br>      index_2++;<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 把剩余的arr1或者arr2的尾巴接住</span><br>  <span class="hljs-keyword">if</span> (index_1 &lt; len1) &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr1</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_1</span>, <span class="hljs-identifier">len1</span>)]</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr2</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_2</span>, <span class="hljs-identifier">len2</span>)]</span><br>  &#125;<br> return res;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序在基本思想上和归并排序是一致的，仍然坚持“分而治之”的原则不动摇。区别在于，快速排序并不会把真的数组分割开来再合并到一个新数组中去，而是直接在原有的数组内部进行排序。</p>
-<p>投降了…</p>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 快排入口 (下面的这个参数默认值使用挺厉害的...)</span><br><span class="hljs-keyword">function</span> quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span> = 0; <span class="hljs-params">right</span> = <span class="hljs-params">arr</span>.<span class="hljs-params">length</span> - 1)</span> &#123;<br><span class="hljs-comment">// 定义递归边界，若数组只有一个元素，则没有排序必要</span><br>  <span class="hljs-keyword">if</span>(arr.length &gt; <span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-comment">// lineIndex表示下一次划分左右子数组的索引位</span><br>      const lineIndex = partition(arr, left, right)<br>      <span class="hljs-comment">// 如果左边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(left &lt; lineIndex-<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 左子数组以 lineIndex-1 为右边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span>, <span class="hljs-params">lineIndex</span>-1)</span><br>      &#125;<br>      <span class="hljs-comment">// 如果右边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(lineIndex&lt;right) &#123;<br>        <span class="hljs-comment">// 右子数组以 lineIndex 为左边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">lineIndex</span>, <span class="hljs-params">right</span>)</span><br>      &#125;<br>  &#125;<br>  return arr<br>&#125;<br><br><span class="hljs-comment">// 以基准值为轴心，划分左右子数组的过程</span><br><span class="hljs-keyword">function</span> partition(arr, left, right) &#123;<br>  <span class="hljs-comment">// 基准值默认取中间位置的元素</span><br>  <span class="hljs-keyword">let</span> pivotValue = arr<span class="hljs-literal">[M<span class="hljs-identifier">ath</span>.<span class="hljs-identifier">floor</span>(<span class="hljs-identifier">left</span> + (<span class="hljs-identifier">right</span>-<span class="hljs-identifier">left</span>)<span class="hljs-operator">/</span><span class="hljs-number">2</span>)]</span><br>  <span class="hljs-comment">// 初始化左右指针</span><br>  <span class="hljs-keyword">let</span> i = left<br>  <span class="hljs-keyword">let</span> j = right<br>  <span class="hljs-comment">// 当左右指针不越界时，循环执行以下逻辑</span><br>  <span class="hljs-keyword">while</span>(i&lt;=j) &#123;<br>      <span class="hljs-comment">// 左指针所指元素若小于基准值，则右移左指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> &lt; pivotValue) &#123;<br>          i++<br>      &#125;<br>      <span class="hljs-comment">// 右指针所指元素大于基准值，则左移右指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> &gt; pivotValue) &#123;<br>          j--<br>      &#125;<br><br>      <span class="hljs-comment">// 若i&lt;=j，则意味着基准值左边存在较大元素或右边存在较小元素，交换两个元素确保左右两侧有序</span><br>      <span class="hljs-keyword">if</span>(i&lt;=j) &#123;<br>          swap(arr, i, j)<br>          i++<br>          j--<br>      &#125;<br><br>  &#125;<br>  <span class="hljs-comment">// 返回左指针索引作为下一次划分左右子数组的依据</span><br>  return i<br>&#125;<br><br><span class="hljs-comment">// 快速排序中使用 swap 的地方比较多，我们提取成一个独立的函数</span><br><span class="hljs-keyword">function</span> swap(arr, i, j) &#123;<br>  <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">i</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span>] = <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">j</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>面试篇</category>
@@ -5051,6 +5088,55 @@
       </categories>
   </entry>
   <entry>
+    <title>跨站点脚本攻击</title>
+    <url>/2021/11/25/%E8%B7%A8%E7%AB%99%E7%82%B9%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>?.运算符</title>
+    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6-1/</url>
+    <content><![CDATA[<p>在做项目的时候，我们可能会遇见下面这种情况</p>
+<figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const DATA = [<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;重庆邮电大学&#x27;</span>,<br>      address: <span class="hljs-string">&#x27;南山街道&#x27;</span><br>    &#125;<br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span><br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;西南大学&#x27;</span><br>    &#125;<br>  &#125;<br>]<br><br>const CollageAddress = DATA.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  const address = <span class="hljs-type">item</span> &amp;&amp; <span class="hljs-type">item</span>.collage &amp;&amp; <span class="hljs-type">item</span>.collage.address;<br>  <span class="hljs-keyword">return</span> address;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>上述方法是访问对象属性是 undefined 还是 null 的相对优雅的方法。但，始终显得比较臃肿。</p>
+<p>下面用本篇文章的主题 <code>?.</code>来优雅的解决上述问题</p>
+<blockquote>
+<p>对象后面跟<code>?.</code>表示接下来的属性可能为<code>undefined</code>或者<code>null</code>或者有值</p>
+</blockquote>
+<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">const <span class="hljs-built_in">address</span> = item?.collage?.<span class="hljs-built_in">address</span><br></code></pre></td></tr></table></figure>
+
+<p>如果<code>collage</code>、<code>address</code>未定义，我们的代码将返回(<code>undefined</code>)未定义，而不是抛出错误</p>
+<h4 id="的其他用途"><a href="#的其他用途" class="headerlink" title="?.的其他用途"></a>?.的其他用途</h4><h5 id="调用某个对象的某个不确定是否存在的方法"><a href="#调用某个对象的某个不确定是否存在的方法" class="headerlink" title="调用某个对象的某个不确定是否存在的方法"></a>调用某个对象的某个不确定是否存在的方法</h5><p>例如：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const windowCount = house<span class="hljs-selector-class">.getWindowCount</span> &amp;&amp; house<span class="hljs-selector-class">.getWindowCount</span>()<br></code></pre></td></tr></table></figure>
+
+<p>上面的写法不够优雅，显得比较的笨重<br>使用<code>?.</code>进行优雅操作…</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> windowCount = house.getWindowCount?.()<br></code></pre></td></tr></table></figure>
+
+<p>如果在<code>house</code>对象中存在<code>getWindowCount</code>方法。就会调用，如果不存在，只会返回未定义的函数，而不会调用该函数<br>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;func1&#x27;</span>)<br>  &#125;<br>&#125;<br>obj.func1?.() <span class="hljs-comment">// func1</span><br>obj.func2?.() <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="搭配数组"><a href="#搭配数组" class="headerlink" title="?.搭配数组"></a>?.搭配数组</h5><p>如果你想按索引访问数组中的元素，但不确定是否定义了数组，那么你会用下面的代码：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const firstElement</span> = arr &amp;&amp; arr[0];<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>?.</code>运算符：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> firstElement = arr?.[<span class="hljs-number">0</span>];<br></code></pre></td></tr></table></figure>
+
+<p>首先检查是否定义了<code>arr</code>变量，如果定义了，它将尝试访问指定的数组的索引。如果没有定义<code>arr</code>变量，则将返回未定义的变量，而不是尝试访问数组的索引。</p>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>奇淫技巧</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>跨域</title>
     <url>/2021/11/20/%E8%B7%A8%E5%9F%9F/</url>
     <content><![CDATA[<h4 id="CORS-Cross-Origin-Resource-Sharing"><a href="#CORS-Cross-Origin-Resource-Sharing" class="headerlink" title="CORS(Cross-Origin Resource Sharing)"></a>CORS(Cross-Origin Resource Sharing)</h4><p>前两天，我在做一个聊天功能<img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-20-at-10.03.24-AM.gif" alt="聊天功能"><br>的时候，就遇见了类似下面这种问题<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-20-at-10.07.41-AM.png" alt="跨域"></p>
@@ -5105,55 +5191,6 @@
 <p>额外补充，我在 <code>Socket.io</code>知识总结那里也有一种关于 <code>socket.io</code> 的跨域方式</p>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>?.运算符</title>
-    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6-1/</url>
-    <content><![CDATA[<p>在做项目的时候，我们可能会遇见下面这种情况</p>
-<figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const DATA = [<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;重庆邮电大学&#x27;</span>,<br>      address: <span class="hljs-string">&#x27;南山街道&#x27;</span><br>    &#125;<br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span><br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;西南大学&#x27;</span><br>    &#125;<br>  &#125;<br>]<br><br>const CollageAddress = DATA.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  const address = <span class="hljs-type">item</span> &amp;&amp; <span class="hljs-type">item</span>.collage &amp;&amp; <span class="hljs-type">item</span>.collage.address;<br>  <span class="hljs-keyword">return</span> address;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>上述方法是访问对象属性是 undefined 还是 null 的相对优雅的方法。但，始终显得比较臃肿。</p>
-<p>下面用本篇文章的主题 <code>?.</code>来优雅的解决上述问题</p>
-<blockquote>
-<p>对象后面跟<code>?.</code>表示接下来的属性可能为<code>undefined</code>或者<code>null</code>或者有值</p>
-</blockquote>
-<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">const <span class="hljs-built_in">address</span> = item?.collage?.<span class="hljs-built_in">address</span><br></code></pre></td></tr></table></figure>
-
-<p>如果<code>collage</code>、<code>address</code>未定义，我们的代码将返回(<code>undefined</code>)未定义，而不是抛出错误</p>
-<h4 id="的其他用途"><a href="#的其他用途" class="headerlink" title="?.的其他用途"></a>?.的其他用途</h4><h5 id="调用某个对象的某个不确定是否存在的方法"><a href="#调用某个对象的某个不确定是否存在的方法" class="headerlink" title="调用某个对象的某个不确定是否存在的方法"></a>调用某个对象的某个不确定是否存在的方法</h5><p>例如：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const windowCount = house<span class="hljs-selector-class">.getWindowCount</span> &amp;&amp; house<span class="hljs-selector-class">.getWindowCount</span>()<br></code></pre></td></tr></table></figure>
-
-<p>上面的写法不够优雅，显得比较的笨重<br>使用<code>?.</code>进行优雅操作…</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> windowCount = house.getWindowCount?.()<br></code></pre></td></tr></table></figure>
-
-<p>如果在<code>house</code>对象中存在<code>getWindowCount</code>方法。就会调用，如果不存在，只会返回未定义的函数，而不会调用该函数<br>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;func1&#x27;</span>)<br>  &#125;<br>&#125;<br>obj.func1?.() <span class="hljs-comment">// func1</span><br>obj.func2?.() <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="搭配数组"><a href="#搭配数组" class="headerlink" title="?.搭配数组"></a>?.搭配数组</h5><p>如果你想按索引访问数组中的元素，但不确定是否定义了数组，那么你会用下面的代码：</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const firstElement</span> = arr &amp;&amp; arr[0];<br></code></pre></td></tr></table></figure>
-
-<p>使用<code>?.</code>运算符：</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> firstElement = arr?.[<span class="hljs-number">0</span>];<br></code></pre></td></tr></table></figure>
-
-<p>首先检查是否定义了<code>arr</code>变量，如果定义了，它将尝试访问指定的数组的索引。如果没有定义<code>arr</code>变量，则将返回未定义的变量，而不是尝试访问数组的索引。</p>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>奇淫技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>跨站点脚本攻击</title>
-    <url>/2021/11/25/%E8%B7%A8%E7%AB%99%E7%82%B9%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[]]></content>
       <categories>
         <category>JavaScript篇</category>
       </categories>
