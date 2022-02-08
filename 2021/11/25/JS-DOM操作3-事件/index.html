@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-25-at-9.53.49-PM.gif">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-25-at-9.33.32-PM.gif">
 <meta property="article:published_time" content="2021-11-25T10:19:48.000Z">
-<meta property="article:modified_time" content="2022-01-09T03:27:13.789Z">
+<meta property="article:modified_time" content="2022-02-05T11:24:30.962Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="基本功">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      33 分钟
+      34 分钟
     </span>
   
 
@@ -327,7 +327,7 @@
 <p>我点击<code>绿色方块(child)</code>打印结果如下：</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata">document <span class="hljs-keyword">capture</span><br>grandparent <span class="hljs-keyword">capture</span><br>parent <span class="hljs-keyword">capture</span>   <span class="hljs-comment">// 我就是在这里使用了 e.stopPropagation()</span><br></code></pre></td></tr></table></figure>
 
-<p>从 <code>parent capture</code> 之后，无论是事件冒泡，还是事件捕捉都已经取消了</p>
+<p>从 <code>parent capture</code> 之后，无论是事件冒泡，还是事件捕捉都已经取消了(这里的意思应该是，让事件捕获和冒泡从根本上就都停止)</p>
 <h5 id="事件只执行一次"><a href="#事件只执行一次" class="headerlink" title="事件只执行一次"></a>事件只执行一次</h5><p>利用第三个参数 <code>&#123;once: true&#125;</code></p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">const grandparent = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.grandparent&quot;</span>);<br>const parent = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.parent&quot;</span>);<br>const child = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.child&quot;</span>)<br><br>grandparent.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-params">(e)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;grandparent bubble&#x27;</span>);<br>&#125;)<br><br>parent.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-params">(e)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;parent bubble&#x27;</span>);<br>&#125;)<br><br>child.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-params">(e)</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;child bubble&#x27;</span>);<br>&#125;, &#123;once: <span class="hljs-literal">true</span>&#125;)<br><br><br></code></pre></td></tr></table></figure>
 
