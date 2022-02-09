@@ -15,18 +15,18 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="分享知识、感受生活~">
+  <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
   <meta name="author" content="帅得乱七八糟">
-  <meta name="keywords" content="">
-  <meta name="description" content="123网络资源 ---&gt; 浏览器 ---&gt; 前端界面  浏览器有两个关键工作——首先，把网络资源“取”回来。在这个过程里，浏览器不生产任何额外内容，它只是 Web 世界里的“搬运工”；然后，把这坨资源消化掉，像翻译官一样，把底层密密麻麻的鬼画符转化为用户喜闻乐见的可交互页面。 浏览器零部件123456789    用户界面      |      V   浏览器引擎 --&gt; 本地">
+  <meta name="keywords" content="请输入密码">
+  <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端面试之道-浏览器渲染原理">
 <meta property="og:url" content="http://example.com/2021/12/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="何阳阳阳的小屋">
-<meta property="og:description" content="123网络资源 ---&gt; 浏览器 ---&gt; 前端界面  浏览器有两个关键工作——首先，把网络资源“取”回来。在这个过程里，浏览器不生产任何额外内容，它只是 Web 世界里的“搬运工”；然后，把这坨资源消化掉，像翻译官一样，把底层密密麻麻的鬼画符转化为用户喜闻乐见的可交互页面。 浏览器零部件123456789    用户界面      |      V   浏览器引擎 --&gt; 本地">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-15T12:02:27.000Z">
-<meta property="article:modified_time" content="2021-12-15T14:59:09.403Z">
+<meta property="article:modified_time" content="2022-02-09T09:31:06.940Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -257,30 +257,18 @@
             <h1 style="display: none">前端面试之道-浏览器渲染原理</h1>
             
             <div class="markdown-body">
-              <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><br><span class="hljs-comment">网络资源</span> --<span class="hljs-literal">-</span>&gt; <span class="hljs-comment">浏览器</span> --<span class="hljs-literal">-</span>&gt; <span class="hljs-comment">前端界面</span><br><br></code></pre></td></tr></table></figure>
-
-<p>浏览器有两个关键工作——首先，把<strong>网络资源“取”回来</strong>。在这个过程里，<strong>浏览器不生产任何额外内容</strong>，它只是 Web 世界里的<strong>“搬运工”</strong>；然后，把<strong>这坨资源消化掉</strong>，像<strong>翻译官</strong>一样，把底层密密麻麻的鬼画符转化为用户喜闻乐见的可交互页面。</p>
-<h4 id="浏览器零部件"><a href="#浏览器零部件" class="headerlink" title="浏览器零部件"></a>浏览器零部件</h4><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">    用户界面<br>      |<span class="hljs-string"></span><br><span class="hljs-string">      V</span><br><span class="hljs-string">   浏览器引擎 --&gt; 本地数据存储</span><br><span class="hljs-string">      </span>|<br>      V<br>    渲染引擎<br>|<span class="hljs-string">        </span>|<span class="hljs-string">       </span>|<br>网络模块  JS解释器  UI后台<br></code></pre></td></tr></table></figure>
-
-<p>用户界面、浏览器引擎都是“领导”一般的存在：它们不做特别具体的工作，简直就是命令的搬运工<br>渲染引擎最为核心(现在 浏览器内核 === 渲染引擎)<br>渲染引擎，是一个浏览器的灵魂</p>
-<h4 id="浏览器内核分类"><a href="#浏览器内核分类" class="headerlink" title="浏览器内核分类"></a>浏览器内核分类</h4><ul>
-<li>Trident（IE）</li>
-<li>Gecko（火狐）</li>
-<li>Blink（Chrome、Opera）</li>
-<li>Webkit（Safari)</li>
-</ul>
-<p>Blink 也是基于 WebKit 衍生出来的一个分支。因此，WebKit 无疑仍然是当下浏览器世界真正的“大 Boss”</p>
-<h3 id="渲染引擎工作流解析"><a href="#渲染引擎工作流解析" class="headerlink" title="渲染引擎工作流解析"></a>渲染引擎工作流解析</h3><blockquote>
-<p>Tips: 这块知识非常容易出问答题/作为性能优化面试题的切入点，大家需要引起重视。</p>
-</blockquote>
-<p>浏览器的渲染引擎承载着把静态资源转换为可视化界面的任务</p>
-<p>渲染引擎处理过程：资源文件 –&gt; HTML 解析 –&gt; CSS 解析 –&gt; 样式结构合并 –&gt; 布局 –&gt; 绘制</p>
-<p><strong>1. HTML 解析</strong> –&gt; 对应产物：DOM 树<br>在这一步浏览器对 HTML 文档进行解析，并在解析 HTML 的过程中发出了页面渲染所需的各种外部资源请求。</p>
-<p><strong>2. CSS 解析</strong> –&gt; 对应产物：CSSOM 树<br>在这一步浏览器对 HTML 文档进行解析，并在解析 HTML 的过程中发出了页面渲染所需的各种外部资源请求。</p>
-<p><strong>3. 样式与结构合并</strong> –&gt; 渲染树<br>将样式信息和文档结构合并，最终生成页面 render 树（:after :before 这样的伪元素会在这个环节被构建到 DOM 树中)</p>
-<p><strong>4. 布局阶段</strong> –&gt; 盒模型<br>页面中所有元素的相对位置信息，大小等信息均在这一步得到计算。</p>
-<p><strong>5. 页面绘制</strong> –&gt; 目标界面<br>在这一步中浏览器会根据我们前面处理出来的结果，把每一个页面图层转换为像素，并对所有的媒体文件进行解码</p>
-<h3 id="重排与重绘"><a href="#重排与重绘" class="headerlink" title="重排与重绘"></a>重排与重绘</h3>
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="9a8caae2b122dfbfef52fe36136b379099b8b8baced30eae0eafe9273d06ecfd">227b2a181666066aebdadda3a2b5e6f5ea2a8a3a236d171731e102205dd466ed52dabad676352595c7f037721ef9c47e0b0cc78143e5fe889fb042b78c3b885705c92d05cd963b1d36e5a23940789b74bbf14843272e71708cbb09ca76531e697e4b5b52f71b2516caba769b4a9f7d0c7045ab3e016b3bc069b518db5bc7938ea18c3f739418766ac3bcee55ff49bd1b0a207c5cdf58e40ba5708aa41c46285165da6a9de1cd86b063ae97883ac1e466bcd0276d3e8c8919db2e2e60b1df4872e83110861ecad6f2abcebacf42853886d338543bb7b1124731f85aedfd5097ebee064dda7e07c3a0723fbe214eda1589c5c280ce8ab5f89ab4c1aaa7cb9e40fded3c18727109f1424c1ae818d15eb3eafc5b2103a0082516ea6860211eb11154e67334bed82982295ba3aa6aa607c224c1462f3de585426289aeb388af863ba1ad161b8a83c2cb14766a56de72004a03e5f4b827767194692613f8d2caf2adaf3488bd2a66019c60b1c7446ef16360220a11cfd75700aacf4fe6270d5b68be5a0a49e0356ec5dcf074f52e4246e3c73489740ec4c4874f49ac98effac3ccd78a2f2927acc8a320cb1d40e5f61dd9655ed327c188819953d2da2c8238d071b6d029bee5008d1eed310fa153674b5cb163ba8d063f9142e53b3f7f2334fe268144911cd86f1161e099b5bce27349282a9c9cdfac54fd6ccab75a73713c8f295741141d8c76158b15db76050d8ccd01fc0bfa08100431027df44d346aadd42bc380c1a1eb816016e55da0d4f3e5cc6e98c25337655c530a5f2be27fc9537f42b262eb11dc04606ba09b928838f2a2679ac693f2bb901ccf4e198402cd16ef7901b10d723754c53ff0338d770bfc3350252f19e81910fcfd0291c5a30f5567d9f5db5f7e6011029467e2cc92791db570a61a359f0adb727b2a6d375ef0500776dcc4bab98fa6348609e584e4cc6a354fa14c40f8135b7c33c808f0915e4c934def2f6c492aa9517994acc36269a34ab62c48abcf562a87e94a5f6165c2b23de4a3a92c6b95dcaa7d1d7197bdcfdfb22927ecb2ccf2ca8362175215823355be3c080098ed8b7437a0f66100a8ffec7543311ae931fe2c64de7612d0c7151a81a8594f13b99e9ca56cc5e2e65eab5dce67f0dc28e8b60bc5abbbaae9a8495d9dbcbc0708ebc39b25e943a98b4b5291d98c446da0ff3322001b0469849bfb1ff035d72c272421512c3ecd4442530b1a72c38081283933d5409ab7548be685ac37fe24117cbd0c061e7ad402d2fa47cbfda56f1be89b2a9e003fc946eba8d60d7ea641fd1c7fe6000ecadba782826ee1ca66ed793208d58871acdf749ba5dd15f53ffe0f19e21e228e54810190a23361c2f146ec87c8628b361cc02c67cf1388cd56cf574eac327477c7f1d3b2e76832e6929ae357c9949cf5c87baae2b0ace3e15423a635b91c3d5cc752d2fec7a0898daf0957441660f2162b52b869d1c8e3dc4f9f7c5c283e13672f46bd435e4a04508248041dec5a91a7c6cde8282c941538027096866401492214040aa2c475176a1949211a8f395ae5742b66ccd07b3515bf33417a9fb8a51d94f8ea28c1ca2dd1735567ad13cb633eb6a335c7965b13fd180b228321b940a319808315dcadd9d182c3f9db3db4b944000ac0eafacbba8b1c1bc07c7dccb2eee8eafe5406314aa11f1ff18ee68245fd9cb963168c646fb620d61185308b77918713b29a0f82da2592a94da9cfafbceb4be37fac1a494859f467efdb7492215f8d51d5c360339741f25fdde5cf8197385bdd04f50361e270347eb00d65dcd0e793d155c2ff8a792d3e77381ed444485868f1da5d5229371cd0de9b2c4be9d6a6b5800b1293d9be5841af36449e3b1431594298303fb2a1034c5ce8cf7792a612e415e4ebb4c46ab5fd8b80b8d4187161c89204ca5ee2b80bec384d4deaa2dff69d75ae032968e78d2040beecd2610ea8bdf645fb7cef82fe2f30d2548c5b3916e909731013bc98cf97765d4561524b8e0a8e1ed8070e34ce41914680df5863eb8d9ce3b713637c903d18e9ba0e656dd3e899f1097b0558fcdf7bee678a011802956f696a231fa25741d70a5f0582e8f708ecedcfd941d71ed2f5c3bcb045c9514a06b2433a3e5666017afd927f948493c71858a6f28194f9feffeb53e836de674ec81817991d4c0f2103be1c3470d572d9e47c3eae979c1d3d0395fd85edca1f83febc3850548205ad6d5a0cd855975ea5467156ac1f4f16b88ee77c5bb3f93a2935cdfa5b30dcc1c7a27ba4ba42990561d37be5446aa1893108145fa5e3f0ebefb9e3b9f5bc876ae06c29634a051f0f88f7cf9a3dcb0e3b99cac9e9dfed2642e51bb328f2a935646e651e79ae43e50136a1bd711a6063cd458ccbb26be10798b372b6d43629df51de87ad37f55ae113ce3460f1b08e164456156c6c4d63e6a5d7a845a37e2f71d5fae0b1ce4e70ce9cb2b84213567e8eaf822e2ef06d76d5e92faa0d7a573732a83951bd9ddaed9f9416512f1dd5aa36fabb6ed1d81a6e2e9ba2d51f6eab3dcff42fa2427817350eeaf295932d1d3aeb8fd68c9c705556e1a6d209a71700b7dc4c158d93a327230d0c14edaf22b3f2dba5c0d34ae17e0a23d70343f188061f5deaefb1d4511196df63b5afac5b3c4de8b35be3ec83d29c8c6085f1d7b48ef7a97b158314c9b40fec325ddd6140ef26aa51b527fcf173f0e4c34d3dc81c843d6e2e4d25dc653fab9cee0c323617274b121647ee692cb61719eb15e25022ba2c824c1448f48c95121ba43ac3dba6e8b3f09077e2e1b589a5585a30230640868694560e9df38ae4d5e4ec1aa9c9a33a1e6a5971a4905fff1ad3c0e3d62dd354e4464d2d1f044dc26fd23fd8bf4e0f75fe40d4cacc4850d41ee330c24fcf379138d3bcf81d95012a8e5286cce0c1479c8f2b07238d53c2bb749baea05194e9f09b1d3068b13bcef762f4126dd323f1400f78f6f7586f5684ba0f039c447944a835e3c0b462c317d25943581999c692bc2e1c2081a047e243188834b5c1dc1884f2d0b8202ed5f607f84b08612cfe30c42987d123716b61120535acaf16a471995c551a06a74476eb4f818abbbf1c4897ffe4ebed13e6d9e09523ca7df7b9f827cb7648947a71f4c169f778d059b544a203707473ff408e225a362492987be5020177476d549da2f0bcc666a057c8a31d77289f498615748bdf70aac469fb5f506aaa458e3094ab1d8e783a173c1a8bfaf17255e1cb1635886ab7b75f25217cdfa70e03055c290862ce09622653ac483c7141dadab6aa0fc0b15e8dc74b47cc9f26b803b09811af7a6e6d8d6c8670d21fd18c86af928c4f9c520bcfc04be9b05e3e5a6e29a9d64387798924c5f496a2b972f1e5ed757489f06c8e3826c48ed17d41dadc628b4fafeaff75e703fb1796577f0ac80d1385e27d5189a018e94c9f7bd21d457953e4cdc4fc37cda26bf32e4aae594ae57a4b7dd25ec91909c9dd75cde13d314d529e268f818f2da7a6e3bc0506f74c17d476e62012f1849e555f424d1a24a8172285844f729c7ebaf42c95e8ac95c6883831e2081c28eba4338e7c1b8a80509b0b2f0bea67d98aa43971649769b63ef1831af9d3df119bc271e0164e52ff926a5c8e6db02080a9f4b6418e7c1abcfc3c36342f59f757a21986f16e64c05a24dcd76f419608eb4c8f098d6e2e1338303a3350c1b9e6bdafc1f2e788734e0ac96d9ad0d4b8463979e3c6986e23f3ddb952cfa44df12a26d7583ddb8f4e2a5628951c8045ca31f097bc3ff7e82824caf2d5b7745e50958825787a3d1384bf5948f7bdafdb2bdbd66958be76f035bd74d990abb095446181e299272bf48e14157b17033c1f2cf1e8ecf0e0082b9ed6ee0ce902a5bb5104230ec2098f8807972c572c3227fa15c425c529f0716b0dd427fc0e04e2bb63beba736547ddd56b4ae97f85ad4970c94896f00dc4f4cc056affbb5a2d45066fc809f7ea70c428045a11ad55bf9ec14415a9d31c9d294d0f12a3d3227b1d664948417607c08e93e1d272f730f956a476cbd715e80c07e9cfaa62bbc95449eaa75eac7963f370f97e6b49d9afd4bf7fd9e7a504522c9d2fda65410869cf2daef56f3af528a6d959c3089ebbb073b18a7b6e2f6148056ad8653bb364b447a30046f94c9949a89d28330eb343df3aa1e330060e2e75b67d32afefaae9a6bd6de729d09412bb185e7734197f5afab97019368cfd24ec1e50f217d405ca35a8e34643f497e9b182bdd191eef5870d896e3cb07940258b5916baa26167978ffcc66caf97159ecb404ce8f0db53feaa4ecf8e91901d88d472e4274ff4a7fb056dcc7b92aef997f40b07f24e1355e0263c0559180c3c123220ed29b5e8548d9c53ff599bd692e5b2a34f6d440e3b893318bdab7253e8eff3cffd3762b85758ba96f5e190e43f1ed7d232efabbf80ff29dae7f03d494ec32971aaa9e01e052539babe2cd16d7a825eb88bdca8c9b5cd66b19a0fa78a21ea6700ec5717864e6b425b35b0379f1b559ee885b8224d88147af604a64b503c835e30c6c6a879ea829861708629705f25a52c15e76053a18a47ea15a2d8c07ea676172ca6363890ed596dd18d8d5928591df62ba76f450bf7525a1f4d0fe1efae036891c61c868f9fad8acd8a667b3a384d6319b43a3a6f9ab14599d4726d119b5a49b78fa45d38e22dec95ccc3c3733ae2c41760bf6998e7ec79f650f3ab8f21396f6eeecc80d2507f79fad07ba80eb2e342ceaa717982e8525188578c4eaea58b72c026404330039bb72f19da97a3c35db55d74292086f060a046fa71c65499e89b935aa54b9cb96b19e66f99e1ca1efdceee94bfe0702e426c05b9931e2d36bc5cbe3dd9c3a80b96ebdb044c46f94eefc50a5b543151d265a29303976f008bb4433df5d2fbccd89378db0e97b723e8f047e333972c7245ea63b7e14617490ae5639ac9407e6dd5cf198f54bbbc7ff968880ef85d4df6cee73c2fc46f2b361ac2795f6ea81226b05ed5e07f9b57a642c55bc1daa311a3b6cd458eeb6ee90af52f7d3a4dc7898da7d188362e4bf64dd36b11076878cfc254ed7a5079eff39c6e1f650419638ba4665ead1ab9830b5fdc7783d1f14f3a09195ece114835568631f8b4339fbf139ffee2faae1bfbd6654799d3da702715e210b97be5cd189174b93ec1664c0b562a2725d89c01e868c9acbf3a5ea2d4539dba43160463c91b1b363cbc90a5dcc0ee480a5e880b80c742cb22d76e610d2cc8a9cdf0040a82d6f13e12383333d14a0adcdbcca1855184c4c5540eb52575153d74f0e37113f4311793d11abd62cc75c7767bc785024eb56a8692c94f28b3cb7bcc6dd61346d00356ff33b29a030e177119e6256205d1e77fd88210375a1785c5db4b7bc476dc6c85d35aedab47cffc2893bc1f2fccbf8b485cd6b9c22753d9568e5f9016e0ad07b0240f01c0ba3f3f43a0898c133b27a265ad329e3a1ce8a2b569b431df7c890499372da5d9b2cd46dcd83c325a83449441987470157c5a3355144b4f5f7164d3954ca0ca1ba42bf10e04333908db81de5d9ac3072286793fc5697b166de7fdfaf0fc73ad5c25ec728fd255fa4aa9f8d5e61c03c5a47b3866e425759dc5c2eb0cf6ea8d8fbfb19e800d723ea12d7e639d5e3596f7933dc3dcb1b6c9c343bbb3eac583cc6722a46c5e4f5f51bcc7bee42ced6227b5ac33e546b658df87b8f0a952cf6423b97ca2d68d7e1bec7d63ef3f1547b561c3b3bbd1637af83e1f5ac6d2bd4238eb06fdf1bfb0af12720d40dfe6b354f8af6fd894e1e65ec4b400b81b4def76b685822f5940a4c668debdc21105ccb25e52a3529962307aca4af3f55e6f1ff1e86d53fff62f116b428c6baff27cbbc9fa7cbbde53f28b68f624165e00c62da6b17f1d88316f72c2ec0b4b690ad1ce54c7491632f04af395f7b9e766d996aa56c2388e357a73a25863348f9dd190fe5536accec1b4545942dfb8b9780c9f915d3741537cb2682f998e8ca167</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
             </div>
             <hr>
             <div>
@@ -300,9 +288,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-React/">
+                      <a href="/2021/12/16/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-%E7%90%90%E7%A2%8E%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">前端面试之道-React</span>
+                        <span class="hidden-mobile">前端面试之道-琐碎题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
