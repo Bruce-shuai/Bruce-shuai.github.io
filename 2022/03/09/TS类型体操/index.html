@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="TS的简介类型的意义  不同类型变量占据的内存大小不同 （各种类型所占用的字节数是不同的） 不同类型变量可做的操作不同  类型体操保证对某种类型只做该类型允许的操作  (比如不能在boolean中做加减乘除，这是类型不安全的做法) 类型检查就是为了保证类型安全的类型检查可以在 运行时做 也可以在 编译器做。前者叫做动态类型检查  后者叫做静态类型检查注意：动态类型代码虽然写起来简单，但代码中很容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TS类型体操">
+<meta property="og:url" content="http://example.com/2022/03/09/TS%E7%B1%BB%E5%9E%8B%E4%BD%93%E6%93%8D/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="TS的简介类型的意义  不同类型变量占据的内存大小不同 （各种类型所占用的字节数是不同的） 不同类型变量可做的操作不同  类型体操保证对某种类型只做该类型允许的操作  (比如不能在boolean中做加减乘除，这是类型不安全的做法) 类型检查就是为了保证类型安全的类型检查可以在 运行时做 也可以在 编译器做。前者叫做动态类型检查  后者叫做静态类型检查注意：动态类型代码虽然写起来简单，但代码中很容">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-09T07:41:04.000Z">
+<meta property="article:modified_time" content="2022-03-09T09:29:27.780Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>TS类型体操 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="TS类型体操">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-09 15:41" pubdate>
+        2022年3月9日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">TS类型体操</h1>
+            
+            <div class="markdown-body">
+              <!-- (该博客是基于TypeScript类型体操通关秘籍，所做的笔记！) -->
+<h3 id="TS的简介"><a href="#TS的简介" class="headerlink" title="TS的简介"></a>TS的简介</h3><p><strong>类型的意义</strong></p>
+<ul>
+<li>不同类型变量占据的内存大小不同 （各种类型所占用的字节数是不同的）</li>
+<li>不同类型变量可做的操作不同</li>
+</ul>
+<p><strong>类型体操</strong>保证对某种类型只做该类型允许的操作  (比如不能在boolean中做加减乘除，这是类型不安全的做法)</p>
+<p><strong>类型检查就是为了保证类型安全的</strong><br>类型检查可以在 运行时做 也可以在 编译器做。前者叫做动态类型检查  后者叫做静态类型检查<br>注意：动态类型代码虽然写起来简单，但代码中很容易藏着一些类型不匹配的隐患；静态类型写起来会麻烦一些，但是消除了类型不安全的问题</p>
+<blockquote>
+<p>动态类型只适合简单的场景，对于大项目却不太合适，因为代码中可能藏着的隐患太多了，万一线上报一个类型不匹配的错误，那可能就是大问题。而静态类型虽然会增加写代码的成本，但是却能更好的保证代码的健壮性，减少 Bug 率。</p>
+</blockquote>
+<h4 id="TS给JS带来的优势"><a href="#TS给JS带来的优势" class="headerlink" title="TS给JS带来的优势"></a>TS给JS带来的优势</h4><p>TS 给 JS 添加了一套静态类型系统，从动态类型语言变成了静态类型语言，可以在<strong>编译期间</strong>做<strong>类型检查</strong>，提前发现一些类型安全问题<br>因为有了<strong>静态类型</strong>，也就可以配合<strong>编译器</strong>来实现更好的<strong>提示、重构</strong>等</p>
+<h4 id="TS类型编程-类型体操"><a href="#TS类型编程-类型体操" class="headerlink" title="TS类型编程(类型体操)"></a>TS类型编程(类型体操)</h4><p>很多语言都有类型系统(Java、C++等)，但只有TS的类型编程被叫做<strong>类型体操</strong></p>
+<p>TS给JS添加了一套静态类型系统，通过TS Compiler编译JS，编译的过程叫做类型检查。但是它并没有改变JS的语法，只是在JS的基础上添加了类型语法，所以被叫做JS的超集</p>
+<h5 id="类型系统分类"><a href="#类型系统分类" class="headerlink" title="类型系统分类"></a>类型系统分类</h5><ul>
+<li><p><strong>简单类型系统</strong><br>给变量、函数、类声明类型，编译器会基于声明的类型做类型检查，类型不匹配就报错</p>
+</li>
+<li><p><strong>支持泛型的类型系统</strong><br>用通用的字符表示任何一种类型，利用代码模板的方式减少了很多重复的代码 (如Java、C++)</p>
+</li>
+<li><p><strong>支持类型编程的类型系统</strong><br>对传入的泛型做各种逻辑运算，产生新的类型，这就是类型编程</p>
+</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPropValue</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">object</span>, <span class="hljs-title">Key</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">T</span>&gt;(<span class="hljs-params">obj: T, key: Key</span>): <span class="hljs-title">T</span>[<span class="hljs-title">Key</span>] </span>&#123;<br>  <span class="hljs-keyword">return</span> obj[key]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>TS 就具备类型编程。Java这些语言只支持普通的泛型操作</p>
+<p>注意：TS的类型系统是图灵完备的，JS可以写的逻辑，用TS类型都可以写</p>
+<h4 id="TS类型"><a href="#TS类型" class="headerlink" title="TS类型"></a>TS类型</h4><p>静态类型系统的目的是把类型检查从运行时提前到编译时(因此要把JS运行时的类型拿过来：8种)，在此基础上增加了三种类型，元组(Tuple)，接口(interface)，枚举(Enum)，字面量类型以及等等类型</p>
+<ul>
+<li><p>元组</p>
+<blockquote>
+<p>就是元素个数和类型固定的数组类型： type Tuple = [number, string];</p>
+</blockquote>
+</li>
+<li><p>接口 (type却不是一种类型，这也是type 和 interface的区别)</p>
+<blockquote>
+<p>可以描述函数、对象、构造器的结构</p>
+</blockquote>
+</li>
+</ul>
+<p>对象类型、class 类型在 TypeScript 里也叫做<strong>索引类型</strong>，也就是索引了多个元素的类型的意思。对象可以动态添加属性，如果不知道会有什么属性，可以用<strong>可索引签名</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> IPerson &#123;<br>  [prop: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>;<br>&#125;<br><span class="hljs-keyword">const</span> obj:IPerson = &#123;&#125;;<br>obj.name = <span class="hljs-string">&#x27;heyang&#x27;</span>;<br>obj.age = <span class="hljs-number">18</span>;<br></code></pre></td></tr></table></figure>
+
+<p>总之，<strong>接口可以用来描述函数、构造器、索引类型（对象、class、数组）等复合类型</strong></p>
+<h4 id="TS的类型运算"><a href="#TS的类型运算" class="headerlink" title="TS的类型运算"></a>TS的类型运算</h4><blockquote>
+<p>通过type来进行类型运算</p>
+</blockquote>
+<ul>
+<li><p>条件：extends ? :  –&gt; TS 版的if else</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> isTwo&lt;T&gt; = T <span class="hljs-keyword">extends</span> <span class="hljs-number">2</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;<br><br><span class="hljs-keyword">type</span> res = isTwo&lt;<span class="hljs-number">1</span>&gt;;<br><span class="hljs-keyword">type</span> res2 = isTwo&lt;<span class="hljs-number">2</span>&gt;;<br></code></pre></td></tr></table></figure></li>
+<li><p>推导：infer<br>用来提取元素的一部分</p>
+</li>
+</ul>
+<p>比如提取元组类型的第一个元素</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> First&lt;Tuple <span class="hljs-keyword">extends</span> unknown[]&gt; = Tuple <span class="hljs-keyword">extends</span> [infer T, ...infer R] ? T : <span class="hljs-built_in">never</span>;<br><span class="hljs-keyword">type</span> res = First&lt;[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]&gt;<br></code></pre></td></tr></table></figure>
+<p>注意：上面的extends是约束的意思，也就是约束类型参数只能是数组类型<br>因为不知道数组元素的具体类型，所以用 unkown。</p>
+<ul>
+<li><p>联合： |   –&gt; 因为interface是类型，所以不具备运算能力<br>联合类型（Union）类似 js 里的或运算符 |，但是作用于类型，代表类型可以是几个类型之一。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> Union = <span class="hljs-number">1</span> | <span class="hljs-number">2</span> | <span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>交叉： &amp;<br>交叉类型（Intersection）类似 js 中的与运算符 &amp;，但是作用于类型，代表对类型做合并。<br>交叉类型会把同一类型做合并，不同类型舍弃</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> ObjType = &#123;<span class="hljs-attr">a</span>: <span class="hljs-built_in">number</span>&#125; &amp; &#123;<span class="hljs-attr">c</span>: <span class="hljs-built_in">boolean</span>&#125;;<br></code></pre></td></tr></table></figure></li>
+<li><p>映射类型<br>通过<strong>映射类型</strong>来解决对象、class这类<strong>索引类型</strong>的修改</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof T]?:T[Key] <br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>keyof T</code> 是查询索引类型中所有的索引，叫做<code>索引查询</code><br><code>T[Key]</code> 是取索引类型某个索引的值，叫做<code>索引访问</code><br><code>in</code> 是用于遍历<strong>联合类型</strong>的运算符</p>
+</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof T]: [T[Key], T[Key], T[Key]]<br>&#125;<br><br><span class="hljs-keyword">type</span> res = MapType&lt;&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>索引也可以做变化，使用as运算符，叫做重映射</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>    [<br>        Key <span class="hljs-keyword">in</span> keyof T <br>            <span class="hljs-keyword">as</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span><span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span><span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span>`</span><br>    ]: [T[Key], T[Key], T[Key]]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="类型体操的套路"><a href="#类型体操的套路" class="headerlink" title="类型体操的套路"></a>类型体操的套路</h3><h4 id="套路一：-模式匹配做提取"><a href="#套路一：-模式匹配做提取" class="headerlink" title="套路一： 模式匹配做提取"></a>套路一： 模式匹配做提取</h4><p>例如：提取Promise里面的value值</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> p = <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-string">&#x27;guang&#x27;</span>&gt;;<br><span class="hljs-keyword">type</span> GetValueType&lt;P&gt; = P <span class="hljs-keyword">extends</span> <span class="hljs-built_in">Promise</span>&lt;infer Value&gt; ? Value : <span class="hljs-built_in">never</span>;<br><span class="hljs-keyword">type</span> GetValueResult = GetValueType&lt;p&gt;;   <span class="hljs-comment">// &#x27;guang&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>Typescript 类型的模式匹配是通过 extends 对类型参数做匹配，结果保存到通过 infer 声明的局部类型变量里，如果匹配就能从该局部变量里拿到提取出的类型。</p>
+<hr>
+<p>再来点例子：</p>
+<ul>
+<li>数组<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];   <span class="hljs-comment">// 字面量做类型</span><br><span class="hljs-comment">// 先在要提取数组类型的第一个元素</span><br><span class="hljs-keyword">type</span> GetFirst&lt;Arr <span class="hljs-keyword">extends</span> unknown[]&gt; = Arr <span class="hljs-keyword">extends</span> [infer First, ...unknow[]] ? First : <span class="hljs-built_in">never</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p><strong>any 和 unknown 的区别：</strong> any 和 unknown 都代表任意类型，但是 unknown 只能接收任意类型的值，而 any 除了可以接收任意类型的值，也可以赋值给任意类型。类型体操中经常用 unknown 接受和匹配任何类型，而很少把任何类型赋值给某个类型变量。</p>
+</blockquote>
+<ul>
+<li>字符串<br>判断字符串是否以某个前缀开头，也是通过模式匹配：<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> StartsWith&lt;Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, Prefix <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; = Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;Prefix&#125;</span><span class="hljs-subst">$&#123;<span class="hljs-built_in">string</span>&#125;</span>`</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">type</span> StartsWithResult = StartsWith&lt;<span class="hljs-string">&#x27;heyang&#x27;</span>, <span class="hljs-string">&#x27;he&#x27;</span>&gt;  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> ReplaceStr&lt;Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, From <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, To <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; = Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;infer Prefix&#125;</span><span class="hljs-subst">$&#123;From&#125;</span><span class="hljs-subst">$&#123;infer Suffix&#125;</span>`</span> ？ <span class="hljs-string">`<span class="hljs-subst">$&#123;Prefix&#125;</span><span class="hljs-subst">$&#123;To&#125;</span><span class="hljs-subst">$&#123;Suffix&#125;</span>`</span> : Str;   <br><span class="hljs-comment">// infer 真的牛啊</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>函数<br>函数同样也可以做类型匹配，比如提取参数、返回值的类型。</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> GetParameters&lt;Func <span class="hljs-keyword">extends</span> <span class="hljs-built_in">Function</span>&gt; = <br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/13/React-Hooks%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%8E%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">React Hooks的思考与总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>

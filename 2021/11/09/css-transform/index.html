@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.54.14-AM.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-9.06.25-AM.png">
 <meta property="article:published_time" content="2021-11-09T11:42:16.000Z">
-<meta property="article:modified_time" content="2022-01-09T03:28:44.012Z">
+<meta property="article:modified_time" content="2022-02-21T15:10:24.948Z">
 <meta property="article:author" content="帅得乱七八糟">
 <meta property="article:tag" content="基本功">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
 <!-- ![rotate](https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.09.50-PM.png) -->
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-8.09.50-PM.png" srcset="/img/loading.gif" lazyload width="200px">
 
-<p><code>rotate3D</code>的使用比较的复杂，所以一般要使用 r<code>otate3D</code>，推荐单独使用<code>rotateX</code>、<code>rotateY</code>、<code>rotateZ</code>来进行控制</p>
+<p><code>rotate3D</code>的使用比较的复杂，所以一般要使用 <code>rotate3D</code>，推荐单独使用<code>rotateX</code>、<code>rotateY</code>、<code>rotateZ</code>来进行控制</p>
 <p>例如：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-0&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-45&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-90&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box--default rotateX-135&quot;</span>&gt;Box&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
 
@@ -363,7 +363,7 @@
 
 <img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-10-at-8.49.56-AM.png" srcset="/img/loading.gif" lazyload alt="transform属性结合" width="200px"/>
 
-<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>使用 transform 的属性组合，要注意一个问题，**<code>transform</code>不支持属性覆盖**</p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>使用 transform 的属性组合，要注意一个问题， <strong><code>transform</code>不支持属性覆盖</strong></p>
 <p>例如：</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/* html文件 */</span><br>&lt;div class=<span class="hljs-string">&quot;box--default&quot;</span>&gt;Box&lt;/div&gt;<br>&lt;div class=<span class="hljs-string">&quot;box--default combine&quot;</span>&gt;Box&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.<span class="hljs-built_in">box</span>--default &#123;<br>  <span class="hljs-built_in">display</span>: flex;<br>  justify-<span class="hljs-built_in">content</span>: <span class="hljs-built_in">center</span>;<br>  align-items: <span class="hljs-built_in">center</span>;<br>  <span class="hljs-built_in">width</span>: 100px;<br>  <span class="hljs-built_in">height</span>: 100px;<br>  margin: 50px;<br>  <span class="hljs-built_in">color</span>: white;<br>  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: red;<br>  <span class="hljs-built_in">font</span>-size: 2<span class="hljs-built_in">rem</span>;<br>&#125;<br>.<span class="hljs-built_in">combine</span> &#123;<br>  <span class="hljs-built_in">transform</span>: rotate(45deg) <span class="hljs-built_in">translate</span>(100px);<br>&#125;<br>.<span class="hljs-built_in">combine</span> &#123;<br>  <span class="hljs-built_in">transform</span>: rotate(90deg);<br>&#125;<br></code></pre></td></tr></table></figure>
 
