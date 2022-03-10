@@ -152,19 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS-Background</title>
-    <url>/2021/12/05/CSS-Background/</url>
-    <content><![CDATA[<p>这个可以同时控制多张图片</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>  <span class="hljs-attribute">background-attachment</span>: fixed;<br>  <span class="hljs-attribute">background-position</span>: left bottom, right bottom;<br>  <span class="hljs-attribute">background-size</span>: <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), cover;   // 注意这里<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>), <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS Media Query</title>
     <url>/2021/11/28/CSS-Media-Query/</url>
     <content><![CDATA[<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* style.css */</span><br><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br><span class="hljs-selector-class">.title</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">6rem</span>;<br>&#125;<br><span class="hljs-selector-class">.subtitle</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">4rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -212,47 +199,10 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS Units</title>
-    <url>/2021/11/08/CSS-Units/</url>
-    <content><![CDATA[<p>一篇文章解决 <code>px</code>、<code>%</code>、<code>vh</code>、<code>vw</code>、<code>em</code>、<code>rem</code> 这些 css 常用单位</p>
-<h4 id="最简单的单位：px-VS"><a href="#最简单的单位：px-VS" class="headerlink" title="最简单的单位：px VS %"></a>最简单的单位：<code>px</code> VS <code>%</code></h4><p>px 是一个绝对单位，无论在什么情况下，1px 的大小一定是固定的<br>% 是一个相对单位，1%的大小是相对它的父元素的</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;<span class="hljs-regexp">/div&gt;   /</span>* 这里的百分比是相对于父元素的大小 */<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-hundred-pixels</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.15.20-PM.png" alt="px和%"></p>
-<h4 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h4><p><code>1vw</code>等于当前所在的屏幕宽度的 <strong>1/100</strong><br><code>1vh</code>等于当前所在的屏幕高度的 <strong>1/100</strong></p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-vw</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50vw</span>;<br>&#125;<br><br><span class="hljs-selector-class">.twenty-five-vh</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">25vh</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-08-at-11.25.56-PM.gif" alt="vh&amp;vw"></p>
-<p>可见，无论当前页面如何放大或缩小。50vw 就一定是当前页面的 50%的宽度。25vh 就一定是当前页面的 25%的高度<br>这两者都不受<strong>父元素</strong>的影响</p>
-<h4 id="有点难度的单位：rem-和-em"><a href="#有点难度的单位：rem-和-em" class="headerlink" title="有点难度的单位：rem 和 em"></a>有点难度的单位：rem 和 em</h4><p>首先，rem 和 em 都是<strong>相对单位</strong></p>
-<p><strong>注意：</strong><br><code>rem</code>是相对 root 的<code>font-size</code>的大小<br><code>em</code>是相对自身元素的<code>font-size</code>的大小</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.one-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.44.58-PM.png" alt="em&amp;rem"></p>
-<p>事实上，root 元素的默认<code>font-size</code>是<code>16px</code>。对于分界线上面的字体大小，都是根据 root 来安排的大小。但是，分界线后面的字体大小。<code>rem</code>是根据<code>root</code>的 <code>font-size</code>，<code>em</code>是根据父元素的 <code>font-size</code><br>(上面说的有误：em是根据自身元素来判定的)<br>如果 root 中<code>font-size</code>是<code>16px</code>, 则在任何位置：<code>font-size: 1rem === font-size: 16px</code><br>如果 root 中<code>font-size</code>是<code>16px</code>, 某一个父元素的<code>font-size: 20px</code>,则子元素的：<code>font-size: 1em === font-size: 20px</code></p>
-<p>所以，建议主要使用<code>rem</code>。因为<code>em</code>在嵌套的 font-size 中是非常难以把控的…</p>
-<p>有时候为了方便控制字体大小和使用 rem，会这样做</p>
-<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">html</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">62.5%</span>;    <span class="hljs-comment">// 16 * 62.5% = 10px  这样 1rem === 10px</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>当然，<code>rem</code>、<code>em</code>虽说是根据<code>font-size</code>的大小来定义的。但同样能作为盒子的长和宽的单位</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><br>.icon-container.large &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.em-icon &#123;<br>  width: <span class="hljs-number">1</span>em;<br>  height: <span class="hljs-number">1</span>em;<br>&#125;<br><br>.rem-icon &#123;<br>  width: <span class="hljs-number">1</span>rem;<br>  height: <span class="hljs-number">1</span>rem;<br>&#125;<br><br>.icon &#123;<br>  background-color: red;<br>&#125;<br><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.43.51-AM.png" alt="em和rem在盒子上的效果"></p>
-<p>可见，<code>1rem</code>的 icon 效果无论在哪都一样，但是<code>em</code>的 icon 会根据父元素的<code>font-size</code>的大小而做出相应的改变…</p>
-<p>有上述代码其实我们可以知道：<br><code>em</code> 最好用于规定盒子的大小，而不是用来控制字体的大小<br><code>rem</code>确恰恰适合规定字体的大小…</p>
-<h4 id="font-size-的-单位"><a href="#font-size-的-单位" class="headerlink" title="font-size 的%单位"></a>font-size 的%单位</h4><p>在文章的上面我已讲述了，<code>%</code>是根据父元素来进行比较大小的。而<code>em</code>同样如此。事实上，<code>font-size</code>中使用<code>%</code>单位和使用<code>em</code>单位效果是一样的</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.two-em &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>em;<br>&#125;<br><br>.two-rem &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>rem;<br>&#125;<br><br>.two-hundred &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">200</span>%;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.52.38-AM.png" alt="em VS %"></p>
-<p>可见，<code>1em === 100%</code></p>
-<h4 id="更多关于-css-units-内容细节"><a href="#更多关于-css-units-内容细节" class="headerlink" title="更多关于 css units 内容细节"></a>更多关于 css units 内容细节</h4><p><code>imooc网</code> 西门老舅 第六章有相关具体解析…</p>
+    <title>CSS-Background</title>
+    <url>/2021/12/05/CSS-Background/</url>
+    <content><![CDATA[<p>这个可以同时控制多张图片</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>  <span class="hljs-attribute">background-attachment</span>: fixed;<br>  <span class="hljs-attribute">background-position</span>: left bottom, right bottom;<br>  <span class="hljs-attribute">background-size</span>: <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), cover;   // 注意这里<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>), <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>CSS篇</category>
@@ -312,6 +262,56 @@
 
 <p>外表看似和 relative 效果差不多。可真正滚动滑条的时候就大大的不同了<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-2.11.58-PM.4gp9o7g2tf60.gif" alt="sticky效果"></p>
 <h5 id="sticky-效果图"><a href="#sticky-效果图" class="headerlink" title="sticky 效果图"></a>sticky 效果图</h5><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-4.45.31-PM.3ysiy6q3te40.gif" alt="sticky效果图1"><br><a href="https://codepen.io/bruce-shuai/pen/yLoKqqR?editors=1100">对应代码</a></p>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS Units</title>
+    <url>/2021/11/08/CSS-Units/</url>
+    <content><![CDATA[<p>一篇文章解决 <code>px</code>、<code>%</code>、<code>vh</code>、<code>vw</code>、<code>em</code>、<code>rem</code> 这些 css 常用单位</p>
+<h4 id="最简单的单位：px-VS"><a href="#最简单的单位：px-VS" class="headerlink" title="最简单的单位：px VS %"></a>最简单的单位：<code>px</code> VS <code>%</code></h4><p>px 是一个绝对单位，无论在什么情况下，1px 的大小一定是固定的<br>% 是一个相对单位，1%的大小是相对它的父元素的</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;<span class="hljs-regexp">/div&gt;   /</span>* 这里的百分比是相对于父元素的大小 */<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box one-hundred-pixels&quot;</span>&gt;<span class="hljs-number">100</span>px&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-hundred-pixels</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.15.20-PM.png" alt="px和%"></p>
+<h4 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h4><p><code>1vw</code>等于当前所在的屏幕宽度的 <strong>1/100</strong><br><code>1vh</code>等于当前所在的屏幕高度的 <strong>1/100</strong></p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-percent&quot;</span>&gt;<span class="hljs-number">50</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box fifty-vw&quot;</span>&gt;<span class="hljs-number">50</span>vw&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;box twenty-five-vh&quot;</span>&gt;<span class="hljs-number">25</span>vh&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-percent</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.fifty-vw</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50vw</span>;<br>&#125;<br><br><span class="hljs-selector-class">.twenty-five-vh</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">25vh</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-08-at-11.25.56-PM.gif" alt="vh&amp;vw"></p>
+<p>可见，无论当前页面如何放大或缩小。50vw 就一定是当前页面的 50%的宽度。25vh 就一定是当前页面的 25%的高度<br>这两者都不受<strong>父元素</strong>的影响</p>
+<h4 id="有点难度的单位：rem-和-em"><a href="#有点难度的单位：rem-和-em" class="headerlink" title="有点难度的单位：rem 和 em"></a>有点难度的单位：rem 和 em</h4><p>首先，rem 和 em 都是<strong>相对单位</strong></p>
+<p><strong>注意：</strong><br><code>rem</code>是相对 root 的<code>font-size</code>的大小<br><code>em</code>是相对自身元素的<code>font-size</code>的大小</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-rem&quot;</span>&gt;<span class="hljs-number">1</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;one-em&quot;</span>&gt;<span class="hljs-number">1</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>&#125;<br><br><span class="hljs-selector-class">.one-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.one-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-em</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;<br>&#125;<br><br><span class="hljs-selector-class">.two-rem</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-08-at-11.44.58-PM.png" alt="em&amp;rem"></p>
+<p>事实上，root 元素的默认<code>font-size</code>是<code>16px</code>。对于分界线上面的字体大小，都是根据 root 来安排的大小。但是，分界线后面的字体大小。<code>rem</code>是根据<code>root</code>的 <code>font-size</code>，<code>em</code>是根据父元素的 <code>font-size</code><br>(上面说的有误：em是根据自身元素来判定的)<br>如果 root 中<code>font-size</code>是<code>16px</code>, 则在任何位置：<code>font-size: 1rem === font-size: 16px</code><br>如果 root 中<code>font-size</code>是<code>16px</code>, 某一个父元素的<code>font-size: 20px</code>,则子元素的：<code>font-size: 1em === font-size: 20px</code></p>
+<p>所以，建议主要使用<code>rem</code>。因为<code>em</code>在嵌套的 font-size 中是非常难以把控的…</p>
+<p>有时候为了方便控制字体大小和使用 rem，会这样做</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">html</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">62.5%</span>;    <span class="hljs-comment">// 16 * 62.5% = 10px  这样 1rem === 10px</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>当然，<code>rem</code>、<code>em</code>虽说是根据<code>font-size</code>的大小来定义的。但同样能作为盒子的长和宽的单位</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon em-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>em icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon-container large&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;icon rem-icon&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;span&gt;<span class="hljs-number">1</span>rem icon&lt;/span&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><br>.icon-container.large &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.em-icon &#123;<br>  width: <span class="hljs-number">1</span>em;<br>  height: <span class="hljs-number">1</span>em;<br>&#125;<br><br>.rem-icon &#123;<br>  width: <span class="hljs-number">1</span>rem;<br>  height: <span class="hljs-number">1</span>rem;<br>&#125;<br><br>.icon &#123;<br>  background-color: red;<br>&#125;<br><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.43.51-AM.png" alt="em和rem在盒子上的效果"></p>
+<p>可见，<code>1rem</code>的 icon 效果无论在哪都一样，但是<code>em</code>的 icon 会根据父元素的<code>font-size</code>的大小而做出相应的改变…</p>
+<p>有上述代码其实我们可以知道：<br><code>em</code> 最好用于规定盒子的大小，而不是用来控制字体的大小<br><code>rem</code>确恰恰适合规定字体的大小…</p>
+<h4 id="font-size-的-单位"><a href="#font-size-的-单位" class="headerlink" title="font-size 的%单位"></a>font-size 的%单位</h4><p>在文章的上面我已讲述了，<code>%</code>是根据父元素来进行比较大小的。而<code>em</code>同样如此。事实上，<code>font-size</code>中使用<code>%</code>单位和使用<code>em</code>单位效果是一样的</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;hr&gt;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-rem&quot;</span>&gt;<span class="hljs-number">2</span>rem&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-em&quot;</span>&gt;<span class="hljs-number">2</span>em&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;two-hundred&quot;</span>&gt;<span class="hljs-number">200</span>%&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.parent &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">30</span>px;<br>&#125;<br><br>.two-em &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>em;<br>&#125;<br><br>.two-rem &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">2</span>rem;<br>&#125;<br><br>.two-hundred &#123;<br>  font-<span class="hljs-keyword">size</span>: <span class="hljs-number">200</span>%;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-09-at-11.52.38-AM.png" alt="em VS %"></p>
+<p>可见，<code>1em === 100%</code></p>
+<h4 id="更多关于-css-units-内容细节"><a href="#更多关于-css-units-内容细节" class="headerlink" title="更多关于 css units 内容细节"></a>更多关于 css units 内容细节</h4><p><code>imooc网</code> 西门老舅 第六章有相关具体解析…</p>
 ]]></content>
       <categories>
         <category>CSS篇</category>
@@ -871,6 +871,39 @@
       </tags>
   </entry>
   <entry>
+    <title>GraphQL</title>
+    <url>/2021/12/17/GraphQL/</url>
+    <content><![CDATA[<!-- 后端的GraphQL 先不学...先把我当前重点东西弄了来... -->
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.56.16.png" alt="RESTful 的弊端1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.58.17.png" alt="RESTful 的弊端2"></p>
+<p>后端返回的数据过多，前端只用到其中一部分。或者后端返回的数据过少，前端需要发送多个请求来组合数据，api 分散，不容易统一管理工具。<br>GraphQL 是一种新的 api 查询语言，前端可以自己决定需要那些数据，只需要发送一次请求就能获得所有的数据。访问集中提供的 api:<code>http://xxx/graphql</code>。前后端独立，后端的改动基本不影响前端的接口</p>
+<p>GraphQL 的结构和 js 的对象结构很像。数据是按照类型组织的,类型中的数据都是强类型，可以是：String、Int、Float、Boolean、ID、数组、自定义类型</p>
+<h3 id="前端使用-GraphQL"><a href="#前端使用-GraphQL" class="headerlink" title="前端使用 GraphQL"></a>前端使用 GraphQL</h3><p>一个免费的 graphql 的 api 的网站：<a href="https://countries.trevorblades.com/">https://countries.trevorblades.com/</a></p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">|-index.html</span><br><span class="hljs-string">|-script.js</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br>/* index.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;continent-select&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">selected</span> <span class="hljs-attr">hidden</span>&gt;</span>Select a Continent<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>  // 这里的hidden写法是挺讲究的。可以去掉看看效果<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;countries-list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br><br>fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  method: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-selector-tag">body</span>: JSON<span class="hljs-selector-class">.stringify</span>(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          name<br>          <span class="hljs-selector-tag">code</span><br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br><span class="hljs-selector-class">.then</span>(res =&gt; res<span class="hljs-selector-class">.json</span>())<br><span class="hljs-selector-class">.then</span>(data =&gt; &#123;<br>  console<span class="hljs-selector-class">.log</span>(data<span class="hljs-selector-class">.data</span>.continent)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.12.10.png" alt="打印结果1"></p>
+<p>如果去掉 <code>code</code></p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br><br>fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  method: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-selector-tag">body</span>: JSON<span class="hljs-selector-class">.stringify</span>(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          name<br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br><span class="hljs-selector-class">.then</span>(res =&gt; res<span class="hljs-selector-class">.json</span>())<br><span class="hljs-selector-class">.then</span>(data =&gt; &#123;<br>  console<span class="hljs-selector-class">.log</span>(data<span class="hljs-selector-class">.data</span>.continent)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.13.23.png" alt="打印结果2"></p>
+<p>现在结合 <code>select</code> 标签</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/* script.js */</span><br>const continentSelect = document.querySelector(<span class="hljs-string">&#x27;#continent-select&#x27;</span>);<br><br><span class="hljs-keyword">fetch</span>(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  <span class="hljs-keyword">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  body: <span class="hljs-type">JSON</span>.stringify(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          <span class="hljs-type">name</span><br>          code<br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br>.<span class="hljs-keyword">then</span>(res =&gt; res.json())<br>.<span class="hljs-keyword">then</span>(data =&gt; &#123;<br>  data.data.continents.<span class="hljs-keyword">forEach</span>(continent =&gt; &#123;<br>    const <span class="hljs-keyword">option</span> = document.createElement(<span class="hljs-string">&#x27;option&#x27;</span>);<br>    <span class="hljs-keyword">option</span>.<span class="hljs-keyword">value</span> = continent.code;<br>    <span class="hljs-keyword">option</span>.innerText = continent.name;<br>    continentSelect.append(<span class="hljs-keyword">option</span>);<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.21.10.png" alt="select"></p>
+<h4 id="传递变量"><a href="#传递变量" class="headerlink" title="传递变量"></a>传递变量</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> continentSelect = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#continent-select&#x27;</span>);<br><span class="hljs-keyword">const</span> continentList = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#countries-list&#x27;</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">queryFetch</span>(<span class="hljs-params">query, variables</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  <span class="hljs-attr">headers</span>: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(&#123;<br>    <span class="hljs-attr">query</span>: query,<br>    <span class="hljs-attr">variables</span>: variables<br>  &#125;)<br>&#125;)<br>.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())<br>&#125;<br><br><br>continentSelect.addEventListener(<span class="hljs-string">&#x27;change&#x27;</span>,<span class="hljs-keyword">async</span> (e) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> continentCode = e.target.value;<br>  <span class="hljs-keyword">const</span> continentCountries = <span class="hljs-keyword">await</span> getContinentCountries(continentCode);<br>  continentList.innerText = <span class="hljs-string">&#x27;&#x27;</span>;  <span class="hljs-comment">// 每次使用先清零</span><br>  continentCountries.forEach(<span class="hljs-function"><span class="hljs-params">country</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);<br>    element.innerText = country.name;<br>    continentList.appendChild(element);<br>  &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getContinentCountries</span>(<span class="hljs-params">continentCode</span>) </span>&#123;<br>  <span class="hljs-comment">// 这里是带有变量的query查询</span><br>  <span class="hljs-keyword">return</span> queryFetch(<span class="hljs-string">`</span><br><span class="hljs-string">  query getCountries($code: ID!)&#123;</span><br><span class="hljs-string">    continent(code: $code) &#123;</span><br><span class="hljs-string">      countries &#123;</span><br><span class="hljs-string">        name</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">`</span>, &#123; <span class="hljs-attr">code</span>: continentCode &#125;).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.data.continent.countries)<br>&#125;<br><br><br>queryFetch(<span class="hljs-string">`</span><br><span class="hljs-string">  query &#123;</span><br><span class="hljs-string">    continents &#123;</span><br><span class="hljs-string">      name</span><br><span class="hljs-string">      code</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">`</span>)<br>.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;<br>  data.data.continents.forEach(<span class="hljs-function"><span class="hljs-params">continent</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> option = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;option&#x27;</span>);<br>    option.value = continent.code;<br>    option.innerText = continent.name;<br>    continentSelect.append(option);<br>  &#125;)<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62021-12-17-%E4%B8%8B%E5%8D%884.15.35.gif" alt="效果图"></p>
+]]></content>
+      <tags>
+        <tag>api</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git基本用法</title>
     <url>/2021/10/20/Git%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<p>尽量写得精简~<br><code>Git</code> 是一个分布式版本控制系统</p>
@@ -929,39 +962,6 @@
       </categories>
       <tags>
         <tag>互联网</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GraphQL</title>
-    <url>/2021/12/17/GraphQL/</url>
-    <content><![CDATA[<!-- 后端的GraphQL 先不学...先把我当前重点东西弄了来... -->
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.56.16.png" alt="RESTful 的弊端1"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8A%E5%8D%8810.58.17.png" alt="RESTful 的弊端2"></p>
-<p>后端返回的数据过多，前端只用到其中一部分。或者后端返回的数据过少，前端需要发送多个请求来组合数据，api 分散，不容易统一管理工具。<br>GraphQL 是一种新的 api 查询语言，前端可以自己决定需要那些数据，只需要发送一次请求就能获得所有的数据。访问集中提供的 api:<code>http://xxx/graphql</code>。前后端独立，后端的改动基本不影响前端的接口</p>
-<p>GraphQL 的结构和 js 的对象结构很像。数据是按照类型组织的,类型中的数据都是强类型，可以是：String、Int、Float、Boolean、ID、数组、自定义类型</p>
-<h3 id="前端使用-GraphQL"><a href="#前端使用-GraphQL" class="headerlink" title="前端使用 GraphQL"></a>前端使用 GraphQL</h3><p>一个免费的 graphql 的 api 的网站：<a href="https://countries.trevorblades.com/">https://countries.trevorblades.com/</a></p>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">|-index.html</span><br><span class="hljs-string">|-script.js</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br>/* index.html */<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;continent-select&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">selected</span> <span class="hljs-attr">hidden</span>&gt;</span>Select a Continent<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>  // 这里的hidden写法是挺讲究的。可以去掉看看效果<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;countries-list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br><br>fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  method: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-selector-tag">body</span>: JSON<span class="hljs-selector-class">.stringify</span>(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          name<br>          <span class="hljs-selector-tag">code</span><br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br><span class="hljs-selector-class">.then</span>(res =&gt; res<span class="hljs-selector-class">.json</span>())<br><span class="hljs-selector-class">.then</span>(data =&gt; &#123;<br>  console<span class="hljs-selector-class">.log</span>(data<span class="hljs-selector-class">.data</span>.continent)<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.12.10.png" alt="打印结果1"></p>
-<p>如果去掉 <code>code</code></p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* script.js */</span><br><br>fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  method: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-selector-tag">body</span>: JSON<span class="hljs-selector-class">.stringify</span>(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          name<br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br><span class="hljs-selector-class">.then</span>(res =&gt; res<span class="hljs-selector-class">.json</span>())<br><span class="hljs-selector-class">.then</span>(data =&gt; &#123;<br>  console<span class="hljs-selector-class">.log</span>(data<span class="hljs-selector-class">.data</span>.continent)<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>结果如下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.13.23.png" alt="打印结果2"></p>
-<p>现在结合 <code>select</code> 标签</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/* script.js */</span><br>const continentSelect = document.querySelector(<span class="hljs-string">&#x27;#continent-select&#x27;</span>);<br><br><span class="hljs-keyword">fetch</span>(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  <span class="hljs-keyword">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  headers: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  body: <span class="hljs-type">JSON</span>.stringify(&#123;<br>    query: `<br>      query &#123;<br>        continents &#123;<br>          <span class="hljs-type">name</span><br>          code<br>        &#125;<br>      &#125;<br>    `<br>  &#125;)<br>&#125;)<br>.<span class="hljs-keyword">then</span>(res =&gt; res.json())<br>.<span class="hljs-keyword">then</span>(data =&gt; &#123;<br>  data.data.continents.<span class="hljs-keyword">forEach</span>(continent =&gt; &#123;<br>    const <span class="hljs-keyword">option</span> = document.createElement(<span class="hljs-string">&#x27;option&#x27;</span>);<br>    <span class="hljs-keyword">option</span>.<span class="hljs-keyword">value</span> = continent.code;<br>    <span class="hljs-keyword">option</span>.innerText = continent.name;<br>    continentSelect.append(<span class="hljs-keyword">option</span>);<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2021-12-17-%E4%B8%8B%E5%8D%883.21.10.png" alt="select"></p>
-<h4 id="传递变量"><a href="#传递变量" class="headerlink" title="传递变量"></a>传递变量</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* script.js */</span><br><span class="hljs-keyword">const</span> continentSelect = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#continent-select&#x27;</span>);<br><span class="hljs-keyword">const</span> continentList = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#countries-list&#x27;</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">queryFetch</span>(<span class="hljs-params">query, variables</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">&#x27;https://countries.trevorblades.com/&#x27;</span>, &#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  <span class="hljs-attr">headers</span>: &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>&#125;,<br>  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(&#123;<br>    <span class="hljs-attr">query</span>: query,<br>    <span class="hljs-attr">variables</span>: variables<br>  &#125;)<br>&#125;)<br>.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())<br>&#125;<br><br><br>continentSelect.addEventListener(<span class="hljs-string">&#x27;change&#x27;</span>,<span class="hljs-keyword">async</span> (e) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> continentCode = e.target.value;<br>  <span class="hljs-keyword">const</span> continentCountries = <span class="hljs-keyword">await</span> getContinentCountries(continentCode);<br>  continentList.innerText = <span class="hljs-string">&#x27;&#x27;</span>;  <span class="hljs-comment">// 每次使用先清零</span><br>  continentCountries.forEach(<span class="hljs-function"><span class="hljs-params">country</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);<br>    element.innerText = country.name;<br>    continentList.appendChild(element);<br>  &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getContinentCountries</span>(<span class="hljs-params">continentCode</span>) </span>&#123;<br>  <span class="hljs-comment">// 这里是带有变量的query查询</span><br>  <span class="hljs-keyword">return</span> queryFetch(<span class="hljs-string">`</span><br><span class="hljs-string">  query getCountries($code: ID!)&#123;</span><br><span class="hljs-string">    continent(code: $code) &#123;</span><br><span class="hljs-string">      countries &#123;</span><br><span class="hljs-string">        name</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">`</span>, &#123; <span class="hljs-attr">code</span>: continentCode &#125;).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.data.continent.countries)<br>&#125;<br><br><br>queryFetch(<span class="hljs-string">`</span><br><span class="hljs-string">  query &#123;</span><br><span class="hljs-string">    continents &#123;</span><br><span class="hljs-string">      name</span><br><span class="hljs-string">      code</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">`</span>)<br>.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;<br>  data.data.continents.forEach(<span class="hljs-function"><span class="hljs-params">continent</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> option = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;option&#x27;</span>);<br>    option.value = continent.code;<br>    option.innerText = continent.name;<br>    continentSelect.append(option);<br>  &#125;)<br>&#125;)<br><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62021-12-17-%E4%B8%8B%E5%8D%884.15.35.gif" alt="效果图"></p>
-]]></content>
-      <tags>
-        <tag>api</tag>
       </tags>
   </entry>
   <entry>
@@ -1895,6 +1895,15 @@
 ]]></content>
   </entry>
   <entry>
+    <title>React-Query</title>
+    <url>/2021/12/18/React-Query/</url>
+    <content><![CDATA[<p><a href="https://github.com/tannerlinsley/react-query">react-query 文档</a><br><a href="https://github.com/Bruce-shuai/react-query-demo">react-query 小 demo</a><br><a href="https://github.com/Bruce-shuai/react-query-advance">react-query advance</a> —&gt; 这里有几乎所有常用的 react-query 操作</p>
+<p>能够缓存接口获取的数据，提高用户体验(react-query 会在后端审核，该接口返回的数据是否更新了，没有更新的话仍使用缓存的数据，所以第二次使用该接口则极大的提高了用户的体验),你可以在 chrome 控制台设置网络速度为 Slow 3G 来试试</p>
+<h4 id="利用-react-query-实现乐观更新-optimistic-updates-—-gt-装逼的时候说，因为别人可能都不知道这个词"><a href="#利用-react-query-实现乐观更新-optimistic-updates-—-gt-装逼的时候说，因为别人可能都不知道这个词" class="headerlink" title="利用 react-query 实现乐观更新 (optimistic updates) —&gt; 装逼的时候说，因为别人可能都不知道这个词~"></a>利用 react-query 实现乐观更新 (optimistic updates) —&gt; 装逼的时候说，因为别人可能都不知道这个词~</h4><p>在服务器返回之前就装作这个数据已经成功了~</p>
+<p>优势： 使用了 react-Query, 就不再需要使用 useEffect + useState 来解决异步获取数据的问题了…</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Redux知识</title>
     <url>/2021/12/16/React-Redux/</url>
     <content><![CDATA[<p><a href="https://github.com/reduxjs/redux">redux github</a><br><a href="https://redux.js.org/">redux 官方文档</a><br><a href="https://www.redux.org.cn/">redux 中文文档</a><br>redux 是一个可预测的状态容器(可预测是因为无副作用，相同输入，一定会有相同的输出)</p>
@@ -2012,15 +2021,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>React-Query</title>
-    <url>/2021/12/18/React-Query/</url>
-    <content><![CDATA[<p><a href="https://github.com/tannerlinsley/react-query">react-query 文档</a><br><a href="https://github.com/Bruce-shuai/react-query-demo">react-query 小 demo</a><br><a href="https://github.com/Bruce-shuai/react-query-advance">react-query advance</a> —&gt; 这里有几乎所有常用的 react-query 操作</p>
-<p>能够缓存接口获取的数据，提高用户体验(react-query 会在后端审核，该接口返回的数据是否更新了，没有更新的话仍使用缓存的数据，所以第二次使用该接口则极大的提高了用户的体验),你可以在 chrome 控制台设置网络速度为 Slow 3G 来试试</p>
-<h4 id="利用-react-query-实现乐观更新-optimistic-updates-—-gt-装逼的时候说，因为别人可能都不知道这个词"><a href="#利用-react-query-实现乐观更新-optimistic-updates-—-gt-装逼的时候说，因为别人可能都不知道这个词" class="headerlink" title="利用 react-query 实现乐观更新 (optimistic updates) —&gt; 装逼的时候说，因为别人可能都不知道这个词~"></a>利用 react-query 实现乐观更新 (optimistic updates) —&gt; 装逼的时候说，因为别人可能都不知道这个词~</h4><p>在服务器返回之前就装作这个数据已经成功了~</p>
-<p>优势： 使用了 react-Query, 就不再需要使用 useEffect + useState 来解决异步获取数据的问题了…</p>
-]]></content>
-  </entry>
-  <entry>
     <title>React 知识总结</title>
     <url>/2021/12/02/React-%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h4 id="public-文件夹"><a href="#public-文件夹" class="headerlink" title="public 文件夹"></a>public 文件夹</h4><p>我常常会使用 <code>npx create-react-app &#39;文件名&#39;</code> 来创建一个 <code>react</code> 项目。 这个脚手架工具帮助我们生成的基本项目中 会有 <code>public</code> 文件夹。这个文件夹是什么有什么用？</p>
@@ -2070,6 +2070,32 @@
       </tags>
   </entry>
   <entry>
+    <title>React-随笔一</title>
+    <url>/2021/10/18/React-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
+    <content><![CDATA[<h4 id="推荐一个-vscode-的插件-针对-react-的-贼好用…"><a href="#推荐一个-vscode-的插件-针对-react-的-贼好用…" class="headerlink" title="推荐一个 vscode 的插件 针对 react 的(贼好用…)"></a>推荐一个 vscode 的插件 针对 react 的(贼好用…)</h4><p>ES7 React/Redux/GraphQL/React-Native snippets</p>
+<p><code>rfc</code><br><code>rafc</code></p>
+<h4 id="问题一：错误边界"><a href="#问题一：错误边界" class="headerlink" title="问题一：错误边界"></a>问题一：错误边界</h4><p>在<code>react</code>的渲染过程中如果出现了异常。那么整个组件树都会被卸载掉…(在开发环境下能够看见报错的原因…但是真正上线后。用户只能看见白茫茫的一片。其余什么也看不见…)<br><a href="https://reactjs.org/docs/error-boundaries.html">错误边界问题</a><br>注意，错误边界的实现是一定要使用<code>class component</code>来实现的。这也是<code>class 组件</code>和<code>函数组件</code>的区别。<br><a href="https://codesandbox.io/s/gong-ju-lei-oef90?file=/src/utils/error-bundary.tsx">我在 codesandbox 里写的一个 error-bundary 库</a></p>
+<p>—&gt; 在思考这题的时候有两个小问题<br>—&gt; <a href="https://stackoverflow.com/questions/58123398/when-to-use-jsx-element-vs-reactnode-vs-reactelement">ReactNode 和 ReactElement 的区别</a><br>—&gt; <a href="https://www.newline.co/@bespoyasov/how-to-define-props-with-children-in-react-typescript-app--56bd18be">PropsWithChildren 的用法</a> 其实就是 <code>react官方</code> 自己定义的一个<code>type utility</code>。类似<code>omit</code>这类<code>type utility</code></p>
+<p>注意：这个错误边界组件要包裹所有的项目组件</p>
+<h4 id="问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…"><a href="#问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…" class="headerlink" title="问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)"></a>问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)</h4><ol>
+<li>自定义 hook，动态改变文档标题 有两套方案：<ol>
+<li>使用第三方库 <a href="https://github.com/nfl/react-helmet">react-helmet</a></li>
+<li>自己写一个 hook</li>
+</ol>
+</li>
+</ol>
+<h4 id="问题三：-无限渲染问题-针对-useEffect…"><a href="#问题三：-无限渲染问题-针对-useEffect…" class="headerlink" title="问题三： 无限渲染问题(针对 useEffect…)"></a>问题三： 无限渲染问题(针对 useEffect…)</h4><p><a href="https://github.com/welldone-software/why-did-you-render">一个查找无限渲染原因的库-why-did-you-render</a></p>
+<p>下面是自己写的一个无限死循环组件</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> React, &#123; useEffect, useState &#125; from <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> InfiniteLoop = () =&gt; &#123;<br>  <span class="hljs-keyword">const</span> obj = &#123; name: <span class="hljs-string">&quot;bruce&quot;</span> &#125;; <span class="hljs-comment">// 按引用赋值</span><br>  <span class="hljs-keyword">const</span> [<span class="hljs-built_in">num</span>, setNum] = useState(<span class="hljs-number">0</span>);<br><br>  useEffect(() =&gt; &#123;<br>    console.log(<span class="hljs-string">&quot;effect&quot;</span>);<br>    <span class="hljs-comment">// num + 1 造成页面的重新渲染...</span><br>    <span class="hljs-comment">// 重新渲染后又会num + 1 又是重新渲染...</span><br>    <span class="hljs-comment">// 无限死循环...</span><br>    setNum(<span class="hljs-built_in">num</span> + <span class="hljs-number">1</span>);<br>  &#125;, [obj]);  <span class="hljs-comment">// 如果这里的依赖项是一个不变且不是引用类型的值，就不会触发useEffect，也就不会造成无限死循环...</span><br><br>  <span class="hljs-keyword">return</span> &lt;div&gt;<span class="hljs-built_in">num</span>: &#123;<span class="hljs-built_in">num</span>&#125;&lt;/div&gt;;<br>&#125;;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>React篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SOLID Design Principles</title>
     <url>/2021/11/04/SOLID-Design-Principles/</url>
     <content><![CDATA[<h3 id="Single-Responsibility-Principle-唯一的-负责-原则"><a href="#Single-Responsibility-Principle-唯一的-负责-原则" class="headerlink" title="Single Responsibility Principle (唯一的 负责 原则)"></a>Single Responsibility Principle (唯一的 负责 原则)</h3><p>一个函数或一个类只能有一个原因去进行自身代码更改…<br>在 js 中用多函数(每个函数只能有一个功能)以及<code>ES Module</code>模块化来实现</p>
@@ -2102,32 +2128,6 @@
       </categories>
       <tags>
         <tag>优质代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>React-随笔一</title>
-    <url>/2021/10/18/React-%E9%9A%8F%E7%AC%94%E4%B8%80/</url>
-    <content><![CDATA[<h4 id="推荐一个-vscode-的插件-针对-react-的-贼好用…"><a href="#推荐一个-vscode-的插件-针对-react-的-贼好用…" class="headerlink" title="推荐一个 vscode 的插件 针对 react 的(贼好用…)"></a>推荐一个 vscode 的插件 针对 react 的(贼好用…)</h4><p>ES7 React/Redux/GraphQL/React-Native snippets</p>
-<p><code>rfc</code><br><code>rafc</code></p>
-<h4 id="问题一：错误边界"><a href="#问题一：错误边界" class="headerlink" title="问题一：错误边界"></a>问题一：错误边界</h4><p>在<code>react</code>的渲染过程中如果出现了异常。那么整个组件树都会被卸载掉…(在开发环境下能够看见报错的原因…但是真正上线后。用户只能看见白茫茫的一片。其余什么也看不见…)<br><a href="https://reactjs.org/docs/error-boundaries.html">错误边界问题</a><br>注意，错误边界的实现是一定要使用<code>class component</code>来实现的。这也是<code>class 组件</code>和<code>函数组件</code>的区别。<br><a href="https://codesandbox.io/s/gong-ju-lei-oef90?file=/src/utils/error-bundary.tsx">我在 codesandbox 里写的一个 error-bundary 库</a></p>
-<p>—&gt; 在思考这题的时候有两个小问题<br>—&gt; <a href="https://stackoverflow.com/questions/58123398/when-to-use-jsx-element-vs-reactnode-vs-reactelement">ReactNode 和 ReactElement 的区别</a><br>—&gt; <a href="https://www.newline.co/@bespoyasov/how-to-define-props-with-children-in-react-typescript-app--56bd18be">PropsWithChildren 的用法</a> 其实就是 <code>react官方</code> 自己定义的一个<code>type utility</code>。类似<code>omit</code>这类<code>type utility</code></p>
-<p>注意：这个错误边界组件要包裹所有的项目组件</p>
-<h4 id="问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…"><a href="#问题二：自定义-hook，动态改变文档标题-即浏览器最上面的-title-以及闭包在-react-hook-中常见的坑…" class="headerlink" title="问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)"></a>问题二：自定义 hook，动态改变文档标题(即浏览器最上面的 title)(以及闭包在 react hook 中常见的坑…)</h4><ol>
-<li>自定义 hook，动态改变文档标题 有两套方案：<ol>
-<li>使用第三方库 <a href="https://github.com/nfl/react-helmet">react-helmet</a></li>
-<li>自己写一个 hook</li>
-</ol>
-</li>
-</ol>
-<h4 id="问题三：-无限渲染问题-针对-useEffect…"><a href="#问题三：-无限渲染问题-针对-useEffect…" class="headerlink" title="问题三： 无限渲染问题(针对 useEffect…)"></a>问题三： 无限渲染问题(针对 useEffect…)</h4><p><a href="https://github.com/welldone-software/why-did-you-render">一个查找无限渲染原因的库-why-did-you-render</a></p>
-<p>下面是自己写的一个无限死循环组件</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> React, &#123; useEffect, useState &#125; from <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> InfiniteLoop = () =&gt; &#123;<br>  <span class="hljs-keyword">const</span> obj = &#123; name: <span class="hljs-string">&quot;bruce&quot;</span> &#125;; <span class="hljs-comment">// 按引用赋值</span><br>  <span class="hljs-keyword">const</span> [<span class="hljs-built_in">num</span>, setNum] = useState(<span class="hljs-number">0</span>);<br><br>  useEffect(() =&gt; &#123;<br>    console.log(<span class="hljs-string">&quot;effect&quot;</span>);<br>    <span class="hljs-comment">// num + 1 造成页面的重新渲染...</span><br>    <span class="hljs-comment">// 重新渲染后又会num + 1 又是重新渲染...</span><br>    <span class="hljs-comment">// 无限死循环...</span><br>    setNum(<span class="hljs-built_in">num</span> + <span class="hljs-number">1</span>);<br>  &#125;, [obj]);  <span class="hljs-comment">// 如果这里的依赖项是一个不变且不是引用类型的值，就不会触发useEffect，也就不会造成无限死循环...</span><br><br>  <span class="hljs-keyword">return</span> &lt;div&gt;<span class="hljs-built_in">num</span>: &#123;<span class="hljs-built_in">num</span>&#125;&lt;/div&gt;;<br>&#125;;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>React篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
       </tags>
   </entry>
   <entry>
@@ -2338,95 +2338,126 @@
     <title>TS类型体操</title>
     <url>/2022/03/09/TS%E7%B1%BB%E5%9E%8B%E4%BD%93%E6%93%8D/</url>
     <content><![CDATA[<!-- (该博客是基于TypeScript类型体操通关秘籍，所做的笔记！) -->
-<h3 id="TS的简介"><a href="#TS的简介" class="headerlink" title="TS的简介"></a>TS的简介</h3><p><strong>类型的意义</strong></p>
+
+<h3 id="TS-的简介"><a href="#TS-的简介" class="headerlink" title="TS 的简介"></a>TS 的简介</h3><p><strong>类型的意义</strong></p>
 <ul>
 <li>不同类型变量占据的内存大小不同 （各种类型所占用的字节数是不同的）</li>
 <li>不同类型变量可做的操作不同</li>
 </ul>
-<p><strong>类型体操</strong>保证对某种类型只做该类型允许的操作  (比如不能在boolean中做加减乘除，这是类型不安全的做法)</p>
-<p><strong>类型检查就是为了保证类型安全的</strong><br>类型检查可以在 运行时做 也可以在 编译器做。前者叫做动态类型检查  后者叫做静态类型检查<br>注意：动态类型代码虽然写起来简单，但代码中很容易藏着一些类型不匹配的隐患；静态类型写起来会麻烦一些，但是消除了类型不安全的问题</p>
+<p><strong>类型检测</strong>保证对某种类型只做该类型允许的操作 (比如不能在 boolean 中做加减乘除，这是类型不安全的做法)</p>
+<p><strong>类型检查就是为了保证类型安全的</strong><br>类型检查可以在 运行时做 也可以在 编译时做。前者叫做动态类型检查 后者叫做静态类型检查<br>注意：动态类型代码虽然写起来简单，但代码中很容易藏着一些类型不匹配的隐患；静态类型写起来会麻烦一些，但是消除了类型不安全的问题</p>
 <blockquote>
 <p>动态类型只适合简单的场景，对于大项目却不太合适，因为代码中可能藏着的隐患太多了，万一线上报一个类型不匹配的错误，那可能就是大问题。而静态类型虽然会增加写代码的成本，但是却能更好的保证代码的健壮性，减少 Bug 率。</p>
 </blockquote>
-<h4 id="TS给JS带来的优势"><a href="#TS给JS带来的优势" class="headerlink" title="TS给JS带来的优势"></a>TS给JS带来的优势</h4><p>TS 给 JS 添加了一套静态类型系统，从动态类型语言变成了静态类型语言，可以在<strong>编译期间</strong>做<strong>类型检查</strong>，提前发现一些类型安全问题<br>因为有了<strong>静态类型</strong>，也就可以配合<strong>编译器</strong>来实现更好的<strong>提示、重构</strong>等</p>
-<h4 id="TS类型编程-类型体操"><a href="#TS类型编程-类型体操" class="headerlink" title="TS类型编程(类型体操)"></a>TS类型编程(类型体操)</h4><p>很多语言都有类型系统(Java、C++等)，但只有TS的类型编程被叫做<strong>类型体操</strong></p>
-<p>TS给JS添加了一套静态类型系统，通过TS Compiler编译JS，编译的过程叫做类型检查。但是它并没有改变JS的语法，只是在JS的基础上添加了类型语法，所以被叫做JS的超集</p>
+<h4 id="TS-给-JS-带来的优势"><a href="#TS-给-JS-带来的优势" class="headerlink" title="TS 给 JS 带来的优势"></a>TS 给 JS 带来的优势</h4><p>TS 给 JS 添加了一套静态类型系统，从动态类型语言变成了静态类型语言，可以在<strong>编译期间</strong>做<strong>类型检查</strong>，提前发现一些类型安全问题<br>因为有了<strong>静态类型</strong>，也就可以配合<strong>编译器</strong>来实现更好的<strong>提示、重构</strong>等</p>
+<h4 id="TS-类型编程-类型体操"><a href="#TS-类型编程-类型体操" class="headerlink" title="TS 类型编程(类型体操)"></a>TS 类型编程(类型体操)</h4><p>很多语言都有类型系统(Java、C++等)，但只有 TS 的类型编程被叫做<strong>类型体操</strong></p>
+<p>TS 给 JS 添加了一套静态类型系统，通过 TS Compiler 编译 JS，编译的过程叫做类型检查。但是它并没有改变 JS 的语法，只是在 JS 的基础上添加了类型语法，所以被叫做 JS 的超集</p>
 <h5 id="类型系统分类"><a href="#类型系统分类" class="headerlink" title="类型系统分类"></a>类型系统分类</h5><ul>
 <li><p><strong>简单类型系统</strong><br>给变量、函数、类声明类型，编译器会基于声明的类型做类型检查，类型不匹配就报错</p>
 </li>
-<li><p><strong>支持泛型的类型系统</strong><br>用通用的字符表示任何一种类型，利用代码模板的方式减少了很多重复的代码 (如Java、C++)</p>
+<li><p><strong>支持泛型的类型系统</strong><br>用通用的字符表示任何一种类型，利用代码模板的方式减少了很多重复的代码 (如 Java、C++)</p>
 </li>
 <li><p><strong>支持类型编程的类型系统</strong><br>对传入的泛型做各种逻辑运算，产生新的类型，这就是类型编程</p>
 </li>
 </ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPropValue</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">object</span>, <span class="hljs-title">Key</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">T</span>&gt;(<span class="hljs-params">obj: T, key: Key</span>): <span class="hljs-title">T</span>[<span class="hljs-title">Key</span>] </span>&#123;<br>  <span class="hljs-keyword">return</span> obj[key]<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPropValue</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">object</span>, <span class="hljs-title">Key</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">T</span>&gt;(<span class="hljs-params"></span></span><br><span class="hljs-params"><span class="hljs-function">  obj: T,</span></span><br><span class="hljs-params"><span class="hljs-function">  key: Key</span></span><br><span class="hljs-params"><span class="hljs-function"></span>): <span class="hljs-title">T</span>[<span class="hljs-title">Key</span>] </span>&#123;<br>  <span class="hljs-keyword">return</span> obj[key];<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>TS 就具备类型编程。Java这些语言只支持普通的泛型操作</p>
-<p>注意：TS的类型系统是图灵完备的，JS可以写的逻辑，用TS类型都可以写</p>
-<h4 id="TS类型"><a href="#TS类型" class="headerlink" title="TS类型"></a>TS类型</h4><p>静态类型系统的目的是把类型检查从运行时提前到编译时(因此要把JS运行时的类型拿过来：8种)，在此基础上增加了三种类型，元组(Tuple)，接口(interface)，枚举(Enum)，字面量类型以及等等类型</p>
+<p>TS 就具备类型编程。Java 这些语言只支持普通的泛型操作</p>
+<p>注意：TS 的类型系统是图灵完备的，JS 可以写的逻辑，用 TS 类型都可以写</p>
+<h4 id="TS-类型"><a href="#TS-类型" class="headerlink" title="TS 类型"></a>TS 类型</h4><p>静态类型系统的目的是把类型检查从运行时提前到编译时(因此要把 JS 运行时的类型拿过来：8 种)，在此基础上增加了三种类型，元组(Tuple)，接口(interface)，枚举(Enum)，字面量类型以及等等类型</p>
 <ul>
 <li><p>元组</p>
 <blockquote>
 <p>就是元素个数和类型固定的数组类型： type Tuple = [number, string];</p>
 </blockquote>
 </li>
-<li><p>接口 (type却不是一种类型，这也是type 和 interface的区别)</p>
+<li><p>接口 (type 却不是一种类型，这也是 type 和 interface 的区别)</p>
 <blockquote>
 <p>可以描述函数、对象、构造器的结构</p>
 </blockquote>
 </li>
 </ul>
 <p>对象类型、class 类型在 TypeScript 里也叫做<strong>索引类型</strong>，也就是索引了多个元素的类型的意思。对象可以动态添加属性，如果不知道会有什么属性，可以用<strong>可索引签名</strong></p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> IPerson &#123;<br>  [prop: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>;<br>&#125;<br><span class="hljs-keyword">const</span> obj:IPerson = &#123;&#125;;<br>obj.name = <span class="hljs-string">&#x27;heyang&#x27;</span>;<br>obj.age = <span class="hljs-number">18</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> IPerson &#123;<br>  [prop: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>;<br>&#125;<br><span class="hljs-keyword">const</span> obj: IPerson = &#123;&#125;;<br>obj.name = <span class="hljs-string">&quot;heyang&quot;</span>;<br>obj.age = <span class="hljs-number">18</span>;<br></code></pre></td></tr></table></figure>
 
 <p>总之，<strong>接口可以用来描述函数、构造器、索引类型（对象、class、数组）等复合类型</strong></p>
-<h4 id="TS的类型运算"><a href="#TS的类型运算" class="headerlink" title="TS的类型运算"></a>TS的类型运算</h4><blockquote>
-<p>通过type来进行类型运算</p>
+<h4 id="TS-的类型运算"><a href="#TS-的类型运算" class="headerlink" title="TS 的类型运算"></a>TS 的类型运算</h4><blockquote>
+<p>通过 type 来进行类型运算</p>
 </blockquote>
 <ul>
-<li><p>条件：extends ? :  –&gt; TS 版的if else</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> isTwo&lt;T&gt; = T <span class="hljs-keyword">extends</span> <span class="hljs-number">2</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;<br><br><span class="hljs-keyword">type</span> res = isTwo&lt;<span class="hljs-number">1</span>&gt;;<br><span class="hljs-keyword">type</span> res2 = isTwo&lt;<span class="hljs-number">2</span>&gt;;<br></code></pre></td></tr></table></figure></li>
-<li><p>推导：infer<br>用来提取元素的一部分</p>
-</li>
+<li>条件：extends ? : –&gt; TS 版的 if else</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> isTwo&lt;T&gt; = T <span class="hljs-keyword">extends</span> <span class="hljs-number">2</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;<br><br><span class="hljs-keyword">type</span> res = isTwo&lt;<span class="hljs-number">1</span>&gt;;<br><span class="hljs-keyword">type</span> res2 = isTwo&lt;<span class="hljs-number">2</span>&gt;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>推导：infer<br>用来提取元素的一部分</li>
 </ul>
 <p>比如提取元组类型的第一个元素</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> First&lt;Tuple <span class="hljs-keyword">extends</span> unknown[]&gt; = Tuple <span class="hljs-keyword">extends</span> [infer T, ...infer R] ? T : <span class="hljs-built_in">never</span>;<br><span class="hljs-keyword">type</span> res = First&lt;[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]&gt;<br></code></pre></td></tr></table></figure>
-<p>注意：上面的extends是约束的意思，也就是约束类型参数只能是数组类型<br>因为不知道数组元素的具体类型，所以用 unkown。</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> First&lt;Tuple <span class="hljs-keyword">extends</span> unknown[]&gt; = Tuple <span class="hljs-keyword">extends</span> [infer T, ...infer R]<br>  ? T<br>  : <span class="hljs-built_in">never</span>;<br><span class="hljs-keyword">type</span> res = First&lt;[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]&gt;;<br></code></pre></td></tr></table></figure>
+
+<p>注意：上面的 extends 是约束的意思，也就是约束类型参数只能是数组类型<br>因为不知道数组元素的具体类型，所以用 unkown。</p>
 <ul>
-<li><p>联合： |   –&gt; 因为interface是类型，所以不具备运算能力<br>联合类型（Union）类似 js 里的或运算符 |，但是作用于类型，代表类型可以是几个类型之一。</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> Union = <span class="hljs-number">1</span> | <span class="hljs-number">2</span> | <span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure></li>
-<li><p>交叉： &amp;<br>交叉类型（Intersection）类似 js 中的与运算符 &amp;，但是作用于类型，代表对类型做合并。<br>交叉类型会把同一类型做合并，不同类型舍弃</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> ObjType = &#123;<span class="hljs-attr">a</span>: <span class="hljs-built_in">number</span>&#125; &amp; &#123;<span class="hljs-attr">c</span>: <span class="hljs-built_in">boolean</span>&#125;;<br></code></pre></td></tr></table></figure></li>
-<li><p>映射类型<br>通过<strong>映射类型</strong>来解决对象、class这类<strong>索引类型</strong>的修改</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof T]?:T[Key] <br>&#125;<br></code></pre></td></tr></table></figure>
-<p><code>keyof T</code> 是查询索引类型中所有的索引，叫做<code>索引查询</code><br><code>T[Key]</code> 是取索引类型某个索引的值，叫做<code>索引访问</code><br><code>in</code> 是用于遍历<strong>联合类型</strong>的运算符</p>
-</li>
+<li>联合： | –&gt; 因为 interface 是类型，所以不具备运算能力<br>联合类型（Union）类似 js 里的或运算符 |，但是作用于类型，代表类型可以是几个类型之一。</li>
 </ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof T]: [T[Key], T[Key], T[Key]]<br>&#125;<br><br><span class="hljs-keyword">type</span> res = MapType&lt;&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> Union = <span class="hljs-number">1</span> | <span class="hljs-number">2</span> | <span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure>
 
-<p>索引也可以做变化，使用as运算符，叫做重映射</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>    [<br>        Key <span class="hljs-keyword">in</span> keyof T <br>            <span class="hljs-keyword">as</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span><span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span><span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span>`</span><br>    ]: [T[Key], T[Key], T[Key]]<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>交叉： &amp;<br>交叉类型（Intersection）类似 js 中的与运算符 &amp;，但是作用于类型，代表对类型做合并。<br>交叉类型会把同一类型做合并，不同类型舍弃</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> ObjType = &#123; <span class="hljs-attr">a</span>: <span class="hljs-built_in">number</span> &#125; &amp; &#123; <span class="hljs-attr">c</span>: <span class="hljs-built_in">boolean</span> &#125;;<br></code></pre></td></tr></table></figure>
 
-<h3 id="类型体操的套路"><a href="#类型体操的套路" class="headerlink" title="类型体操的套路"></a>类型体操的套路</h3><h4 id="套路一：-模式匹配做提取"><a href="#套路一：-模式匹配做提取" class="headerlink" title="套路一： 模式匹配做提取"></a>套路一： 模式匹配做提取</h4><p>例如：提取Promise里面的value值</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> p = <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-string">&#x27;guang&#x27;</span>&gt;;<br><span class="hljs-keyword">type</span> GetValueType&lt;P&gt; = P <span class="hljs-keyword">extends</span> <span class="hljs-built_in">Promise</span>&lt;infer Value&gt; ? Value : <span class="hljs-built_in">never</span>;<br><span class="hljs-keyword">type</span> GetValueResult = GetValueType&lt;p&gt;;   <span class="hljs-comment">// &#x27;guang&#x27;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>映射类型<br>通过<strong>映射类型</strong>来解决对象、class 这类<strong>索引类型</strong>的修改</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof T]?: T[Key];<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>keyof T</code> 是查询索引类型中所有的索引，叫做<code>索引查询</code><br><code>T[Key]</code> 是取索引类型某个索引的值，叫做<code>索引访问</code><br><code>in</code> 是用于遍历<strong>联合类型</strong>的运算符</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof T]: [T[Key], T[Key], T[Key]];<br>&#125;;<br><br><span class="hljs-keyword">type</span> res = MapType&lt;&#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>; b: <span class="hljs-number">2</span> &#125;&gt;;<br></code></pre></td></tr></table></figure>
+
+<p>索引也可以做变化，使用 as 运算符，叫做重映射</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> MapType&lt;T&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof T <span class="hljs-keyword">as</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span><span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span><span class="hljs-subst">$&#123;Key &amp; <span class="hljs-built_in">string</span>&#125;</span>`</span>]: [<br>    T[Key],<br>    T[Key],<br>    T[Key]<br>  ];<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="类型体操的套路"><a href="#类型体操的套路" class="headerlink" title="类型体操的套路"></a>类型体操的套路</h3><h4 id="套路一：-模式匹配做提取"><a href="#套路一：-模式匹配做提取" class="headerlink" title="套路一： 模式匹配做提取"></a>套路一： 模式匹配做提取</h4><p>例如：提取 Promise 里面的 value 值</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> p = <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-string">&quot;guang&quot;</span>&gt;;<br><span class="hljs-keyword">type</span> GetValueType&lt;P&gt; = P <span class="hljs-keyword">extends</span> <span class="hljs-built_in">Promise</span>&lt;infer Value&gt; ? Value : <span class="hljs-built_in">never</span>;<br><span class="hljs-keyword">type</span> GetValueResult = GetValueType&lt;p&gt;; <span class="hljs-comment">// &#x27;guang&#x27;</span><br></code></pre></td></tr></table></figure>
+
 <p>Typescript 类型的模式匹配是通过 extends 对类型参数做匹配，结果保存到通过 infer 声明的局部类型变量里，如果匹配就能从该局部变量里拿到提取出的类型。</p>
 <hr>
 <p>再来点例子：</p>
 <ul>
-<li>数组<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];   <span class="hljs-comment">// 字面量做类型</span><br><span class="hljs-comment">// 先在要提取数组类型的第一个元素</span><br><span class="hljs-keyword">type</span> GetFirst&lt;Arr <span class="hljs-keyword">extends</span> unknown[]&gt; = Arr <span class="hljs-keyword">extends</span> [infer First, ...unknow[]] ? First : <span class="hljs-built_in">never</span>;<br></code></pre></td></tr></table></figure></li>
+<li>数组</li>
 </ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; <span class="hljs-comment">// 字面量做类型</span><br><span class="hljs-comment">// 先在要提取数组类型的第一个元素</span><br><span class="hljs-keyword">type</span> GetFirst&lt;Arr <span class="hljs-keyword">extends</span> unknown[]&gt; = Arr <span class="hljs-keyword">extends</span> [infer First, ...unknow[]]<br>  ? First<br>  : <span class="hljs-built_in">never</span>;<br></code></pre></td></tr></table></figure>
+
 <blockquote>
 <p><strong>any 和 unknown 的区别：</strong> any 和 unknown 都代表任意类型，但是 unknown 只能接收任意类型的值，而 any 除了可以接收任意类型的值，也可以赋值给任意类型。类型体操中经常用 unknown 接受和匹配任何类型，而很少把任何类型赋值给某个类型变量。</p>
 </blockquote>
 <ul>
-<li>字符串<br>判断字符串是否以某个前缀开头，也是通过模式匹配：<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> StartsWith&lt;Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, Prefix <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; = Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;Prefix&#125;</span><span class="hljs-subst">$&#123;<span class="hljs-built_in">string</span>&#125;</span>`</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">type</span> StartsWithResult = StartsWith&lt;<span class="hljs-string">&#x27;heyang&#x27;</span>, <span class="hljs-string">&#x27;he&#x27;</span>&gt;  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure></li>
+<li>字符串<br>判断字符串是否以某个前缀开头，也是通过模式匹配：</li>
 </ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> ReplaceStr&lt;Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, From <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, To <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; = Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;infer Prefix&#125;</span><span class="hljs-subst">$&#123;From&#125;</span><span class="hljs-subst">$&#123;infer Suffix&#125;</span>`</span> ？ <span class="hljs-string">`<span class="hljs-subst">$&#123;Prefix&#125;</span><span class="hljs-subst">$&#123;To&#125;</span><span class="hljs-subst">$&#123;Suffix&#125;</span>`</span> : Str;   <br><span class="hljs-comment">// infer 真的牛啊</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> StartsWith&lt;<br>  Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>,<br>  Prefix <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span><br>&gt; = Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;Prefix&#125;</span><span class="hljs-subst">$&#123;<span class="hljs-built_in">string</span>&#125;</span>`</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">type</span> StartsWithResult = StartsWith&lt;<span class="hljs-string">&quot;heyang&quot;</span>, <span class="hljs-string">&quot;he&quot;</span>&gt;; <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> ReplaceStr&lt;Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, From <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, To <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; = Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;infer Prefix&#125;</span><span class="hljs-subst">$&#123;From&#125;</span><span class="hljs-subst">$&#123;infer Suffix&#125;</span>`</span> ？ <span class="hljs-string">`<span class="hljs-subst">$&#123;Prefix&#125;</span><span class="hljs-subst">$&#123;To&#125;</span><span class="hljs-subst">$&#123;Suffix&#125;</span>`</span> : Str;<br><span class="hljs-comment">// infer 真的牛啊</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>函数<br>函数同样也可以做类型匹配，比如提取参数、返回值的类型。</li>
 </ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> GetParameters&lt;Func <span class="hljs-keyword">extends</span> <span class="hljs-built_in">Function</span>&gt; = <br></code></pre></td></tr></table></figure>]]></content>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 类型约束为函数类型  通过extends 约束为Function</span><br><span class="hljs-keyword">type</span> GetParameters&lt;Func <span class="hljs-keyword">extends</span> <span class="hljs-built_in">Function</span>&gt; = Func <span class="hljs-keyword">extends</span> (<br>  ...args: infer Args<br>) =&gt; unknown<br>  ? Args<br>  : <span class="hljs-built_in">never</span>;<br><br><span class="hljs-keyword">type</span> ParametersResult = GetParameters&lt;<span class="hljs-function">(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">string</span>&gt;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> GetReturnType&lt;Func <span class="hljs-keyword">extends</span> <span class="hljs-built_in">Function</span>&gt; = Func <span class="hljs-keyword">extends</span> (<br>  ...args: <span class="hljs-built_in">any</span>[]<br>) =&gt; infer ReturnType<br>  ? ReturnType<br>  : <span class="hljs-built_in">never</span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>指定 this</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dong</span> </span>&#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;<br><br>  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&quot;dong&quot;</span>;<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-title">hello</span>(<span class="hljs-params"><span class="hljs-built_in">this</span>: Dong</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello, I&#x27;m &quot;</span> + <span class="hljs-built_in">this</span>.name;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="套路二：重新构造"><a href="#套路二：重新构造" class="headerlink" title="套路二：重新构造"></a>套路二：重新构造</h4><p>TS 的 type、infer、类型参数声明的变量都不能修改，想对类型做各种变换产生新的类型就需要重新构造</p>
+<ul>
+<li>给元组已有元素再添加一些类型 –&gt; 元素是数量固定，类型可以不同的元素</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> Push&lt;Arr <span class="hljs-keyword">extends</span> unknown[], Ele&gt; = [...Arr, Ele];<br><span class="hljs-keyword">type</span> PushResult = Push&lt;[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">4</span>&gt;; <span class="hljs-comment">// [1, 2, 3, 4]</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> tuple1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-keyword">type</span> tuple2 = [<span class="hljs-string">&quot;guang&quot;</span>, <span class="hljs-string">&quot;dong&quot;</span>];<br><br><span class="hljs-keyword">type</span> tuple = [[<span class="hljs-number">1</span>, <span class="hljs-string">&quot;guang&quot;</span>], [<span class="hljs-number">2</span>, <span class="hljs-string">&quot;dong&quot;</span>]];<br></code></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>TypeScript-随笔一</title>
@@ -3710,28 +3741,6 @@
       </tags>
   </entry>
   <entry>
-    <title>前端技术-随笔</title>
-    <url>/2021/10/21/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF-%E9%9A%8F%E7%AC%94/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="8b19cdf59439dd5b9890efb32fd23cbabfc73591ff0c14d5775ccdc0ca3b9094">227b2a181666066aebdadda3a2b5e6f50d6e05fc6d451d3d21073ae436e46d159686d77bbb604d04e40d05b2217adb9ba18e8a5ebc5f3699ec1b74cab7d8b43a6774ee75925fd14e809b453ee1f530018c907ba0e46121f51acb23a7caf6b1657f865a7786e2cb2e01678afdb1962fb3a9748fdc6583a12d0be32187b6e820835eaf05fc300ae7bbd7886e5677065ffe3bd3507c30d2a5b3954c592d5d2a436d23b896e7138ab44bd82905f5df59fa5b991d666ff8b3a11afd0df0e00097dd0fa0ebe49572301d27e96f43fdf04d7afba5782fac5f3962dd5166adb4fffc2bdea5629d016a353a6ae9f85317dbc80e39036b619d5fe6aef44907d5794ce110a5f48a83cf02b03fb608faa0afc66a34a0c2ca0b2984f3f2ce537251b9f55fa8206c67083c6de62a8c1c7f75301410def6ca999bd54afe42ae6f367177dd555fd628f56edee01aa0df3406ac51c64d08f5a42972f0b5501865a0b37941c3d256f23582be3a7e1ff1d33f8f52f9ef473402a21b0efd3dfef996e9b7d92a94bcaa1e638d6756353ad7b62eeb6f3f03556bce1f90aaad8f07e8c395e91135fc4ec9fb35da818acd4716be32e1cb1c14b4d3bedce2a594604de44f5d9fc3afd7fd3f76c7cf6297207a01eb5a1b113ee5fc61cae246d36965fae83852b051ddce285efb04573477f3a5e21996e1b54c61dcae5a0c141f4cfb31d9c656924c76eaad0f73f7d4f8d3aeb6b7b80339a71496f5816566da93da975dcc8aa7396d2798932e2f1ac0c072910f4274e3c28989f71e00bef7f9d200b96f495496198b3ade9bfda143aaec3a6b7f6219ed91fec49b42005cd9ba94ca09b5c0fd5e47659f34e3c899c64e7cc32cde272a340799c3265a89d525d2ee89ae1996231a0305e65536f6c74dec74cfa2b48a61b8421be641da4d5be35cf985355f408e244df609a7662388496002f51665c02d17b073d4b5bef7470c607f0b96fe3412f805d8ad57ef3ba1e7dbd6ae06d6fab2cb8a8530a4bc4517a573f2cd53c7fd6b754620ac9fff1d5f6bab43692dfd97ca61b20e6097da4124ce6c09780a311f3ceae4333f09db0306e579fac251bff2d654644c356116461bbd7098657fe128ba7791cdce733c23631c51a8a0d9c02fe9f7bd2e1eab98c94834f5ac9e841e9d441c4c5da9a24cdab5e7ae5702d5547e1d6ce866c6eea344ed12d337f57eb4201eb36221b56279da33f1f76aa8efe95ffc914721c9d4b172c8a161b85ae1588c22bbf610017e93389e08491ef2dd025fbb708a2d47d67bd52ba97dd66fb8d4c4c6cb432da6b5bf8293a875a88b9e9e23e415ffe8b3ce3c2216b39432370487d724a842a47a6f641ca3bd570997e3386a26a6b85011cfdcaadf5aaf7cff9d10fed535c8cb3c960db963c0f418f57f50fc795208f2e8240a0f9f050495e16aa8d569623c7b675a7c5e2f3c8c78835e2225c74d3970aeaa778c48574346f6f44b84507dc43fa5be4604ca99d3bcee595bec88cfd35ee68ba5d3af</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>程序员素养篇</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端面试之道-CSS</title>
     <url>/2021/12/16/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-CSS/</url>
     <content><![CDATA[<h3 id="CSS-的优先级"><a href="#CSS-的优先级" class="headerlink" title="CSS 的优先级"></a>CSS 的优先级</h3><p>优先级从高到低如下：</p>
@@ -3777,6 +3786,28 @@
 <h4 id="尽量避免使用-important"><a href="#尽量避免使用-important" class="headerlink" title="尽量避免使用!important"></a>尽量避免使用!important</h4><p>只要有一个地方使用<code>!important</code>，在所有其他地方都要再用<code>!important</code> 覆盖它。特别是在 npm 包里更不应该用<code>!important</code>。也不应该用内联样式，不然别人就只能用<code>!important</code> 来覆盖了</p>
 <p>这道题考察了候选人在写代码时是否注意最佳实践。在被 CSS 搞得受不了的时候，使用!important 是一件充满诱惑的事情，因为它可以瞬间解决你手上的问题。但是接受你的代码的人就惨了，特别是给别人贡献代码时更要小心，一定要给用户留出来选择权</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>前端技术-随笔</title>
+    <url>/2021/10/21/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF-%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="8b19cdf59439dd5b9890efb32fd23cbabfc73591ff0c14d5775ccdc0ca3b9094">227b2a181666066aebdadda3a2b5e6f50d6e05fc6d451d3d21073ae436e46d159686d77bbb604d04e40d05b2217adb9ba18e8a5ebc5f3699ec1b74cab7d8b43a6774ee75925fd14e809b453ee1f530018c907ba0e46121f51acb23a7caf6b1657f865a7786e2cb2e01678afdb1962fb3a9748fdc6583a12d0be32187b6e820835eaf05fc300ae7bbd7886e5677065ffe3bd3507c30d2a5b3954c592d5d2a436d23b896e7138ab44bd82905f5df59fa5b991d666ff8b3a11afd0df0e00097dd0fa0ebe49572301d27e96f43fdf04d7afba5782fac5f3962dd5166adb4fffc2bdea5629d016a353a6ae9f85317dbc80e39036b619d5fe6aef44907d5794ce110a5f48a83cf02b03fb608faa0afc66a34a0c2ca0b2984f3f2ce537251b9f55fa8206c67083c6de62a8c1c7f75301410def6ca999bd54afe42ae6f367177dd555fd628f56edee01aa0df3406ac51c64d08f5a42972f0b5501865a0b37941c3d256f23582be3a7e1ff1d33f8f52f9ef473402a21b0efd3dfef996e9b7d92a94bcaa1e638d6756353ad7b62eeb6f3f03556bce1f90aaad8f07e8c395e91135fc4ec9fb35da818acd4716be32e1cb1c14b4d3bedce2a594604de44f5d9fc3afd7fd3f76c7cf6297207a01eb5a1b113ee5fc61cae246d36965fae83852b051ddce285efb04573477f3a5e21996e1b54c61dcae5a0c141f4cfb31d9c656924c76eaad0f73f7d4f8d3aeb6b7b80339a71496f5816566da93da975dcc8aa7396d2798932e2f1ac0c072910f4274e3c28989f71e00bef7f9d200b96f495496198b3ade9bfda143aaec3a6b7f6219ed91fec49b42005cd9ba94ca09b5c0fd5e47659f34e3c899c64e7cc32cde272a340799c3265a89d525d2ee89ae1996231a0305e65536f6c74dec74cfa2b48a61b8421be641da4d5be35cf985355f408e244df609a7662388496002f51665c02d17b073d4b5bef7470c607f0b96fe3412f805d8ad57ef3ba1e7dbd6ae06d6fab2cb8a8530a4bc4517a573f2cd53c7fd6b754620ac9fff1d5f6bab43692dfd97ca61b20e6097da4124ce6c09780a311f3ceae4333f09db0306e579fac251bff2d654644c356116461bbd7098657fe128ba7791cdce733c23631c51a8a0d9c02fe9f7bd2e1eab98c94834f5ac9e841e9d441c4c5da9a24cdab5e7ae5702d5547e1d6ce866c6eea344ed12d337f57eb4201eb36221b56279da33f1f76aa8efe95ffc914721c9d4b172c8a161b85ae1588c22bbf610017e93389e08491ef2dd025fbb708a2d47d67bd52ba97dd66fb8d4c4c6cb432da6b5bf8293a875a88b9e9e23e415ffe8b3ce3c2216b39432370487d724a842a47a6f641ca3bd570997e3386a26a6b85011cfdcaadf5aaf7cff9d10fed535c8cb3c960db963c0f418f57f50fc795208f2e8240a0f9f050495e16aa8d569623c7b675a7c5e2f3c8c78835e2225c74d3970aeaa778c48574346f6f44b84507dc43fa5be4604ca99d3bcee595bec88cfd35ee68ba5d3af</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>程序员素养篇</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
   </entry>
   <entry>
     <title>前端面试之道-DOM</title>
@@ -4289,26 +4320,6 @@
       </tags>
   </entry>
   <entry>
-    <title>数据结构与算法-大厂面试题实战</title>
-    <url>/2021/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E6%88%98/</url>
-    <content><![CDATA[<h3 id="最长回文子串问题-力扣-5"><a href="#最长回文子串问题-力扣-5" class="headerlink" title="最长回文子串问题(力扣 5)"></a>最长回文子串问题(力扣 5)</h3><blockquote>
-<p>题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000</p>
-</blockquote>
-<p><strong>找关键词：字符串， 最长</strong> –&gt; 动态规划问题<br>—&gt; 这个动态规划问题 尽量学学人家代码随想录的思维</p>
-<h3 id="根据一棵树的前序遍历与中序遍历构造二叉树"><a href="#根据一棵树的前序遍历与中序遍历构造二叉树" class="headerlink" title="根据一棵树的前序遍历与中序遍历构造二叉树"></a>根据一棵树的前序遍历与中序遍历构造二叉树</h3><p>(二叉树类题目中的重复逻辑，90% 都是用递归来完成)<br>两个核心规律：</p>
-<ul>
-<li>前序序列头部的元素 p1 一定是<strong>当前</strong>二叉树的根结点</li>
-<li>中序遍历序列中，以<strong>当前</strong>二叉树的根结点为界划分出的两个子序列，分别对应着二叉树的左子树和二叉树的右子树</li>
-</ul>
-<h3 id="复制带随机指针的链表"><a href="#复制带随机指针的链表" class="headerlink" title="复制带随机指针的链表"></a>复制带随机指针的链表</h3><figure class="highlight"><table><tr><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
-
-<h3 id="岛屿数量问题"><a href="#岛屿数量问题" class="headerlink" title="岛屿数量问题"></a>岛屿数量问题</h3><blockquote>
-<p>看到“所有” 必须想到“枚举”！看到“枚举”，必须回忆起 DFS 和 BFS</p>
-</blockquote>
-<h3 id="机器人扫地"><a href="#机器人扫地" class="headerlink" title="机器人扫地"></a>机器人扫地</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> cleanRoom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">robot</span>) </span>&#123;<br>  <span class="hljs-comment">// 初始化一个 set 结构来存储清扫过的坐标 set(无序、不重复)</span><br>  <span class="hljs-keyword">const</span> boxSet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();<br>  <span class="hljs-comment">// 初始化机器人的朝向</span><br>  <span class="hljs-keyword">let</span> dir = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 遍历 递归 dfs</span><br>  dfs(robot, boxSet, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">robot, boxSet, i, j, dir</span>) </span>&#123;<br>    <span class="hljs-comment">// 记录当前格子的坐标</span><br>    <span class="hljs-keyword">let</span> box = i + <span class="hljs-string">&#x27;+&#x27;</span> + j;<br>    <span class="hljs-comment">// 如果已经打扫过，则跳过</span><br>    <span class="hljs-keyword">if</span> (boxSet.has(box)) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">// 打扫当前这个格子</span><br>    robot.clean();<br>    <span class="hljs-comment">// 记住这个格子</span><br>    boxSet.add(box);<br><br>    <span class="hljs-comment">// 四个方向试探</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++) &#123;<br>      <span class="hljs-keyword">if</span> (robot.move()) &#123;<br>        <span class="hljs-keyword">let</span> x = i;<br>        <span class="hljs-keyword">let</span> y = j;<br><br>        <span class="hljs-comment">// 打扫方向</span><br>        <span class="hljs-keyword">switch</span>(dir) &#123;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>            x = i - <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向左</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">90</span>:<br>            y = j + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向上</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">180</span>:<br>            x = i + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向右</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">270</span>:<br>            y = j - <span class="hljs-number">1</span>;    <span class="hljs-comment">// 向下</span><br>          <span class="hljs-keyword">default</span>:<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        dfs(robot, boxSet, x, y, dir);<br>        <span class="hljs-comment">// 这时说明撞到墙了</span><br>        ...<br>      &#125;<br><br>      <span class="hljs-comment">// 转向</span><br>      robot.turnRight();<br>      dir += <span class="hljs-number">90</span>;<br>      dir %= <span class="hljs-number">360</span>;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
     <title>数据结构与算法之二叉树</title>
     <url>/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h3 id="树的基本概念"><a href="#树的基本概念" class="headerlink" title="树的基本概念"></a>树的基本概念</h3><p>树的层次计算规则：根结点所在的那一层记为第一层，其子结点所在的就是第二层，以此类推<br>结点和树的“高度”计算规则：叶子结点高度记为 1，每向上一层高度就加 1，逐层向上累加至目标结点时，所得到的的值就是目标结点的高度。树中结点的最大高度，称为“树的高度”。<br>度”的概念：一个结点开叉出去多少个子树，被记为结点的“度”<br>“叶子结点”：叶子结点就是度为 0 的结点</p>
@@ -4388,6 +4399,26 @@
       <tags>
         <tag>面试之道</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法-大厂面试题实战</title>
+    <url>/2021/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<h3 id="最长回文子串问题-力扣-5"><a href="#最长回文子串问题-力扣-5" class="headerlink" title="最长回文子串问题(力扣 5)"></a>最长回文子串问题(力扣 5)</h3><blockquote>
+<p>题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000</p>
+</blockquote>
+<p><strong>找关键词：字符串， 最长</strong> –&gt; 动态规划问题<br>—&gt; 这个动态规划问题 尽量学学人家代码随想录的思维</p>
+<h3 id="根据一棵树的前序遍历与中序遍历构造二叉树"><a href="#根据一棵树的前序遍历与中序遍历构造二叉树" class="headerlink" title="根据一棵树的前序遍历与中序遍历构造二叉树"></a>根据一棵树的前序遍历与中序遍历构造二叉树</h3><p>(二叉树类题目中的重复逻辑，90% 都是用递归来完成)<br>两个核心规律：</p>
+<ul>
+<li>前序序列头部的元素 p1 一定是<strong>当前</strong>二叉树的根结点</li>
+<li>中序遍历序列中，以<strong>当前</strong>二叉树的根结点为界划分出的两个子序列，分别对应着二叉树的左子树和二叉树的右子树</li>
+</ul>
+<h3 id="复制带随机指针的链表"><a href="#复制带随机指针的链表" class="headerlink" title="复制带随机指针的链表"></a>复制带随机指针的链表</h3><figure class="highlight"><table><tr><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+
+<h3 id="岛屿数量问题"><a href="#岛屿数量问题" class="headerlink" title="岛屿数量问题"></a>岛屿数量问题</h3><blockquote>
+<p>看到“所有” 必须想到“枚举”！看到“枚举”，必须回忆起 DFS 和 BFS</p>
+</blockquote>
+<h3 id="机器人扫地"><a href="#机器人扫地" class="headerlink" title="机器人扫地"></a>机器人扫地</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> cleanRoom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">robot</span>) </span>&#123;<br>  <span class="hljs-comment">// 初始化一个 set 结构来存储清扫过的坐标 set(无序、不重复)</span><br>  <span class="hljs-keyword">const</span> boxSet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();<br>  <span class="hljs-comment">// 初始化机器人的朝向</span><br>  <span class="hljs-keyword">let</span> dir = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 遍历 递归 dfs</span><br>  dfs(robot, boxSet, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">robot, boxSet, i, j, dir</span>) </span>&#123;<br>    <span class="hljs-comment">// 记录当前格子的坐标</span><br>    <span class="hljs-keyword">let</span> box = i + <span class="hljs-string">&#x27;+&#x27;</span> + j;<br>    <span class="hljs-comment">// 如果已经打扫过，则跳过</span><br>    <span class="hljs-keyword">if</span> (boxSet.has(box)) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">// 打扫当前这个格子</span><br>    robot.clean();<br>    <span class="hljs-comment">// 记住这个格子</span><br>    boxSet.add(box);<br><br>    <span class="hljs-comment">// 四个方向试探</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++) &#123;<br>      <span class="hljs-keyword">if</span> (robot.move()) &#123;<br>        <span class="hljs-keyword">let</span> x = i;<br>        <span class="hljs-keyword">let</span> y = j;<br><br>        <span class="hljs-comment">// 打扫方向</span><br>        <span class="hljs-keyword">switch</span>(dir) &#123;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>            x = i - <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向左</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">90</span>:<br>            y = j + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向上</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">180</span>:<br>            x = i + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向右</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">270</span>:<br>            y = j - <span class="hljs-number">1</span>;    <span class="hljs-comment">// 向下</span><br>          <span class="hljs-keyword">default</span>:<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        dfs(robot, boxSet, x, y, dir);<br>        <span class="hljs-comment">// 这时说明撞到墙了</span><br>        ...<br>      &#125;<br><br>      <span class="hljs-comment">// 转向</span><br>      robot.turnRight();<br>      dir += <span class="hljs-number">90</span>;<br>      dir %= <span class="hljs-number">360</span>;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>数据结构与算法之动态规划</title>
@@ -4491,29 +4522,6 @@
       </tags>
   </entry>
   <entry>
-    <title>数据结构与算法之深度与广度遍历</title>
-    <url>/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%B7%B1%E5%BA%A6%E4%B8%8E%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/</url>
-    <content><![CDATA[<h3 id="深度优先遍历-不撞南墙不回头的“迷宫游戏”-DFS"><a href="#深度优先遍历-不撞南墙不回头的“迷宫游戏”-DFS" class="headerlink" title="深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS"></a>深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS</h3><p><strong>“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索”</strong></p>
-<p><strong>深度优先搜索的核心思想，是试图穷举所有的完整路径</strong></p>
-<p><strong>深度优先搜索的本质 — 栈结构</strong></p>
-<p>二叉树的<strong>先序遍历</strong>正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树的先序遍历的推广</p>
-<h3 id="广度优先搜索思想-BFS"><a href="#广度优先搜索思想-BFS" class="headerlink" title="广度优先搜索思想 BFS"></a>广度优先搜索思想 BFS</h3><p><strong>BFS 算法的实现过程，和队列有着密不可分的关系</strong><br><strong>广度优先和层序遍历是密不可分的</strong></p>
-<h4 id="二叉树的层序遍历-力扣-102"><a href="#二叉树的层序遍历-力扣-102" class="headerlink" title="二叉树的层序遍历 (力扣 102)"></a>二叉树的层序遍历 (力扣 102)</h4><p><strong>看到“层次”关键字，大家应该立刻想到“扫描”；想到“扫描”，就应该立刻想到 BFS</strong></p>
-<p>这招是自创的，命名逻辑正确(且只用一次循环)，但是力扣不给过…</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* 给结点设置新属性的方法 */</span><br>var levelOrder = <span class="hljs-built_in">function</span>(root) &#123;<br>    <span class="hljs-comment">// 层序遍历： 队列 和 while 的搭配</span><br>    <span class="hljs-keyword">const</span> queue = [];  <span class="hljs-comment">// queue 存放的是结点</span><br>    <span class="hljs-keyword">const</span> nums = [];<br><br>    <span class="hljs-comment">// 我给结点开辟个新的属性 表示层级</span><br>    root.level = <span class="hljs-number">0</span>;<br>    queue.<span class="hljs-built_in">push</span>(root);<br><br>    <span class="hljs-keyword">while</span>(queue.length) &#123;<br>        <span class="hljs-keyword">const</span> top = queue[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">if</span> (top.left) &#123;<br>            top.left.level = top.level + <span class="hljs-number">1</span>;<br>            queue.<span class="hljs-built_in">push</span>(top.left);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (top.right) &#123;<br>            top.right.level = top.level + <span class="hljs-number">1</span>;<br>            queue.<span class="hljs-built_in">push</span>(top.right);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!nums[queue[<span class="hljs-number">0</span>].level]) &#123;<br>            nums[queue[<span class="hljs-number">0</span>].level] = []<br>        &#125;<br>        nums[queue[<span class="hljs-number">0</span>].level].<span class="hljs-built_in">push</span>(queue[<span class="hljs-number">0</span>].val);<br>        queue.<span class="hljs-built_in">shift</span>();<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<p>传统解法… 感觉时间复杂度还要高很多…</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">var levelOrder = <span class="hljs-built_in">function</span>(root) &#123;<br>    <span class="hljs-comment">// 层序遍历： 队列 和 while 的搭配</span><br>    <span class="hljs-keyword">const</span> nums = [];<br>    <span class="hljs-keyword">if</span> (!root) &#123;<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>    <span class="hljs-keyword">const</span> queue = [];  <span class="hljs-comment">// queue 存放的是结点</span><br>    queue.<span class="hljs-built_in">push</span>(root);<br><br>    <span class="hljs-keyword">while</span> (queue.length) &#123;<br>        <span class="hljs-keyword">const</span> temp = [];    <span class="hljs-comment">// 来一个临时数组</span><br>        let len = queue.length;<br>        <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            <span class="hljs-keyword">const</span> node = queue[<span class="hljs-number">0</span>]<br>            temp.<span class="hljs-built_in">push</span>(node.val);<br>            <span class="hljs-keyword">if</span> (node.left) queue.<span class="hljs-built_in">push</span>(node.left);<br>            <span class="hljs-keyword">if</span> (node.right) queue.<span class="hljs-built_in">push</span>(node.right);<br>            queue.<span class="hljs-built_in">shift</span>();<br>        &#125;<br>        nums.<span class="hljs-built_in">push</span>(temp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>面试篇</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>面试之道</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构与算法之栈与队列</title>
     <url>/2021/12/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/</url>
     <content><![CDATA[<blockquote>
@@ -4570,6 +4578,29 @@
 </blockquote>
 <p>此题要注意一下细节，因为非常容易出错…</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//  使用双端队列来解决问题</span><br>var maxSlidingWindow = <span class="hljs-built_in">function</span>(nums, k) &#123;<br>    let res = [];<br>    let queue = [];    <span class="hljs-comment">// 这是一个递减队列  元素应该是记的下标 而非 nums的元素值</span><br><br>    <span class="hljs-comment">// 有空的时候，看看能不能把这两个for 循环合并在一起</span><br>    <span class="hljs-keyword">for</span>(let i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;<br>        <span class="hljs-keyword">if</span> (!queue.length || nums[queue[queue.length - <span class="hljs-number">1</span>]] &gt;= nums[i]) &#123;<br>            queue.<span class="hljs-built_in">push</span>(i)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">while</span>(nums[queue[queue.length - <span class="hljs-number">1</span>]] &lt; nums[i]) &#123;<br>                queue.<span class="hljs-built_in">pop</span>();<br>            &#125;<br>            queue.<span class="hljs-built_in">push</span>(i);<br>        &#125;<br>    &#125;<br>    res.<span class="hljs-built_in">push</span>(nums[queue[<span class="hljs-number">0</span>]]);   <span class="hljs-comment">// 第一个窗口的最大值已经有了！</span><br><br>    <span class="hljs-keyword">for</span> (let i = k; i &lt; nums.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (queue[<span class="hljs-number">0</span>] &lt; i - k + <span class="hljs-number">1</span>) queue.<span class="hljs-built_in">shift</span>();<br>        <span class="hljs-keyword">while</span>(nums[queue[queue.length - <span class="hljs-number">1</span>]] &lt; nums[i]) &#123;<br>            queue.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        queue.<span class="hljs-built_in">push</span>(i);<br>        res.<span class="hljs-built_in">push</span>(nums[queue[<span class="hljs-number">0</span>]])<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>面试篇</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>面试之道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法之深度与广度遍历</title>
+    <url>/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%B7%B1%E5%BA%A6%E4%B8%8E%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/</url>
+    <content><![CDATA[<h3 id="深度优先遍历-不撞南墙不回头的“迷宫游戏”-DFS"><a href="#深度优先遍历-不撞南墙不回头的“迷宫游戏”-DFS" class="headerlink" title="深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS"></a>深度优先遍历 (不撞南墙不回头的“迷宫游戏”) DFS</h3><p><strong>“不撞南墙不回头”的原则：只要没有碰壁，就决不选择其它的道路，而是坚持向当前道路的深处挖掘——像这样将“深度”作为前进的第一要素的搜索方法，就是所谓的“深度优先搜索”</strong></p>
+<p><strong>深度优先搜索的核心思想，是试图穷举所有的完整路径</strong></p>
+<p><strong>深度优先搜索的本质 — 栈结构</strong></p>
+<p>二叉树的<strong>先序遍历</strong>正是深度优先搜索思想的递归实现。可以说深度优先搜索过程就类似于树的先序遍历、是树的先序遍历的推广</p>
+<h3 id="广度优先搜索思想-BFS"><a href="#广度优先搜索思想-BFS" class="headerlink" title="广度优先搜索思想 BFS"></a>广度优先搜索思想 BFS</h3><p><strong>BFS 算法的实现过程，和队列有着密不可分的关系</strong><br><strong>广度优先和层序遍历是密不可分的</strong></p>
+<h4 id="二叉树的层序遍历-力扣-102"><a href="#二叉树的层序遍历-力扣-102" class="headerlink" title="二叉树的层序遍历 (力扣 102)"></a>二叉树的层序遍历 (力扣 102)</h4><p><strong>看到“层次”关键字，大家应该立刻想到“扫描”；想到“扫描”，就应该立刻想到 BFS</strong></p>
+<p>这招是自创的，命名逻辑正确(且只用一次循环)，但是力扣不给过…</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* 给结点设置新属性的方法 */</span><br>var levelOrder = <span class="hljs-built_in">function</span>(root) &#123;<br>    <span class="hljs-comment">// 层序遍历： 队列 和 while 的搭配</span><br>    <span class="hljs-keyword">const</span> queue = [];  <span class="hljs-comment">// queue 存放的是结点</span><br>    <span class="hljs-keyword">const</span> nums = [];<br><br>    <span class="hljs-comment">// 我给结点开辟个新的属性 表示层级</span><br>    root.level = <span class="hljs-number">0</span>;<br>    queue.<span class="hljs-built_in">push</span>(root);<br><br>    <span class="hljs-keyword">while</span>(queue.length) &#123;<br>        <span class="hljs-keyword">const</span> top = queue[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">if</span> (top.left) &#123;<br>            top.left.level = top.level + <span class="hljs-number">1</span>;<br>            queue.<span class="hljs-built_in">push</span>(top.left);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (top.right) &#123;<br>            top.right.level = top.level + <span class="hljs-number">1</span>;<br>            queue.<span class="hljs-built_in">push</span>(top.right);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!nums[queue[<span class="hljs-number">0</span>].level]) &#123;<br>            nums[queue[<span class="hljs-number">0</span>].level] = []<br>        &#125;<br>        nums[queue[<span class="hljs-number">0</span>].level].<span class="hljs-built_in">push</span>(queue[<span class="hljs-number">0</span>].val);<br>        queue.<span class="hljs-built_in">shift</span>();<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>传统解法… 感觉时间复杂度还要高很多…</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">var levelOrder = <span class="hljs-built_in">function</span>(root) &#123;<br>    <span class="hljs-comment">// 层序遍历： 队列 和 while 的搭配</span><br>    <span class="hljs-keyword">const</span> nums = [];<br>    <span class="hljs-keyword">if</span> (!root) &#123;<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>    <span class="hljs-keyword">const</span> queue = [];  <span class="hljs-comment">// queue 存放的是结点</span><br>    queue.<span class="hljs-built_in">push</span>(root);<br><br>    <span class="hljs-keyword">while</span> (queue.length) &#123;<br>        <span class="hljs-keyword">const</span> temp = [];    <span class="hljs-comment">// 来一个临时数组</span><br>        let len = queue.length;<br>        <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            <span class="hljs-keyword">const</span> node = queue[<span class="hljs-number">0</span>]<br>            temp.<span class="hljs-built_in">push</span>(node.val);<br>            <span class="hljs-keyword">if</span> (node.left) queue.<span class="hljs-built_in">push</span>(node.left);<br>            <span class="hljs-keyword">if</span> (node.right) queue.<span class="hljs-built_in">push</span>(node.right);<br>            queue.<span class="hljs-built_in">shift</span>();<br>        &#125;<br>        nums.<span class="hljs-built_in">push</span>(temp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>面试篇</category>
