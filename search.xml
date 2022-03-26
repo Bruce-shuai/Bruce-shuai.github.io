@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CSS Animation 性能篇</title>
+    <url>/2021/11/07/CSS-Animation-%E6%80%A7%E8%83%BD%E7%AF%87/</url>
+    <content><![CDATA[<blockquote>
+<p>这篇博客将告诉你如何良好的提高<code>animation动画性能</code>以及如何使用 <code>Chrome</code>的 <code>dev tools</code>进行性能检测</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS Animation</title>
     <url>/2021/11/07/CSS-Animation/</url>
     <content><![CDATA[<p>注意： 似乎一个元素的 transform 只能使用一次?! 好像这句话不对…</p>
@@ -141,6 +152,19 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS-Background</title>
+    <url>/2021/12/05/CSS-Background/</url>
+    <content><![CDATA[<p>这个可以同时控制多张图片</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>  <span class="hljs-attribute">background-attachment</span>: fixed;<br>  <span class="hljs-attribute">background-position</span>: left bottom, right bottom;<br>  <span class="hljs-attribute">background-size</span>: <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), cover;   // 注意这里<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>), <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS Media Query</title>
     <url>/2021/11/28/CSS-Media-Query/</url>
     <content><![CDATA[<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* style.css */</span><br><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br><span class="hljs-selector-class">.title</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">6rem</span>;<br>&#125;<br><span class="hljs-selector-class">.subtitle</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">4rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -179,6 +203,65 @@
 <blockquote>
 <p>事实上，我们常用的就 <code>min-width</code> <code>max-width</code> <code>orientation</code> 这几种属性</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS Position</title>
+    <url>/2021/11/07/CSS-Position/</url>
+    <content><![CDATA[<p><code>position</code> 是 <code>css</code> 中一个非常重要的属性。它的作用是将元素在网页中定位。而设定值总共有 5 个。分别是 <code>static</code>、<code>absolute</code>、<code>relative</code>、<code>fixed</code> 以及 <code>sticky</code></p>
+<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><code>HTML</code> 里面所有元素的 <code>position</code> 默认值都是 <code>static</code></p>
+<p><code>static</code> 会跟随 HTML 排版的流程(flow)移动(最常见的 HTML 排版格式)(元素从上到下，非重叠的排列)<br><code>static</code>的元素对于 top、left、right、bottom 设定值不会生效</p>
+<p>例子代码：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-two</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-three</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">100</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果显示：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.06.35-PM.72mf9nnxe9k0.png" alt="static效果"></p>
+<h5 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h5><p><code>relative</code> 也会跟随 HTML 排版的流程(flow)移动。<strong>但是它比<code>static</code>多了 top、left、right、bottom 的设定。</strong><br>并且使用 relative 的模块的位置移动不影响其他模块(如果是使用了位置移动，则该模块脱离了文档流，似乎不太纯粹…)</p>
+<blockquote>
+<p>注意点：<code>relative</code> 事实上<strong>最好不要使用</strong>位置的移动，不然容易造成显示的混乱</p>
+</blockquote>
+<p>除此之外，**<code>relative</code>最重要的一个功能是在它里面的<code>absolute</code>元素会根据<code>relative</code>的位置去定位**</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br>// 其余代码部分和上述一样<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-comment">/*  进行relative操作  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">5px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.11.21-PM.1bun6g5kxrwg.png" alt="relative效果"></p>
+<h5 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h5><p>现在来看一下代码：<br>(其余代码和 static 那节没有变化)</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.24.10-PM.3bbsxkssqvi0.png" alt="absolute效果1"></p>
+<p>可见，<code>One</code> 这个<code>div元素</code>失去了宽度。原因是，<code>absolute</code>属性完完全全的让当前元素脱离了文档流, 对于其他没有设置为<code>absolute</code>的元素来说，<code>One</code>这个元素好似不存在！</p>
+<blockquote>
+<p><strong>注意点</strong>：事实上,我上面已说，<code>relative</code>不适合用位置移动。而<code>absolute</code>却是<strong>非常适合</strong>使用位置移动的！！</p>
+</blockquote>
+<p><code>absolute</code>这种方式会非常方便在你想在某个位置固定住一个元素，而其他元素不会影响这个被固定住的元素 (完全脱离文档流 + 位置的移动)</p>
+<blockquote>
+<p>还有一个<strong>注意点</strong>：absolute 的位置移动是相对于父元素的(非 static、absolute)。如果父元素是(static、absolute)的，则会进行找父元素的父元素进行看是否符合条件(非 static、absolute)。如果都不符合条件，则根据最顶层元素来进行位置的移动…</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.39.17-PM.4d2dsj8a49w.png" alt="absolute效果2"></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.41.30-PM.5stck9to3m00.png" alt="absolute效果3"></p>
+<p><strong>(absolute + relative 是绝配)</strong></p>
+<h5 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h5><p><code>fixed</code> 与 <code>absolute</code> 很相似。不同的地方有以下两个</p>
+<ol>
+<li><code>fixed</code> 会定位到荧幕中的固定位置。所以即使卷动页面，也会一直保持在那个位置</li>
+<li>即使放在<code>relative</code>页面，<code>fixed</code>元素也会根据页面，即 body 去定位，不会根据 relative 去定位(这是要在 fiex 设定了 top、left、right、bottom 等属性时才会出现的效果)</li>
+</ol>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* HTML文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt; * <span class="hljs-number">100</span><br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.child-one &#123;<br>  background-color: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80</span>%, <span class="hljs-number">50</span>%);<br>  position: fixed;<br>  bottom: <span class="hljs-number">10</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-1.59.31-PM.5f6b4g3m13w0.gif" alt="fixed效果显示"></p>
+<p>如果是 <code>absolute</code>。<code>absolute</code> 元素所在的容器(父元素)有卷轴的话，它就会随着卷动而移动<br><strong>(这是 fixed 和 absolute 二者最大的不同)</strong></p>
+<h4 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h4><p>sticky 是完美结合了 <code>relative</code> 和 <code>fixed</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: sticky;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>外表看似和 relative 效果差不多。可真正滚动滑条的时候就大大的不同了<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-2.11.58-PM.4gp9o7g2tf60.gif" alt="sticky效果"></p>
+<h5 id="sticky-效果图"><a href="#sticky-效果图" class="headerlink" title="sticky 效果图"></a>sticky 效果图</h5><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-4.45.31-PM.3ysiy6q3te40.gif" alt="sticky效果图1"><br><a href="https://codepen.io/bruce-shuai/pen/yLoKqqR?editors=1100">对应代码</a></p>
 ]]></content>
       <categories>
         <category>CSS篇</category>
@@ -293,56 +376,13 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS Position</title>
-    <url>/2021/11/07/CSS-Position/</url>
-    <content><![CDATA[<p><code>position</code> 是 <code>css</code> 中一个非常重要的属性。它的作用是将元素在网页中定位。而设定值总共有 5 个。分别是 <code>static</code>、<code>absolute</code>、<code>relative</code>、<code>fixed</code> 以及 <code>sticky</code></p>
-<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><code>HTML</code> 里面所有元素的 <code>position</code> 默认值都是 <code>static</code></p>
-<p><code>static</code> 会跟随 HTML 排版的流程(flow)移动(最常见的 HTML 排版格式)(元素从上到下，非重叠的排列)<br><code>static</code>的元素对于 top、left、right、bottom 设定值不会生效</p>
-<p>例子代码：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">/* html文件 */</span><br>&lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/div&gt;<br>  &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-two</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">50</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br><br><span class="hljs-selector-class">.child-three</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: hsl(<span class="hljs-number">100</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+    <title>CSS 神奇属性</title>
+    <url>/2021/11/28/CSS-%E7%A5%9E%E5%A5%87%E5%B1%9E%E6%80%A7/</url>
+    <content><![CDATA[<h4 id="text-overflow"><a href="#text-overflow" class="headerlink" title="text-overflow"></a>text-overflow</h4><h4 id="white-space"><a href="#white-space" class="headerlink" title="white-space"></a>white-space</h4><h4 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h4><h4 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h4><figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">position</span>: absolute;<br>inset: <span class="hljs-number">0</span>; <span class="hljs-comment">/* 等同于：top、right、bottom、left 全部为0 */</span><br></code></pre></td></tr></table></figure>
 
-<p>效果显示：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.06.35-PM.72mf9nnxe9k0.png" alt="static效果"></p>
-<h5 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h5><p><code>relative</code> 也会跟随 HTML 排版的流程(flow)移动。<strong>但是它比<code>static</code>多了 top、left、right、bottom 的设定。</strong><br>并且使用 relative 的模块的位置移动不影响其他模块(如果是使用了位置移动，则该模块脱离了文档流，似乎不太纯粹…)</p>
-<blockquote>
-<p>注意点：<code>relative</code> 事实上<strong>最好不要使用</strong>位置的移动，不然容易造成显示的混乱</p>
-</blockquote>
-<p>除此之外，**<code>relative</code>最重要的一个功能是在它里面的<code>absolute</code>元素会根据<code>relative</code>的位置去定位**</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br>// 其余代码部分和上述一样<br><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-comment">/*  进行relative操作  */</span><br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">5px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.11.21-PM.1bun6g5kxrwg.png" alt="relative效果"></p>
-<h5 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h5><p>现在来看一下代码：<br>(其余代码和 static 那节没有变化)</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.24.10-PM.3bbsxkssqvi0.png" alt="absolute效果1"></p>
-<p>可见，<code>One</code> 这个<code>div元素</code>失去了宽度。原因是，<code>absolute</code>属性完完全全的让当前元素脱离了文档流, 对于其他没有设置为<code>absolute</code>的元素来说，<code>One</code>这个元素好似不存在！</p>
-<blockquote>
-<p><strong>注意点</strong>：事实上,我上面已说，<code>relative</code>不适合用位置移动。而<code>absolute</code>却是<strong>非常适合</strong>使用位置移动的！！</p>
-</blockquote>
-<p><code>absolute</code>这种方式会非常方便在你想在某个位置固定住一个元素，而其他元素不会影响这个被固定住的元素 (完全脱离文档流 + 位置的移动)</p>
-<blockquote>
-<p>还有一个<strong>注意点</strong>：absolute 的位置移动是相对于父元素的(非 static、absolute)。如果父元素是(static、absolute)的，则会进行找父元素的父元素进行看是否符合条件(非 static、absolute)。如果都不符合条件，则根据最顶层元素来进行位置的移动…</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.39.17-PM.4d2dsj8a49w.png" alt="absolute效果2"></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.parent</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">200</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Shot-2021-11-07-at-1.41.30-PM.5stck9to3m00.png" alt="absolute效果3"></p>
-<p><strong>(absolute + relative 是绝配)</strong></p>
-<h5 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h5><p><code>fixed</code> 与 <code>absolute</code> 很相似。不同的地方有以下两个</p>
-<ol>
-<li><code>fixed</code> 会定位到荧幕中的固定位置。所以即使卷动页面，也会一直保持在那个位置</li>
-<li>即使放在<code>relative</code>页面，<code>fixed</code>元素也会根据页面，即 body 去定位，不会根据 relative 去定位(这是要在 fiex 设定了 top、left、right、bottom 等属性时才会出现的效果)</li>
-</ol>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/* HTML文件 */</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;<br>  Parent<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-one child&quot;</span>&gt;<br>    One<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-two child&quot;</span>&gt;<br>    Two<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child-three child&quot;</span>&gt;<br>    Three<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt; * <span class="hljs-number">100</span><br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br><span class="hljs-comment">/* css文件 */</span><br>.child-one &#123;<br>  background-color: hsl(<span class="hljs-number">0</span>, <span class="hljs-number">80</span>%, <span class="hljs-number">50</span>%);<br>  position: fixed;<br>  bottom: <span class="hljs-number">10</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-1.59.31-PM.5f6b4g3m13w0.gif" alt="fixed效果显示"></p>
-<p>如果是 <code>absolute</code>。<code>absolute</code> 元素所在的容器(父元素)有卷轴的话，它就会随着卷动而移动<br><strong>(这是 fixed 和 absolute 二者最大的不同)</strong></p>
-<h4 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h4><p>sticky 是完美结合了 <code>relative</code> 和 <code>fixed</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* css文件 */</span><br><span class="hljs-selector-class">.child-one</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">80%</span>, <span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">position</span>: sticky;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>外表看似和 relative 效果差不多。可真正滚动滑条的时候就大大的不同了<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-2.11.58-PM.4gp9o7g2tf60.gif" alt="sticky效果"></p>
-<h5 id="sticky-效果图"><a href="#sticky-效果图" class="headerlink" title="sticky 效果图"></a>sticky 效果图</h5><p><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/Screen-Recording-2021-11-07-at-4.45.31-PM.3ysiy6q3te40.gif" alt="sticky效果图1"><br><a href="https://codepen.io/bruce-shuai/pen/yLoKqqR?editors=1100">对应代码</a></p>
+<h4 id="object-fit"><a href="#object-fit" class="headerlink" title="object-fit"></a>object-fit</h4><h4 id="object-position"><a href="#object-position" class="headerlink" title="object-position"></a>object-position</h4><h4 id="list-style"><a href="#list-style" class="headerlink" title="list-style"></a>list-style</h4><h4 id="focus-vs-active"><a href="#focus-vs-active" class="headerlink" title=":focus vs :active"></a>:focus vs :active</h4><p><code>:focus</code> 表示 你点击了该元素，元素一直保持某一种状态。除非你点击其他部分。保持的状态才会消退</p>
+<p><code>:active</code> 表示 你点击某元素的时候，你要你不松开鼠标，则元素一直会维持着一种状态</p>
+<h4 id="letter-spacing"><a href="#letter-spacing" class="headerlink" title="letter-spacing"></a>letter-spacing</h4><p>控制文本中字符与字符之间的距离</p>
 ]]></content>
       <categories>
         <category>CSS篇</category>
@@ -355,22 +395,6 @@
     <title>CSS-继承</title>
     <url>/2021/12/10/CSS-%E7%BB%A7%E6%89%BF/</url>
     <content><![CDATA[<h3 id="initial"><a href="#initial" class="headerlink" title="initial"></a>initial</h3><h3 id="inherit"><a href="#inherit" class="headerlink" title="inherit"></a>inherit</h3><h3 id="unset"><a href="#unset" class="headerlink" title="unset"></a>unset</h3><h3 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h3>]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS 神奇属性</title>
-    <url>/2021/11/28/CSS-%E7%A5%9E%E5%A5%87%E5%B1%9E%E6%80%A7/</url>
-    <content><![CDATA[<h4 id="text-overflow"><a href="#text-overflow" class="headerlink" title="text-overflow"></a>text-overflow</h4><h4 id="white-space"><a href="#white-space" class="headerlink" title="white-space"></a>white-space</h4><h4 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h4><h4 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h4><figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">position</span>: absolute;<br>inset: <span class="hljs-number">0</span>; <span class="hljs-comment">/* 等同于：top、right、bottom、left 全部为0 */</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="object-fit"><a href="#object-fit" class="headerlink" title="object-fit"></a>object-fit</h4><h4 id="object-position"><a href="#object-position" class="headerlink" title="object-position"></a>object-position</h4><h4 id="list-style"><a href="#list-style" class="headerlink" title="list-style"></a>list-style</h4><h4 id="focus-vs-active"><a href="#focus-vs-active" class="headerlink" title=":focus vs :active"></a>:focus vs :active</h4><p><code>:focus</code> 表示 你点击了该元素，元素一直保持某一种状态。除非你点击其他部分。保持的状态才会消退</p>
-<p><code>:active</code> 表示 你点击某元素的时候，你要你不松开鼠标，则元素一直会维持着一种状态</p>
-<h4 id="letter-spacing"><a href="#letter-spacing" class="headerlink" title="letter-spacing"></a>letter-spacing</h4><p>控制文本中字符与字符之间的距离</p>
-]]></content>
       <categories>
         <category>CSS篇</category>
       </categories>
@@ -701,6 +725,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Emotion的安装和基本使用</title>
+    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
+<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
+<blockquote>
+<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form表格</title>
     <url>/2021/11/21/Form%E8%A1%A8%E6%A0%BC/</url>
     <content><![CDATA[<p><a href="https://codepen.io/bruce-shuai/pen/VwzNeLP?editors=0100">在 codepen 中写了一个 form 表格</a></p>
@@ -925,19 +965,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS-Background</title>
-    <url>/2021/12/05/CSS-Background/</url>
-    <content><![CDATA[<p>这个可以同时控制多张图片</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>  <span class="hljs-attribute">background-attachment</span>: fixed;<br>  <span class="hljs-attribute">background-position</span>: left bottom, right bottom;<br>  <span class="hljs-attribute">background-size</span>: <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), <span class="hljs-built_in">calc</span>(((<span class="hljs-number">100vw</span> - <span class="hljs-number">40rem</span>) / <span class="hljs-number">2</span>) - <span class="hljs-number">3.2rem</span>), cover;   // 注意这里<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>), <span class="hljs-built_in">url</span>(<span class="hljs-string">...</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTML之语义化标签</title>
     <url>/2021/12/10/HTML%E4%B9%8B%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/</url>
     <content><![CDATA[<p>目前常用的语义化标签：</p>
@@ -945,6 +972,18 @@
 ]]></content>
       <categories>
         <category>HTML篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTTP状态码</title>
+    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
+]]></content>
+      <categories>
+        <category>程序员素养篇</category>
       </categories>
       <tags>
         <tag>基本功</tag>
@@ -1749,15 +1788,15 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS Animation 性能篇</title>
-    <url>/2021/11/07/CSS-Animation-%E6%80%A7%E8%83%BD%E7%AF%87/</url>
-    <content><![CDATA[<blockquote>
-<p>这篇博客将告诉你如何良好的提高<code>animation动画性能</code>以及如何使用 <code>Chrome</code>的 <code>dev tools</code>进行性能检测</p>
-</blockquote>
+    <title>MongoDB学习</title>
+    <url>/2022/03/26/MongoDB%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p><a href="https://www.1024sou.com/article/17102.html">安装 MongoDB 教程</a></p>
 ]]></content>
-      <tags>
-        <tag>性能优化</tag>
-      </tags>
+  </entry>
+  <entry>
+    <title>Pure Functions</title>
+    <url>/2021/12/17/Pure-Functions/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>RESTful</title>
@@ -1826,20 +1865,40 @@
       </tags>
   </entry>
   <entry>
-    <title>Emotion的安装和基本使用</title>
-    <url>/2021/10/10/Emotion%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>更细节的操作应该看官网指导：<br><a href="https://emotion.sh/docs/introduction">Emotion 官网</a></p>
-<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>针对 react 框架</p>
+    <title>React Hooks的思考与总结</title>
+    <url>/2022/01/13/React-Hooks%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%8E%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p><a href="https://codesandbox.io/s/react-hooks-course-20vzg">代码地址</a></p>
+<p>React 的中文含义即：“反应”或“创新”，它描述了 React 这样一个前端框架的核心原理：当数据发生变化时，UI 能够<strong>自动</strong>把变化反应出来</p>
+<p>JSX 仅是语法糖，意味着。你不用 JSX 的写法，同样能够写出 React 来</p>
+<p>JSX 不是一个新的概念，而只是原生 JS 的另一种写法，但是这种写法，将会大大降低你上手 React 的难度</p>
+<p>在 React 组件中，任何一个 state 发生变化时，整个函数组件其实是被完全执行一遍的， 而且除了 state，多次的执行之间没有任何关系。所以在考虑这样一个场景的实现时，我们 的思考方式就是要首先考虑这个组件有哪些状态(state)，这些状态的变化是由什么触发 的，从而将整个功能串联起来。</p>
 <blockquote>
-<p>npm i @emotion/react<br>npm i @emotion/styled @emotion/react</p>
+<p>Hooks 的使用规则：1. 只能在函数组件的顶级作用域中使用，2. 只能在函数组件或者其他 Hooks 中使用</p>
 </blockquote>
+<h4 id="useState-让函数组件具备维持状态的能力"><a href="#useState-让函数组件具备维持状态的能力" class="headerlink" title="useState: 让函数组件具备维持状态的能力"></a>useState: 让函数组件具备维持状态的能力</h4><h5 id="比较-Class-组件的-state-和-hooks-组件的-state"><a href="#比较-Class-组件的-state-和-hooks-组件的-state" class="headerlink" title="比较 Class 组件的 state 和 hooks 组件的 state"></a>比较 Class 组件的 state 和 hooks 组件的 state</h5><p>二者最大的区别就是， 类组件的 state 只能有一个，然后再通过不同的属性来表示不同的状态。 而 useState 则可以很容易地创建多个 state，所以它更加的语义化</p>
+<h4 id="useEffect-执行副作用"><a href="#useEffect-执行副作用" class="headerlink" title="useEffect: 执行副作用"></a>useEffect: 执行副作用</h4><p>副作用是指一段和当前执行结果无关的代码<br>useEffect 中代码的执行是不影响渲染出来的 UI 的。</p>
+<p>其实不必刻意把 useEffect 对应到某几个生命周期方法中，虽然我以前也尝试这样做过，但是，有了这样的思维后，就有点应试教育的那种感觉，不能完全拥抱 hooks。我现在对于 useEffect 的理解是<strong>每次组件 render 完后判断依赖并执行就可以了</strong></p>
+<p>注意一个小问题，useEffect 的 callback 要避免直接的 async 函数，需要封装一下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2022-01-14-%E4%B8%8A%E5%8D%889.2obivszc5g80.webp" alt="useEffect"></p>
+<p><strong>useEffect 关于依赖项的一些规则</strong>：</p>
+<ul>
+<li>没有依赖项，则每次 render 完后都会重新执行</li>
+<li>空数组作为依赖项，则只在首次执行 render 后触发</li>
+<li>普通依赖项,第一次以及依赖项发生变化后执行</li>
+<li>useEffect 还允许你返回一个函数，用于在<strong>组件销毁</strong>的时候做一些清理的操作</li>
+</ul>
+<p>在写 hooks 时候的注意点：</p>
+<ol>
+<li>在 useEffect 的回调函数中使用的变量，都必须在依赖项中声明 (这里的知识点有点重要)</li>
+<li>Hooks 不能出现在条件语句或者循环中，也不能出现在 return 之后</li>
+<li>Hooks 只能在函数组件或者自定义 Hooks 中使用</li>
+</ol>
+<p>(当然，React 官方给我们提供了一个 ESLint 的插件，专门用来检查 Hooks 是否正确被使用，它就是 eslint-plugin-react-hooks)</p>
+<h4 id="useCallback-缓存回调函数"><a href="#useCallback-缓存回调函数" class="headerlink" title="useCallback: 缓存回调函数"></a>useCallback: 缓存回调函数</h4><p>当没必要的变量(一些函数)更新后导致组件重新渲染，有了 useCallback 就能让没必要的变量不引起组件的渲染</p>
+<h4 id="useMemo-缓存计算的结果"><a href="#useMemo-缓存计算的结果" class="headerlink" title="useMemo: 缓存计算的结果"></a>useMemo: 缓存计算的结果</h4><p>可以避免重复的计算，对于性能的提升会有很大的帮助</p>
+<h4 id="useRef-在多次渲染之间共享数据"><a href="#useRef-在多次渲染之间共享数据" class="headerlink" title="useRef: 在多次渲染之间共享数据"></a>useRef: 在多次渲染之间共享数据</h4><h4 id="useContext-定义全局状态"><a href="#useContext-定义全局状态" class="headerlink" title="useContext: 定义全局状态"></a>useContext: 定义全局状态</h4><h3 id="如何理解函数生命周期"><a href="#如何理解函数生命周期" class="headerlink" title="如何理解函数生命周期"></a>如何理解函数生命周期</h3><p>忘掉 Class 组件的生命周期…</p>
+<p>在函数组件中你要思考的方式永远是：当某个状态发送变化时，我要做什么，而不是像在 Class 组件的某个生命周期方法中我要做什么</p>
+<p>在函数组件中，是没有生命周期机制的</p>
 ]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
-      </tags>
   </entry>
   <entry>
     <title>React-Query</title>
@@ -2315,51 +2374,21 @@
       </tags>
   </entry>
   <entry>
-    <title>React Hooks的思考与总结</title>
-    <url>/2022/01/13/React-Hooks%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%8E%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p><a href="https://codesandbox.io/s/react-hooks-course-20vzg">代码地址</a></p>
-<p>React 的中文含义即：“反应”或“创新”，它描述了 React 这样一个前端框架的核心原理：当数据发生变化时，UI 能够<strong>自动</strong>把变化反应出来</p>
-<p>JSX 仅是语法糖，意味着。你不用 JSX 的写法，同样能够写出 React 来</p>
-<p>JSX 不是一个新的概念，而只是原生 JS 的另一种写法，但是这种写法，将会大大降低你上手 React 的难度</p>
-<p>在 React 组件中，任何一个 state 发生变化时，整个函数组件其实是被完全执行一遍的， 而且除了 state，多次的执行之间没有任何关系。所以在考虑这样一个场景的实现时，我们 的思考方式就是要首先考虑这个组件有哪些状态(state)，这些状态的变化是由什么触发 的，从而将整个功能串联起来。</p>
-<blockquote>
-<p>Hooks 的使用规则：1. 只能在函数组件的顶级作用域中使用，2. 只能在函数组件或者其他 Hooks 中使用</p>
-</blockquote>
-<h4 id="useState-让函数组件具备维持状态的能力"><a href="#useState-让函数组件具备维持状态的能力" class="headerlink" title="useState: 让函数组件具备维持状态的能力"></a>useState: 让函数组件具备维持状态的能力</h4><h5 id="比较-Class-组件的-state-和-hooks-组件的-state"><a href="#比较-Class-组件的-state-和-hooks-组件的-state" class="headerlink" title="比较 Class 组件的 state 和 hooks 组件的 state"></a>比较 Class 组件的 state 和 hooks 组件的 state</h5><p>二者最大的区别就是， 类组件的 state 只能有一个，然后再通过不同的属性来表示不同的状态。 而 useState 则可以很容易地创建多个 state，所以它更加的语义化</p>
-<h4 id="useEffect-执行副作用"><a href="#useEffect-执行副作用" class="headerlink" title="useEffect: 执行副作用"></a>useEffect: 执行副作用</h4><p>副作用是指一段和当前执行结果无关的代码<br>useEffect 中代码的执行是不影响渲染出来的 UI 的。</p>
-<p>其实不必刻意把 useEffect 对应到某几个生命周期方法中，虽然我以前也尝试这样做过，但是，有了这样的思维后，就有点应试教育的那种感觉，不能完全拥抱 hooks。我现在对于 useEffect 的理解是<strong>每次组件 render 完后判断依赖并执行就可以了</strong></p>
-<p>注意一个小问题，useEffect 的 callback 要避免直接的 async 函数，需要封装一下：<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/imgs/%E6%88%AA%E5%B1%8F2022-01-14-%E4%B8%8A%E5%8D%889.2obivszc5g80.webp" alt="useEffect"></p>
-<p><strong>useEffect 关于依赖项的一些规则</strong>：</p>
-<ul>
-<li>没有依赖项，则每次 render 完后都会重新执行</li>
-<li>空数组作为依赖项，则只在首次执行 render 后触发</li>
-<li>普通依赖项,第一次以及依赖项发生变化后执行</li>
-<li>useEffect 还允许你返回一个函数，用于在<strong>组件销毁</strong>的时候做一些清理的操作</li>
-</ul>
-<p>在写 hooks 时候的注意点：</p>
-<ol>
-<li>在 useEffect 的回调函数中使用的变量，都必须在依赖项中声明 (这里的知识点有点重要)</li>
-<li>Hooks 不能出现在条件语句或者循环中，也不能出现在 return 之后</li>
-<li>Hooks 只能在函数组件或者自定义 Hooks 中使用</li>
-</ol>
-<p>(当然，React 官方给我们提供了一个 ESLint 的插件，专门用来检查 Hooks 是否正确被使用，它就是 eslint-plugin-react-hooks)</p>
-<h4 id="useCallback-缓存回调函数"><a href="#useCallback-缓存回调函数" class="headerlink" title="useCallback: 缓存回调函数"></a>useCallback: 缓存回调函数</h4><p>当没必要的变量(一些函数)更新后导致组件重新渲染，有了 useCallback 就能让没必要的变量不引起组件的渲染</p>
-<h4 id="useMemo-缓存计算的结果"><a href="#useMemo-缓存计算的结果" class="headerlink" title="useMemo: 缓存计算的结果"></a>useMemo: 缓存计算的结果</h4><p>可以避免重复的计算，对于性能的提升会有很大的帮助</p>
-<h4 id="useRef-在多次渲染之间共享数据"><a href="#useRef-在多次渲染之间共享数据" class="headerlink" title="useRef: 在多次渲染之间共享数据"></a>useRef: 在多次渲染之间共享数据</h4><h4 id="useContext-定义全局状态"><a href="#useContext-定义全局状态" class="headerlink" title="useContext: 定义全局状态"></a>useContext: 定义全局状态</h4><h3 id="如何理解函数生命周期"><a href="#如何理解函数生命周期" class="headerlink" title="如何理解函数生命周期"></a>如何理解函数生命周期</h3><p>忘掉 Class 组件的生命周期…</p>
-<p>在函数组件中你要思考的方式永远是：当某个状态发送变化时，我要做什么，而不是像在 Class 组件的某个生命周期方法中我要做什么</p>
-<p>在函数组件中，是没有生命周期机制的</p>
-]]></content>
+    <title>WebPack 小知识</title>
+    <url>/2021/12/13/WebPack-%E5%B0%8F%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h4 id="source-map-最佳实践搭配"><a href="#source-map-最佳实践搭配" class="headerlink" title="source-map 最佳实践搭配"></a>source-map 最佳实践搭配</h4><p><a href="https://segmentfault.com/a/1190000008315937">链接 1</a><br><a href="https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">链接 2</a><br><a href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html">链接 3</a><br><a href="https://www.youtube.com/watch?v=NkVes0UMe9Y">链接 4</a></p>
+<h4 id="一个-webpack-官方提供的分析仓库-主要是教你如何使用-："><a href="#一个-webpack-官方提供的分析仓库-主要是教你如何使用-：" class="headerlink" title="一个 webpack 官方提供的分析仓库(主要是教你如何使用)："></a>一个 webpack 官方提供的分析仓库(主要是教你如何使用)：</h4><p><a href="https://github.com/webpack/analyse">点击</a><br>webpack 数据分析 可视化网页：<br><a href="http://webpack.github.io/analyse/#chunks">点击</a></p>
+<h4 id="前端性能优化中，最重要的不是缓存，而是代码覆盖率上-code-coverage-看-imooc-webpack-4-8"><a href="#前端性能优化中，最重要的不是缓存，而是代码覆盖率上-code-coverage-看-imooc-webpack-4-8" class="headerlink" title="前端性能优化中，最重要的不是缓存，而是代码覆盖率上 code coverage 看 imooc webpack 4-8"></a>前端性能优化中，最重要的不是缓存，而是代码覆盖率上 code coverage 看 imooc webpack 4-8</h4><h4 id="按需加载-好像-就是懒加载"><a href="#按需加载-好像-就是懒加载" class="headerlink" title="按需加载 好像 就是懒加载"></a>按需加载 好像 就是懒加载</h4><h4 id="webpack-dev-server-中-proxy-能够实现跨域的原因：点击"><a href="#webpack-dev-server-中-proxy-能够实现跨域的原因：点击" class="headerlink" title="webpack-dev-server 中 proxy 能够实现跨域的原因：点击"></a>webpack-dev-server 中 proxy 能够实现跨域的原因：<a href="https://www.cnblogs.com/houxianzhou/p/14743623.html">点击</a></h4>]]></content>
   </entry>
   <entry>
-    <title>HTTP状态码</title>
-    <url>/2021/10/22/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
-    <content><![CDATA[<p><a href="https://www.restapitutorial.com/httpstatuscodes.html">HTTP Status Codes</a></p>
-]]></content>
+    <title>WebSocket</title>
+    <url>/2021/11/30/WebSocket/</url>
+    <content><![CDATA[]]></content>
       <categories>
-        <category>程序员素养篇</category>
+        <category>WebSocket篇</category>
       </categories>
       <tags>
-        <tag>基本功</tag>
+        <tag>全栈</tag>
       </tags>
   </entry>
   <entry>
@@ -3051,15 +3080,14 @@
       </tags>
   </entry>
   <entry>
-    <title>WebSocket</title>
-    <url>/2021/11/30/WebSocket/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>WebSocket篇</category>
-      </categories>
-      <tags>
-        <tag>全栈</tag>
-      </tags>
+    <title>git 高级指令</title>
+    <url>/2021/11/10/git-%E9%AB%98%E7%BA%A7%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<p>一般情况下我们提交代码到 git 的指令如下：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;Message&quot;<br></code></pre></td></tr></table></figure>
+
+<p>我们可以等同于下面这条命令</p>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><code class="hljs livecodeserver">git commit -<span class="hljs-keyword">a</span> -m <span class="hljs-string">&quot;Message&quot;</span><br></code></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>grid 布局解析</title>
@@ -3162,9 +3190,15 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Pure Functions</title>
-    <url>/2021/12/17/Pure-Functions/</url>
+    <title>js-array-reduce</title>
+    <url>/2021/12/08/js-array-reduce/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
   </entry>
   <entry>
     <title>localStorage cookie sessionStorage</title>
@@ -3268,11 +3302,18 @@
       </tags>
   </entry>
   <entry>
-    <title>WebPack 小知识</title>
-    <url>/2021/12/13/WebPack-%E5%B0%8F%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h4 id="source-map-最佳实践搭配"><a href="#source-map-最佳实践搭配" class="headerlink" title="source-map 最佳实践搭配"></a>source-map 最佳实践搭配</h4><p><a href="https://segmentfault.com/a/1190000008315937">链接 1</a><br><a href="https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">链接 2</a><br><a href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html">链接 3</a><br><a href="https://www.youtube.com/watch?v=NkVes0UMe9Y">链接 4</a></p>
-<h4 id="一个-webpack-官方提供的分析仓库-主要是教你如何使用-："><a href="#一个-webpack-官方提供的分析仓库-主要是教你如何使用-：" class="headerlink" title="一个 webpack 官方提供的分析仓库(主要是教你如何使用)："></a>一个 webpack 官方提供的分析仓库(主要是教你如何使用)：</h4><p><a href="https://github.com/webpack/analyse">点击</a><br>webpack 数据分析 可视化网页：<br><a href="http://webpack.github.io/analyse/#chunks">点击</a></p>
-<h4 id="前端性能优化中，最重要的不是缓存，而是代码覆盖率上-code-coverage-看-imooc-webpack-4-8"><a href="#前端性能优化中，最重要的不是缓存，而是代码覆盖率上-code-coverage-看-imooc-webpack-4-8" class="headerlink" title="前端性能优化中，最重要的不是缓存，而是代码覆盖率上 code coverage 看 imooc webpack 4-8"></a>前端性能优化中，最重要的不是缓存，而是代码覆盖率上 code coverage 看 imooc webpack 4-8</h4><h4 id="按需加载-好像-就是懒加载"><a href="#按需加载-好像-就是懒加载" class="headerlink" title="按需加载 好像 就是懒加载"></a>按需加载 好像 就是懒加载</h4><h4 id="webpack-dev-server-中-proxy-能够实现跨域的原因：点击"><a href="#webpack-dev-server-中-proxy-能够实现跨域的原因：点击" class="headerlink" title="webpack-dev-server 中 proxy 能够实现跨域的原因：点击"></a>webpack-dev-server 中 proxy 能够实现跨域的原因：<a href="https://www.cnblogs.com/houxianzhou/p/14743623.html">点击</a></h4>]]></content>
+    <title>mongoDB 基础知识</title>
+    <url>/2021/11/24/mongoDB-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<blockquote>
+<p>事实上，我现在完全用不着 MongoDB 技术，但是突然想学 😓，以此作为学习笔记<br>… 算了, 最近先不学这个</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Node.JS篇</category>
+      </categories>
+      <tags>
+        <tag>全栈</tag>
+      </tags>
   </entry>
   <entry>
     <title>nodejs 基础学习</title>
@@ -3315,14 +3356,9 @@
       </tags>
   </entry>
   <entry>
-    <title>git 高级指令</title>
-    <url>/2021/11/10/git-%E9%AB%98%E7%BA%A7%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<p>一般情况下我们提交代码到 git 的指令如下：</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;Message&quot;<br></code></pre></td></tr></table></figure>
-
-<p>我们可以等同于下面这条命令</p>
-<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><code class="hljs livecodeserver">git commit -<span class="hljs-keyword">a</span> -m <span class="hljs-string">&quot;Message&quot;</span><br></code></pre></td></tr></table></figure>
-]]></content>
+    <title>post</title>
+    <url>/2021/12/25/post/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>post请求和get请求的区别</title>
@@ -3426,11 +3462,6 @@
       <tags>
         <tag>奇淫技巧</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>post</title>
-    <url>/2021/12/25/post/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>一些软件推荐以及特别的指令</title>
@@ -3574,14 +3605,42 @@
       </tags>
   </entry>
   <entry>
-    <title>js-array-reduce</title>
-    <url>/2021/12/08/js-array-reduce/</url>
-    <content><![CDATA[]]></content>
+    <title>创建自己的npm包</title>
+    <url>/2021/12/06/%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/</url>
+    <content><![CDATA[<p>首先创建一个文件夹，然后有以下目录：</p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">Hy-npm<br>  <span class="hljs-string">|-package</span><br>  <span class="hljs-string">|-test-folder</span><br></code></pre></td></tr></table></figure>
+
+<p><code>package</code> 文件夹里放置我要发布的 npm 包的所有内容<br><code>test-folder</code> 文件夹用于测试我要发布的内容</p>
+<p>首先，进入终端进入 package 文件夹内。 利用 github 创建一个新的库。然后把下面的这些内容复制进控制台里去<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/%E6%88%AA%E5%B1%8F2021-12-06-%E4%B8%8B%E5%8D%8810.41.57.png" alt="github"></p>
+<p>算了！自己弄一个 react npm 包 现在就不弄了…目前来弄太麻烦</p>
+]]></content>
       <categories>
-        <category>JavaScript篇</category>
+        <category>程序员素养篇</category>
       </categories>
       <tags>
-        <tag>基本功</tag>
+        <tag>奇淫技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端技术-随笔</title>
+    <url>/2021/10/21/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF-%E9%9A%8F%E7%AC%94/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="8b19cdf59439dd5b9890efb32fd23cbabfc73591ff0c14d5775ccdc0ca3b9094">227b2a181666066aebdadda3a2b5e6f50d6e05fc6d451d3d21073ae436e46d159686d77bbb604d04e40d05b2217adb9ba18e8a5ebc5f3699ec1b74cab7d8b43a6774ee75925fd14e809b453ee1f530018c907ba0e46121f51acb23a7caf6b1657f865a7786e2cb2e01678afdb1962fb3a9748fdc6583a12d0be32187b6e820835eaf05fc300ae7bbd7886e5677065ffe3bd3507c30d2a5b3954c592d5d2a436d23b896e7138ab44bd82905f5df59fa5b991d666ff8b3a11afd0df0e00097dd0fa0ebe49572301d27e96f43fdf04d7afba5782fac5f3962dd5166adb4fffc2bdea5629d016a353a6ae9f85317dbc80e39036b619d5fe6aef44907d5794ce110a5f48a83cf02b03fb608faa0afc66a34a0c2ca0b2984f3f2ce537251b9f55fa8206c67083c6de62a8c1c7f75301410def6ca999bd54afe42ae6f367177dd555fd628f56edee01aa0df3406ac51c64d08f5a42972f0b5501865a0b37941c3d256f23582be3a7e1ff1d33f8f52f9ef473402a21b0efd3dfef996e9b7d92a94bcaa1e638d6756353ad7b62eeb6f3f03556bce1f90aaad8f07e8c395e91135fc4ec9fb35da818acd4716be32e1cb1c14b4d3bedce2a594604de44f5d9fc3afd7fd3f76c7cf6297207a01eb5a1b113ee5fc61cae246d36965fae83852b051ddce285efb04573477f3a5e21996e1b54c61dcae5a0c141f4cfb31d9c656924c76eaad0f73f7d4f8d3aeb6b7b80339a71496f5816566da93da975dcc8aa7396d2798932e2f1ac0c072910f4274e3c28989f71e00bef7f9d200b96f495496198b3ade9bfda143aaec3a6b7f6219ed91fec49b42005cd9ba94ca09b5c0fd5e47659f34e3c899c64e7cc32cde272a340799c3265a89d525d2ee89ae1996231a0305e65536f6c74dec74cfa2b48a61b8421be641da4d5be35cf985355f408e244df609a7662388496002f51665c02d17b073d4b5bef7470c607f0b96fe3412f805d8ad57ef3ba1e7dbd6ae06d6fab2cb8a8530a4bc4517a573f2cd53c7fd6b754620ac9fff1d5f6bab43692dfd97ca61b20e6097da4124ce6c09780a311f3ceae4333f09db0306e579fac251bff2d654644c356116461bbd7098657fe128ba7791cdce733c23631c51a8a0d9c02fe9f7bd2e1eab98c94834f5ac9e841e9d441c4c5da9a24cdab5e7ae5702d5547e1d6ce866c6eea344ed12d337f57eb4201eb36221b56279da33f1f76aa8efe95ffc914721c9d4b172c8a161b85ae1588c22bbf610017e93389e08491ef2dd025fbb708a2d47d67bd52ba97dd66fb8d4c4c6cb432da6b5bf8293a875a88b9e9e23e415ffe8b3ce3c2216b39432370487d724a842a47a6f641ca3bd570997e3386a26a6b85011cfdcaadf5aaf7cff9d10fed535c8cb3c960db963c0f418f57f50fc795208f2e8240a0f9f050495e16aa8d569623c7b675a7c5e2f3c8c78835e2225c74d3970aeaa778c48574346f6f44b84507dc43fa5be4604ca99d3bcee595bec88cfd35ee68ba5d3af</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>程序员素养篇</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -3877,17 +3936,26 @@
       </tags>
   </entry>
   <entry>
-    <title>mongoDB 基础知识</title>
-    <url>/2021/11/24/mongoDB-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<blockquote>
-<p>事实上，我现在完全用不着 MongoDB 技术，但是突然想学 😓，以此作为学习笔记<br>… 算了, 最近先不学这个</p>
-</blockquote>
-]]></content>
+    <title>前端面试之道-设计模式</title>
+    <url>/2021/12/11/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="5f1b6e9c86bf80b7b92c296e613f8f9dd79609e29f27415903b18d116942817b">227b2a181666066aebdadda3a2b5e6f5b1a3e3f3bd459b0158117c6d08d90c8e5c2d57f4cf69816d7f9f12f8e92fb163fab1be13f1307730dc63d9ff67193d5ef563cd1c3d9e1c5f85f6e80d1d6c135c412f9648967f3df9f6483e4fea385f558b1b5dad141651b37e579456ff05a583d9eab3b6bec4272eabd5cf3734d9d9225f5723cc2e7e49c16bff2b6fb472a2f7a06ccd894051c0994de481522c83f5ac162ab19f9ac37549a24ab65d19f0a240d8627ab86356224af9b08100a975f76119f293b45c6699b4e9b02dbe3717d3307b6edb2d1eacc0cb3beb4b6ce1b31c2c88fe6a55453ae6daf62674c394977fb165597691748a7504a4e365c8910158a1e2951359b276767306faa7da8fcee5fea789865906af8c73618238eafb7407842a18a8038133648a1d5f48988e8f26d4170a4e6259b29e174a0d959387616d8a8d1005287498e6e4504fd55df245173d23cadbff189bf776e98f3d145297268e9f8acca144d2e1e03c2fe60b357cbb0982c3d03606630c0862361a5e8b83b3532b54499a9aafbe83869d8bf0f7cf197a157c81eb80eb6a0e467d93847099829700e7d7654111161de8345c463d15c68527c94aa44eb23f25d735905422020324df54cf0451af276f5dc2fe140c426914d92aa5bb56418702365287269b5cfcafce60bef40a9c227e32eec5a15501f99852e8c6378631943b90619b879bd118127d112ec4d5e49bb04b6720b13ac5a97b8416d0db28993743ac098a2f2a9ce293c833a37ca278d4b9e8dca4a408b506d82b39d7a030b4941df4d86a2eb6d591451c31d2b94d4324621ec8e73a757c805d9134c776ddb33e420a7439f9a8436be6881b678f8284253c38f461036325308f04c8b7a7184b83c07da26fa135780ce44a13aa96b5aa028242da8e3aa6df008e2cfcc2f52d4465848d4268a4e3028b044a30f53d602629ea630d8bbffaadd3cd613b2869aac8e8cf702953707b85af7a20f3d55a5c520cef7a0db2644aa0ca712acbb99f1537f86001119409b81375ec62c11e6a02d8e71210b1d16d51a16dc5e282fe30542799dfa4825c51559a136dbc1f05d3a4fa2ddcf3fdbf48b767326bb2d624fe824d1e63d389dbe37ecebc1977654bdf9c392aee1c6ed13213a2d678171a354dc6fcff15d4badcc476a19633a74c437e2576e35ed536cd08510c69bd11ce9f866a25dbe4b41f2d392659c9924c5b4087547a8acf1a2d22609ddd6e6f</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>Node.JS篇</category>
+        <category>面试篇</category>
+        <category>基本功</category>
       </categories>
       <tags>
-        <tag>全栈</tag>
+        <tag>面试之道</tag>
       </tags>
   </entry>
   <entry>
@@ -4065,65 +4133,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>创建自己的npm包</title>
-    <url>/2021/12/06/%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/</url>
-    <content><![CDATA[<p>首先创建一个文件夹，然后有以下目录：</p>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">Hy-npm<br>  <span class="hljs-string">|-package</span><br>  <span class="hljs-string">|-test-folder</span><br></code></pre></td></tr></table></figure>
-
-<p><code>package</code> 文件夹里放置我要发布的 npm 包的所有内容<br><code>test-folder</code> 文件夹用于测试我要发布的内容</p>
-<p>首先，进入终端进入 package 文件夹内。 利用 github 创建一个新的库。然后把下面的这些内容复制进控制台里去<br><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/%E6%88%AA%E5%B1%8F2021-12-06-%E4%B8%8B%E5%8D%8810.41.57.png" alt="github"></p>
-<p>算了！自己弄一个 react npm 包 现在就不弄了…目前来弄太麻烦</p>
-]]></content>
-      <categories>
-        <category>程序员素养篇</category>
-      </categories>
-      <tags>
-        <tag>奇淫技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端技术-随笔</title>
-    <url>/2021/10/21/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF-%E9%9A%8F%E7%AC%94/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="8b19cdf59439dd5b9890efb32fd23cbabfc73591ff0c14d5775ccdc0ca3b9094">227b2a181666066aebdadda3a2b5e6f50d6e05fc6d451d3d21073ae436e46d159686d77bbb604d04e40d05b2217adb9ba18e8a5ebc5f3699ec1b74cab7d8b43a6774ee75925fd14e809b453ee1f530018c907ba0e46121f51acb23a7caf6b1657f865a7786e2cb2e01678afdb1962fb3a9748fdc6583a12d0be32187b6e820835eaf05fc300ae7bbd7886e5677065ffe3bd3507c30d2a5b3954c592d5d2a436d23b896e7138ab44bd82905f5df59fa5b991d666ff8b3a11afd0df0e00097dd0fa0ebe49572301d27e96f43fdf04d7afba5782fac5f3962dd5166adb4fffc2bdea5629d016a353a6ae9f85317dbc80e39036b619d5fe6aef44907d5794ce110a5f48a83cf02b03fb608faa0afc66a34a0c2ca0b2984f3f2ce537251b9f55fa8206c67083c6de62a8c1c7f75301410def6ca999bd54afe42ae6f367177dd555fd628f56edee01aa0df3406ac51c64d08f5a42972f0b5501865a0b37941c3d256f23582be3a7e1ff1d33f8f52f9ef473402a21b0efd3dfef996e9b7d92a94bcaa1e638d6756353ad7b62eeb6f3f03556bce1f90aaad8f07e8c395e91135fc4ec9fb35da818acd4716be32e1cb1c14b4d3bedce2a594604de44f5d9fc3afd7fd3f76c7cf6297207a01eb5a1b113ee5fc61cae246d36965fae83852b051ddce285efb04573477f3a5e21996e1b54c61dcae5a0c141f4cfb31d9c656924c76eaad0f73f7d4f8d3aeb6b7b80339a71496f5816566da93da975dcc8aa7396d2798932e2f1ac0c072910f4274e3c28989f71e00bef7f9d200b96f495496198b3ade9bfda143aaec3a6b7f6219ed91fec49b42005cd9ba94ca09b5c0fd5e47659f34e3c899c64e7cc32cde272a340799c3265a89d525d2ee89ae1996231a0305e65536f6c74dec74cfa2b48a61b8421be641da4d5be35cf985355f408e244df609a7662388496002f51665c02d17b073d4b5bef7470c607f0b96fe3412f805d8ad57ef3ba1e7dbd6ae06d6fab2cb8a8530a4bc4517a573f2cd53c7fd6b754620ac9fff1d5f6bab43692dfd97ca61b20e6097da4124ce6c09780a311f3ceae4333f09db0306e579fac251bff2d654644c356116461bbd7098657fe128ba7791cdce733c23631c51a8a0d9c02fe9f7bd2e1eab98c94834f5ac9e841e9d441c4c5da9a24cdab5e7ae5702d5547e1d6ce866c6eea344ed12d337f57eb4201eb36221b56279da33f1f76aa8efe95ffc914721c9d4b172c8a161b85ae1588c22bbf610017e93389e08491ef2dd025fbb708a2d47d67bd52ba97dd66fb8d4c4c6cb432da6b5bf8293a875a88b9e9e23e415ffe8b3ce3c2216b39432370487d724a842a47a6f641ca3bd570997e3386a26a6b85011cfdcaadf5aaf7cff9d10fed535c8cb3c960db963c0f418f57f50fc795208f2e8240a0f9f050495e16aa8d569623c7b675a7c5e2f3c8c78835e2225c74d3970aeaa778c48574346f6f44b84507dc43fa5be4604ca99d3bcee595bec88cfd35ee68ba5d3af</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>程序员素养篇</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构与算法-大厂面试题实战</title>
-    <url>/2021/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E6%88%98/</url>
-    <content><![CDATA[<h3 id="最长回文子串问题-力扣-5"><a href="#最长回文子串问题-力扣-5" class="headerlink" title="最长回文子串问题(力扣 5)"></a>最长回文子串问题(力扣 5)</h3><blockquote>
-<p>题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000</p>
-</blockquote>
-<p><strong>找关键词：字符串， 最长</strong> –&gt; 动态规划问题<br>—&gt; 这个动态规划问题 尽量学学人家代码随想录的思维</p>
-<h3 id="根据一棵树的前序遍历与中序遍历构造二叉树"><a href="#根据一棵树的前序遍历与中序遍历构造二叉树" class="headerlink" title="根据一棵树的前序遍历与中序遍历构造二叉树"></a>根据一棵树的前序遍历与中序遍历构造二叉树</h3><p>(二叉树类题目中的重复逻辑，90% 都是用递归来完成)<br>两个核心规律：</p>
-<ul>
-<li>前序序列头部的元素 p1 一定是<strong>当前</strong>二叉树的根结点</li>
-<li>中序遍历序列中，以<strong>当前</strong>二叉树的根结点为界划分出的两个子序列，分别对应着二叉树的左子树和二叉树的右子树</li>
-</ul>
-<h3 id="复制带随机指针的链表"><a href="#复制带随机指针的链表" class="headerlink" title="复制带随机指针的链表"></a>复制带随机指针的链表</h3><figure class="highlight"><table><tr><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
-
-<h3 id="岛屿数量问题"><a href="#岛屿数量问题" class="headerlink" title="岛屿数量问题"></a>岛屿数量问题</h3><blockquote>
-<p>看到“所有” 必须想到“枚举”！看到“枚举”，必须回忆起 DFS 和 BFS</p>
-</blockquote>
-<h3 id="机器人扫地"><a href="#机器人扫地" class="headerlink" title="机器人扫地"></a>机器人扫地</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> cleanRoom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">robot</span>) </span>&#123;<br>  <span class="hljs-comment">// 初始化一个 set 结构来存储清扫过的坐标 set(无序、不重复)</span><br>  <span class="hljs-keyword">const</span> boxSet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();<br>  <span class="hljs-comment">// 初始化机器人的朝向</span><br>  <span class="hljs-keyword">let</span> dir = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 遍历 递归 dfs</span><br>  dfs(robot, boxSet, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">robot, boxSet, i, j, dir</span>) </span>&#123;<br>    <span class="hljs-comment">// 记录当前格子的坐标</span><br>    <span class="hljs-keyword">let</span> box = i + <span class="hljs-string">&#x27;+&#x27;</span> + j;<br>    <span class="hljs-comment">// 如果已经打扫过，则跳过</span><br>    <span class="hljs-keyword">if</span> (boxSet.has(box)) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">// 打扫当前这个格子</span><br>    robot.clean();<br>    <span class="hljs-comment">// 记住这个格子</span><br>    boxSet.add(box);<br><br>    <span class="hljs-comment">// 四个方向试探</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++) &#123;<br>      <span class="hljs-keyword">if</span> (robot.move()) &#123;<br>        <span class="hljs-keyword">let</span> x = i;<br>        <span class="hljs-keyword">let</span> y = j;<br><br>        <span class="hljs-comment">// 打扫方向</span><br>        <span class="hljs-keyword">switch</span>(dir) &#123;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>            x = i - <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向左</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">90</span>:<br>            y = j + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向上</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">180</span>:<br>            x = i + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向右</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">270</span>:<br>            y = j - <span class="hljs-number">1</span>;    <span class="hljs-comment">// 向下</span><br>          <span class="hljs-keyword">default</span>:<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        dfs(robot, boxSet, x, y, dir);<br>        <span class="hljs-comment">// 这时说明撞到墙了</span><br>        ...<br>      &#125;<br><br>      <span class="hljs-comment">// 转向</span><br>      robot.turnRight();<br>      dir += <span class="hljs-number">90</span>;<br>      dir %= <span class="hljs-number">360</span>;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
     <title>开始我的个人博客之旅啦</title>
     <url>/2021/10/07/%E5%BC%80%E5%A7%8B%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E6%97%85%E5%95%A6/</url>
     <content><![CDATA[<p>这篇博客只是用来测试一下网站 哈哈哈<br>祝福看见这篇博客的你 永远快乐哦!</p>
@@ -4146,6 +4155,70 @@
       <tags>
         <tag>生活</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>数据模拟(mock)方案</title>
+    <url>/2021/12/02/%E6%95%B0%E6%8D%AE%E6%A8%A1%E6%8B%9F-mock-%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h3 id="方案一：代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#方案一：代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="方案一：代码侵入(直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a><strong>方案一</strong>：代码侵入(直接在代码中写死 <code>Mock</code> 数据，或者请求本地的 <code>JSON</code> 文件)</h3><p>这种一般都是在文件中用 数组的方式 或者用 json 的方式来写一些比较简单的数据用来测试</p>
+<p>优点：如果只是小的数据且代码逻辑不复杂的情况下，用这种方法，比较方便且节约时间<br>缺点：与真实 Server 端环境的切换是比较麻烦的！一切需要侵入代码切换环境的行为都是不好的</p>
+<h3 id="方案二：请求拦截-例如：Mock-js"><a href="#方案二：请求拦截-例如：Mock-js" class="headerlink" title="方案二：请求拦截(例如：Mock.js)"></a><strong>方案二</strong>：请求拦截(例如：<a href="http://mockjs.com/">Mock.js</a>)</h3><p>帮我们生成随机数据<br>优点:</p>
+<ol>
+<li>(相对于代码侵入而言)与前端代码分离</li>
+<li>可生成随机数据</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>数据都是动态生成的假数据，无法真实模拟增删改查的情况</li>
+<li>只支持 ajax,不支持 fetch</li>
+</ol>
+<h3 id="方案三：接口管理工具"><a href="#方案三：接口管理工具" class="headerlink" title="方案三：接口管理工具"></a><strong>方案三</strong>：接口管理工具</h3><p>代表: rap、swagger, moco, yapi(大公司才有)</p>
+<p>优点：</p>
+<ol>
+<li>配置功能强大，接口管理与 Mock 一体，后端修改接口 mock 也跟着更改，可靠(比 Mock.js 更灵活)</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>配置复杂，<strong>依赖后端</strong>，可能会出现后端不愿意出手(看后端人的脸色…)，或者等配置完了，接口也开发出来了的情况。</li>
+<li>一般作为大团队的基础建设而存在，没有这个条件的话慎重考虑</li>
+</ol>
+<h3 id="方案四：本地-node-服务器"><a href="#方案四：本地-node-服务器" class="headerlink" title="方案四：本地 node 服务器"></a><strong>方案四</strong>：本地 node 服务器</h3><p>代表：<a href="https://github.com/typicode/json-server">json-server</a></p>
+<p>优点：</p>
+<ol>
+<li>配置简单，<code>json-server</code> 甚至可以 0 代码，30 秒就启动一个 REST api Server(又是 rest api)</li>
+<li>自定义程度高，一切尽在掌握中</li>
+<li>增删改查真实模拟</li>
+<li>接口管理工具相比，无法随着后端 api 的修改而自动修改(这个自己也用不着)</li>
+</ol>
+<p>缺点：似乎只能局限于 <code>rest api</code>(所以对于登录等功能的 api 实现就比较麻烦…)</p>
+<p>利用<code>json-server</code>模拟自定义 api<br>需要 <a href="https://coding.imooc.com/lesson/482.html#mid=41285">自己写 middleware</a></p>
+]]></content>
+      <categories>
+        <category>面试篇</category>
+        <category>项目</category>
+      </categories>
+      <tags>
+        <tag>项目之道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法-大厂面试题实战</title>
+    <url>/2021/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<h3 id="最长回文子串问题-力扣-5"><a href="#最长回文子串问题-力扣-5" class="headerlink" title="最长回文子串问题(力扣 5)"></a>最长回文子串问题(力扣 5)</h3><blockquote>
+<p>题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000</p>
+</blockquote>
+<p><strong>找关键词：字符串， 最长</strong> –&gt; 动态规划问题<br>—&gt; 这个动态规划问题 尽量学学人家代码随想录的思维</p>
+<h3 id="根据一棵树的前序遍历与中序遍历构造二叉树"><a href="#根据一棵树的前序遍历与中序遍历构造二叉树" class="headerlink" title="根据一棵树的前序遍历与中序遍历构造二叉树"></a>根据一棵树的前序遍历与中序遍历构造二叉树</h3><p>(二叉树类题目中的重复逻辑，90% 都是用递归来完成)<br>两个核心规律：</p>
+<ul>
+<li>前序序列头部的元素 p1 一定是<strong>当前</strong>二叉树的根结点</li>
+<li>中序遍历序列中，以<strong>当前</strong>二叉树的根结点为界划分出的两个子序列，分别对应着二叉树的左子树和二叉树的右子树</li>
+</ul>
+<h3 id="复制带随机指针的链表"><a href="#复制带随机指针的链表" class="headerlink" title="复制带随机指针的链表"></a>复制带随机指针的链表</h3><figure class="highlight"><table><tr><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+
+<h3 id="岛屿数量问题"><a href="#岛屿数量问题" class="headerlink" title="岛屿数量问题"></a>岛屿数量问题</h3><blockquote>
+<p>看到“所有” 必须想到“枚举”！看到“枚举”，必须回忆起 DFS 和 BFS</p>
+</blockquote>
+<h3 id="机器人扫地"><a href="#机器人扫地" class="headerlink" title="机器人扫地"></a>机器人扫地</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> cleanRoom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">robot</span>) </span>&#123;<br>  <span class="hljs-comment">// 初始化一个 set 结构来存储清扫过的坐标 set(无序、不重复)</span><br>  <span class="hljs-keyword">const</span> boxSet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();<br>  <span class="hljs-comment">// 初始化机器人的朝向</span><br>  <span class="hljs-keyword">let</span> dir = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 遍历 递归 dfs</span><br>  dfs(robot, boxSet, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">robot, boxSet, i, j, dir</span>) </span>&#123;<br>    <span class="hljs-comment">// 记录当前格子的坐标</span><br>    <span class="hljs-keyword">let</span> box = i + <span class="hljs-string">&#x27;+&#x27;</span> + j;<br>    <span class="hljs-comment">// 如果已经打扫过，则跳过</span><br>    <span class="hljs-keyword">if</span> (boxSet.has(box)) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">// 打扫当前这个格子</span><br>    robot.clean();<br>    <span class="hljs-comment">// 记住这个格子</span><br>    boxSet.add(box);<br><br>    <span class="hljs-comment">// 四个方向试探</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++) &#123;<br>      <span class="hljs-keyword">if</span> (robot.move()) &#123;<br>        <span class="hljs-keyword">let</span> x = i;<br>        <span class="hljs-keyword">let</span> y = j;<br><br>        <span class="hljs-comment">// 打扫方向</span><br>        <span class="hljs-keyword">switch</span>(dir) &#123;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>            x = i - <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向左</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">90</span>:<br>            y = j + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向上</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">180</span>:<br>            x = i + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 向右</span><br>            <span class="hljs-keyword">break</span>;<br>          <span class="hljs-keyword">case</span> <span class="hljs-number">270</span>:<br>            y = j - <span class="hljs-number">1</span>;    <span class="hljs-comment">// 向下</span><br>          <span class="hljs-keyword">default</span>:<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        dfs(robot, boxSet, x, y, dir);<br>        <span class="hljs-comment">// 这时说明撞到墙了</span><br>        ...<br>      &#125;<br><br>      <span class="hljs-comment">// 转向</span><br>      robot.turnRight();<br>      dir += <span class="hljs-number">90</span>;<br>      dir %= <span class="hljs-number">360</span>;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>数据结构与算法之二叉树</title>
@@ -4229,43 +4302,6 @@
       </tags>
   </entry>
   <entry>
-    <title>数据结构与算法之排序</title>
-    <url>/2021/12/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<p><strong>基础排序算法：</strong></p>
-<ul>
-<li>冒泡排序</li>
-<li>插入排序</li>
-<li>选择排序<br><strong>进阶排序算法</strong></li>
-<li>归并排序</li>
-<li>快速排序</li>
-</ul>
-<blockquote>
-<p>注意：考虑到排序类题目在未经特别声明的情况下，都默认以“从小到大排列”为有序标准。因此下文中所有”有序“的描述指代的都是“从小到大排列”。</p>
-</blockquote>
-<h2 id="基础排序算法"><a href="#基础排序算法" class="headerlink" title="基础排序算法"></a>基础排序算法</h2><p>这个基础排序算法要求不高，直接能够默写下来就可以了</p>
-<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>这套逻辑到底要执行多少次，是完全由数组中元素的个数来决定的：每一次从头到尾的遍历都只能定位到一个元素的位置，因此元素有多少个，总的循环就要执行多少轮</p>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的关键字是“最小值”：循环遍历数组，每次都找出当前范围内的最小值，把它放在当前范围的头部；然后缩小排序范围，继续重复以上操作，直至数组完全有序为止</p>
-<figure class="highlight inform7"><table><tr><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[5, 3, 2, 4, 1]</span><br>function selectSort(arr) &#123;<br>  for (let i = 0; i &lt; arr.length; i++) &#123;<br>    let minIndex = i;<br>    for (let j = i + 1; j &lt; arr.length; j++) &#123;<br>      if (arr<span class="hljs-comment">[minIndex]</span> &gt; arr<span class="hljs-comment">[j]</span>) &#123;<br>        minIndex = j;<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">[arr<span class="hljs-comment">[i]</span>, arr<span class="hljs-comment">[minIndex]</span>]</span> = <span class="hljs-comment">[arr<span class="hljs-comment">[minIndex]</span>, arr<span class="hljs-comment">[i]</span>]</span><br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序的核心思想是“找到元素在它前面那个序列中的正确位置”。<br>具体来说，插入排序所有的操作都基于一个这样的前提：当前元素前面的序列是有序的。基于这个前提，从后往前去寻找当前元素在前面那个序列里的正确位置。</p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">[<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]<br><br>function <span class="hljs-keyword">insertSort(arr) </span>&#123;<br><br>  for (let i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; arr.length; i++) &#123;</span><br>    let temp = arr[i];<br>    let <span class="hljs-keyword">j </span>= i;<br>    while (<span class="hljs-keyword">j </span>&gt; <span class="hljs-number">0</span> &amp;&amp; temp &lt; arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>]) &#123;<br>      arr[<span class="hljs-keyword">j] </span>= arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>];<br>      <span class="hljs-keyword">j--;</span><br><span class="hljs-keyword"></span>    &#125;<br>    arr[<span class="hljs-keyword">j] </span>= temp;<br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="进阶排序算法"><a href="#进阶排序算法" class="headerlink" title="进阶排序算法"></a>进阶排序算法</h2><p>归并算法和快速排序算法 <strong>“分治”，分而治之。其思想就是将一个大问题分解为若干个子问题，针对子问题分别求解后，再将子问题的解整合为大问题的解</strong></p>
-<h3 id="归并排序：归并排序在实现上依托的就是递归思想"><a href="#归并排序：归并排序在实现上依托的就是递归思想" class="headerlink" title="归并排序：归并排序在实现上依托的就是递归思想"></a>归并排序：归并排序在实现上依托的就是<strong>递归</strong>思想</h3><figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> len = arr.length;<br>  <span class="hljs-comment">// 错误边界</span><br>  <span class="hljs-keyword">if</span> (len &lt;= <span class="hljs-number">1</span>) &#123;<br>    return arr;<br>  &#125;<br><br>  <span class="hljs-comment">// 进行分治</span><br>  <span class="hljs-keyword">let</span> mid = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>floor(len<span class="hljs-operator"> / </span><span class="hljs-number">2</span>);<br><br>  <span class="hljs-keyword">let</span> arr1 = arr.slice(<span class="hljs-number">0</span>, mid);<br>  <span class="hljs-keyword">let</span> arr2 = arr.slice(mid, len)<br>  <span class="hljs-keyword">let</span> left = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr1</span>)</span>;<br>  <span class="hljs-keyword">let</span> right = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr2</span>)</span>;<br><br>  return merge<span class="hljs-constructor">Arr(<span class="hljs-params">left</span>, <span class="hljs-params">right</span>)</span>;<br>&#125;<br><br><span class="hljs-comment">// 用于合并数组的函数</span><br><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Arr(<span class="hljs-params">arr1</span>, <span class="hljs-params">arr2</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-literal">[]</span>;<br>  <span class="hljs-keyword">let</span> index_1 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> index_2 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> len1 = arr1.length;   <span class="hljs-comment">// 这里要弄一个数组长度缓存。因为后面的调试中数组长度可能会有变化</span><br>  <span class="hljs-keyword">let</span> len2 = arr2.length;<br><br>  <span class="hljs-keyword">while</span>(index_1 &lt; len1<span class="hljs-operator"> &amp;&amp; </span>index_2 &lt; len2) &#123;<br>    <span class="hljs-keyword">if</span> (arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span> &lt;= arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>) &#123;<br>      res.push(arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span>);<br>      index_1++;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      res.push(arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>);<br>      index_2++;<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 把剩余的arr1或者arr2的尾巴接住</span><br>  <span class="hljs-keyword">if</span> (index_1 &lt; len1) &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr1</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_1</span>, <span class="hljs-identifier">len1</span>)]</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr2</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_2</span>, <span class="hljs-identifier">len2</span>)]</span><br>  &#125;<br> return res;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序在基本思想上和归并排序是一致的，仍然坚持“分而治之”的原则不动摇。区别在于，快速排序并不会把真的数组分割开来再合并到一个新数组中去，而是直接在原有的数组内部进行排序。</p>
-<p>投降了…</p>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 快排入口 (下面的这个参数默认值使用挺厉害的...)</span><br><span class="hljs-keyword">function</span> quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span> = 0; <span class="hljs-params">right</span> = <span class="hljs-params">arr</span>.<span class="hljs-params">length</span> - 1)</span> &#123;<br><span class="hljs-comment">// 定义递归边界，若数组只有一个元素，则没有排序必要</span><br>  <span class="hljs-keyword">if</span>(arr.length &gt; <span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-comment">// lineIndex表示下一次划分左右子数组的索引位</span><br>      const lineIndex = partition(arr, left, right)<br>      <span class="hljs-comment">// 如果左边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(left &lt; lineIndex-<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 左子数组以 lineIndex-1 为右边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span>, <span class="hljs-params">lineIndex</span>-1)</span><br>      &#125;<br>      <span class="hljs-comment">// 如果右边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(lineIndex&lt;right) &#123;<br>        <span class="hljs-comment">// 右子数组以 lineIndex 为左边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">lineIndex</span>, <span class="hljs-params">right</span>)</span><br>      &#125;<br>  &#125;<br>  return arr<br>&#125;<br><br><span class="hljs-comment">// 以基准值为轴心，划分左右子数组的过程</span><br><span class="hljs-keyword">function</span> partition(arr, left, right) &#123;<br>  <span class="hljs-comment">// 基准值默认取中间位置的元素</span><br>  <span class="hljs-keyword">let</span> pivotValue = arr<span class="hljs-literal">[M<span class="hljs-identifier">ath</span>.<span class="hljs-identifier">floor</span>(<span class="hljs-identifier">left</span> + (<span class="hljs-identifier">right</span>-<span class="hljs-identifier">left</span>)<span class="hljs-operator">/</span><span class="hljs-number">2</span>)]</span><br>  <span class="hljs-comment">// 初始化左右指针</span><br>  <span class="hljs-keyword">let</span> i = left<br>  <span class="hljs-keyword">let</span> j = right<br>  <span class="hljs-comment">// 当左右指针不越界时，循环执行以下逻辑</span><br>  <span class="hljs-keyword">while</span>(i&lt;=j) &#123;<br>      <span class="hljs-comment">// 左指针所指元素若小于基准值，则右移左指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> &lt; pivotValue) &#123;<br>          i++<br>      &#125;<br>      <span class="hljs-comment">// 右指针所指元素大于基准值，则左移右指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> &gt; pivotValue) &#123;<br>          j--<br>      &#125;<br><br>      <span class="hljs-comment">// 若i&lt;=j，则意味着基准值左边存在较大元素或右边存在较小元素，交换两个元素确保左右两侧有序</span><br>      <span class="hljs-keyword">if</span>(i&lt;=j) &#123;<br>          swap(arr, i, j)<br>          i++<br>          j--<br>      &#125;<br><br>  &#125;<br>  <span class="hljs-comment">// 返回左指针索引作为下一次划分左右子数组的依据</span><br>  return i<br>&#125;<br><br><span class="hljs-comment">// 快速排序中使用 swap 的地方比较多，我们提取成一个独立的函数</span><br><span class="hljs-keyword">function</span> swap(arr, i, j) &#123;<br>  <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">i</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span>] = <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">j</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>面试篇</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>面试之道</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构与算法之动态规划</title>
     <url>/2021/12/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</url>
     <content><![CDATA[<p><strong>动态规划是一种思想</strong><br>动态规划中每一个状态一定是由上一个状态推导出来的</p>
@@ -4330,23 +4366,37 @@
 ]]></content>
   </entry>
   <entry>
-    <title>前端面试之道-设计模式</title>
-    <url>/2021/12/11/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="5f1b6e9c86bf80b7b92c296e613f8f9dd79609e29f27415903b18d116942817b">227b2a181666066aebdadda3a2b5e6f5b1a3e3f3bd459b0158117c6d08d90c8e5c2d57f4cf69816d7f9f12f8e92fb163fab1be13f1307730dc63d9ff67193d5ef563cd1c3d9e1c5f85f6e80d1d6c135c412f9648967f3df9f6483e4fea385f558b1b5dad141651b37e579456ff05a583d9eab3b6bec4272eabd5cf3734d9d9225f5723cc2e7e49c16bff2b6fb472a2f7a06ccd894051c0994de481522c83f5ac162ab19f9ac37549a24ab65d19f0a240d8627ab86356224af9b08100a975f76119f293b45c6699b4e9b02dbe3717d3307b6edb2d1eacc0cb3beb4b6ce1b31c2c88fe6a55453ae6daf62674c394977fb165597691748a7504a4e365c8910158a1e2951359b276767306faa7da8fcee5fea789865906af8c73618238eafb7407842a18a8038133648a1d5f48988e8f26d4170a4e6259b29e174a0d959387616d8a8d1005287498e6e4504fd55df245173d23cadbff189bf776e98f3d145297268e9f8acca144d2e1e03c2fe60b357cbb0982c3d03606630c0862361a5e8b83b3532b54499a9aafbe83869d8bf0f7cf197a157c81eb80eb6a0e467d93847099829700e7d7654111161de8345c463d15c68527c94aa44eb23f25d735905422020324df54cf0451af276f5dc2fe140c426914d92aa5bb56418702365287269b5cfcafce60bef40a9c227e32eec5a15501f99852e8c6378631943b90619b879bd118127d112ec4d5e49bb04b6720b13ac5a97b8416d0db28993743ac098a2f2a9ce293c833a37ca278d4b9e8dca4a408b506d82b39d7a030b4941df4d86a2eb6d591451c31d2b94d4324621ec8e73a757c805d9134c776ddb33e420a7439f9a8436be6881b678f8284253c38f461036325308f04c8b7a7184b83c07da26fa135780ce44a13aa96b5aa028242da8e3aa6df008e2cfcc2f52d4465848d4268a4e3028b044a30f53d602629ea630d8bbffaadd3cd613b2869aac8e8cf702953707b85af7a20f3d55a5c520cef7a0db2644aa0ca712acbb99f1537f86001119409b81375ec62c11e6a02d8e71210b1d16d51a16dc5e282fe30542799dfa4825c51559a136dbc1f05d3a4fa2ddcf3fdbf48b767326bb2d624fe824d1e63d389dbe37ecebc1977654bdf9c392aee1c6ed13213a2d678171a354dc6fcff15d4badcc476a19633a74c437e2576e35ed536cd08510c69bd11ce9f866a25dbe4b41f2d392659c9924c5b4087547a8acf1a2d22609ddd6e6f</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    <title>数据结构与算法之排序</title>
+    <url>/2021/12/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<p><strong>基础排序算法：</strong></p>
+<ul>
+<li>冒泡排序</li>
+<li>插入排序</li>
+<li>选择排序<br><strong>进阶排序算法</strong></li>
+<li>归并排序</li>
+<li>快速排序</li>
+</ul>
+<blockquote>
+<p>注意：考虑到排序类题目在未经特别声明的情况下，都默认以“从小到大排列”为有序标准。因此下文中所有”有序“的描述指代的都是“从小到大排列”。</p>
+</blockquote>
+<h2 id="基础排序算法"><a href="#基础排序算法" class="headerlink" title="基础排序算法"></a>基础排序算法</h2><p>这个基础排序算法要求不高，直接能够默写下来就可以了</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>这套逻辑到底要执行多少次，是完全由数组中元素的个数来决定的：每一次从头到尾的遍历都只能定位到一个元素的位置，因此元素有多少个，总的循环就要执行多少轮</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的关键字是“最小值”：循环遍历数组，每次都找出当前范围内的最小值，把它放在当前范围的头部；然后缩小排序范围，继续重复以上操作，直至数组完全有序为止</p>
+<figure class="highlight inform7"><table><tr><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[5, 3, 2, 4, 1]</span><br>function selectSort(arr) &#123;<br>  for (let i = 0; i &lt; arr.length; i++) &#123;<br>    let minIndex = i;<br>    for (let j = i + 1; j &lt; arr.length; j++) &#123;<br>      if (arr<span class="hljs-comment">[minIndex]</span> &gt; arr<span class="hljs-comment">[j]</span>) &#123;<br>        minIndex = j;<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">[arr<span class="hljs-comment">[i]</span>, arr<span class="hljs-comment">[minIndex]</span>]</span> = <span class="hljs-comment">[arr<span class="hljs-comment">[minIndex]</span>, arr<span class="hljs-comment">[i]</span>]</span><br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序的核心思想是“找到元素在它前面那个序列中的正确位置”。<br>具体来说，插入排序所有的操作都基于一个这样的前提：当前元素前面的序列是有序的。基于这个前提，从后往前去寻找当前元素在前面那个序列里的正确位置。</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">[<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]<br><br>function <span class="hljs-keyword">insertSort(arr) </span>&#123;<br><br>  for (let i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; arr.length; i++) &#123;</span><br>    let temp = arr[i];<br>    let <span class="hljs-keyword">j </span>= i;<br>    while (<span class="hljs-keyword">j </span>&gt; <span class="hljs-number">0</span> &amp;&amp; temp &lt; arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>]) &#123;<br>      arr[<span class="hljs-keyword">j] </span>= arr[<span class="hljs-keyword">j </span>- <span class="hljs-number">1</span>];<br>      <span class="hljs-keyword">j--;</span><br><span class="hljs-keyword"></span>    &#125;<br>    arr[<span class="hljs-keyword">j] </span>= temp;<br>  &#125;<br>  return arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="进阶排序算法"><a href="#进阶排序算法" class="headerlink" title="进阶排序算法"></a>进阶排序算法</h2><p>归并算法和快速排序算法 <strong>“分治”，分而治之。其思想就是将一个大问题分解为若干个子问题，针对子问题分别求解后，再将子问题的解整合为大问题的解</strong></p>
+<h3 id="归并排序：归并排序在实现上依托的就是递归思想"><a href="#归并排序：归并排序在实现上依托的就是递归思想" class="headerlink" title="归并排序：归并排序在实现上依托的就是递归思想"></a>归并排序：归并排序在实现上依托的就是<strong>递归</strong>思想</h3><figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> len = arr.length;<br>  <span class="hljs-comment">// 错误边界</span><br>  <span class="hljs-keyword">if</span> (len &lt;= <span class="hljs-number">1</span>) &#123;<br>    return arr;<br>  &#125;<br><br>  <span class="hljs-comment">// 进行分治</span><br>  <span class="hljs-keyword">let</span> mid = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>floor(len<span class="hljs-operator"> / </span><span class="hljs-number">2</span>);<br><br>  <span class="hljs-keyword">let</span> arr1 = arr.slice(<span class="hljs-number">0</span>, mid);<br>  <span class="hljs-keyword">let</span> arr2 = arr.slice(mid, len)<br>  <span class="hljs-keyword">let</span> left = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr1</span>)</span>;<br>  <span class="hljs-keyword">let</span> right = merge<span class="hljs-constructor">Sort(<span class="hljs-params">arr2</span>)</span>;<br><br>  return merge<span class="hljs-constructor">Arr(<span class="hljs-params">left</span>, <span class="hljs-params">right</span>)</span>;<br>&#125;<br><br><span class="hljs-comment">// 用于合并数组的函数</span><br><span class="hljs-keyword">function</span> merge<span class="hljs-constructor">Arr(<span class="hljs-params">arr1</span>, <span class="hljs-params">arr2</span>)</span> &#123;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-literal">[]</span>;<br>  <span class="hljs-keyword">let</span> index_1 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> index_2 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> len1 = arr1.length;   <span class="hljs-comment">// 这里要弄一个数组长度缓存。因为后面的调试中数组长度可能会有变化</span><br>  <span class="hljs-keyword">let</span> len2 = arr2.length;<br><br>  <span class="hljs-keyword">while</span>(index_1 &lt; len1<span class="hljs-operator"> &amp;&amp; </span>index_2 &lt; len2) &#123;<br>    <span class="hljs-keyword">if</span> (arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span> &lt;= arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>) &#123;<br>      res.push(arr1<span class="hljs-literal">[<span class="hljs-identifier">index_1</span>]</span>);<br>      index_1++;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      res.push(arr2<span class="hljs-literal">[<span class="hljs-identifier">index_2</span>]</span>);<br>      index_2++;<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 把剩余的arr1或者arr2的尾巴接住</span><br>  <span class="hljs-keyword">if</span> (index_1 &lt; len1) &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr1</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_1</span>, <span class="hljs-identifier">len1</span>)]</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res = <span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">res</span>, <span class="hljs-operator">...</span><span class="hljs-identifier">arr2</span>.<span class="hljs-identifier">slice</span>(<span class="hljs-identifier">index_2</span>, <span class="hljs-identifier">len2</span>)]</span><br>  &#125;<br> return res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序在基本思想上和归并排序是一致的，仍然坚持“分而治之”的原则不动摇。区别在于，快速排序并不会把真的数组分割开来再合并到一个新数组中去，而是直接在原有的数组内部进行排序。</p>
+<p>投降了…</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 快排入口 (下面的这个参数默认值使用挺厉害的...)</span><br><span class="hljs-keyword">function</span> quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span> = 0; <span class="hljs-params">right</span> = <span class="hljs-params">arr</span>.<span class="hljs-params">length</span> - 1)</span> &#123;<br><span class="hljs-comment">// 定义递归边界，若数组只有一个元素，则没有排序必要</span><br>  <span class="hljs-keyword">if</span>(arr.length &gt; <span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-comment">// lineIndex表示下一次划分左右子数组的索引位</span><br>      const lineIndex = partition(arr, left, right)<br>      <span class="hljs-comment">// 如果左边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(left &lt; lineIndex-<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 左子数组以 lineIndex-1 为右边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">left</span>, <span class="hljs-params">lineIndex</span>-1)</span><br>      &#125;<br>      <span class="hljs-comment">// 如果右边子数组的长度不小于1，则递归快排这个子数组</span><br>      <span class="hljs-keyword">if</span>(lineIndex&lt;right) &#123;<br>        <span class="hljs-comment">// 右子数组以 lineIndex 为左边界</span><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>, <span class="hljs-params">lineIndex</span>, <span class="hljs-params">right</span>)</span><br>      &#125;<br>  &#125;<br>  return arr<br>&#125;<br><br><span class="hljs-comment">// 以基准值为轴心，划分左右子数组的过程</span><br><span class="hljs-keyword">function</span> partition(arr, left, right) &#123;<br>  <span class="hljs-comment">// 基准值默认取中间位置的元素</span><br>  <span class="hljs-keyword">let</span> pivotValue = arr<span class="hljs-literal">[M<span class="hljs-identifier">ath</span>.<span class="hljs-identifier">floor</span>(<span class="hljs-identifier">left</span> + (<span class="hljs-identifier">right</span>-<span class="hljs-identifier">left</span>)<span class="hljs-operator">/</span><span class="hljs-number">2</span>)]</span><br>  <span class="hljs-comment">// 初始化左右指针</span><br>  <span class="hljs-keyword">let</span> i = left<br>  <span class="hljs-keyword">let</span> j = right<br>  <span class="hljs-comment">// 当左右指针不越界时，循环执行以下逻辑</span><br>  <span class="hljs-keyword">while</span>(i&lt;=j) &#123;<br>      <span class="hljs-comment">// 左指针所指元素若小于基准值，则右移左指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> &lt; pivotValue) &#123;<br>          i++<br>      &#125;<br>      <span class="hljs-comment">// 右指针所指元素大于基准值，则左移右指针</span><br>      <span class="hljs-keyword">while</span>(arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> &gt; pivotValue) &#123;<br>          j--<br>      &#125;<br><br>      <span class="hljs-comment">// 若i&lt;=j，则意味着基准值左边存在较大元素或右边存在较小元素，交换两个元素确保左右两侧有序</span><br>      <span class="hljs-keyword">if</span>(i&lt;=j) &#123;<br>          swap(arr, i, j)<br>          i++<br>          j--<br>      &#125;<br><br>  &#125;<br>  <span class="hljs-comment">// 返回左指针索引作为下一次划分左右子数组的依据</span><br>  return i<br>&#125;<br><br><span class="hljs-comment">// 快速排序中使用 swap 的地方比较多，我们提取成一个独立的函数</span><br><span class="hljs-keyword">function</span> swap(arr, i, j) &#123;<br>  <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">i</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span>] = <span class="hljs-literal">[<span class="hljs-identifier">arr</span>[<span class="hljs-identifier">j</span>]</span>, arr<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>面试篇</category>
-        <category>基本功</category>
+        <category>算法</category>
       </categories>
       <tags>
         <tag>面试之道</tag>
@@ -4649,50 +4699,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>数据模拟(mock)方案</title>
-    <url>/2021/12/02/%E6%95%B0%E6%8D%AE%E6%A8%A1%E6%8B%9F-mock-%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h3 id="方案一：代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#方案一：代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="方案一：代码侵入(直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a><strong>方案一</strong>：代码侵入(直接在代码中写死 <code>Mock</code> 数据，或者请求本地的 <code>JSON</code> 文件)</h3><p>这种一般都是在文件中用 数组的方式 或者用 json 的方式来写一些比较简单的数据用来测试</p>
-<p>优点：如果只是小的数据且代码逻辑不复杂的情况下，用这种方法，比较方便且节约时间<br>缺点：与真实 Server 端环境的切换是比较麻烦的！一切需要侵入代码切换环境的行为都是不好的</p>
-<h3 id="方案二：请求拦截-例如：Mock-js"><a href="#方案二：请求拦截-例如：Mock-js" class="headerlink" title="方案二：请求拦截(例如：Mock.js)"></a><strong>方案二</strong>：请求拦截(例如：<a href="http://mockjs.com/">Mock.js</a>)</h3><p>帮我们生成随机数据<br>优点:</p>
-<ol>
-<li>(相对于代码侵入而言)与前端代码分离</li>
-<li>可生成随机数据</li>
-</ol>
-<p>缺点:</p>
-<ol>
-<li>数据都是动态生成的假数据，无法真实模拟增删改查的情况</li>
-<li>只支持 ajax,不支持 fetch</li>
-</ol>
-<h3 id="方案三：接口管理工具"><a href="#方案三：接口管理工具" class="headerlink" title="方案三：接口管理工具"></a><strong>方案三</strong>：接口管理工具</h3><p>代表: rap、swagger, moco, yapi(大公司才有)</p>
-<p>优点：</p>
-<ol>
-<li>配置功能强大，接口管理与 Mock 一体，后端修改接口 mock 也跟着更改，可靠(比 Mock.js 更灵活)</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>配置复杂，<strong>依赖后端</strong>，可能会出现后端不愿意出手(看后端人的脸色…)，或者等配置完了，接口也开发出来了的情况。</li>
-<li>一般作为大团队的基础建设而存在，没有这个条件的话慎重考虑</li>
-</ol>
-<h3 id="方案四：本地-node-服务器"><a href="#方案四：本地-node-服务器" class="headerlink" title="方案四：本地 node 服务器"></a><strong>方案四</strong>：本地 node 服务器</h3><p>代表：<a href="https://github.com/typicode/json-server">json-server</a></p>
-<p>优点：</p>
-<ol>
-<li>配置简单，<code>json-server</code> 甚至可以 0 代码，30 秒就启动一个 REST api Server(又是 rest api)</li>
-<li>自定义程度高，一切尽在掌握中</li>
-<li>增删改查真实模拟</li>
-<li>接口管理工具相比，无法随着后端 api 的修改而自动修改(这个自己也用不着)</li>
-</ol>
-<p>缺点：似乎只能局限于 <code>rest api</code>(所以对于登录等功能的 api 实现就比较麻烦…)</p>
-<p>利用<code>json-server</code>模拟自定义 api<br>需要 <a href="https://coding.imooc.com/lesson/482.html#mid=41285">自己写 middleware</a></p>
-]]></content>
-      <categories>
-        <category>面试篇</category>
-        <category>项目</category>
-      </categories>
-      <tags>
-        <tag>项目之道</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>类型转换</title>
     <url>/2021/11/23/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url>
     <content><![CDATA[<h3 id="转化为-Number-类型"><a href="#转化为-Number-类型" class="headerlink" title="转化为 Number 类型"></a>转化为 Number 类型</h3><p>使用 Number()方法</p>
@@ -4755,6 +4761,17 @@
       </tags>
   </entry>
   <entry>
+    <title>盒子模型</title>
+    <url>/2021/11/23/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CSS篇</category>
+      </categories>
+      <tags>
+        <tag>基本功</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机通识-随笔</title>
     <url>/2021/10/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86-%E9%9A%8F%E7%AC%94/</url>
     <content><![CDATA[<h4 id="Terminal-Commands"><a href="#Terminal-Commands" class="headerlink" title="Terminal Commands"></a>Terminal Commands</h4><ol>
@@ -4781,97 +4798,6 @@
       <categories>
         <category>程序员素养篇</category>
       </categories>
-  </entry>
-  <entry>
-    <title>盒子模型</title>
-    <url>/2021/11/23/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>CSS篇</category>
-      </categories>
-      <tags>
-        <tag>基本功</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>?.运算符</title>
-    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6-1/</url>
-    <content><![CDATA[<p>在做项目的时候，我们可能会遇见下面这种情况</p>
-<figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const DATA = [<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;重庆邮电大学&#x27;</span>,<br>      address: <span class="hljs-string">&#x27;南山街道&#x27;</span><br>    &#125;<br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span><br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;西南大学&#x27;</span><br>    &#125;<br>  &#125;<br>]<br><br>const CollageAddress = DATA.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  const address = <span class="hljs-type">item</span> &amp;&amp; <span class="hljs-type">item</span>.collage &amp;&amp; <span class="hljs-type">item</span>.collage.address;<br>  <span class="hljs-keyword">return</span> address;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>上述方法是访问对象属性是 undefined 还是 null 的相对优雅的方法。但，始终显得比较臃肿。</p>
-<p>下面用本篇文章的主题 <code>?.</code>来优雅的解决上述问题</p>
-<blockquote>
-<p>对象后面跟<code>?.</code>表示接下来的属性可能为<code>undefined</code>或者<code>null</code>或者有值</p>
-</blockquote>
-<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">const <span class="hljs-built_in">address</span> = item?.collage?.<span class="hljs-built_in">address</span><br></code></pre></td></tr></table></figure>
-
-<p>如果<code>collage</code>、<code>address</code>未定义，我们的代码将返回(<code>undefined</code>)未定义，而不是抛出错误</p>
-<h4 id="的其他用途"><a href="#的其他用途" class="headerlink" title="?.的其他用途"></a>?.的其他用途</h4><h5 id="调用某个对象的某个不确定是否存在的方法"><a href="#调用某个对象的某个不确定是否存在的方法" class="headerlink" title="调用某个对象的某个不确定是否存在的方法"></a>调用某个对象的某个不确定是否存在的方法</h5><p>例如：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const windowCount = house<span class="hljs-selector-class">.getWindowCount</span> &amp;&amp; house<span class="hljs-selector-class">.getWindowCount</span>()<br></code></pre></td></tr></table></figure>
-
-<p>上面的写法不够优雅，显得比较的笨重<br>使用<code>?.</code>进行优雅操作…</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> windowCount = house.getWindowCount?.()<br></code></pre></td></tr></table></figure>
-
-<p>如果在<code>house</code>对象中存在<code>getWindowCount</code>方法。就会调用，如果不存在，只会返回未定义的函数，而不会调用该函数<br>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;func1&#x27;</span>)<br>  &#125;<br>&#125;<br>obj.func1?.() <span class="hljs-comment">// func1</span><br>obj.func2?.() <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="搭配数组"><a href="#搭配数组" class="headerlink" title="?.搭配数组"></a>?.搭配数组</h5><p>如果你想按索引访问数组中的元素，但不确定是否定义了数组，那么你会用下面的代码：</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const firstElement</span> = arr &amp;&amp; arr[0];<br></code></pre></td></tr></table></figure>
-
-<p>使用<code>?.</code>运算符：</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> firstElement = arr?.[<span class="hljs-number">0</span>];<br></code></pre></td></tr></table></figure>
-
-<p>首先检查是否定义了<code>arr</code>变量，如果定义了，它将尝试访问指定的数组的索引。如果没有定义<code>arr</code>变量，则将返回未定义的变量，而不是尝试访问数组的索引。</p>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>奇淫技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>跨站点脚本攻击</title>
-    <url>/2021/11/25/%E8%B7%A8%E7%AB%99%E7%82%B9%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>高级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>??运算符</title>
-    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
-    <content><![CDATA[<p>在平常的项目中，我们会遇见这样的情况：</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;   <span class="hljs-comment">// 如果obj.score 返回false，那么score就等于10，不然就等于obj.score</span><br></code></pre></td></tr></table></figure>
-
-<p>但事实上会出现下面的问题：<br>如果</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;<br></code></pre></td></tr></table></figure>
-
-<p>我所得到的是 10 分。但是我想要 0 分 也作为有意义的值…<br>为了让 0 分变得有意义，我需要这样做</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> =  (obj.<span class="hljs-keyword">score</span> == null) ? 10 : obj.<span class="hljs-keyword">score</span>  <span class="hljs-comment">// 这里用==而不用===可以同时解决null 和 undefined这两种情况</span><br></code></pre></td></tr></table></figure>
-
-<p>这样，我就可以排除<code>obj.score</code>为<code>undefined</code>和<code>null</code>却不影响<code>obj.score === 0</code>这种情况。但是，这样写太笨重了…</p>
-<p>下面来介绍本篇博客的主角 <code>??</code> 运算符</p>
-<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><p><code>??</code>运算符和<code>||</code>运算符执行逻辑很相似。但是<code>??</code>只会检查 <code>undefined/null</code><br>还是以上面我写的内容举例</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> ?? 10;  <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
-
-<p>很轻松的，我就获得了 score 为 0 分…</p>
-<p>为了更全面的观察 <code>??</code> 效果，我来更具体的展示</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">undefined ?? <span class="hljs-number">10</span> <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br>null ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br><span class="hljs-number">0</span> ?? <span class="hljs-number">10</span>         <span class="hljs-regexp">//</span> <span class="hljs-number">0</span><br>false ?? <span class="hljs-number">10</span>     <span class="hljs-regexp">//</span> false   &lt;- 这个值得注意注意<br><span class="hljs-string">&#x27;Hi&#x27;</span> ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> Hi<br><span class="hljs-number">20</span> ?? <span class="hljs-number">10</span>        <span class="hljs-regexp">//</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>||</code>、<code>&amp;&amp;</code>、<code>??</code>可以合在一起用，但是要用括号来控制执行顺序，不然报错!!</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-number">0</span> || <span class="hljs-literal">null</span> ?? <span class="hljs-number">10</span>   <span class="hljs-comment">// 报错</span><br>(<span class="hljs-number">0</span> || <span class="hljs-literal">null</span>) ?? <span class="hljs-number">10</span> <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript篇</category>
-      </categories>
-      <tags>
-        <tag>奇淫技巧</tag>
-      </tags>
   </entry>
   <entry>
     <title>跨域</title>
@@ -4936,34 +4862,78 @@
       </tags>
   </entry>
   <entry>
-    <title>项目中的小技巧</title>
-    <url>/2021/10/31/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h4 id="amp-amp-的使用"><a href="#amp-amp-的使用" class="headerlink" title="&amp;&amp;的使用"></a>&amp;&amp;的使用</h4><p>先看用法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容, 否则返回左边的</span><br><span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-number">123</span>   <span class="hljs-comment">// 123</span><br><br><span class="hljs-number">0</span> &amp;&amp; <span class="hljs-number">123</span>      <span class="hljs-comment">// 0</span><br><br><span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-number">123</span>  <span class="hljs-comment">// false</span><br><br><span class="hljs-number">123</span> &amp;&amp; <span class="hljs-number">456</span>    <span class="hljs-comment">// 456</span><br></code></pre></td></tr></table></figure>
+    <title>跨站点脚本攻击</title>
+    <url>/2021/11/25/%E8%B7%A8%E7%AB%99%E7%82%B9%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>高级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>?.运算符</title>
+    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6-1/</url>
+    <content><![CDATA[<p>在做项目的时候，我们可能会遇见下面这种情况</p>
+<figure class="highlight xquery"><table><tr><td class="code"><pre><code class="hljs xquery">const DATA = [<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;重庆邮电大学&#x27;</span>,<br>      address: <span class="hljs-string">&#x27;南山街道&#x27;</span><br>    &#125;<br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span><br>  &#125;,<br>  &#123;<br>    city: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>    collage: &#123;<br>     <span class="hljs-built_in"> name</span>: <span class="hljs-string">&#x27;西南大学&#x27;</span><br>    &#125;<br>  &#125;<br>]<br><br>const CollageAddress = DATA.<span class="hljs-keyword">map</span>((<span class="hljs-type">item</span>) =&gt; &#123;<br>  const address = <span class="hljs-type">item</span> &amp;&amp; <span class="hljs-type">item</span>.collage &amp;&amp; <span class="hljs-type">item</span>.collage.address;<br>  <span class="hljs-keyword">return</span> address;<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h4 id="的使用"><a href="#的使用" class="headerlink" title="|| 的使用"></a>|| 的使用</h4><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-number">2</span> || <span class="hljs-number">3</span>       <span class="hljs-comment">// 2</span><br><span class="hljs-number">0</span> || <span class="hljs-number">3</span>       <span class="hljs-comment">// 3</span><br><span class="hljs-literal">false</span> || <span class="hljs-number">3</span>   <span class="hljs-comment">// 3</span><br><span class="hljs-literal">undefined</span>||<span class="hljs-number">3</span> <span class="hljs-comment">// 3</span><br><span class="hljs-literal">null</span> || <span class="hljs-number">3</span>    <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
+<p>上述方法是访问对象属性是 undefined 还是 null 的相对优雅的方法。但，始终显得比较臃肿。</p>
+<p>下面用本篇文章的主题 <code>?.</code>来优雅的解决上述问题</p>
+<blockquote>
+<p>对象后面跟<code>?.</code>表示接下来的属性可能为<code>undefined</code>或者<code>null</code>或者有值</p>
+</blockquote>
+<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">const <span class="hljs-built_in">address</span> = item?.collage?.<span class="hljs-built_in">address</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="的作用"><a href="#的作用" class="headerlink" title="== 的作用"></a>== 的作用</h4><p>正常情况下，能用 <code>===</code> 运算符就不要用 <code>==</code> 运算符。 我认为的唯一一种情况下推荐使用<code>==</code>的情况就是在你认为<code>undefined</code>、<code>null</code> 都应该为同一类状态的时候才可以使用<br>例如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-literal">undefined</span> == <span class="hljs-literal">null</span>  <span class="hljs-comment">// true</span><br><span class="hljs-literal">false</span> == <span class="hljs-literal">null</span>      <span class="hljs-comment">// false</span><br><span class="hljs-literal">false</span> == <span class="hljs-literal">undefined</span> <span class="hljs-comment">// false</span><br><span class="hljs-number">0</span> == <span class="hljs-literal">null</span>          <span class="hljs-comment">// false</span><br><span class="hljs-number">0</span> == <span class="hljs-literal">undefined</span>     <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+<p>如果<code>collage</code>、<code>address</code>未定义，我们的代码将返回(<code>undefined</code>)未定义，而不是抛出错误</p>
+<h4 id="的其他用途"><a href="#的其他用途" class="headerlink" title="?.的其他用途"></a>?.的其他用途</h4><h5 id="调用某个对象的某个不确定是否存在的方法"><a href="#调用某个对象的某个不确定是否存在的方法" class="headerlink" title="调用某个对象的某个不确定是否存在的方法"></a>调用某个对象的某个不确定是否存在的方法</h5><p>例如：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">const windowCount = house<span class="hljs-selector-class">.getWindowCount</span> &amp;&amp; house<span class="hljs-selector-class">.getWindowCount</span>()<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">someValue == <span class="hljs-literal">null</span> <span class="hljs-comment">// 其实 someValue 与 null 或者 与 undefined 比较的时候 得到的结果是一致的</span><br></code></pre></td></tr></table></figure>
+<p>上面的写法不够优雅，显得比较的笨重<br>使用<code>?.</code>进行优雅操作…</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> windowCount = house.getWindowCount?.()<br></code></pre></td></tr></table></figure>
 
-<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 常见情况：</span><br><span class="hljs-keyword">const</span> number = <span class="hljs-number">5</span>;<br><span class="hljs-keyword">let</span> result;<br><br><span class="hljs-keyword">if</span> (number &gt;= <span class="hljs-number">50</span>) &#123;<br>  result = <span class="hljs-string">&#x27;Not to fifty!&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  result = <span class="hljs-string">&#x27;It could be worse&#x27;</span><br>&#125;<br><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
+<p>如果在<code>house</code>对象中存在<code>getWindowCount</code>方法。就会调用，如果不存在，只会返回未定义的函数，而不会调用该函数<br>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;func1&#x27;</span>)<br>  &#125;<br>&#125;<br>obj.func1?.() <span class="hljs-comment">// func1</span><br>obj.func2?.() <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 用三元运算符</span><br><span class="hljs-keyword">const</span> number = <span class="hljs-number">5</span>;<br><span class="hljs-comment">// 完美的浓缩着代码....</span><br><span class="hljs-keyword">const</span> result = number &gt;= <span class="hljs-number">50</span> ? <span class="hljs-string">&#x27;Not to fifty!&#x27;</span> : <span class="hljs-string">&#x27;It could be worse&#x27;</span><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
+<h5 id="搭配数组"><a href="#搭配数组" class="headerlink" title="?.搭配数组"></a>?.搭配数组</h5><p>如果你想按索引访问数组中的元素，但不确定是否定义了数组，那么你会用下面的代码：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const firstElement</span> = arr &amp;&amp; arr[0];<br></code></pre></td></tr></table></figure>
 
-<p>注意：对于<strong>三元运算符</strong> 仅限于做简单的返回值的事。不要做其他例如对象属性修改这种麻烦的操作…不然可能有意想不到的操作</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> user = &#123;...&#125;<br><span class="hljs-comment">// 下述操作其实就会懵逼。不要这样做</span><br>user.valid ? user.save() : user.printErrors()<br><br><span class="hljs-comment">// 老老实实用if……else……</span><br><span class="hljs-keyword">if</span> (user.valid) &#123;<br>  user.save()<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  user.printErrors()<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用<code>?.</code>运算符：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> firstElement = arr?.[<span class="hljs-number">0</span>];<br></code></pre></td></tr></table></figure>
 
-<p>嵌套事也不要做…</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> number = <span class="hljs-number">12</span>;<br><span class="hljs-keyword">let</span> result;<br><br><span class="hljs-keyword">if</span> (number === <span class="hljs-number">0</span>) &#123;<br>  result = <span class="hljs-string">&#x27;You have nothing&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (number &lt; <span class="hljs-number">10</span>) &#123;<br>  result = <span class="hljs-string">&#x27;You have very little&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  result = <span class="hljs-string">&#x27;You have a lot&#x27;</span><br>&#125;<br><br><span class="hljs-built_in">console</span>.log(result)<br></code></pre></td></tr></table></figure>
+<p>首先检查是否定义了<code>arr</code>变量，如果定义了，它将尝试访问指定的数组的索引。如果没有定义<code>arr</code>变量，则将返回未定义的变量，而不是尝试访问数组的索引。</p>
+]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>奇淫技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>??运算符</title>
+    <url>/2021/11/10/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<p>在平常的项目中，我们会遇见这样的情况：</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;   <span class="hljs-comment">// 如果obj.score 返回false，那么score就等于10，不然就等于obj.score</span><br></code></pre></td></tr></table></figure>
 
-<p>下面这种嵌套不要做…难以理解，难以解析</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">result = number === <span class="hljs-number">0</span> ? <span class="hljs-string">&#x27;You have nothing : (</span><br><span class="hljs-string">  number &lt; 10 ? &#x27;</span>You have very little<span class="hljs-string">&#x27; : &#x27;</span>You have a lot<span class="hljs-string">&#x27;</span><br><span class="hljs-string">)</span><br><span class="hljs-string"></span><br><span class="hljs-string">console.log(result)</span><br></code></pre></td></tr></table></figure>
+<p>但事实上会出现下面的问题：<br>如果</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> || 10;<br></code></pre></td></tr></table></figure>
 
-<p>写代码不是为了追求短…而是为了让代码的可读性更好。就算有段代码写 10 行其实可以压缩成 1 行，但是如果写 10 行可读性大于写 1 行。那也应该选择写 10 行的代码…</p>
-<h4 id="操作符"><a href="#操作符" class="headerlink" title="??操作符"></a>??操作符</h4><p>专门有篇博客讲解</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+<p>我所得到的是 10 分。但是我想要 0 分 也作为有意义的值…<br>为了让 0 分变得有意义，我需要这样做</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 5<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> =  (obj.<span class="hljs-keyword">score</span> == null) ? 10 : obj.<span class="hljs-keyword">score</span>  <span class="hljs-comment">// 这里用==而不用===可以同时解决null 和 undefined这两种情况</span><br></code></pre></td></tr></table></figure>
+
+<p>这样，我就可以排除<code>obj.score</code>为<code>undefined</code>和<code>null</code>却不影响<code>obj.score === 0</code>这种情况。但是，这样写太笨重了…</p>
+<p>下面来介绍本篇博客的主角 <code>??</code> 运算符</p>
+<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><p><code>??</code>运算符和<code>||</code>运算符执行逻辑很相似。但是<code>??</code>只会检查 <code>undefined/null</code><br>还是以上面我写的内容举例</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-keyword">score</span>: 0<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">score</span> = obj.<span class="hljs-keyword">score</span> ?? 10;  <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
+
+<p>很轻松的，我就获得了 score 为 0 分…</p>
+<p>为了更全面的观察 <code>??</code> 效果，我来更具体的展示</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">undefined ?? <span class="hljs-number">10</span> <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br>null ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> <span class="hljs-number">10</span><br><span class="hljs-number">0</span> ?? <span class="hljs-number">10</span>         <span class="hljs-regexp">//</span> <span class="hljs-number">0</span><br>false ?? <span class="hljs-number">10</span>     <span class="hljs-regexp">//</span> false   &lt;- 这个值得注意注意<br><span class="hljs-string">&#x27;Hi&#x27;</span> ?? <span class="hljs-number">10</span>      <span class="hljs-regexp">//</span> Hi<br><span class="hljs-number">20</span> ?? <span class="hljs-number">10</span>        <span class="hljs-regexp">//</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>||</code>、<code>&amp;&amp;</code>、<code>??</code>可以合在一起用，但是要用括号来控制执行顺序，不然报错!!</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript"><span class="hljs-number">0</span> || <span class="hljs-literal">null</span> ?? <span class="hljs-number">10</span>   <span class="hljs-comment">// 报错</span><br>(<span class="hljs-number">0</span> || <span class="hljs-literal">null</span>) ?? <span class="hljs-number">10</span> <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>JavaScript篇</category>
       </categories>
@@ -5146,6 +5116,42 @@
       </categories>
       <tags>
         <tag>项目之道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目中的小技巧</title>
+    <url>/2021/10/31/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h4 id="amp-amp-的使用"><a href="#amp-amp-的使用" class="headerlink" title="&amp;&amp;的使用"></a>&amp;&amp;的使用</h4><p>先看用法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 如果&amp;&amp;左右两边都有效则返回的是&amp;&amp;右边的内容, 否则返回左边的</span><br><span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-number">123</span>   <span class="hljs-comment">// 123</span><br><br><span class="hljs-number">0</span> &amp;&amp; <span class="hljs-number">123</span>      <span class="hljs-comment">// 0</span><br><br><span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-number">123</span>  <span class="hljs-comment">// false</span><br><br><span class="hljs-number">123</span> &amp;&amp; <span class="hljs-number">456</span>    <span class="hljs-comment">// 456</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="的使用"><a href="#的使用" class="headerlink" title="|| 的使用"></a>|| 的使用</h4><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-number">2</span> || <span class="hljs-number">3</span>       <span class="hljs-comment">// 2</span><br><span class="hljs-number">0</span> || <span class="hljs-number">3</span>       <span class="hljs-comment">// 3</span><br><span class="hljs-literal">false</span> || <span class="hljs-number">3</span>   <span class="hljs-comment">// 3</span><br><span class="hljs-literal">undefined</span>||<span class="hljs-number">3</span> <span class="hljs-comment">// 3</span><br><span class="hljs-literal">null</span> || <span class="hljs-number">3</span>    <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="的作用"><a href="#的作用" class="headerlink" title="== 的作用"></a>== 的作用</h4><p>正常情况下，能用 <code>===</code> 运算符就不要用 <code>==</code> 运算符。 我认为的唯一一种情况下推荐使用<code>==</code>的情况就是在你认为<code>undefined</code>、<code>null</code> 都应该为同一类状态的时候才可以使用<br>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-literal">undefined</span> == <span class="hljs-literal">null</span>  <span class="hljs-comment">// true</span><br><span class="hljs-literal">false</span> == <span class="hljs-literal">null</span>      <span class="hljs-comment">// false</span><br><span class="hljs-literal">false</span> == <span class="hljs-literal">undefined</span> <span class="hljs-comment">// false</span><br><span class="hljs-number">0</span> == <span class="hljs-literal">null</span>          <span class="hljs-comment">// false</span><br><span class="hljs-number">0</span> == <span class="hljs-literal">undefined</span>     <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">someValue == <span class="hljs-literal">null</span> <span class="hljs-comment">// 其实 someValue 与 null 或者 与 undefined 比较的时候 得到的结果是一致的</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 常见情况：</span><br><span class="hljs-keyword">const</span> number = <span class="hljs-number">5</span>;<br><span class="hljs-keyword">let</span> result;<br><br><span class="hljs-keyword">if</span> (number &gt;= <span class="hljs-number">50</span>) &#123;<br>  result = <span class="hljs-string">&#x27;Not to fifty!&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  result = <span class="hljs-string">&#x27;It could be worse&#x27;</span><br>&#125;<br><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 用三元运算符</span><br><span class="hljs-keyword">const</span> number = <span class="hljs-number">5</span>;<br><span class="hljs-comment">// 完美的浓缩着代码....</span><br><span class="hljs-keyword">const</span> result = number &gt;= <span class="hljs-number">50</span> ? <span class="hljs-string">&#x27;Not to fifty!&#x27;</span> : <span class="hljs-string">&#x27;It could be worse&#x27;</span><br><span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// It could be worse</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：对于<strong>三元运算符</strong> 仅限于做简单的返回值的事。不要做其他例如对象属性修改这种麻烦的操作…不然可能有意想不到的操作</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> user = &#123;...&#125;<br><span class="hljs-comment">// 下述操作其实就会懵逼。不要这样做</span><br>user.valid ? user.save() : user.printErrors()<br><br><span class="hljs-comment">// 老老实实用if……else……</span><br><span class="hljs-keyword">if</span> (user.valid) &#123;<br>  user.save()<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  user.printErrors()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>嵌套事也不要做…</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> number = <span class="hljs-number">12</span>;<br><span class="hljs-keyword">let</span> result;<br><br><span class="hljs-keyword">if</span> (number === <span class="hljs-number">0</span>) &#123;<br>  result = <span class="hljs-string">&#x27;You have nothing&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (number &lt; <span class="hljs-number">10</span>) &#123;<br>  result = <span class="hljs-string">&#x27;You have very little&#x27;</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  result = <span class="hljs-string">&#x27;You have a lot&#x27;</span><br>&#125;<br><br><span class="hljs-built_in">console</span>.log(result)<br></code></pre></td></tr></table></figure>
+
+<p>下面这种嵌套不要做…难以理解，难以解析</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">result = number === <span class="hljs-number">0</span> ? <span class="hljs-string">&#x27;You have nothing : (</span><br><span class="hljs-string">  number &lt; 10 ? &#x27;</span>You have very little<span class="hljs-string">&#x27; : &#x27;</span>You have a lot<span class="hljs-string">&#x27;</span><br><span class="hljs-string">)</span><br><span class="hljs-string"></span><br><span class="hljs-string">console.log(result)</span><br></code></pre></td></tr></table></figure>
+
+<p>写代码不是为了追求短…而是为了让代码的可读性更好。就算有段代码写 10 行其实可以压缩成 1 行，但是如果写 10 行可读性大于写 1 行。那也应该选择写 10 行的代码…</p>
+<h4 id="操作符"><a href="#操作符" class="headerlink" title="??操作符"></a>??操作符</h4><p>专门有篇博客讲解</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+      <categories>
+        <category>JavaScript篇</category>
+      </categories>
+      <tags>
+        <tag>奇淫技巧</tag>
       </tags>
   </entry>
   <entry>
@@ -5746,6 +5752,28 @@
 <ul>
 <li>能够实现更精准的类型提示和检查</li>
 </ul>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><ul>
+<li>命名更改</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 将 xxx-xxx-xxx 转化为 xxxXxxXxx 这种命名方式  ---&gt;  递归 + infer + 用 extends 约束参数为string</span><br><span class="hljs-keyword">type</span> KebabCaseToCamelCase&lt;Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; =<br>  Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;infer Item&#125;</span>-<span class="hljs-subst">$&#123;infer Rest&#125;</span>`</span><br>    ? <span class="hljs-string">`<span class="hljs-subst">$&#123;Item&#125;</span><span class="hljs-subst">$&#123;KebabCaseToCamelCase&lt;Capitalize&lt;Rest&gt;&gt;&#125;</span>`</span><br>    : Str;<br><br><span class="hljs-comment">// 将 xxxXxxXxx 转化为 xxx-xxx-xxx</span><br><span class="hljs-keyword">type</span> CamelCaseToKebabCase&lt;Str <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; =<br>  Str <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;infer First&#125;</span><span class="hljs-subst">$&#123;infer Rest&#125;</span>`</span><br>    ? First <span class="hljs-keyword">extends</span> Lowercase&lt;First&gt;<br>      ? <span class="hljs-string">`<span class="hljs-subst">$&#123;First&#125;</span><span class="hljs-subst">$&#123;CamelToKebabCase&lt;Rest&gt;&#125;</span>`</span><br>      : <span class="hljs-string">`-<span class="hljs-subst">$&#123;Lowercase&lt;First&gt;&#125;</span><span class="hljs-subst">$&#123;CamelCaseToKebabCase&lt;Rest&gt;&#125;</span>`</span><br>    : Str;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>Chunk</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> Chunk&lt;<br>  Arr <span class="hljs-keyword">extends</span> unknown[],<br>  ItemLen <span class="hljs-keyword">extends</span> <span class="hljs-built_in">number</span>,<br>  CurItem <span class="hljs-keyword">extends</span> unknown[] = [],<br>  Res <span class="hljs-keyword">extends</span> unknown[] = []<br>&gt; = Arr <span class="hljs-keyword">extends</span> [infer First, ...infer Rest]<br>  ? CurItem[<span class="hljs-string">&quot;length&quot;</span>] <span class="hljs-keyword">extends</span> ItemLen<br>    ? Chunk&lt;Rest, ItemLen, [First], [...Res, CurItem]&gt;<br>    : Chunk&lt;Rest, ItemLen, [...CurItem, First], Res&gt;<br>  : [...Res, CurItem];<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>嵌套 tuple</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 类型参数 Tuple 为待处理的元组类型，元素类型任意，约束为 unknown[]</span><br><span class="hljs-keyword">type</span> TupleToNestedObject&lt;Tuple <span class="hljs-keyword">extends</span> unknown[], Value&gt; = Tuple <span class="hljs-keyword">extends</span> [<br>  infer First,<br>  ...infer Rest<br>]<br>  ? &#123;<br>      [Key <span class="hljs-keyword">in</span> First <span class="hljs-keyword">as</span> Key <span class="hljs-keyword">extends</span> keyof <span class="hljs-built_in">any</span><br>        ? Key<br>        : <span class="hljs-built_in">never</span>]: Rest <span class="hljs-keyword">extends</span> unknown[]<br>        ? TupleToNestedObject&lt;Rest, Value&gt;<br>        : Value;<br>    &#125;<br>  : Value;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>把一个索引类型的某些 Key 转为 可选的，其余的 Key 不变</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> PickRes = Pick&lt;Dong, <span class="hljs-string">&quot;name&quot;</span> | <span class="hljs-string">&quot;age&quot;</span>&gt;;<br><br><span class="hljs-keyword">type</span> PartialObjectPropByKeys&lt;<br>  Obj <span class="hljs-keyword">extends</span> Record&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>&gt;,<br>  Key <span class="hljs-keyword">extends</span> keyof <span class="hljs-built_in">any</span><br>&gt; = Partial&lt;Pick&lt;Obj, Extract&lt;keyof Obj, Key&gt;&gt;&gt; &amp; Omit&lt;Obj, Key&gt;; <span class="hljs-comment">// 这里的 &amp; 符号用得很好</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> Copy&lt;Obj <span class="hljs-keyword">extends</span> Record&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>&gt;&gt; = &#123;<br>  [Key <span class="hljs-keyword">in</span> keyof Obj]: Obj[key];<br>&#125;;<br><br><span class="hljs-keyword">type</span> PartialObjectPropByKeys&lt;Obj <span class="hljs-keyword">extends</span> Record&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>&gt;, Key <span class="hljs-keyword">extends</span> keyof <span class="hljs-built_in">any</span> = keyof Obj&gt; = Copy&lt;Partial&lt;Pick&lt;Obj, Extract&lt;keyof Obj, Key&gt;&gt;&gt; &amp; Omit&lt;Obj, Key&gt;<br></code></pre></td></tr></table></figure>
+
 <hr>
 <p>注：本篇博客是在学习<a href="https://juejin.cn/book/7047524421182947366">TypeScript 类型体操通关秘籍</a> 所做笔记</p>
 ]]></content>
