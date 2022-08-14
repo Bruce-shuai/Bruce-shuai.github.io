@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="分享知识、感受生活~">
+  <meta name="author" content="帅得乱七八糟">
+  <meta name="keywords" content="">
+  <meta name="description" content="前段时间做了个新需求，给某某网站做一个活动报名表单。需求简单清晰明了！至少我当时是这么认为的。但做完之后发现需要注意的细节蛮多的，因此写下此篇文章来总结复盘一下~ 🥳 需求背景： 该网站需要一个通用性比较好的表单，而我所在的团队是技术中台，恰好有一套基于 arco-design 基础组件封装好的且通用性很强的表单组件。 所谓通用性好，即可以以参数的方式给表单组件传入特定格式的json来生成对应的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目总结: 简简单单的报名表单引发的全方位思考">
+<meta property="og:url" content="http://example.com/2022/08/14/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93-%E7%AE%80%E7%AE%80%E5%8D%95%E5%8D%95%E7%9A%84%E6%8A%A5%E5%90%8D%E8%A1%A8%E5%8D%95%E5%BC%95%E5%8F%91%E7%9A%84%E5%85%A8%E6%96%B9%E4%BD%8D%E6%80%9D%E8%80%83/index.html">
+<meta property="og:site_name" content="何阳阳阳的小屋">
+<meta property="og:description" content="前段时间做了个新需求，给某某网站做一个活动报名表单。需求简单清晰明了！至少我当时是这么认为的。但做完之后发现需要注意的细节蛮多的，因此写下此篇文章来总结复盘一下~ 🥳 需求背景： 该网站需要一个通用性比较好的表单，而我所在的团队是技术中台，恰好有一套基于 arco-design 基础组件封装好的且通用性很强的表单组件。 所谓通用性好，即可以以参数的方式给表单组件传入特定格式的json来生成对应的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c250302b1a14213a2234dd51c8b0e9f~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b98893588ebf4998be4d67776be590ff~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76a98f4755694800bc2ab84e82e70f1e~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/de13aabd469d47e1bc3622f3cb5e29ee~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b10397e844540ef9aa1bce9a4e9ea0a~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d353db2628ac4bf3b50ecc486dbf7a58~tplv-k3u1fbpfcp-watermark.image?">
+<meta property="article:published_time" content="2022-08-14T10:32:26.000Z">
+<meta property="article:modified_time" content="2022-08-14T10:32:59.278Z">
+<meta property="article:author" content="帅得乱七八糟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c250302b1a14213a2234dd51c8b0e9f~tplv-k3u1fbpfcp-watermark.image">
+  
+  <title>项目总结: 简简单单的报名表单引发的全方位思考 - 何阳阳阳的小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何阳阳阳的小屋🛖</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo/">
+                <i class="iconfont icon-kakao-talk-fill"></i>
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                小屋主人
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/bg6.2e551b3dtthc.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="项目总结: 简简单单的报名表单引发的全方位思考">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-08-14 18:32" pubdate>
+        2022年8月14日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">项目总结: 简简单单的报名表单引发的全方位思考</h1>
+            
+            <div class="markdown-body">
+              <p>前段时间做了个新需求，给某某网站做一个活动报名表单。需求简单清晰明了！至少我当时是这么认为的。但做完之后发现需要注意的细节蛮多的，因此写下此篇文章来总结复盘一下~ 🥳</p>
+<p><strong>需求背景：</strong></p>
+<p>该网站需要一个通用性比较好的表单，而我所在的团队是技术中台，恰好有一套基于 <code>arco-design</code> 基础组件封装好的且通用性很强的表单组件。 所谓通用性好，即可以以参数的方式给表单组件传入特定格式的<code>json</code>来生成对应的表单，例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>   <span class="hljs-attr">&quot;formItems&quot;</span>: [<br>       &#123;<br>           <span class="hljs-attr">&quot;keyname&quot;</span>: <span class="hljs-string">&quot;user_name&quot;</span>,<br>           <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;1. 你的姓名是？&quot;</span>,<br>           <span class="hljs-attr">&quot;inputWidgetType&quot;</span>: <span class="hljs-string">&quot;Input&quot;</span>,<br>           <span class="hljs-attr">&quot;required&quot;</span>: &#123;<br>               <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;bool&quot;</span>,<br>               <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-literal">true</span><br>           &#125;<br>       &#125;,<br>        &#123;<br>          <span class="hljs-attr">&quot;keyname&quot;</span>: <span class="hljs-string">&quot;expectation&quot;</span>,<br>          <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;2. 你对此活动的期待是？&quot;</span>,<br>          <span class="hljs-attr">&quot;inputWidgetType&quot;</span>: <span class="hljs-string">&quot;TextArea&quot;</span>,<br>          <span class="hljs-attr">&quot;inputWidgetProps&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;maxLength&quot;</span>: <span class="hljs-number">2000</span>,<br>            <span class="hljs-attr">&quot;placeholder&quot;</span>: <span class="hljs-string">&quot;请输入&quot;</span>,<br>            <span class="hljs-attr">&quot;showWordLimit&quot;</span>: <span class="hljs-literal">true</span><br>          &#125;<br>        &#125;<br>   ]<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">CommonForm</span> <span class="hljs-attr">formItem</span>=<span class="hljs-string">&#123;JSON的内容&#125;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+<p>生成的表单长这样：<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c250302b1a14213a2234dd51c8b0e9f~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="截屏2022-06-27 21.21.36.png"><br>当然用<code>json</code>不仅仅可以生成单文本框、多文本框，还可以生成单选、多选等各种类型的表单输入框，总而言之，这个表单组件的通用性非常强！(找个时间也去研究一下这个组件是怎么写的~)</p>
+<p>回归正题，这次我所做的表单功能如下：</p>
+<h3 id="表单的功能："><a href="#表单的功能：" class="headerlink" title="表单的功能："></a>表单的功能：</h3><ol>
+<li>活动开始</li>
+<li>活动报名开始</li>
+<li>用户填写表单<ol>
+<li>表单具备校验功能</li>
+<li>表单具备实时保存功能, 并且中途离开该表单页面，浏览器会由弹窗提示</li>
+<li>提交按钮</li>
+</ol>
+</li>
+<li>用户修改表单(当用户提交表单之后，想修改之前填写的表单)<ol>
+<li>表单头部提示：当前正在修改表单</li>
+<li>表单具备校验功能</li>
+<li>取消实时保存填写内容的功能, 打开页面获取到的是用户上一次提交到服务端的表单数据, 中途离开表单，会由弹窗提示</li>
+<li>更改按钮</li>
+</ol>
+</li>
+<li>报名活动结束<ol>
+<li>表单头部提示：当前报名活动已结束，禁止填写表单</li>
+<li>表单禁止填写</li>
+<li>更改按钮按钮消失</li>
+</ol>
+</li>
+</ol>
+<h3 id="一些比较坑的地方："><a href="#一些比较坑的地方：" class="headerlink" title="一些比较坑的地方："></a>一些比较坑的地方：</h3><ol>
+<li>及时获取数据 –&gt; useState：有待补充</li>
+</ol>
+<p><strong>不好修改样式 (arco design)</strong><br>由于这次项目，表单是使用 <code>react</code> 写的，并且这个表单组件是基于<code>arco-design</code>生成的组件，样式效果是<code>arco-design</code>的, 我需要把表单放在用<code>vue</code>写的网站里，而<code>vue</code>的网站里是没有使用<code>arco-design</code>的。然后设计师在设计表单ui稿的时候还是以该网站的设计风格来设计该表单，导致我在修改该表单的样式时候不断和设计师进行样式妥协。苦不堪言~</p>
+<p><strong>部署到线上，耗时太久</strong><br>项目已经上线完成，但是出现了一个问题即在线上环境发现<code>bug</code>，我把<code>bug</code>修复后同事重新部署到线上环境，这个部署过程花费了1个半小时，同事这一个半小时就得在这里一直等待线上的测试效果。显然，这样的操作是十分浪费人力的，以及用户要在较长时间之后才能看到bug修复后的网页。 这个部署是否能够得到较好的优化，将1个半小时的部署时间缩短，有待期待~</p>
+<p><strong>长字符链接的换行</strong></p>
+<p>在表单的顶部有例如这样的表单介绍：<br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b98893588ebf4998be4d67776be590ff~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="截屏2022-06-28 13.40.57.png"><br>产品认为，“去掘金社区”后面不能留太多空白，应该有如下图效果：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76a98f4755694800bc2ab84e82e70f1e~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="截屏2022-06-28 13.41.06.png"></p>
+<p>解决方法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">word-wrap</span>: break-word;<br><span class="hljs-attribute">word-break</span>: break-all;<br></code></pre></td></tr></table></figure>
+<p>以及使用<code>white-space: pre-line;</code>来处理字符串内容空白换行问题。</p>
+<h3 id="做的过程中忽略之处："><a href="#做的过程中忽略之处：" class="headerlink" title="做的过程中忽略之处："></a>做的过程中忽略之处：</h3><p><strong>表单的单文本框和多文本框的混用问题</strong><br>在这次表单需求里，我按照示意图的表单来设计的json，导致出现了一个问题，邮箱填写、学校填写全是多文本框，并没有过多的思考这样的输入框的是否合理。<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/de13aabd469d47e1bc3622f3cb5e29ee~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="截屏2022-06-28 13.23.08.png"></p>
+<p>当然我的这种错误操作也被同事指正出来： </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b10397e844540ef9aa1bce9a4e9ea0a~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="截屏2022-06-28 13.24.23.png"><br>下次我得多注意注意才行~</p>
+<p>localStorage 用cache的原因<br>账号切换问题 –&gt; 本地数据保存</p>
+<p><strong>没有及时在群里同步问题</strong><br>在这次项目开发过程中，这个表单组件出现了一些<code>bug</code>, 但是我没有及时的在项目群里同步该问题导致其他人以为进度顺利，实际上，这次修复这个<code>bug</code>花了一定的时间，而因为大家的信息不对称导致进度被拉慢</p>
+<p><strong>userID 字符串类型</strong><br>这是一个提醒自己的小知识，因为我习惯把<code>id</code>设置为<code>number</code>类型,但是因为<code>userId</code>一般数字位数很大，用<code>number</code>类型显然不合理，应该用<code>string</code>类型才对!</p>
+<p><strong>及时提交代码</strong><br>要及时上传代码到远程仓库，我发现自己有几次因为周五快下班，高高兴兴回家，连代码都忘提交到远程仓库。导致周一回到公司的时候，看见自己的代码多多少少有点不确定当前未提交的代码是否可以提交~</p>
+<p><strong>活动未开始的时候，点击提交无效</strong><br>在测试环节，出现了一个尴尬的bug，即在活动未开始的时候，点击表单提交按钮仍能提交… 这是最开始设计代码的时候没有考虑到的事~ 下次一定要注意！</p>
+<h3 id="有意思的地方"><a href="#有意思的地方" class="headerlink" title="有意思的地方"></a>有意思的地方</h3><h4 id="将react写的表单放进vue项目里"><a href="#将react写的表单放进vue项目里" class="headerlink" title="将react写的表单放进vue项目里"></a>将react写的表单放进vue项目里</h4><p>使用的技术是<a target="_blank" rel="noopener" href="https://github.com/akxcv/vuera"><code>vuera</code></a></p>
+<p><strong>中途遇见的一个坑:</strong><br><code>vuera</code> 在 <code>ssr</code> 渲染这部分会有一定的缺陷(<code>vuera</code>这个库已经有两年没有人维护了~要慎用)</p>
+<h4 id="退出当前页面，浏览器会有弹窗提示"><a href="#退出当前页面，浏览器会有弹窗提示" class="headerlink" title="退出当前页面，浏览器会有弹窗提示"></a>退出当前页面，浏览器会有弹窗提示</h4><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d353db2628ac4bf3b50ecc486dbf7a58~tplv-k3u1fbpfcp-watermark.image?" srcset="/img/loading.gif" lazyload width="200px"/>
+
+<p>使用的技术是<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/beforeunload_event"><code>beforeunload 事件</code></a>。<br>当浏览器窗口关闭或者刷新时，会触发 <code>beforeunload</code> 事件。当前页面不会直接关闭，可以点击确定按钮关闭或刷新，也可以取消关闭或刷新。</p>
+<p><strong>中途遇见的一个坑:</strong><br>在<code>vue</code>的路由(<code>vue-router</code>)里面, <code>beforeunload</code> 只会对<code>a</code>标签链接跳转有效果，但是对于<code>router-link</code>的跳转是捕捉不到的。 </p>
+<p>解决办法： 使用<code>vue-router</code>自带的<code>beforeRouteLeave</code>来解决，在离开该路由前进行链接跳转的修改</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-title">beforeRouteLeave</span>(<span class="hljs-params">to, <span class="hljs-keyword">from</span>, next</span>)</span> &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.formChange) &#123;<br>        next(<span class="hljs-literal">false</span>)<br>        <span class="hljs-built_in">window</span>.location = to.path <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> Location<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        next();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="学会以mock数据的方式自由的操作各种状态"><a href="#学会以mock数据的方式自由的操作各种状态" class="headerlink" title="学会以mock数据的方式自由的操作各种状态"></a>学会以mock数据的方式自由的操作各种状态</h4><p>因为这个表单的状态比较多(活动前后状态、表单提交/修改状态<del>)，为了测试我的表单能够在各种状态都能适用，起初我是找服务端的朋友帮我修改对应的数据。当然，这种方式是极其低效和尴尬的，于是我自己花了1个小时学习如何使用公司的mock插件，终于，我可以自己随心所欲的mock对应的接口数据了，效率大大提高</del></p>
+<h3 id="后知后觉的地方："><a href="#后知后觉的地方：" class="headerlink" title="后知后觉的地方："></a>后知后觉的地方：</h3><p>在项目上线之后，周末我无意间看见这样一篇博客<a target="_blank" rel="noopener" href="https://juejin.cn/post/7106461530232717326">ahooks 是怎么解决用户多次提交问题？</a> 这篇文章告诉我，对于一个表单，如果我连续快速的多次点击提交，可能会导致表单提交出错。 摊牌了，这个问题，我在写表单的时候完全没有考虑到… 当然，在这篇文章中告诉了我该怎么做，<strong>“解决这类问题的方法有很多，比如添加 <code>loading</code>，在第一次点击之后就无法再次点击。另外一种方法就是给请求异步函数添加上一个静态锁，防止并发产生。这就是 <code>ahooks</code> 的 <code>useLockFn</code> 做的事情。”</strong> 我觉得<code>useLockFn</code>这个钩子非常有意思，于是也自己去看了看对应的源码~ 这里就不再过多赘述了。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/14/%E5%B7%A7%E7%94%A8css/">
+                        <span class="hidden-mobile">巧用css</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div style="display: flex"><img src="https://cdn.jsdelivr.net/gh/Bruce-shuai/picBed@master/footer_img2.ukcnbthf4fk.svg" srcset="/img/loading.gif" lazyload alt="" style="height: 200px; margin: 0 auto;"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://juejin.cn/user/862446490487725" target="_blank" rel="nofollow noopener"><span>稀土掘金</span></a> <i class="iconfont icon-aixin" style="color: red;"></i> <a href="https://codesandbox.io/dashboard/home?workspace=3beb9911-b3bc-41d0-8b31-3fe9ca0f09d6" target="_blank" rel="nofollow noopener"><span>CodeSandbox</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":350},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>
